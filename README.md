@@ -50,31 +50,6 @@ A continuación, se detalla el proceso para subir los cambios a Develop:
    git push origin develop
    ```
 
-### Ejemplo Completo:
-Supongamos que estás trabajando en una carpeta llamada `nueva_funcionalidad` y has terminado tus cambios:
-
-```bash
-# Agregar los cambios realizados
-$ git add nueva_funcionalidad
-
-# Crear un commit describiendo los cambios
-$ git commit -m "Agregada nueva funcionalidad para X"
-
-# Cambiar a la rama develop
-$ git checkout develop
-
-# Actualizar la rama develop
-$ git pull
-
-# Realizar el merge de la rama actual a develop
-$ git merge nueva_funcionalidad
-
-# Subir los cambios al repositorio
-$ git push
-```
-
-Recuerda siempre seguir este flujo para evitar conflictos y mantener el código actualizado.
-
 ## Autores
 
 - Miguel Ángel Grimal
