@@ -35,7 +35,7 @@ A continuación, se detalla el proceso para subir los cambios a Develop:
 4. **Actualiza la rama `develop` con los últimos cambios del repositorio remoto**:
    Es importante traer los cambios recientes antes de hacer un merge:
    ```bash
-   git pull
+   git pull origin develop
    ```
 
 5. **Realiza el merge de tu rama a `develop`**:
@@ -47,7 +47,7 @@ A continuación, se detalla el proceso para subir los cambios a Develop:
 6. **Sube los cambios al repositorio remoto**:
    Una vez completado el merge, envía los cambios al repositorio:
    ```bash
-   git push
+   git push origin develop
    ```
 
 ### Ejemplo Completo:
