@@ -60,29 +60,26 @@ Asegúrate de tener instalados los siguientes programas en tu sistema:
 - [Node.js](https://nodejs.org/) (versión 14 o superior)
 - [npm](https://www.npmjs.com/) (incluido con Node.js)
 
-## Instalación
-Sigue estos pasos para instalar las dependencias necesarias:
-
-### Paso 1: Instalar las dependencias del proyecto
+** Paso 1: Instalar las dependencias del proyecto**
 Ejecuta el siguiente comando en la terminal para instalar todas las dependencias del proyecto especificadas en el archivo `package.json`:
 
 ```bash
 npm install
 ```
 
-### Paso 2: Instalar Font Awesome para React
+** Paso 2: Instalar Font Awesome para React**
 Para agregar soporte de iconos con Font Awesome en el proyecto, ejecuta el siguiente comando:
 
 ```bash
 npm install --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 ```
 
-#### Descripción de los paquetes instalados:
+** Descripción de los paquetes instalados:**
 - **@fortawesome/fontawesome-svg-core**: Contiene el núcleo de Font Awesome.
 - **@fortawesome/free-solid-svg-icons**: Incluye los iconos sólidos gratuitos.
 - **@fortawesome/react-fontawesome**: Permite integrar Font Awesome con React.
 
-## Ejecución
+**Ejecución**
 Una vez instaladas las dependencias, puedes iniciar el servidor de desarrollo con el siguiente comando:
 
 ```bash
