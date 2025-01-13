@@ -54,7 +54,7 @@ A continuación, se detalla el proceso para subir los cambios a Develop:
 
 Este documento describe los pasos necesarios para instalar y configurar el frontend del proyecto.
 
-## Requisitos previos
+**Requisitos previos**
 Asegúrate de tener instalados los siguientes programas en tu sistema:
 
 - [Node.js](https://nodejs.org/) (versión 14 o superior)
