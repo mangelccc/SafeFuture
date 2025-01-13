@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./CrearCuenta.css";
+import { contextoUsuario } from "../../contextos/ProvedorUsuarios.jsx"; // Importar el contexto
 
 const CrearCuenta = () => {
+  const { enviarDatos, error, loading } = useContext(contextoUsuario); // Usar el contexto
   const [formData, setFormData] = useState({
     dni: "",
     nombre: "",
@@ -12,8 +14,6 @@ const CrearCuenta = () => {
     fecha_nacimiento: "",
   });
 
-  const [usuarios, setUsuarios] = useState([]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -22,19 +22,22 @@ const CrearCuenta = () => {
     });
   };
 
-  const handleCrearCuenta = () => {
+  const handleCrearCuenta = async () => {
     const { dni, nombre, apellidos, email, password, direccion, fecha_nacimiento } = formData;
     if (dni && nombre && apellidos && email && password && direccion && fecha_nacimiento) {
-      setUsuarios([...usuarios, formData]); // Agregar al array de usuarios
-      setFormData({
-        dni: "",
-        nombre: "",
-        apellidos: "",
-        email: "",
-        password: "",
-        direccion: "",
-        fecha_nacimiento: "",
-      }); // Limpiar los inputs
+      const respuesta = await enviarDatos(formData); // Enviar los datos al servidor
+      if (respuesta) {
+        alert("Cuenta creada con éxito.");
+        setFormData({
+          dni: "",
+          nombre: "",
+          apellidos: "",
+          email: "",
+          password: "",
+          direccion: "",
+          fecha_nacimiento: "",
+        });
+      }
     } else {
       alert("Por favor, complete todos los campos.");
     }
@@ -109,27 +112,7 @@ const CrearCuenta = () => {
         Crear cuenta
       </button>
 
-      {/* Mostrar los usuarios creados */}
-      <div className="usuariosCreados">
-        <h3>Usuarios creados:</h3>
-        {usuarios.length === 0 ? (
-          <p>No hay usuarios creados aún.</p>
-        ) : (
-          <ul>
-            {usuarios.map((usuario, index) => (
-              <li key={index}>
-                <strong>DNI:</strong> {usuario.dni} <br />
-                <strong>Nombre:</strong> {usuario.nombre} <br />
-                <strong>Apellidos:</strong> {usuario.apellidos} <br />
-                <strong>Email:</strong> {usuario.email} <br />
-                <strong>Contraseña:</strong> {usuario.password} <br />
-                <strong>Dirección:</strong> {usuario.direccion} <br />
-                <strong>Fecha de nacimiento:</strong> {usuario.fecha_nacimiento}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {loading && <p>Enviando datos...</p>}
     </div>
   );
 };
