@@ -1,0 +1,15 @@
+.inicio__columnas {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.inicio__columna {
+    margin: 15px;
+    text-align: justify;
+    width: 50%;
+}
+
+.inicio__terminal{
+    font-family: 'Courier New', Courier, monospace;
+}

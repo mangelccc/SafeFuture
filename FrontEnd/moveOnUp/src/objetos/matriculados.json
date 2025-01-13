@@ -1,0 +1,165 @@
+{
+    "discentes": [
+  {
+    "id": 1,
+    "nombre": "Carlos",
+    "apellidos": "García López",
+    "curso": "2DAW",
+    "aficiones": ["leer", "correr", "ajedrez"],
+    "comida": "paella"
+  },
+  {
+    "id": 2,
+    "nombre": "María",
+    "apellidos": "Fernández Ruiz",
+    "curso": "1DAM",
+    "aficiones": ["pintura", "viajar", "fotografía"],
+    "comida": "tortilla de patatas"
+  },
+  {
+    "id": 3,
+    "nombre": "Juan",
+    "apellidos": "Martínez Gómez",
+    "curso": "2DAM",
+    "aficiones": ["ciclismo", "videojuegos", "cocina"],
+    "comida": "gazpacho"
+  },
+  {
+    "id": 4,
+    "nombre": "Ana",
+    "apellidos": "Sánchez Pérez",
+    "curso": "1DAW",
+    "aficiones": ["yoga", "lectura", "senderismo"],
+    "comida": "ensalada"
+  },
+  {
+    "id": 5,
+    "nombre": "Luis",
+    "apellidos": "Hernández Díaz",
+    "curso": "2DAW",
+    "aficiones": ["natación", "cine", "música"],
+    "comida": "pasta"
+  },
+  {
+    "id": 6,
+    "nombre": "Laura",
+    "apellidos": "González Romero",
+    "curso": "1DAM",
+    "aficiones": ["escritura", "teatro", "viajar"],
+    "comida": "sushi"
+  },
+  {
+    "id": 7,
+    "nombre": "Pedro",
+    "apellidos": "López Torres",
+    "curso": "2DAM",
+    "aficiones": ["programación", "fútbol", "fotografía"],
+    "comida": "pizza"
+  },
+  {
+    "id": 8,
+    "nombre": "Elena",
+    "apellidos": "Martín Sánchez",
+    "curso": "1DAW",
+    "aficiones": ["dibujo", "pintura", "danza"],
+    "comida": "tacos"
+  },
+  {
+    "id": 9,
+    "nombre": "Javier",
+    "apellidos": "Jiménez Ruiz",
+    "curso": "2DAW",
+    "aficiones": ["bolsa", "lectura", "viajar"],
+    "comida": "hamburguesa"
+  },
+  {
+    "id": 10,
+    "nombre": "Isabel",
+    "apellidos": "Moreno García",
+    "curso": "1DAM",
+    "aficiones": ["meditación", "lectura", "escritura"],
+    "comida": "ramen"
+  },
+  {
+    "id": 11,
+    "nombre": "Miguel",
+    "apellidos": "Ortiz Fernández",
+    "curso": "2DAM",
+    "aficiones": ["robótica", "ciclismo", "ajedrez"],
+    "comida": "paella"
+  },
+  {
+    "id": 12,
+    "nombre": "Lucía",
+    "apellidos": "Ramírez López",
+    "curso": "1DAW",
+    "aficiones": ["debate", "lectura", "viajar"],
+    "comida": "tortilla de patatas"
+  },
+  {
+    "id": 13,
+    "nombre": "Antonio",
+    "apellidos": "Navarro Gómez",
+    "curso": "2DAW",
+    "aficiones": ["investigación", "natación", "cine"],
+    "comida": "gazpacho"
+  },
+  {
+    "id": 14,
+    "nombre": "Sara",
+    "apellidos": "Torres Martínez",
+    "curso": "1DAM",
+    "aficiones": ["meditación", "yoga", "lectura"],
+    "comida": "ensalada"
+  },
+  {
+    "id": 15,
+    "nombre": "David",
+    "apellidos": "Ruiz Sánchez",
+    "curso": "2DAM",
+    "aficiones": ["dibujo", "fotografía", "viajar"],
+    "comida": "pasta"
+  },
+  {
+    "id": 16,
+    "nombre": "Marta",
+    "apellidos": "Vega Hernández",
+    "curso": "1DAW",
+    "aficiones": ["escritura", "cine", "música"],
+    "comida": "sushi"
+  },
+  {
+    "id": 17,
+    "nombre": "Alberto",
+    "apellidos": "Castro López",
+    "curso": "2DAW",
+    "aficiones": ["ajedrez", "lectura", "correr"],
+    "comida": "pizza"
+  },
+  {
+    "id": 18,
+    "nombre": "Cristina",
+    "apellidos": "Santos Pérez",
+    "curso": "1DAM",
+    "aficiones": ["viajar", "fotografía", "pintura"],
+    "comida": "tacos"
+  },
+  {
+    "id": 19,
+    "nombre": "Fernando",
+    "apellidos": "Gutiérrez Díaz",
+    "curso": "2DAM",
+    "aficiones": ["cocina", "videojuegos", "ciclismo"],
+    "comida": "hamburguesa"
+  },
+  {
+    "id": 20,
+    "nombre": "Patricia",
+    "apellidos": "Molina García",
+    "curso": "1DAW",
+    "aficiones": ["senderismo", "lectura", "yoga"],
+    "comida": "ramen"
+  }
+]
+
+}
