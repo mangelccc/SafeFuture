@@ -27,13 +27,13 @@ class usuariosController extends Controller
 
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'dni' => 'required|string|max:20|unique:usuarios,dni',
-            'nombre' => 'required|string|max:255',
-            'apellidos' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:usuarios,email',
-            'password' => 'required|string|min:8', // Contraseña con un mínimo de 8 caracteres
-            'direccion' => 'required|string|max:255',
-            'fecha_nacimiento' => 'required|date|before:today', // Validar que la fecha sea anterior a hoy
+            'dni' => 'required|string|max:9|unique:usuarios,dni',
+            'nombre' => 'required|string|max:50',
+            'apellidos' => 'required|string|max:50',
+            'email' => 'required|email|max:100|unique:usuarios,email',
+            'password' => 'required|string|min:8',
+            'direccion' => 'required|string|max:100',
+            'fecha_nacimiento' => 'required|date|before:today',
         ]);
 
         if ($validator->fails()) {
@@ -51,7 +51,7 @@ class usuariosController extends Controller
             'nombre' => $request->nombre,
             'apellidos' => $request->apellidos,
             'email' => $request->email,
-            'password' => $request->password, // Encriptar la contraseña antes de guardarla
+            'password' => $request->password, // Falta encriptar
             'direccion' => $request->direccion,
             'fecha_nacimiento' => $request->fecha_nacimiento,
         ]);
@@ -113,12 +113,12 @@ class usuariosController extends Controller
             return response()->json($data, 404);
         }
         $validator = Validator::make($request->all(), [
-            'dni' => 'required|string|max:20',
-            'nombre' => 'required|string|max:255',
-            'apellidos' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'dni' => 'required|string|max:9',
+            'nombre' => 'required|string|max:50',
+            'apellidos' => 'required|string|max:50',
+            'email' => 'required|email|max:50',
             'password' => 'required|string|min:8',
-            'direccion' => 'required|string|max:255',
+            'direccion' => 'required|string|max:50',
             'fecha_nacimiento' => 'required|date|before:today',
         ]);
 
@@ -161,12 +161,12 @@ class usuariosController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'dni' => 'string|max:20',
-            'nombre' => 'string|max:255',
-            'apellidos' => 'string|max:255',
-            'email' => 'email|max:255',
+            'dni' => 'string|max:9',
+            'nombre' => 'string|max:50',
+            'apellidos' => 'string|max:50',
+            'email' => 'email|max:50',
             'password' => 'string|min:8',
-            'direccion' => 'string|max:255',
+            'direccion' => 'string|max:50',
             'fecha_nacimiento' => 'date|before:today',
         ]);
 
