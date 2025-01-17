@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuarios;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class usuariosController extends Controller
+class usuarioController extends Controller
 {
     public function index(){
-       $usuarios = usuarios::all();
+       $usuarios = Usuario::all();
        if($usuarios->isEmpty()){
            $data = [
                'message' => 'No hay usuarios registrados',
@@ -46,7 +46,7 @@ class usuariosController extends Controller
         }
 
         // Crear un nuevo usuario
-        $usuario = Usuarios::create([
+        $usuario = Usuario::create([
             'dni' => $request->dni,
             'nombre' => $request->nombre,
             'apellidos' => $request->apellidos,
@@ -67,7 +67,7 @@ class usuariosController extends Controller
 
     public function show($id)
     {
-        $usuario = Usuarios::find($id);
+        $usuario = Usuario::find($id);
 
         if(!$usuario){
             $data = [
@@ -84,7 +84,7 @@ class usuariosController extends Controller
         return response()->json($data, 200);
     }
     public function destroy($id){
-        $usuario = Usuarios::find($id);
+        $usuario = Usuario::find($id);
 
         if(!$usuario){
             $data = [
@@ -103,7 +103,7 @@ class usuariosController extends Controller
         return response()->json($data, 200);
     }
     public function update(Request $request, $id){
-        $usuario = Usuarios::find($id);
+        $usuario = Usuario::find($id);
 
         if(!$usuario){
             $data = [
@@ -150,7 +150,7 @@ class usuariosController extends Controller
 
     }
     public function updatePartial(Request $request, $id){
-        $usuario = Usuarios::find($id);
+        $usuario = Usuario::find($id);
 
         if(!$usuario){
             $data = [
