@@ -31,6 +31,13 @@ class Usuario extends Model
             ->withPivot(['fecha_inicio', 'fecha_fin']);
     }
 
+    public function rutina(): BelongsToMany
+    {
+        return $this->belongsToMany(Rutina::class)
+            ->withTimestamps()
+            ->withPivot(['fecha_inicio', 'fecha_fin']);
+    }
+
     public function recompensa():HasMany
     {
         return $this->hasMany(Recompensa::class);

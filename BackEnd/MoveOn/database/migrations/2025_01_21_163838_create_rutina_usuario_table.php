@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('habitos', function (Blueprint $table) {
+        Schema::create('rutina_usuario', function (Blueprint $table) {
             $table->id();
             $table->foreignId('rutina_id')->constrained();
+            $table->foreignId('usuario_id')->constrained();
+            $table->primary(['rutina_id', 'usuario_id']);
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->timestamps();
         });
     }
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('habitos');
+        Schema::dropIfExists('rutina_usuario');
     }
 };
