@@ -8,8 +8,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Rutina extends Model
 {
-    /** @use HasFactory<\Database\Factories\RutinaFactory> */
     use HasFactory;
+    protected $table = 'rutinas';
+
+    protected $fillable = [
+        'nombre',
+        'detalles',
+    ];
+
+    protected $casts = [
+        'detalles' => 'array', // Laravel lo convierte automáticamente a un array
+    ];
+
     public function usuarios(): BelongsToMany
     {
         return $this->belongsToMany(Usuario::class)->withTimestamps()->withPivot(["fecha_inicio", "fecha_fin"]);

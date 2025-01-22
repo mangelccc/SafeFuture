@@ -6,7 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class usuarioController extends Controller
+class UsuarioController extends Controller
 {
     public function index(){
        $usuarios = Usuario::all();
@@ -25,7 +25,8 @@ class usuarioController extends Controller
         return response()->json($data, 200);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'dni' => 'required|string|max:9|unique:usuarios,dni',
             'nombre' => 'required|string|max:50',
@@ -42,7 +43,7 @@ class usuarioController extends Controller
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
-            return response()->json($data,400);
+            return response()->json($data, 400);
         }
 
         // Crear un nuevo usuario
@@ -56,12 +57,12 @@ class usuarioController extends Controller
             'fecha_nacimiento' => $request->fecha_nacimiento,
         ]);
 
-        if(!$usuario){
+        if (!$usuario) {
             $data = [
                 'message' => $usuario,
                 'status' => 201
             ];
-            return response()->json($data,400);
+            return response()->json($data, 400);
         }
     }
 

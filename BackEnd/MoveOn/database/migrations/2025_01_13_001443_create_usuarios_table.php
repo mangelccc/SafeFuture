@@ -19,11 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password'); // Contraseña encriptada
             $table->string('direccion');
-            $table->date('fecha_nacimiento'); // Cambiado a tipo 'date'
-            $table->foreignId('recompensa_id')->constrained();
-            $table->foreignId('mensaje_id')->constrained();
-            $table->foreignId('traslado_id')->constrained();
-            $table->foreignId('rol_id')->constrained();
+            $table->date('fecha_nacimiento');
+            $table->foreignId('rol_id')->constrained(); // Assuming the 'roles' table exists
             $table->timestamps();
         });
     }

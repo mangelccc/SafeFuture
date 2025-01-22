@@ -12,10 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dieta_usuario', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('dieta_id')->constrained();
-            $table->foreignId('usuario_id')->constrained();
-            $table->primary(['dieta_id', 'usuario_id']);
+            $table->foreignId('dieta_id')->constrained()->onDelete('cascade'); // Agrega onDelete si aplica
+            $table->foreignId('usuario_id')->constrained()->onDelete('cascade');
+            $table->primary(['dieta_id', 'usuario_id']); // Clave primaria compuesta
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->timestamps();

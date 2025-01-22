@@ -12,6 +12,7 @@ class Usuario extends Model
 {
 
     use HasFactory;
+
     protected $table = 'usuarios';
 
     protected $fillable = [
@@ -38,15 +39,17 @@ class Usuario extends Model
             ->withPivot(['fecha_inicio', 'fecha_fin']);
     }
 
-    public function recompensa():HasMany
+    public function recompensa(): HasMany
     {
         return $this->hasMany(Recompensa::class);
     }
-    public function mensaje():HasMany
+
+    public function mensaje(): HasMany
     {
         return $this->hasMany(Mensaje::class);
     }
-    public function traslado():HasMany
+
+    public function traslado(): HasMany
     {
         return $this->hasMany(Traslado::class);
     }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('dietas', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre', 100); // Nombre de la rutina
+            $table->json('detalles');     // Campo JSON para almacenar detalles de la rutina
             $table->timestamps();
         });
     }
