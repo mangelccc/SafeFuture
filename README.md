@@ -12,11 +12,12 @@ Este proyecto está organizado en diferentes ramas para mantener un flujo de tra
 - **Entidad Relación**: https://bit.ly/406Iq1e
 - **Ramón Galinsoga PT:** https://chatgpt.com/share/6787db79-97f4-8008-9158-3b10d3b74d22
 
-**Por si falla el pull **:
+## Ejemplo de Ejecución para Subir Cambios a Develop
+
+**Por si falla el pull**:
    ```bash
    git restore .
    ```
-## Ejemplo de Ejecución para Subir Cambios a Develop
 
 A continuación, se detalla el proceso para subir los cambios a Develop:
 
