@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Usuario extends Model
 {
-
     use HasFactory;
 
     protected $table = 'usuarios';
+    protected $with = ["rutina"];
+    protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = [
         'dni',

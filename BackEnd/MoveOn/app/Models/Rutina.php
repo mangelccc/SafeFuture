@@ -10,6 +10,7 @@ class Rutina extends Model
 {
     use HasFactory;
     protected $table = 'rutinas';
+    protected $with = ["usuarios"];
 
     protected $fillable = [
         'nombre',
