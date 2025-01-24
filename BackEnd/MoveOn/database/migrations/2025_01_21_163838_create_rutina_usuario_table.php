@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('rutina_usuario', function (Blueprint $table) {
             $table->foreignId('rutina_id')->constrained()->onDelete('cascade');
             $table->foreignId('usuario_id')->constrained()->onDelete('cascade');
-            $table->primary(['rutina_id', 'usuario_id']); // Clave primaria compuesta
+            $table->primary(['rutina_id', 'usuario_id']);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->timestamps();

@@ -6,11 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="6d45a3a1-21ff-4ce5-915a-2344ffbb13dd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a414e95b-6bb9-4c1c-aab8-c47207563c0b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a414e95b-6bb9-4c1c-aab8-c47207563c0b.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a414e95b-6bb9-4c1c-aab8-c47207563c0b/storage_v2/_src_/schema/laravel.uWob_Q.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/app/Models/Rutina.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/app/Models/Rutina.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/app/Models/Rol.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/app/Models/Rol.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/app/Models/Usuario.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/app/Models/Usuario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/database/factories/UsuarioFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/database/factories/UsuarioFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/database/migrations/2025_01_13_001443_create_usuarios_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/database/migrations/2025_01_13_001443_create_usuarios_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/database/migrations/2025_01_17_172131_create_rols_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/database/migrations/2025_01_12_172131_create_rols_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/database/migrations/2025_01_21_163838_create_rutina_usuario_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/database/migrations/2025_01_21_163838_create_rutina_usuario_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/database/seeders/RolSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/database/seeders/RolSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/database/seeders/RutinaSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/database/seeders/RutinaSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/MoveOn/database/seeders/UsuariosSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/MoveOn/database/seeders/UsuariosSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +225,7 @@
       <workItem from="1737042655947" duration="6813000" />
       <workItem from="1737134314472" duration="3493000" />
       <workItem from="1737554517329" duration="6681000" />
-      <workItem from="1737734848734" duration="2335000" />
+      <workItem from="1737734848734" duration="5070000" />
     </task>
     <servers />
   </component>

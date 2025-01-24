@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password'); // Contraseña encriptada
             $table->string('direccion');
             $table->date('fecha_nacimiento');
-            $table->foreignId('rol_id')->constrained(); // Assuming the 'roles' table exists
+            $table->foreignId('rol_id')->constrained('rols')->onDelete('cascade'); // Clave foránea a la tabla 'rols'
             $table->timestamps();
         });
     }

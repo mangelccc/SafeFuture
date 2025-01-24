@@ -26,6 +26,11 @@ class Usuario extends Model
         'fecha_nacimiento',
     ];
 
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class);
+    }
+
     public function dieta(): BelongsToMany
     {
         return $this->belongsToMany(Dieta::class)
