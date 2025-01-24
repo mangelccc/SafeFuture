@@ -23,16 +23,19 @@ const Cabecera = () => {
           <Link className='navegacion__enlace' to='/'>
             Inicio
           </Link>
-          <Link className='navegacion__enlace' to='/listasCompras'>
+          <Link className='navegacion__enlace' to='/about'>
             ¿Qué somos?
           </Link>
-          <Link className='navegacion__enlace' to='/'>
+          <Link className='navegacion__enlace' to='/services'>
             Servicios
           </Link>
-          <Link className='navegacion__enlace' to='/'>
+          <Link className='navegacion__enlace' to='/planning'>
+            Planea tu rutina
+          </Link>
+          <Link className='navegacion__enlace' to='/forum'>
             Foro
           </Link>
-          <Link className='navegacion__enlace' to='/ayuda'>
+          <Link className='navegacion__enlace' to='/contact'>
             Contáctanos
           </Link>
         </div>

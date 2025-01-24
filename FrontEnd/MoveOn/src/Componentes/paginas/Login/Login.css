@@ -1,0 +1,25 @@
+.inicioSesion {
+    display: flex;
+flex-direction: row;
+justify-content: center;
+}
+
+.cuentaUsuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin: 15px;
+    padding: 15px;
+    min-width: 20%;
+    min-height: 160px;
+}
+
+.botonSesion{
+    margin-top: 15px;
+}
+.errorLogin {
+    color: red;
+    text-align: center;
+    font-weight: bolder;
+}

@@ -1,15 +1,15 @@
 import React from "react";
 
 
-const Ayuda = () => {
+const Contact = () => {
   return (
     <>
-      <div className='ayuda'>
-        <h2>Centro de Ayuda</h2>
+      <div className='contact'>
+        <h2>Centro de contacto</h2>
         <p>Encuentra respuestas a tus preguntas y obtén soporte.</p>
       </div>
     </>
   );
 };
 
-export default Ayuda;
+export default Contact;
