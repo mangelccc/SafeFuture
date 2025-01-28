@@ -16,7 +16,7 @@ const Usuario = () => {
   return (
     <div id="contenedor-usuario">
       <div
-        className={`contenedor ${panelDerechoActivo ? "panel-derecho-activo" : ""}`}
+        className={`contenedor ${panelDerechoActivo && "panel-derecho-activo"}`}
         id="contenedor"
       >
         <CrearCuenta />
