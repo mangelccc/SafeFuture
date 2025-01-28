@@ -1,7 +1,7 @@
 import React from "react";
-import "./Dietas.css"
+import "./QueSomos.css"
 
-const Dietas = () => {
+const QueSomos = () => {
   return (
     <>
       <h2>Esta sera la pagina de dietas.</h2>
@@ -9,5 +9,5 @@ const Dietas = () => {
   );
 };
 
-export default Dietas;
+export default QueSomos;
 

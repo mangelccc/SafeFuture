@@ -1,7 +1,7 @@
 import React from "react";
-import "./Deporte.css"
+import "./Rutina.css"
 
-const Deporte = () => {
+const Rutina = () => {
   return (
     <>
       <h2>Esta sera la pagina de Deporte.</h2>
@@ -9,5 +9,5 @@ const Deporte = () => {
   );
 };
 
-export default Deporte;
+export default Rutina;
 

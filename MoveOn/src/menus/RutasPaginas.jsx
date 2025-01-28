@@ -1,9 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Inicio from "../paginas/inicio/Inicio.jsx";
-import Dietas from "../paginas/dietas/Dietas.jsx";
-import Deporte from "../paginas/deporte/Deporte.jsx";
-import CambiarEntorno from "../paginas/cambiar_entorno/Cambiarentorno.jsx";
+import QueSomos from "../paginas/biografia/QueSomos.jsx";
+import Servicios from "../paginas/servicios/Servicios.jsx";
+import Rutina from "../paginas/rutina/Rutina.jsx";
+import Foro from "../paginas/foro/Foro.jsx";
+import Contactanos from "../paginas/contactanos/Contactanos.jsx";
+
 import Usuario from "../paginas/sesion/Usuario.jsx";
 import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacion.jsx";
 
@@ -15,9 +18,12 @@ const RutasPaginas = () => {
     <>
       <Routes>
         <Route path='/' element={<Inicio />} />
-        <Route path='/Dietas' element={<Dietas />} />
-        <Route path='/Deporte' element={<Deporte />} />
-        <Route path='/CambiarEntorno' element={<CambiarEntorno />} />
+        <Route path='/QueSomos' element={<QueSomos />} />
+        <Route path='/Servicios' element={<Servicios />} />
+        <Route path='/Rutina' element={<Rutina />} />
+        <Route path='/Foro' element={<Foro />} />
+        <Route path='/Contactanos' element={<Contactanos />} />
+
         <Route path='/Usuario' element={<Usuario />} />
         <Route path='/UsuarioInformacion' element={<UsuarioInformacion />} />
         

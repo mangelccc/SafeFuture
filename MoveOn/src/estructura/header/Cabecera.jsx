@@ -13,7 +13,7 @@ const Cabecera = () => {
   return (
     <header>
       <div className="logo">
-        <img src={Logo}/>
+        <img src={Logo} />
       </div>
 
       <nav>
@@ -24,19 +24,29 @@ const Cabecera = () => {
             </Link>
           </li>
           <li>
-            <Link to="/Dietas" className="nav-link">
-              Dietas
+            <Link to="/QueSomos" className="nav-link">
+              ¿Que Somos?
             </Link>
           </li>
           <li>
-            <Link to="/Deporte" className="nav-link">
-              Deporte
+            <Link to="/Servicios" className="nav-link">
+              Servicios
             </Link>
           </li>
           <li>
-            <Link to="/CambiarEntorno" className="nav-link">
-              Cambiar Entorno
+            <Link to="/Rutina" className="nav-link">
+              Plantea tu rutina
             </Link>
+          </li>
+          <li>
+              <Link to="/Foro" className="nav-link">
+                Foro
+              </Link>
+          </li>
+          <li>
+              <Link to="/Contactanos" className="nav-link">
+                Contacto
+              </Link>
           </li>
         </ul>
       </nav>
