@@ -1,0 +1,41 @@
+#crear-rutina {
+    text-align: center;
+  }
+  .crear-rutina-general {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #f5f5f5;
+    color: #f5f5f5;
+    gap: 10px;
+    border-radius: 10px;
+    margin: 0px 60px 20px;
+    transition: all 0.3s;
+  }
+  .contenedor-rutinas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+  }
+  
+  .rutinas-item {
+    width: 12rem;
+    height: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #f5f5f5;
+    border-radius: 10px;
+    color: #f5f5f5;
+    transition: all 0.3s;
+  }
+  .rutinas-item:hover,.crear-rutina-general:hover {
+    background-color: #f5f5f5;
+    color: #1a1a1a;
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+
+  
