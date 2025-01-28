@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext } from "react";
 import { supabaseConexion } from "../bibliotecas/config.js";
 import { useNavigate } from "react-router-dom";
 
-const contextoSesion = createContext();
+const contextoAuth = createContext();
 
 
 const AuthContexto = ({ children }) => {
@@ -76,10 +76,20 @@ const AuthContexto = ({ children }) => {
     }
   };
 
-  const actualizarDato = (evento) => {
-    const { name, value } = evento.target;
+  const actualizarDato = (e) => {
+    const { name, value } = e.target;
     setDatosSesion({ ...datosSesion, [name]: value });
   };
+
+  //Componente para recuperar contrasena.
+
+  const olvidoContrasenaInicial = false;
+  const [olvidoContrasena, setOlvidoContrasena] = useState(olvidoContrasenaInicial);
+
+  const volverInicioSesionClick = (boleano) => {
+      setOlvidoContrasena(boleano);
+      setErrorUsuario(errorUsuarioInicial);
+  }
 
   const recuperarContrasena = async () => {
     setErrorUsuario(errorUsuarioInicial);
@@ -97,22 +107,31 @@ const AuthContexto = ({ children }) => {
     }
   };
 
+  // Componente Superpuetos.
+    const panelDerechoActivoInicial = false;
+    const [panelDerechoActivo, setPanelDerechoActivo] = useState(panelDerechoActivoInicial);
+  
+    const muestraRegistroClick = (boleano) => {
+      setPanelDerechoActivo(boleano);
+      setErrorUsuario(errorUsuarioInicial);
+    };
+
   useEffect(() => {
     const suscripcion = supabaseConexion.auth.onAuthStateChange(
-      (event, session) => {
+      (e, session) => {
         if (session) {
           navegar("/");
           setSesionIniciada(true);
           obtenerUsuario();
         } else {
-          navegar("/login");
+          navegar("/Usuario");
           setSesionIniciada(false);
         }
       }
     );
   }, []);
 
-  const datosAExportar = {
+  const datosContexto = {
     errorUsuario,
     setErrorUsuario,
     crearCuenta,
@@ -122,15 +141,19 @@ const AuthContexto = ({ children }) => {
     actualizarDato,
     usuario,
     recuperarContrasena,
+    volverInicioSesionClick,
+    olvidoContrasena,
     sesionIniciada,
+    muestraRegistroClick,
+    panelDerechoActivo,
   };
 
   return (
-    <contextoSesion.Provider value={datosAExportar}>
+    <contextoAuth.Provider value={datosContexto}>
       {children}
-    </contextoSesion.Provider>
+    </contextoAuth.Provider>
   );
 };
 
 export default AuthContexto;
-export { contextoSesion };
+export { contextoAuth };

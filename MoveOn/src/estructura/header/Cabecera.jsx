@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { contextoAuth } from "../../contextos/AuthContexto";
 import { Link } from "react-router-dom";
 import Logo from "../../bibliotecas/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +7,9 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "./Cabecera.css";
 
 const Cabecera = () => {
+
+  const { sesionIniciada } = useContext(contextoAuth);
+
   return (
     <header>
       <div className="logo">
@@ -38,9 +42,15 @@ const Cabecera = () => {
       </nav>
 
       <div className="user">
-        <Link to="/Usuario" className="user-link">
-          <FontAwesomeIcon className="icon__user" icon={faUser} />
-        </Link>
+        {sesionIniciada ? (
+          <Link to="/UsuarioInformacion" className="user-link">
+            <FontAwesomeIcon className="icon__user" icon={faUser} />
+          </Link>
+        ) : (
+          <Link to="/Usuario" className="user-link">
+            <FontAwesomeIcon className="icon__user" icon={faUser} />
+          </Link>
+        )}
       </div>
     </header>
   );

@@ -1,0 +1,41 @@
+
+  #usuario-informacion button{
+    background:#6320EE;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:2.5rem;
+    font-size:1em;
+    padding:0 1em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  #usuario-informacion button:hover{
+    background:#07BEB8;
+    color:#FFBA49;
+  }
+  #usuario-informacion button:before, #usuario-informacion button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #FFBA49;
+    transition:400ms ease all;
+  }
+  #usuario-informacion button:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  #usuario-informacion button:hover:before,#usuario-informacion button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+
+  #usuario-informacion h3 {
+    color: #f5f5f5;
+  }
