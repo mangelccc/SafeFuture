@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { contextoAuth } from "../../../contextos/AuthContexto.jsx";
 
+
 const Superpuesto = () => {
 
     const {

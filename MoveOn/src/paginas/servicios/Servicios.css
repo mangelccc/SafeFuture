@@ -1,0 +1,65 @@
+#contenedor-servicios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+h2#servicios {
+    color: #FFBA49;
+    padding-left: 20px;
+}
+
+.item-servicios {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.item-servicios:hover {
+    transform: scale(1.05); /* Hace crecer el contenedor */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Más sombra al hacer hover */
+    background: #6520ee70; /* Fondo dinámico */
+}
+
+.servicio-icono {
+    font-size: 6em;
+    padding: 0.2em 0.5em;
+    border-radius: 10px;
+    color: #F5F5F5;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.servicio-texto {
+    font-size: 12px;
+    padding: 12px;
+    font-weight: bold;
+    margin: 0;
+    color: #F5F5F5;
+    transition: color 0.3s ease, transform 0.3s ease, font-weight 0.3s ease;
+}
+
+.item-servicios:hover .servicio-texto,
+.item-servicios:hover .servicio-icono {
+    font-weight: bold;
+    transform: scale(1.1); /* Hace crecer el texto */
+    color: #FFBA49; /* Color del texto en hover */
+}
+
+.linea-divisoria {
+    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+    border-top: 1px solid rgb(55, 55, 55);
+    margin: 0;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease; /* Transición suave para el color */
+}
+
+.item-servicios:hover .linea-divisoria {
+    border-color: #F5F5F5; /* Cambia el color de la línea en hover */
+}

@@ -124,7 +124,7 @@ const AuthContexto = ({ children }) => {
           setSesionIniciada(true);
           obtenerUsuario();
         } else {
-          navegar("/Usuario");
+          /* navegar("/Usuario"); */
           setSesionIniciada(false);
         }
       }
