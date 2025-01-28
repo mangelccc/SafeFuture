@@ -12,7 +12,10 @@ const Inicio = () => {
           <button>Descubre más</button>
         </article>
         <div id="inicio-video"> 
-          <iframe></iframe>
+        <iframe
+            src="https://www.youtube.com/embed/cJZlSS0aKj8"
+            title="Video de Safe Future" 
+          ></iframe>
         </div>
       </div>
     </>

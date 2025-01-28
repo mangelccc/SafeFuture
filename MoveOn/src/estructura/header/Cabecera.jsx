@@ -38,7 +38,9 @@ const Cabecera = () => {
       </nav>
 
       <div className="user">
-        <FontAwesomeIcon className="icon__user" icon={faUser} />
+        <Link to="/Usuario" className="user-link">
+          <FontAwesomeIcon className="icon__user" icon={faUser} />
+        </Link>
       </div>
     </header>
   );

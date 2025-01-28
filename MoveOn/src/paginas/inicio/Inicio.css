@@ -1,11 +1,11 @@
 #contenedor-inicio {
     background-color: #6520ee70;
     border-radius: 1rem;
-    padding: 1.5rem 3rem 3rem;
+    padding: 3rem;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 5rem;
 }
 #contenedor-inicio h2 {
     color: #07BEB8;
@@ -44,4 +44,6 @@
 iframe {
     width: 100%;
     height: 100%;
+    border-radius: 10px;
+    border-color: #FFBA49;
 }
