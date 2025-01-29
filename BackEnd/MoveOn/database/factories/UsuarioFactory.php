@@ -1,26 +1,28 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Factories;
 
-use Illuminate\Database\Seeder;
 use App\Models\Usuario;
 
-class UsuariosSeeder extends Seeder
+
+class UsuarioFactory extends Factory
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function definition(): array
     {
-        Usuario::create([
-            'dni' => '71790428b',
-            'nombre' => 'Lora',
-            'apellidos' => 'Daugherty',
-            'email' => 'briana73@example.com',
-            'password' => bcrypt('password'), // Usa bcrypt para encriptar contraseñas
-            'direccion' => '49714 Hackett Stravenue Port Garland, HI 10016',
-            'fecha_nacimiento' => '1989-04-29',
+        return [
+            'dni' => fake()->randomNumber(8),
+            'nombre' => fake()->randomName(),
+            'apellidos' => fake()->randomSurname(),
+            'email' => fake()->randomEmail(),
+            'password' => fake()->randomPassword()->encrypted(),
+            'direccion' => fake()->randomNameAddress(),
+            'fecha_nacimiento' => fake()->randomDate(),
             'rol_id' => 1, // Asegúrate de incluir un valor válido para 'rol_id'
-        ]);
+
+
+        ];
     }
 }

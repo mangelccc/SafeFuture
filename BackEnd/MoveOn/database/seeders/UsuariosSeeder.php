@@ -19,5 +19,16 @@ class UsuariosSeeder extends Seeder
             'fecha_nacimiento' => '1989-04-29',
             'rol_id' => 1, // Relación con el rol "Administrador"
         ]);
+
+        Usuario::create([
+            'dni' => '71790428b',
+            'nombre' => 'Lora',
+            'apellidos' => 'Daugherty',
+            'email' => 'briana73@example.com',
+            'password' => bcrypt('password'), // Usa bcrypt para encriptar contraseñas
+            'direccion' => '49714 Hackett Stravenue Port Garland, HI 10016',
+            'fecha_nacimiento' => '1989-04-29',
+            'rol_id' => 1, // Asegúrate de incluir un valor válido para 'rol_id'
+        ]);
     }
 }
