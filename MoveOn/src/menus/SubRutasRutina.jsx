@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Alimentos from "../paginas/rutina/alimentos/Alimento.jsx";
-
-
+import FormularioMacros from "../paginas/rutina/dieta/formulario_macros/PasosMultiples.jsx";
+import CrearDieta from "../paginas/rutina/dieta/CrearDieta.jsx";
 
 const SubRutasRutina = () => {
   return (
     <>
       <Routes>
-        <Route path="/Rutina/Alimentos" element={<Alimentos />} />
+        <Route path="/Rutina/FormularioMacros" element={<FormularioMacros />} />
+        <Route path="/Rutina/CrearDieta" element={<CrearDieta />} />
       </Routes>
     </>
   );

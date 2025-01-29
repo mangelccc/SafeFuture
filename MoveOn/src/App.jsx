@@ -6,6 +6,7 @@ import SubRutasRutina from "./menus/SubRutasRutina.jsx";
 import Footer from "./estructura/footer/Footer.jsx";
 
 import AuthContexto from "./contextos/AuthContexto.jsx";
+import MacrosContexto from "./contextos/MacrosContexto.jsx";
 import AlimentosContexto from "./contextos/AlimentosContexto.jsx";
 import "./App.css";
 
@@ -18,8 +19,10 @@ const App = () => {
         <Cabecera />
         <Cuerpo>
           <RutasPaginas />
-            <AlimentosContexto>
+          <AlimentosContexto>
+            <MacrosContexto>
               <SubRutasRutina />
+            </MacrosContexto>
             </AlimentosContexto>
         </Cuerpo>
         <Footer />
@@ -28,4 +31,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;

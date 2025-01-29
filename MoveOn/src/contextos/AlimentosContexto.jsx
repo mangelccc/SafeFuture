@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { obtenerAlimento, insertarAlimento, actualizarAlimento, eliminarAlimento } from "../bibliotecas/CreateReadUpdateDelete.js";
+import { supabaseConexion } from "../bibliotecas/config.js";
 
 const contextoAlimentos = createContext();
 
@@ -89,6 +89,8 @@ const AlimentosContexto = ({ children }) => {
     readAlimentos,
     updateAlimento,
     deleteAlimento,
+    alimento,
+    listadoAlimentos,
   };
 
   return (

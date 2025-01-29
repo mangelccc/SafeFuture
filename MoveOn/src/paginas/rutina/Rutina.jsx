@@ -27,7 +27,7 @@ const Rutina = () => {
             <FontAwesomeIcon icon={faDumbbell} size="5x" />
           </Link>
 
-          <Link to="/Rutina/Alimentos" className="rutinas-item">
+          <Link to="/Rutina/FormularioMacros" className="rutinas-item">
             <FontAwesomeIcon icon={faEgg} size="5x" />
           </Link>
 

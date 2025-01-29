@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
+import { contextoMacros } from "../../../../contextos/MacrosContexto.jsx";
 import "./Paso.css";
 
-const PasoD = ({ formularioData, cambiarFormulario, terminarFormulario, anteriorPaso }) => {
+const PasoD = () => {
+
+  const {
+    formularioData, 
+    cambiarFormulario, 
+    terminarFormulario, 
+    anteriorPaso
+  } = useContext(contextoMacros);
+
   return (
     <div className="pasoA-container">
-      <h2 className="pasoA-title">Paso B</h2>
+      <h2 className="pasoA-title">Paso D</h2>
 
       <div className="pasoA-fieldContainer">
         <label className="pasoA-label">Objetivo</label>
         <select
-          name="actividad"
-          value={formularioData.actividad}
+          name="objetivo"
+          value={formularioData.objetivo}
           onChange={(e) => cambiarFormulario(e)}
           className="pasoA-input"
         >
