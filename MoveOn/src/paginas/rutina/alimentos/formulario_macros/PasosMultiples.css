@@ -30,7 +30,7 @@
     display: flex;             
     align-items: center;       
     justify-content: center;   
-    border: 2px solid #d1d5db; /* border-2 border-gray-300 */
+    border: 2px solid #FFBA49; /* border-2 border-gray-300 */
     border-radius: 9999px;     /* rounded-full */
     cursor: pointer;           /* cursor-pointer */
     transition: all 0.3s;      /* transition-all duration-300 */

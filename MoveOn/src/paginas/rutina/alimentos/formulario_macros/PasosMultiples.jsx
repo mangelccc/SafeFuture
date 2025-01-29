@@ -4,7 +4,7 @@ import PasoB from "./PasoB.jsx";
 import PasoC from "./PasoC.jsx";
 import PasoD from "./PasoD.jsx";
 import PasoFinal from "./PasoFinal.jsx";
-import "./PasosMultiples.css";  // <--- Importa tu CSS
+import "./PasosMultiples.css"; 
 
 const iniciaFormulario = {
   peso: 0,
@@ -40,6 +40,10 @@ const PasosMultiples = (verNumeroPaso) => {
     });
   };
 
+  const terminarFormulario = () => {
+    setPaso("final");
+  };
+
   useEffect(() => {
     console.log(formularioData);
   }, [formularioData]);
@@ -65,10 +69,34 @@ const PasosMultiples = (verNumeroPaso) => {
     <div className="form-container">
       {arribaNumerosPasos()}
 
-      {paso === "A" && <PasoA />}
-      {paso === "B" && <PasoB />}
-      {paso === "C" && <PasoC />}
-      {paso === "D" && <PasoD />}
+      {paso === "A" && 
+      <PasoA 
+        formularioData={formularioData}
+        cambiarFormulario={cambiarFormulario}
+        siguientePaso={siguientePaso}
+      />}
+      {paso === "B" && 
+      <PasoB 
+        formularioData={formularioData}
+        cambiarFormulario={cambiarFormulario}
+        siguientePaso={siguientePaso}
+        anteriorPaso={anteriorPaso}
+      />}
+      {paso === "C" && 
+      <PasoC 
+        formularioData={formularioData}
+        cambiarFormulario={cambiarFormulario}
+        siguientePaso={siguientePaso}
+        anteriorPaso={anteriorPaso}
+      />}
+      {paso === "D" && 
+      <PasoD 
+        formularioData={formularioData}
+        cambiarFormulario={cambiarFormulario}
+        siguientePaso={siguientePaso}
+        anteriorPaso={anteriorPaso}
+        terminarFormulario={terminarFormulario}
+      />}
       {paso === "final" && <PasoFinal />}
     </div>
   );
