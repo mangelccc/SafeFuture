@@ -4,7 +4,6 @@ import Inicio from "../paginas/inicio/Inicio.jsx";
 import QueSomos from "../paginas/biografia/QueSomos.jsx";
 import Servicios from "../paginas/servicios/Servicios.jsx";
 import Rutina from "../paginas/rutina/Rutina.jsx";
-import Alimentos from "../paginas/rutina/alimentos/Alimento.jsx";
 import Foro from "../paginas/foro/Foro.jsx";
 import Contactanos from "../paginas/contactanos/Contactanos.jsx";
 
@@ -22,7 +21,6 @@ const RutasPaginas = () => {
         <Route path='/QueSomos' element={<QueSomos />} />
         <Route path='/Servicios' element={<Servicios />} />
         <Route path='/Rutina' element={<Rutina />}/> 
-        <Route path="/Rutina/Alimentos" element={<Alimentos />} />
 
         <Route path='/Foro' element={<Foro />} />
         <Route path='/Contactanos' element={<Contactanos />} />

@@ -46,6 +46,7 @@ const Rutina = () => {
           <Link to="/Rutina/Trabajo" className="rutinas-item">
             <FontAwesomeIcon icon={faBriefcase} size="5x" />
           </Link>
+          
         </div>
       </div>
     </>
