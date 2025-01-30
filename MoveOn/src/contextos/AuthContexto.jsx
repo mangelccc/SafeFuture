@@ -77,8 +77,10 @@ const AuthContexto = ({ children }) => {
   };
 
   const actualizarDato = (e) => {
-    const { name, value } = e.target;
-    setDatosSesion({ ...datosSesion, [name]: value });
+    setDatosSesion({
+      ...datosSesion,
+      [e.target.name]: e.target.value,
+  });
   };
 
   //Componente para recuperar contrasena.

@@ -5,10 +5,10 @@ const Macros = ({hidratos,grasas,proteinas,calorias}) => {
   return (
     <>
       <div className="alimento-macros">
-            <p>H: {hidratos}</p>
-            <p>G: {grasas}</p>
-            <p>P: {proteinas}</p>
-            <p>Calorias: {calorias}</p>
+          <p><strong>H:</strong> {hidratos}</p>
+          <p><strong>G:</strong> {grasas}</p>
+          <p><strong>P:</strong> {proteinas}</p>
+          <p><strong>Calorias:</strong> {calorias}</p>
       </div>
     </>
   );
