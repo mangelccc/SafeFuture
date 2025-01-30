@@ -40,8 +40,8 @@ const AlimentosContexto = ({ children }) => {
   const [orden, setOrden] = useState(ordenInicial);
 
   const iniciarEdicion = (producto) => {
-    setAlimentoEditando(producto.id);
-    setAlimentoEditado(producto);
+      setAlimentoEditando(producto.id);
+      setAlimentoEditado(producto);
   };
   const filtrarAlimentos = (filtro) => {
     setFiltro(filtro);
@@ -54,8 +54,9 @@ const AlimentosContexto = ({ children }) => {
 
   const guardarEdicion = () => {
     updateAlimento(alimentoEditando, alimentoEditado);
-    setAlimentoEditando(null);
+    setAlimentoEditando(false);
   };
+
   const cancelarEdicion = () => {
     setAlimentoEditando(null);
   };
@@ -63,13 +64,14 @@ const AlimentosContexto = ({ children }) => {
 
   const createAlimento = async (producto) => {
     try {
-      alimento.id = crypto.randomUUID();
-      const respuesta = await supabaseConexion.from("alimentos").insert(producto);
-      setAlimento((prev) => [...listadoAlimentos, alimento]);
+      const nuevoAlimento = { ...producto, id: crypto.randomUUID() };
+      const respuesta = await supabaseConexion.from("alimentos").insert(nuevoAlimento);
+      setListadoAlimentos((prev) => [...prev, nuevoAlimento]);
     } catch (error) {
       setErrorAlimento(error.message);
     }
   };
+  
 
   const readAlimentos = async () => {
     try {
@@ -87,9 +89,10 @@ const AlimentosContexto = ({ children }) => {
         .update(productoActualizado)
         .eq("id", id);
       console.log(actualizacion);
-      const actualizado = listadoProductos.map((alimentoAntiguo) => {
-        alimentoAntiguo.id === alimento.id ? alimento : alimentoAntiguo
-      });
+      const actualizado = listadoAlimentos.map((alimentoAntiguo) =>
+        alimentoAntiguo.id === id ? productoActualizado : alimentoAntiguo
+      );
+      
       setListadoAlimentos(actualizado);
       setAlimento(alimentoInicial);
     } catch (error) {
@@ -103,11 +106,8 @@ const AlimentosContexto = ({ children }) => {
         .delete()
         .eq("id", id);
 
-      const borrado = listadoAlimentos.filter((alimento) => {
-        if (alimento.id !== id) {
-          return feo;
-        }
-      });
+        const borrado = listadoAlimentos.filter((alimento) => alimento.id !== id);
+
       setListadoAlimentos(borrado);
     } catch (error) {
       setErrorAlimento(error.message);
@@ -115,8 +115,8 @@ const AlimentosContexto = ({ children }) => {
   };
 
   const alimentosVisibles = listadoAlimentos
-    .filter((producto) =>
-      filtro ? producto.nombre.toLowerCase().startsWith(filtro.toLowerCase()) : true
+    .filter((alimento) =>
+      filtro ? alimento.nombre.toLowerCase().startsWith(filtro.toLowerCase()) : true
     )
     .sort((a, b) => {
       if (!orden) return 0;
@@ -124,20 +124,22 @@ const AlimentosContexto = ({ children }) => {
         return a.nombre.localeCompare(b.nombre, "es", { sensitivity: "base" });
       }
       if (orden === "peso") {
-        return a.peso - b.peso;
+        return a.peso_kg - b.peso_kg;
       }
       if (orden === "precio") {
-        return a.precio - b.precio;
+        return a.precio_euros - b.precio_euros;
       }
       return 0;
     });
 
-  const datosFormulario = (e) => {
-    setAlimentoEditado({
-      ...alimentoEditado,
-      [e.target.name]: e.target.value,
-    });
-  }
+    const datosFormulario = (e) => {
+      const { name, value } = e.target;
+      setAlimentoEditado((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    };
+    
 
   useEffect(() => {
     readAlimentos();
@@ -159,10 +161,12 @@ const AlimentosContexto = ({ children }) => {
     guardarEdicion,
     cancelarEdicion,
     alimentoEditado,
+    alimentoEditando,
 
     datosFormulario,
 
     alimentosVisibles,
+    iniciarEdicion,
 
   };
 

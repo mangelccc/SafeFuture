@@ -6,7 +6,7 @@ import "./Alimento.css";
 
 const Alimento = ({alimento}) => {
   const {
-    inciarEdicion,
+    iniciarEdicion,
   } = useContext(contextoAlimentos);
 
   const [mostrarMacros,setMostrarMacros] = useState(false);
@@ -17,11 +17,18 @@ const Alimento = ({alimento}) => {
 
   return (
     <>
-      <div className="alimento">
+      <div className="alimento" key={alimento.id}>
+      <div class="alimento-img-container">
         <img src={alimento.imagen_url} />
+        </div>
         <p><strong>Nombre:</strong> {alimento.nombre}</p>
         <p><strong>Precio kg/$:</strong> {precioPorKilo(alimento.peso_kg,alimento.precio_euros)}</p>
-        <button onClick={alternarMostrarMacros}>Macros</button>
+          <div className="admin">
+          <button onClick={() => 
+            iniciarEdicion(alimento)
+            }>Modificar</button>
+            <button onClick={alternarMostrarMacros}>Macros</button>
+          </div>
           {mostrarMacros && (
             <Macros 
               hidratos={alimento.hidratos}
@@ -30,9 +37,6 @@ const Alimento = ({alimento}) => {
               calorias={alimento.calorias}
             />
           )}
-          <div className="admin">
-            <button onClick={inciarEdicion}></button>
-          </div>
       </div>
     </>
   );

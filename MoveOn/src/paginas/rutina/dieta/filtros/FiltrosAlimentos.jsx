@@ -5,7 +5,7 @@ import "./FiltrosAlimentos.css";
 const FiltrosAlimentos = () => {
     const {
         ordenarAlimentos,
-        FiltrosAlimentos
+        filtrarAlimentos
     } = useContext(contextoAlimentos);
 
     return (
@@ -20,7 +20,7 @@ const FiltrosAlimentos = () => {
                 <input
                         type="text"
                         placeholder="Filtrar por nombre"
-                        onChange={(e) => FiltrosAlimentos(e.target.value)}
+                        onChange={(e) => filtrarAlimentos(e.target.value)}
                     />
                 </div>
             </div>

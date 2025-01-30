@@ -11,6 +11,18 @@
     6px 6px 0 rgba(0,0,0,0.2);
     transition: all 0.3s;
 }
+.alimento img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    border: 3px solid #FFBA49;
+}
+.alimento-img-container {
+    display: flex;
+    justify-content: center; /* Centra la imagen horizontalmente */
+    align-items: center; /* Centra la imagen verticalmente */
+}
+
 .alimento:hover {
     transform: scale(1.04);
 }
@@ -38,3 +50,7 @@
     justify-content: space-between; 
     align-items: center;
   }
+.admin {
+    display: flex;
+    gap: 10px;
+}
