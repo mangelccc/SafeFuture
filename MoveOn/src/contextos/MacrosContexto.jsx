@@ -92,6 +92,10 @@ const MacrosContexto = ({ children }) => {
         setPaso(letra);
     }
 
+    useEffect(() => {
+        console.log(formularioData);
+    }, [formularioData]);
+
     const navigate = useNavigate();
     useEffect(() => {
         if (paso === "final") {

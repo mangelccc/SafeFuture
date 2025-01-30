@@ -7,7 +7,7 @@ const AlimentosContexto = ({ children }) => {
   const errorInicial = "";
   const listaInicial = [];
   const alimentoInicial = {
-    id: null, 
+    id: null,
     nombre: "",
     hidratos: 0,
     grasas: 0,
@@ -20,25 +20,51 @@ const AlimentosContexto = ({ children }) => {
     precio_euros: 0,
     codigo_barras: "",
   };
-  
+
 
   const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
   const [alimento, setAlimento] = useState(alimentoInicial);
   const [errorAlimento, setErrorAlimento] = useState(errorInicial);
 
-  const [isAscNombre, setIsAscNombre] = useState(true);
-  const [isAscPrecio, setIsAscPrecio] = useState(true);
-  const [isAscPeso, setIsAscPeso] = useState(true);
-  const [isAscCategoria, setIsAscCategoria] = useState(true);
+  const filtroInicial = "";
+  const ordenInicial = "";
 
   // AlimentosContexto.jsx
-const [buscadorDatos, setBuscadorDatos] = useState({ nombre: "" });
+  const [buscadorDatos, setBuscadorDatos] = useState({ nombre: "" });
+
+  const [alimentoEditando, setAlimentoEditando] = useState(null);
+
+  const [alimentoEditado, setAlimentoEditado] = useState(alimentoInicial);
+
+  const [filtro, setFiltro] = useState(filtroInicial);
+  const [orden, setOrden] = useState(ordenInicial);
+
+  const iniciarEdicion = (producto) => {
+    setAlimentoEditando(producto.id);
+    setAlimentoEditado(producto);
+  };
+  const filtrarAlimentos = (filtro) => {
+    setFiltro(filtro);
+  };
+
+  // Ordenar productos por nombre, peso o precio
+  const ordenarAlimentos = (campo) => {
+    setOrden(campo);
+  };
+
+  const guardarEdicion = () => {
+    updateAlimento(alimentoEditando, alimentoEditado);
+    setAlimentoEditando(null);
+  };
+  const cancelarEdicion = () => {
+    setAlimentoEditando(null);
+  };
 
 
   const createAlimento = async (producto) => {
     try {
       alimento.id = crypto.randomUUID();
-      const respuesta  = await supabaseConexion.from("alimentos").insert(producto);
+      const respuesta = await supabaseConexion.from("alimentos").insert(producto);
       setAlimento((prev) => [...listadoAlimentos, alimento]);
     } catch (error) {
       setErrorAlimento(error.message);
@@ -57,9 +83,9 @@ const [buscadorDatos, setBuscadorDatos] = useState({ nombre: "" });
   const updateAlimento = async (id, productoActualizado) => {
     try {
       const actualizacion = await supabaseConexion
-                      .from("alimentos")
-                      .update(productoActualizado)
-                      .eq("id", id);
+        .from("alimentos")
+        .update(productoActualizado)
+        .eq("id", id);
       console.log(actualizacion);
       const actualizado = listadoProductos.map((alimentoAntiguo) => {
         alimentoAntiguo.id === alimento.id ? alimento : alimentoAntiguo
@@ -87,62 +113,31 @@ const [buscadorDatos, setBuscadorDatos] = useState({ nombre: "" });
       setErrorAlimento(error.message);
     }
   };
-  
-  const ordenarPorNombre = () => {
-    const ordenado = [...listadoAlimentos].sort((a, b) =>
-      isAscNombre
-        ? a.nombre.localeCompare(b.nombre)
-        : b.nombre.localeCompare(a.nombre)
-    );
-    setIsAscNombre(!isAscNombre);
-    setListadoAlimentos(ordenado);
-  };
 
-  const ordenarPorPrecio = () => {
-    const ordenado = [...listadoAlimentos].sort((a, b) =>
-      isAscPrecio
-        ? a.precio_euros - b.precio_euros 
-        : b.precio_euros - a.precio_euros 
-    );
-    setIsAscPrecio(!isAscPrecio);
-    setListadoAlimentos(ordenado);
-  };
-
-  const ordenarPorPeso = () => {
-    const ordenado = [...listadoAlimentos].sort((a, b) =>
-      isAscPeso
-        ? a.peso_kg - b.peso_kg 
-        : b.peso_kg - a.peso_kg 
-    );
-    setIsAscPeso(!isAscPeso);
-    setListadoAlimentos(ordenado);
-  };
-
-  const ordenarPorCategoria = () => {
-    const ordenado = [...listadoAlimentos].sort((a, b) =>
-      isAscCategoria
-        ? a.categoria.localeCompare(b.categoria)
-        : b.categoria.localeCompare(a.categoria)
-    );
-    setIsAscCategoria(!isAscCategoria);
-    setListadoAlimentos(ordenado);
-  };
+  const alimentosVisibles = listadoAlimentos
+    .filter((producto) =>
+      filtro ? producto.nombre.toLowerCase().startsWith(filtro.toLowerCase()) : true
+    )
+    .sort((a, b) => {
+      if (!orden) return 0;
+      if (orden === "nombre") {
+        return a.nombre.localeCompare(b.nombre, "es", { sensitivity: "base" });
+      }
+      if (orden === "peso") {
+        return a.peso - b.peso;
+      }
+      if (orden === "precio") {
+        return a.precio - b.precio;
+      }
+      return 0;
+    });
 
   const datosFormulario = (e) => {
-    setBuscadorDatos({
-      ...buscadorDatos,
+    setAlimentoEditado({
+      ...alimentoEditado,
       [e.target.name]: e.target.value,
-  });
+    });
   }
-  const filtrarAlimentos = () => {
-    if (!buscadorDatos.nombre) return listadoAlimentos; // Si no hay búsqueda, devolver todos los alimentos
-  
-    return listadoAlimentos.filter((alimento) =>
-      alimento.nombre.toLowerCase().includes(buscadorDatos.nombre.toLowerCase())
-    );
-  };
-  
-  
 
   useEffect(() => {
     readAlimentos();
@@ -158,11 +153,16 @@ const [buscadorDatos, setBuscadorDatos] = useState({ nombre: "" });
     listadoAlimentos,
     buscadorDatos,
 
-    ordenarPorNombre,
-    ordenarPorPeso,
-    ordenarPorPrecio,
-    ordenarPorCategoria,
+    ordenarAlimentos,
+    filtrarAlimentos,
+
+    guardarEdicion,
+    cancelarEdicion,
+    alimentoEditado,
+
     datosFormulario,
+
+    alimentosVisibles,
 
   };
 

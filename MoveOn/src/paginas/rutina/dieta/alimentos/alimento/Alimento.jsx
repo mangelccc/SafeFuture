@@ -1,9 +1,13 @@
-import React, {useState} from "react";
+import React, {useState,useContext} from "react";
+import { contextoAlimentos } from "../../../../../contextos/AlimentosContexto.jsx";
 import Macros from "../macros/Macros.jsx";
 import { precioPorKilo } from "../../../../../bibliotecas/biblioteca.js";
 import "./Alimento.css";
 
 const Alimento = ({alimento}) => {
+  const {
+    inciarEdicion,
+  } = useContext(contextoAlimentos);
 
   const [mostrarMacros,setMostrarMacros] = useState(false);
 
@@ -26,6 +30,9 @@ const Alimento = ({alimento}) => {
               calorias={alimento.calorias}
             />
           )}
+          <div className="admin">
+            <button onClick={inciarEdicion}></button>
+          </div>
       </div>
     </>
   );

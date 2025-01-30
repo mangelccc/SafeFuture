@@ -3,27 +3,24 @@ import { contextoAlimentos } from "../../../../contextos/AlimentosContexto.jsx";
 import "./FiltrosAlimentos.css";
 
 const FiltrosAlimentos = () => {
-    const { 
-                ordenarPorNombre,
-                ordenarPorPrecio,
-                ordenarPorPeso,
-                datosFormulario,
-            } = useContext(contextoAlimentos);
+    const {
+        ordenarAlimentos,
+        FiltrosAlimentos
+    } = useContext(contextoAlimentos);
 
     return (
         <>
             <div className="contenedor-filtros">
                 <div className="filtros-botones">
-                    <button onClick={ordenarPorNombre}>Ordenar por Nombre</button>
-                    <button onClick={ordenarPorPrecio}>Ordenar por Precio</button>
-                    <button onClick={ordenarPorPeso}>Ordenar por Peso</button>
+                    <button onClick={() => ordenarAlimentos("nombre")}>Ordenar por Nombre</button>
+                    <button onClick={() => ordenarAlimentos("peso")}>Ordenar por Peso</button>
+                    <button onClick={() => ordenarAlimentos("precio")}>Ordenar por Precio</button>
                 </div>
                 <div className="filtros-busqueda">
-                    <input 
+                <input
                         type="text"
-                        name="nombre"
-                        placeholder="Buscar alimento..."
-                        onChange={(e) => datosFormulario(e)}
+                        placeholder="Filtrar por nombre"
+                        onChange={(e) => FiltrosAlimentos(e.target.value)}
                     />
                 </div>
             </div>
