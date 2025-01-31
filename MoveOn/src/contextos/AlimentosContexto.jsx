@@ -39,6 +39,9 @@ const AlimentosContexto = ({ children }) => {
   const [filtro, setFiltro] = useState(filtroInicial);
   const [orden, setOrden] = useState(ordenInicial);
 
+  const [nuevoAlimento, setNuevoAlimento] = useState(alimentoInicial);
+
+
   const iniciarEdicion = (producto) => {
       setAlimentoEditando(producto.id);
       setAlimentoEditado(producto);
@@ -56,6 +59,18 @@ const AlimentosContexto = ({ children }) => {
     updateAlimento(alimentoEditando, alimentoEditado);
     setAlimentoEditando(false);
   };
+  const guardarCreacion = async () => {
+    try {
+      await createAlimento(nuevoAlimento);
+      setNuevoAlimento(alimentoInicial);
+    } catch (error) {
+      setErrorAlimento(error.message);
+    }
+  };
+  const cancelarCreacion = () => {
+    setNuevoAlimento(null);
+  }
+  
 
   const cancelarEdicion = () => {
     setAlimentoEditando(null);
@@ -132,13 +147,22 @@ const AlimentosContexto = ({ children }) => {
       return 0;
     });
 
-    const datosFormulario = (e) => {
+    const datosFormulario = (e, tipo = "editado") => {
       const { name, value } = e.target;
-      setAlimentoEditado((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+    
+      if (tipo === "editado") {
+        setAlimentoEditado((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+      } else if (tipo === "nuevo") {
+        setNuevoAlimento((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+      }
     };
+    
     
 
   useEffect(() => {
@@ -168,6 +192,8 @@ const AlimentosContexto = ({ children }) => {
     alimentosVisibles,
     iniciarEdicion,
 
+    guardarCreacion,
+    cancelarCreacion,
   };
 
   return (

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { contextoAlimentos } from "../../../../contextos/AlimentosContexto.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./FiltrosAlimentos.css";
 
 const FiltrosAlimentos = () => {

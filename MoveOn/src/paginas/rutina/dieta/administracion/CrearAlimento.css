@@ -1,0 +1,41 @@
+.crear-alimento {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #FFBA49;
+    border-radius: 10px;
+    color: #f5f5f5;
+    background-color: #6320EE;
+    box-shadow: 2px 2px 0 #FFBA49,
+    4px 4px 0 #FFBA49,
+    6px 6px 0 rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    height: 100px;
+}
+.crear-alimento input {
+    background-color: #6320EE;
+    color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 #FFBA49,
+    2px 2px 0 #FFBA49,
+    3px 3px 0 rgba(0,0,0,0.2);
+    border: 2px solid #FFBA49;
+}
+
+.crear-alimento input[type="number"] {
+    width: 45px; /* Menos ancho solo para los números */
+}
+
+.crear-alimento button {
+    background-color: #FFBA49;
+    transition: all 0.2s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.crear-alimento button:hover {
+    background-color: #07BEB8;
+    color: #f5f5f5;
+}

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { contextoAlimentos } from "../../../../../contextos/AlimentosContexto.jsx";
+import { contextoAlimentos } from "../../../../contextos/AlimentosContexto.jsx";
 import "./AlimentoAdm.css"
 
 const AlimentoModificableAdm = ({ alimento }) => {
@@ -20,7 +20,7 @@ const AlimentoModificableAdm = ({ alimento }) => {
                         type="text" 
                         name="imagen_url"
                         value={alimentoEditado?.imagen_url || ""} 
-                        onChange={datosFormulario} 
+                        onChange={(e) => datosFormulario(e, "editado")} 
                     />
                 </label>
 
@@ -29,7 +29,7 @@ const AlimentoModificableAdm = ({ alimento }) => {
                         type="text" 
                         name="nombre"
                         value={alimentoEditado?.nombre || ""} 
-                        onChange={datosFormulario} 
+                        onChange={(e) => datosFormulario(e, "editado")} 
                     />
                 </label>
 
@@ -38,7 +38,7 @@ const AlimentoModificableAdm = ({ alimento }) => {
                         type="number" 
                         name="peso_kg"
                         value={alimentoEditado?.peso_kg || ""} 
-                        onChange={datosFormulario} 
+                        onChange={(e) => datosFormulario(e, "editado")} 
                     />
                 </label>
 
@@ -47,7 +47,7 @@ const AlimentoModificableAdm = ({ alimento }) => {
                         type="number" 
                         name="precio_euros"
                         value={alimentoEditado?.precio_euros || ""} 
-                        onChange={datosFormulario} 
+                        onChange={(e) => datosFormulario(e, "editado")} 
                         step="0.01" 
                     />
                 </label>
@@ -57,7 +57,7 @@ const AlimentoModificableAdm = ({ alimento }) => {
                         type="text" 
                         name="descripcion"
                         value={alimentoEditado?.descripcion || ""} 
-                        onChange={datosFormulario} 
+                        onChange={(e) => datosFormulario(e, "editado")} 
                     />
                 </label>
 
@@ -66,7 +66,7 @@ const AlimentoModificableAdm = ({ alimento }) => {
                         type="text" 
                         name="codigo_barras"
                         value={alimentoEditado?.codigo_barras || ""} 
-                        onChange={datosFormulario} 
+                        onChange={(e) => datosFormulario(e, "editado")} 
                     />
                 </label>
 
@@ -75,45 +75,45 @@ const AlimentoModificableAdm = ({ alimento }) => {
                         type="text" 
                         name="categoria"
                         value={alimentoEditado?.categoria || ""} 
-                        onChange={datosFormulario} 
+                        onChange={(e) => datosFormulario(e, "editado")} 
                     />
                 </label>
                 <div className="macros-admin">
-                <label><strong>H:</strong>
-                    <input 
-                        type="number" 
-                        name="hidratos"
-                        value={alimentoEditado?.hidratos || ""} 
-                        onChange={datosFormulario} 
-                    />
-                </label>
+                    <label><strong>H:</strong>
+                        <input 
+                            type="number" 
+                            name="hidratos"
+                            value={alimentoEditado?.hidratos || ""} 
+                            onChange={(e) => datosFormulario(e, "editado")} 
+                        />
+                    </label>
 
-                <label><strong>G:</strong>
-                    <input 
-                        type="number" 
-                        name="grasas"
-                        value={alimentoEditado?.grasas || ""} 
-                        onChange={datosFormulario} 
-                    />
-                </label>
+                    <label><strong>G:</strong>
+                        <input 
+                            type="number" 
+                            name="grasas"
+                            value={alimentoEditado?.grasas || ""} 
+                            onChange={(e) => datosFormulario(e, "editado")} 
+                        />
+                    </label>
 
-                <label><strong>P:</strong>
-                    <input 
-                        type="number" 
-                        name="proteinas"
-                        value={alimentoEditado?.proteinas || ""} 
-                        onChange={datosFormulario} 
-                    />
-                </label>
+                    <label><strong>P:</strong>
+                        <input 
+                            type="number" 
+                            name="proteinas"
+                            value={alimentoEditado?.proteinas || ""} 
+                            onChange={(e) => datosFormulario(e, "editado")} 
+                        />
+                    </label>
 
-                <label><strong>C:</strong>
-                    <input 
-                        type="number" 
-                        name="calorias"
-                        value={alimentoEditado?.calorias || ""} 
-                        onChange={datosFormulario} 
-                    />
-                </label>
+                    <label><strong>C:</strong>
+                        <input 
+                            type="number" 
+                            name="calorias"
+                            value={alimentoEditado?.calorias || ""} 
+                            onChange={(e) => datosFormulario(e, "editado")} 
+                        />
+                    </label>
                 </div>
             </div>
             <div className="admin-botones">
