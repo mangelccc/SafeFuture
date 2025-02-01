@@ -19,24 +19,45 @@ const AuthContexto = ({ children }) => {
   const [errorUsuario, setErrorUsuario] = useState(errorUsuarioInicial);
   const [sesionIniciada, setSesionIniciada] = useState(false);
 
+  // Dentro de AuthContexto.jsx
   const crearCuenta = async () => {
+    // Limpiar cualquier error previo
+    setErrorUsuario("");
+  
+    // Validar que la contraseña tenga al menos 8 caracteres
+    if (datosSesion.password.length < 8) {
+      setErrorUsuario("La contraseña debe tener al menos 8 caracteres.");
+      return; // Se detiene la ejecución si no cumple
+    }
+  
+    // Validar que la contraseña contenga al menos una letra mayúscula
+    if (!/[A-Z]/.test(datosSesion.password)) {
+      setErrorUsuario("La contraseña debe contener al menos una letra mayúscula.");
+      return; // Se detiene la ejecución si no cumple
+    }
+  
     try {
       const { data, error } = await supabaseConexion.auth.signUp({
         email: datosSesion.email,
         password: datosSesion.password,
       });
-
+  
       if (error) {
+        // Si hay un error, se lanza para atraparlo en el bloque catch
         throw error;
       } else {
-        setErrorUsuario(
-            "Confirma tu cuenta en tu correo."
-          );
+        // Tanto si el correo es nuevo como si ya estaba registrado,
+        // Supabase responde con este mensaje para evitar revelar información sensible.
+        setErrorUsuario("Confirma tu cuenta en tu correo.");
       }
     } catch (error) {
-        setErrorUsuario(error.message);
+      setErrorUsuario(error.message);
     }
   };
+  
+
+
+  const [navegacionRealizada, setNavegacionRealizada] = useState(false);
 
   const iniciarSesion = async () => {
     setErrorUsuario(errorUsuarioInicial);
@@ -45,15 +66,29 @@ const AuthContexto = ({ children }) => {
         email: datosSesion.email,
         password: datosSesion.password,
       });
+
       if (error) {
         throw error;
       } else {
+        // Solo navegamos si aún no lo hemos hecho
+        if (!navegacionRealizada) {
+          navegar("/");
+          setNavegacionRealizada(true);
+        }
         setSesionIniciada(true);
       }
     } catch (error) {
-        setErrorUsuario(error.message);
+      let mensaje = error.message;
+      if (mensaje.toLowerCase().includes("invalid login credentials")) {
+        mensaje = "Error: Por favor verifique su correo y contraseña.";
+      }
+      if (mensaje.toLowerCase().includes("confirm")) {
+        mensaje = "Por favor, confirmar tu cuenta en tu correo.";
+      }
+      setErrorUsuario(mensaje);
     }
   };
+
 
   const cerrarSesion = async () => {
     try {
@@ -122,7 +157,6 @@ const AuthContexto = ({ children }) => {
     const suscripcion = supabaseConexion.auth.onAuthStateChange(
       (e, session) => {
         if (session) {
-          navegar("/");
           setSesionIniciada(true);
           obtenerUsuario();
         } else {

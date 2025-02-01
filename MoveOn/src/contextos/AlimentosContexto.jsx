@@ -60,13 +60,57 @@ const AlimentosContexto = ({ children }) => {
     setAlimentoEditando(false);
   };
   const guardarCreacion = async () => {
+    // Validaciones de campos obligatorios y valores válidos
+    if (!nuevoAlimento.nombre.trim()) {
+      setErrorAlimento("El nombre es obligatorio.");
+      return;
+    }
+    if (!nuevoAlimento.imagen_url.trim()) {
+      setErrorAlimento("La URL de la imagen es obligatoria.");
+      return;
+    }
+    if (!nuevoAlimento.descripcion.trim()) {
+      setErrorAlimento("La descripción es obligatoria.");
+      return;
+    }
+    if (!nuevoAlimento.categoria.trim()) {
+      setErrorAlimento("La categoría es obligatoria.");
+      return;
+    }
+    if (nuevoAlimento.peso_kg <= 0) {
+      setErrorAlimento("El peso debe ser mayor que 0.");
+      return;
+    }
+    if (nuevoAlimento.precio_euros <= 0) {
+      setErrorAlimento("El precio debe ser mayor que 0.");
+      return;
+    }
+    if (!nuevoAlimento.codigo_barras.trim()) {
+      setErrorAlimento("El código de barras es obligatorio.");
+      return;
+    }
+    // Validar que los valores nutricionales no sean negativos
+    if (
+      nuevoAlimento.hidratos < 0 ||
+      nuevoAlimento.grasas < 0 ||
+      nuevoAlimento.proteinas < 0 ||
+      nuevoAlimento.calorias < 0
+    ) {
+      setErrorAlimento("Los valores nutricionales no pueden ser negativos.");
+      return;
+    }
+
+    // Si todas las validaciones pasan, se procede a crear el alimento
     try {
       await createAlimento(nuevoAlimento);
+      // Se resetea el formulario
       setNuevoAlimento(alimentoInicial);
+      setErrorAlimento(""); // Se limpia el mensaje de error
     } catch (error) {
       setErrorAlimento(error.message);
     }
   };
+
   const cancelarCreacion = () => {
     setNuevoAlimento(null);
   }
@@ -194,6 +238,7 @@ const AlimentosContexto = ({ children }) => {
 
     guardarCreacion,
     cancelarCreacion,
+    errorAlimento,
   };
 
   return (

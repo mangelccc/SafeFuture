@@ -6,22 +6,10 @@ import AlimentoModificableAdm from "../administracion/AlimentoModificableAdm.jsx
 import "./Alimentos.css";
 
 const Alimentos = () => {
-  const { alimentosVisibles, alimentoEditando,deleteAlimento } = useContext(contextoAlimentos);
+  const { alimentosVisibles, alimentoEditando } = useContext(contextoAlimentos);
 
   return (
-    <div className="contenedor-alimentos" 
-    onClick={(e) => {
-        if (e.target.classList.contains("alimento")) {
-          const aceptado = confirm(
-            `¿Desea borrar al feo ${e.target.innerHTML}?`
-          );
-          if (aceptado) {
-            deleteAlimento(e.target.id);
-          }
-        }
-      } 
-    }
-    >
+    <div className="contenedor-alimentos" >
       {alimentosVisibles.map((alimento) =>
         alimentoEditando === alimento.id ? (
           <AlimentoModificableAdm
