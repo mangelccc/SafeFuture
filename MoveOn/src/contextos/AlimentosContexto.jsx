@@ -40,6 +40,12 @@ const AlimentosContexto = ({ children }) => {
   const [orden, setOrden] = useState(ordenInicial);
 
   const [nuevoAlimento, setNuevoAlimento] = useState(alimentoInicial);
+  const [admin, setAdmin] = useState(false);
+
+  const alternarAdmin = () => {
+    setAdmin((prevAdmin) => !prevAdmin);
+  };
+  
 
 
   const iniciarEdicion = (producto) => {
@@ -59,6 +65,7 @@ const AlimentosContexto = ({ children }) => {
     updateAlimento(alimentoEditando, alimentoEditado);
     setAlimentoEditando(false);
   };
+
   const guardarCreacion = async () => {
     // Validaciones de campos obligatorios y valores válidos
     if (!nuevoAlimento.nombre.trim()) {
@@ -105,17 +112,12 @@ const AlimentosContexto = ({ children }) => {
       await createAlimento(nuevoAlimento);
       // Se resetea el formulario
       setNuevoAlimento(alimentoInicial);
-      setErrorAlimento(""); // Se limpia el mensaje de error
+      setErrorAlimento("");
     } catch (error) {
       setErrorAlimento(error.message);
     }
   };
-
-  const cancelarCreacion = () => {
-    setNuevoAlimento(null);
-  }
   
-
   const cancelarEdicion = () => {
     setAlimentoEditando(null);
   };
@@ -237,8 +239,11 @@ const AlimentosContexto = ({ children }) => {
     iniciarEdicion,
 
     guardarCreacion,
-    cancelarCreacion,
     errorAlimento,
+    nuevoAlimento,
+
+    alternarAdmin,
+    admin,
   };
 
   return (

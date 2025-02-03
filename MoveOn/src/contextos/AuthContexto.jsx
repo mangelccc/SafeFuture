@@ -56,9 +56,6 @@ const AuthContexto = ({ children }) => {
   };
   
 
-
-  const [navegacionRealizada, setNavegacionRealizada] = useState(false);
-
   const iniciarSesion = async () => {
     setErrorUsuario(errorUsuarioInicial);
     try {
@@ -66,14 +63,13 @@ const AuthContexto = ({ children }) => {
         email: datosSesion.email,
         password: datosSesion.password,
       });
-
+  
       if (error) {
         throw error;
       } else {
-        // Solo navegamos si aún no lo hemos hecho
-        if (!navegacionRealizada) {
+        // Solo navegamos si aún no lo hemos hecho Y si la ruta actual es '/Usuario'
+        if (location.pathname === "/Usuario") {
           navegar("/");
-          setNavegacionRealizada(true);
         }
         setSesionIniciada(true);
       }
@@ -88,6 +84,7 @@ const AuthContexto = ({ children }) => {
       setErrorUsuario(mensaje);
     }
   };
+  
 
 
   const cerrarSesion = async () => {

@@ -6,7 +6,8 @@ import "./FiltrosAlimentos.css";
 const FiltrosAlimentos = () => {
     const {
         ordenarAlimentos,
-        filtrarAlimentos
+        filtrarAlimentos,
+        alternarAdmin
     } = useContext(contextoAlimentos);
 
     return (
@@ -16,6 +17,7 @@ const FiltrosAlimentos = () => {
                     <button onClick={() => ordenarAlimentos("nombre")}>Ordenar por Nombre</button>
                     <button onClick={() => ordenarAlimentos("peso")}>Ordenar por Peso</button>
                     <button onClick={() => ordenarAlimentos("precio")}>Ordenar por Precio</button>
+                    <button onClick={() => alternarAdmin()}>Act/desc. Admin</button>
                 </div>
                 <div className="filtros-busqueda">
                 <input

@@ -12,6 +12,8 @@ import CrearDieta from "../paginas/rutina/dieta/CrearDieta.jsx";
 import Usuario from "../paginas/sesion/Usuario.jsx";
 import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacion.jsx";
 
+import RouterAuth from "./RouterAuth.jsx";
+
 import Error from "../paginas/error/Error.jsx";
 
 
@@ -22,7 +24,14 @@ const RutasPaginas = () => {
         <Route path='/' element={<Inicio />} />
         <Route path='/QueSomos' element={<QueSomos />} />
         <Route path='/Servicios' element={<Servicios />} />
-        <Route path='/Rutina' element={<Rutina />}/> 
+        <Route
+          path="/rutina"
+          element={
+            <RouterAuth>
+              <Rutina />
+            </RouterAuth>
+          }
+        />
         <Route path="/Rutina/FormularioMacros" element={<FormularioMacros />} />
         <Route path="/Rutina/CrearDieta" element={<CrearDieta />} />
 
