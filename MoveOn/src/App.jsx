@@ -6,6 +6,7 @@ import Footer from "./estructura/footer/Footer.jsx";
 import AuthContexto from "./contextos/AuthContexto.jsx";
 import MacrosContexto from "./contextos/MacrosContexto.jsx";
 import AlimentosContexto from "./contextos/AlimentosContexto.jsx";
+import ListasContexto from "./contextos/ListasContexto.jsx";
 import "./App.css";
 
 
@@ -18,7 +19,9 @@ const App = () => {
         <Cuerpo>
           <AlimentosContexto>
             <MacrosContexto>
+              <ListasContexto>
               <RutasPaginas />
+              </ListasContexto>
             </MacrosContexto>
           </AlimentosContexto>
         </Cuerpo>

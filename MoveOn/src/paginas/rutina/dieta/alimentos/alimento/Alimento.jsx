@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { contextoAlimentos } from "../../../../../contextos/AlimentosContexto.jsx";
-import { contextoListas } from "../../../../../contextos/ProveedorListas.jsx";
+import { contextoListas } from "../../../../../contextos/ListasContexto.jsx";
 import Macros from "../macros/Macros.jsx";
 import { precioPorKilo } from "../../../../../bibliotecas/biblioteca.js";
 import "./Alimento.css";
@@ -11,6 +11,10 @@ const Alimento = ({ alimento }) => {
     deleteAlimento,
     admin,
   } = useContext(contextoAlimentos);
+
+  const {
+    agregarAlimento
+  } = useContext(contextoListas);
 
   //Si se pone en contexto es en todos a la vez
 
@@ -33,6 +37,7 @@ const Alimento = ({ alimento }) => {
           {admin && (
             <>
               <button onClick={() => iniciarEdicion(alimento)}>Modificar</button>
+              <button onClick={() => agregarAlimento(alimento)}>Agregar Lista</button>
               <button
                 onClick={() => {
                   if (
