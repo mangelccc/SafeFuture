@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { contextoAlimentos } from "../../../../../contextos/AlimentosContexto.jsx";
+import { contextoListas } from "../../../../../contextos/ProveedorListas.jsx";
 import Macros from "../macros/Macros.jsx";
 import { precioPorKilo } from "../../../../../bibliotecas/biblioteca.js";
 import "./Alimento.css";
@@ -10,6 +11,8 @@ const Alimento = ({ alimento }) => {
     deleteAlimento,
     admin,
   } = useContext(contextoAlimentos);
+
+  //Si se pone en contexto es en todos a la vez
 
   const [mostrarMacros, setMostrarMacros] = useState(false);
 
@@ -34,7 +37,7 @@ const Alimento = ({ alimento }) => {
                 onClick={() => {
                   if (
                     window.confirm(
-                      "¿Estás seguro de que deseas eliminar este alimento?"
+                      `¿Estás seguro de que deseas eliminar ${alimento.nombre}?`
                     )
                   ) {
                     deleteAlimento(alimento.id);
