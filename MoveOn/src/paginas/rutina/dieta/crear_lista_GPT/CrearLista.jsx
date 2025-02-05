@@ -1,45 +1,50 @@
 // CrearLista.jsx
 import React, { useContext } from "react";
+import { contextoListas } from "../../../../contextos/ListasContexto";
 
 import "./CrearLista.css";
 
-const CrearLista = ({ refrescarListas }) => {
+const CrearLista = () => {
   const {
     sumarAlimento,
     restarAlimento,
-    eliminarAlimentoLista,
     createLista,
-    setNombreLista
+    nombrarListado,
+    nombreLista,
+    alimentosSeleccionados,
   } = useContext(contextoListas);
 
   return (
     <div className="crear-lista">
-      <h2>Crear Nueva Lista</h2>
-      {error && <p className="error">{error}</p>}
-      {mensaje && <p className="exito">{mensaje}</p>}
-      <div className="campo">
-        <label>Nombre de la lista:</label>
+      <div className="lista-cabeza">
+        <h3>Crear Nueva Lista</h3>
+        <button>Listas</button>
+      </div>
+      <div className="lista-campo">
+        <label>Nombre:</label>
         <input
           type="text"
           placeholder="Ingresa el nombre de la lista"
           value={nombreLista}
-          onChange={(e) => setNombreLista(e.target.value)}
+          onChange={(e) => nombrarListado(e.target.value)}
         />
       </div>
 
-
-      <div className="seleccionados">
+      <div className="lista-alimento-seleccionados">
         <h3>Alimentos Seleccionados</h3>
-        <ul>
-          {alimentosSeleccionados.map((item) => (
-            <li key={item.alimento.id}>
-              {item.alimento.nombre} - Cantidad: {item.quantity}{" "}
-              <button onClick={() => sumarAlimento(item.alimento.id)}>+</button>
-              <button onClick={() => restarAlimento(item.alimento.id)}>-</button>
-              <button onClick={() => eliminarAlimentoLista(item.alimento.id)}>Remover</button>
-            </li>
+          {alimentosSeleccionados.map((alimentosSeleccionado) => (
+            <div key={alimentosSeleccionado.alimento.id} className="alimento-seleccionado">
+              <img src={alimentosSeleccionado.alimento.imagen_url}></img>
+              <p>{alimentosSeleccionado.alimento.nombre}</p>
+              <p>{alimentosSeleccionado.alimento.peso_kg} KG</p>
+              <p>{alimentosSeleccionado.alimento.precio_euros} $</p>
+              <div className="alimento-selecionado-botones">
+              {alimentosSeleccionado.quantity}
+              <button onClick={() => sumarAlimento(alimentosSeleccionado.alimento.id)}>+</button>
+              <button onClick={() => restarAlimento(alimentosSeleccionado.alimento.id)}>-</button>
+              </div>
+            </div>
           ))}
-        </ul>
       </div>
 
       <button onClick={createLista} className="crear-btn">

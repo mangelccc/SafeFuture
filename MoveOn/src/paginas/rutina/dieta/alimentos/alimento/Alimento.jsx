@@ -34,10 +34,10 @@ const Alimento = ({ alimento }) => {
         <p><strong>Precio kg/$:</strong> {precioPorKilo(alimento.peso_kg, alimento.precio_euros)}</p>
         <div className="admin">
           <button onClick={alternarMostrarMacros}>Macros</button>
+          <button onClick={() => agregarAlimento(alimento)}>Agregar Lista</button>
           {admin && (
             <>
               <button onClick={() => iniciarEdicion(alimento)}>Modificar</button>
-              <button onClick={() => agregarAlimento(alimento)}>Agregar Lista</button>
               <button
                 onClick={() => {
                   if (

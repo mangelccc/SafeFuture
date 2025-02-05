@@ -1,4 +1,4 @@
-import React, { createContext,useState, useContext,useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { supabaseConexion } from "../bibliotecas/config.js";
 import { contextoAlimentos } from "../contextos/AlimentosContexto.jsx";
 import { contextoAuth } from "../contextos/AuthContexto.jsx"; // Contexto de autenticación
@@ -7,16 +7,16 @@ const contextoListas = createContext();
 
 const ListasContexto = ({ children }) => {
 
-    const [nombreLista, setNombreLista] = useState("");
-    const [busqueda, setBusqueda] = useState("");
-    // Ahora almacenamos objetos con { alimento, quantity }
-    const [alimentosSeleccionados, setAlimentosSeleccionados] = useState([]);
-    const [error, setError] = useState("");
-    const [mensaje, setMensaje] = useState("");
-  
-    const { listadoAlimentos } = useContext(contextoAlimentos);
-    const { usuario } = useContext(contextoAuth);
-  
+  const [nombreLista, setNombreLista] = useState("");
+  const [busqueda, setBusqueda] = useState("");
+  // Ahora almacenamos objetos con { alimento, quantity }
+  const [alimentosSeleccionados, setAlimentosSeleccionados] = useState([]);
+  const [error, setError] = useState("");
+  const [mensaje, setMensaje] = useState("");
+
+  const { listadoAlimentos } = useContext(contextoAlimentos);
+  const { usuario } = useContext(contextoAuth);
+
   const createLista = async () => {
     if (!nombreLista.trim()) {
       setError("El nombre de la lista es obligatorio.");
@@ -34,7 +34,9 @@ const ListasContexto = ({ children }) => {
 
     try {
       // 1. Insertar la nueva lista en la tabla "listas"
-      const nuevaLista = await supabaseConexion.from("listas").insert({nombre: nombreLista,usuario_id: usuario.id})
+      const { data: listaData, error: errorLista } = await supabaseConexion
+        .from("listas")
+        .insert({ nombre: nombreLista, usuario_id: usuario.id })
         .select();
 
       if (errorLista) {
@@ -42,6 +44,7 @@ const ListasContexto = ({ children }) => {
         return;
       }
       const listaCreada = listaData[0];
+
 
       // 2. Insertar cada alimento seleccionado en la tabla intermedia "productos_listas"
       const inserciones = alimentosSeleccionados.map(item => {
@@ -78,28 +81,28 @@ const ListasContexto = ({ children }) => {
 
   // Funciones para incrementar o decrementar manualmente la cantidad
   const sumarAlimento = (alimentoId) => {
-    const updated = alimentosSeleccionados.map(item =>
-      item.alimento.id === alimentoId
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
+    const alimentoSumado = alimentosSeleccionados.map(alimentosSeleccionado =>
+      alimentosSeleccionado.alimento.id === alimentoId
+        ? { ...alimentosSeleccionado, quantity: alimentosSeleccionado.quantity + 1 }
+        : alimentosSeleccionado
     );
-    setAlimentosSeleccionados(updated);
+    setAlimentosSeleccionados(alimentoSumado);
   };
 
   const restarAlimento = (alimentoId) => {
-    const updated = alimentosSeleccionados.map(item =>
-      item.alimento.id === alimentoId && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    );
-    setAlimentosSeleccionados(updated);
+    const alimentoRestado = alimentosSeleccionados.map((alimentosSeleccionado) =>
+      alimentosSeleccionado.alimento.id === alimentoId
+        ? { ...alimentosSeleccionado, quantity: alimentosSeleccionado.quantity - 1 }
+        : alimentosSeleccionado
+    )
+    .filter((alimentosSeleccionado) => alimentosSeleccionado.quantity > 0);
+
+  setAlimentosSeleccionados(alimentoRestado);
   };
 
-  const eliminarAlimentoLista = (alimentoId) => {
-    setAlimentosSeleccionados(
-      alimentosSeleccionados.filter(item => item.alimento.id !== alimentoId)
-    );
-  };
+  const nombrarListado = (nombre) => {
+    setNombreLista(nombre);
+  }
 
 
   const datosContexto = {
@@ -107,14 +110,16 @@ const ListasContexto = ({ children }) => {
     agregarAlimento,
     sumarAlimento,
     restarAlimento,
-    eliminarAlimentoLista,
-    setNombreLista
+    nombrarListado,
+    alimentosSeleccionados,
+    error,
+    mensaje
   };
 
   return (
-    <contextoAlimentos.Provider value={datosContexto}>
+    <contextoListas.Provider value={datosContexto}>
       {children}
-    </contextoAlimentos.Provider>
+    </contextoListas.Provider>
   );
 };
 

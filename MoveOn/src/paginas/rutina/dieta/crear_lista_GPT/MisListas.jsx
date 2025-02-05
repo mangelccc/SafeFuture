@@ -15,12 +15,11 @@ const MisListas = () => {
 
   return (
     <div className="mis-listas">
-      <h1>Administrar Mis Listas</h1>
       <div className="crear-lista-container">
         <CrearLista refrescarListas={refrescarListas} />
       </div>
       <div className="listas-view-container">
-        <ListasView refrescarSignal={refreshSignal} />
+        {/*<ListasView refrescarSignal={refreshSignal} />*/}
       </div>
     </div>
   );

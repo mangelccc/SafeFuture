@@ -1,6 +1,6 @@
 .crear-dieta {
     display: grid;
-    grid-template-columns: 1fr 0.61fr;
+    grid-template-columns: 1fr 0.9fr;
 }
 .dieta-lista {
     margin-left: 10px;

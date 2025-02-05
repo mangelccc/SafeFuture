@@ -209,8 +209,6 @@ const AlimentosContexto = ({ children }) => {
       }
     };
     
-    
-
   useEffect(() => {
     readAlimentos();
   }, []);
@@ -247,11 +245,11 @@ const AlimentosContexto = ({ children }) => {
   };
 
   return (
-    <contextoAlimentos.Provider value={datosContexto}>
-      {children}
-    </contextoAlimentos.Provider>
-  );
-};
+      <contextoAlimentos.Provider value={datosContexto}>
+        {children}
+      </contextoAlimentos.Provider>
+    );
+  };
 
 export default AlimentosContexto;
 export { contextoAlimentos };
