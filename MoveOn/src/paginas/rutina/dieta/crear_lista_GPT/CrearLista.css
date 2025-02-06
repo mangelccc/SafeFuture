@@ -1,43 +1,3 @@
-.mis-listas {
-    border: 3px solid #6320EE;
-    border-radius: 10px;
-    padding: 15px;
-    color: #f5f5f5;
-}
-.lista-cabeza {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
-    border-bottom: 3px solid #FFBA49;
-    margin-bottom: 10px;
-}
-.lista-cabeza h3 {
-    margin: 0px;
-}
-.lista-cabeza button {
-    background-color: #FFBA49;
-    padding: 5px 20px 5px 20px;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #6320EE;
-    border:3px solid #6320EE;
-    transition: all 0.3s;
-    box-shadow: 2px 2px 0 #6320EE,
-    4px 4px 0 #6320EE,
-    6px 6px 0 rgba(0,0,0,0.2);
-}
-
-.lista-cabeza button:hover {
-    background-color: #6320EE;
-    transform: scale(1.1);
-    color: #FFBA49;
-    border:3px solid #FFBA49;
-    box-shadow: 1px 1px 0 #FFBA49,
-    2px 2px 0 #FFBA49,
-    6px 6px 0 rgba(0,0,0,0.2);
-}
 
 .lista-campo {
     font-weight: bold;
@@ -91,21 +51,40 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
+    transition: all 0.2s;
 }
-.alimento-selecionado-botones {
+.alimento-seleccionado p {
+    text-align: center;
+}
+.alimento-seleccionado:hover {
+    transform: scale(1.02);
+}
+.alimento-seleccionado-botones {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 5px;
+    padding: 10px;
 }
-.alimento-selecionado-botones button {
-    border-radius: 100%;
+.alimento-seleccionado-botones button {
+    width: 25px; /* Asegura un ancho igual a la altura */
+    height: 25px; /* Define la altura igual al ancho */
+    border-radius: 50%; /* Hace que el botón sea un círculo */
+    padding: 5px;
     border: 3px solid #FFBA49;
     background-color: #f5f5f5;
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px; /* Tamaño del texto dentro del botón */
+    cursor: pointer;
 }
-.alimento-selecionado-botones button:hover {
+
+.alimento-seleccionado-botones button:hover {
     box-shadow: 1px 1px 0 #f5f5f5,
     2px 2px 0 #f5f5f5,
     3px 3px 0 #FFBA49;

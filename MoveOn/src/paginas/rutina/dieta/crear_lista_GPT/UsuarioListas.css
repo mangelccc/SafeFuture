@@ -1,0 +1,19 @@
+.actualizar-alimento{
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 #FFBA49,
+    2px 2px 0 #FFBA49,
+    6px 6px 0 #1a1a1a;
+    border: 2px solid #FFBA49;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.actualizar-alimento:hover{
+    transform: scale(1.1);
+    box-shadow: 1px 1px 0 #FFBA49,
+    2px 2px 0 #FFBA49,
+    8px 8px 0 #f5f5f5;
+    border: 2px solid #FFBA49;
+}

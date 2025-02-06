@@ -1,6 +1,7 @@
 .crear-alimento {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
     padding: 10px;
     border: 1px solid #FFBA49;
@@ -12,7 +13,6 @@
     6px 6px 0 rgba(0,0,0,0.2);
     transition: all 0.3s;
     margin-bottom: 20px;
-    height: 100px;
 }
 .crear-alimento input {
     background-color: #6320EE;

@@ -1,25 +1,47 @@
 // MisListas.jsx
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import CrearLista from "./CrearLista.jsx";
-import ListasView from "./ListasView.jsx";
+import UsuarioListas from "./UsuarioListas.jsx";
+import { contextoListas } from "../../../../contextos/ListasContexto.jsx";
+
 import "./MisListas.css";
 
 const MisListas = () => {
-  // Estado para refrescar el listado de listas
-  const [refreshSignal, setRefreshSignal] = useState(false);
 
-  // Función para forzar la actualización del listado
-  const refrescarListas = () => {
-    setRefreshSignal((prev) => !prev);
+  // Estado para controlar la vista actual: "crear" o "listas"
+  const [viewMode, setViewMode] = useState("crear");
+
+  // Función para alternar la vista entre CrearLista y ListasView
+  const toggleView = () => {
+    if (viewMode === "listas") {
+      resetearAlimentos(); // Se ejecuta solo cuando pasamos de "listas" a "crear"
+    }
+    setViewMode((prevMode) => (prevMode === "crear" ? "listas" : "crear"));
   };
+
+  const {
+    resetearAlimentos,
+  } = useContext(contextoListas);
+
 
   return (
     <div className="mis-listas">
-      <div className="crear-lista-container">
-        <CrearLista refrescarListas={refrescarListas} />
+      <div className="lista-cabeza">
+        {/* Cambiar el título según la vista */}
+        <h3>{viewMode === "crear" ? "Crear Nueva Lista" : "Mis Listas"}</h3>
+        {/* El botón alterna la vista */}
+        <button onClick={toggleView}>
+          {viewMode === "crear" ? "Listas" : "Crear Lista"}
+        </button>
       </div>
-      <div className="listas-view-container">
-        {/*<ListasView refrescarSignal={refreshSignal} />*/}
+
+      {/* Se muestra el componente correspondiente según la vista */}
+      <div className="crear-lista-container">
+        {viewMode === "crear" ? (
+          <CrearLista />
+        ) : (
+          <UsuarioListas />
+        )}
       </div>
     </div>
   );
