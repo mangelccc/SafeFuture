@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('traslado', function (Blueprint $table) {
-            $table->id('id_traslado');
+        Schema::create('usuario_rutina', function (Blueprint $table) {
+            $table->id('id_usuario_rutina');
             $table->unsignedBigInteger('id_usuario');
-            $table->unsignedBigInteger('cod_ciudad_origen');
-            $table->unsignedBigInteger('cod_ciudad_destino');
-            $table->date('fecha_solicitud');
+            $table->unsignedBigInteger('id_rutina');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin')->nullable();
             $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
-            $table->foreign('cod_ciudad_origen')->references('cod_ciudad')->on('ciudad');
-            $table->foreign('cod_ciudad_destino')->references('cod_ciudad')->on('ciudad');
+            $table->foreign('id_rutina')->references('id_rutina')->on('rutina');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('traslados');
+        Schema::dropIfExists('usuario_rutina');
     }
 };

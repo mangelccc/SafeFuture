@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pais', function (Blueprint $table) {
-            $table->id();
+        Schema::create('ciudad', function (Blueprint $table) {
+            $table->id('cod_ciudad');
+            $table->string('nombre', 100);
+            $table->unsignedBigInteger('cod_pais'); // Debe coincidir con el tipo de dato de 'pais.cod_pais'
+            $table->foreign('cod_pais')->references('cod_pais')->on('pais')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pais');
+        Schema::dropIfExists('ciudads');
     }
 };

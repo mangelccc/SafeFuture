@@ -10,16 +10,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Traslado extends Model
 {
-    /** @use HasFactory<\Database\Factories\TrasladoFactory> */
     use HasFactory;
+    protected $table = 'traslado';
+    protected $primaryKey = 'id_traslado';
 
-    public function ciudad():HasMany
+    public function usuario()
     {
-        return $this->hasMany(Ciudad::class);
+        return $this->belongsTo(Usuario::class, 'id_usuario');
     }
 
-    public function usuarios(): BelongsTo
+    public function ciudadOrigen()
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Ciudad::class, 'cod_ciudad_origen');
+    }
+
+    public function ciudadDestino()
+    {
+        return $this->belongsTo(Ciudad::class, 'cod_ciudad_destino');
     }
 }

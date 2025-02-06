@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dietas', function (Blueprint $table) {
-            $table->id();
+        Schema::create('pais', function (Blueprint $table) {
+            $table->id('cod_pais');
+            $table->string('nombre', 100);
             $table->timestamps();
         });
     }
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dietas');
+        Schema::dropIfExists('pais');
     }
 };

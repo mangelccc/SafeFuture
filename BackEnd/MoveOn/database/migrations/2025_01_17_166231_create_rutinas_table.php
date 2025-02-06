@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('habitos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('rutina_id')->constrained();
+        Schema::create('rutina', function (Blueprint $table) {
+            $table->id('id_rutina');
+            $table->string('nombre', 100);
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('habitos');
+        Schema::dropIfExists('rutinas');
     }
 };

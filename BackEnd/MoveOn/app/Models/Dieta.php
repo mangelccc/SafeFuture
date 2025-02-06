@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Dieta extends Model
 {
-    /** @use HasFactory<\Database\Factories\DietaFactory> */
     use HasFactory;
-
-
-    public function usuarios(): BelongsToMany
-    {
-        return $this->belongsToMany(Usuario::class)->withTimestamps()->withPivot(["fecha_inicio", "fecha_fin"]);
-    }
+    protected $table = 'dieta';
+    protected $primaryKey = 'id_dieta';
 }

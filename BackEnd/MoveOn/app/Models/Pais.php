@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pais extends Model
 {
-    /** @use HasFactory<\Database\Factories\PaisFactory> */
     use HasFactory;
+    protected $table = 'pais';
+    protected $primaryKey = 'cod_pais';
 
-    public function ciudad(): BelongsTo
+    public function ciudades()
     {
-        return $this->belongsTo(Ciudad::class);
+        return $this->hasMany(Ciudad::class, 'cod_pais');
     }
 }

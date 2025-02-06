@@ -9,15 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ciudad extends Model
 {
-    /** @use HasFactory<\Database\Factories\CiudadFactory> */
     use HasFactory;
+    protected $table = 'ciudad';
+    protected $primaryKey = 'cod_ciudad';
 
-    public function traslado(): BelongsTo
+    public function pais()
     {
-        return $this->belongsTo(Traslado::class);
-    }
-    public function paises():HasMany
-    {
-        return $this->hasMany(Pais::class);
+        return $this->belongsTo(Pais::class, 'cod_pais');
     }
 }

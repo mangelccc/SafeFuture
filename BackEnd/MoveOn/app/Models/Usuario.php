@@ -10,37 +10,23 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Usuario extends Model
 {
-
     use HasFactory;
-    protected $table = 'usuarios';
+    protected $table = 'usuario';
+    protected $primaryKey = 'id_usuario';
+    protected $fillable = ['nombre', 'correo', 'contrasena', 'edad', 'sexo', 'rol'];
 
-    protected $fillable = [
-        'dni',
-        'nombre',
-        'apellidos',
-        'email',
-        'password',
-        'direccion',
-        'fecha_nacimiento',
-    ];
-
-    public function dieta(): BelongsToMany
+    public function dietas()
     {
-        return $this->belongsToMany(Dieta::class)
-            ->withTimestamps()
-            ->withPivot(['fecha_inicio', 'fecha_fin']);
+        return $this->hasMany(UsuarioDieta::class, 'id_usuario');
     }
 
-    public function recompensa():HasMany
+    public function rutinas()
     {
-        return $this->hasMany(Recompensa::class);
+        return $this->hasMany(UsuarioRutina::class, 'id_usuario');
     }
-    public function mensaje():HasMany
+
+    public function traslados()
     {
-        return $this->hasMany(Mensaje::class);
-    }
-    public function traslado():HasMany
-    {
-        return $this->hasMany(Traslado::class);
+        return $this->hasMany(Traslado::class, 'id_usuario');
     }
 }
