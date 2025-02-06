@@ -1,4 +1,3 @@
-// src/paginas/rutina/dieta/crear_lista_GPT/CrearLista.jsx
 import React, { useContext } from "react";
 import { contextoListas } from "../../../../contextos/ListasContexto";
 import AlimentoListado from "./AlimentoListado";
@@ -27,6 +26,7 @@ const CrearLista = () => {
       </div>
 
       <div className="lista-alimento-seleccionados">
+      <h3>{nombreLista}</h3>
         <AlimentoListado
           nombreLista={nombreLista}
           alimentosLista={alimentosLista}

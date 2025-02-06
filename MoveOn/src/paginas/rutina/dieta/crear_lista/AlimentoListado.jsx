@@ -3,7 +3,6 @@ import React from "react";
 const AlimentoListado = ({ nombreLista, alimentosLista, sumarAlimento, restarAlimento }) => {
   return (
     <>
-      <h3>{nombreLista}</h3>
       {alimentosLista.length > 0 ? (
         alimentosLista.map((alimento) => (
           <div key={alimento.id} className="alimento-seleccionado">

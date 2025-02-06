@@ -2,7 +2,7 @@ import React from "react";
 import Alimentos from "./alimentos/Alimentos.jsx";
 import FiltrosAlimentos from "./filtros/FiltrosAlimentos.jsx";
 import CrearAlimento from "./administracion/CrearAlimento.jsx";
-import MisListas from "./crear_lista_GPT/MisListas.jsx";
+import MisListas from "./crear_lista/MisListas.jsx";
 import "./CrearDieta.css";
 
 

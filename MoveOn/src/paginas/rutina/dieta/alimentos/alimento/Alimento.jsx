@@ -8,9 +8,9 @@ import "./Alimento.css";
 const Alimento = ({ alimento }) => {
   const { iniciarEdicion, deleteAlimento, admin } = useContext(contextoAlimentos);
   const { 
-    agregarAlimento,          // Función para creación de lista
-    agregarAlimentoEdicion,   // Función para edición de lista
-    listaEnEdicion            // Estado que indica si se está editando alguna lista
+    agregarAlimento,         
+    agregarAlimentoEdicion,  
+    listaEnEdicion           
   } = useContext(contextoListas);
 
   const [mostrarMacros, setMostrarMacros] = useState(false);

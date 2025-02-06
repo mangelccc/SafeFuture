@@ -1,0 +1,62 @@
+.lista-usuario-resumen {
+    border: 3px solid #6320EE;
+    background-color: #FFBA49; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.lista-usuario-resumen h4 {
+    margin: 5px;
+}
+
+.usuario-lista-resumen button {
+    background-color: #6320EE;
+    color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 #6320EE,
+    2px 2px 0 #6320EE,
+    6px 6px 0 rgba(0,0,0,0.2);
+    border: 2px solid #6320EE;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.usuario-lista-resumen button:hover {
+    transform: scale(1.1);
+    box-shadow: 1px 1px 0 #6320EE,
+    2px 2px 0 #6320EE,
+    8px 8px 0 rgba(0,0,0,0.2);
+    border: 2px solid #6320EE;
+}
+
+.usuario-lista-resumen {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    color: #1a1a1a;
+}
+
+.actualizar-alimento {
+    background-color: #6320EE;
+    color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 #6320EE,
+    2px 2px 0 #6320EE,
+    6px 6px 0 rgba(0,0,0,0.2);
+    border: 2px solid #6320EE;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.actualizar-alimento:hover {
+    transform: scale(1.1);
+    box-shadow: 1px 1px 0 #6320EE,
+    2px 2px 0 #6320EE,
+    8px 8px 0 rgba(0,0,0,0.2);
+    border: 2px solid #6320EE;
+}
