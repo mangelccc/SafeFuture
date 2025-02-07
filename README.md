@@ -11,6 +11,7 @@ Este proyecto está organizado en diferentes ramas para mantener un flujo de tra
 - **Google Drive**: https://bit.ly/42dvDNs
 - **Entidad Relación**: https://bit.ly/406Iq1e
 - **Ramón Galinsoga PT:** https://chatgpt.com/share/6787db79-97f4-8008-9158-3b10d3b74d22
+- **Presentaciones IA**: https://gamma.app/es
 
 ## Ejemplo de Ejecución para Subir Cambios a Develop
 
