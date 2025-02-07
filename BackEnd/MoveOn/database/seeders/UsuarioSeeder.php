@@ -3,12 +3,12 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Rutina;
+use App\Models\Usuario;
 
-class RutinaSeeder extends Seeder
+class UsuarioSeeder extends Seeder
 {
     public function run()
     {
-        Rutina::factory()->count(10)->create();
+        Usuario::factory()->count(10)->create();
     }
 }

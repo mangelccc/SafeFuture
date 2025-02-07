@@ -4,29 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Usuario extends Model
 {
     use HasFactory;
     protected $table = 'usuario';
     protected $primaryKey = 'id_usuario';
-    protected $fillable = ['nombre', 'correo', 'contrasena', 'edad', 'sexo', 'rol'];
+    protected $hidden = ['created_at', 'updated_at'];
 
-    public function dietas()
-    {
-        return $this->hasMany(UsuarioDieta::class, 'id_usuario');
-    }
-
-    public function rutinas()
-    {
-        return $this->hasMany(UsuarioRutina::class, 'id_usuario');
-    }
-
+    // Relación: Un Usuario tiene muchos Traslados
     public function traslados()
     {
-        return $this->hasMany(Traslado::class, 'id_usuario');
+        return $this->hasMany(Traslado::class, 'id_usuario', 'id_usuario');
+    }
+
+    // Relación: Usuario tiene muchas Dietas (vía la tabla pivote usuario_dieta)
+    public function dietas()
+    {
+        return $this->belongsToMany(Dieta::class, 'usuario_dieta', 'id_usuario', 'id_dieta')
+            ->withPivot('peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')
+            ->withTimestamps();
+    }
+
+    // Relación: Usuario tiene muchas Rutinas (vía la tabla pivote usuario_rutina)
+    public function rutinas()
+    {
+        return $this->belongsToMany(Rutina::class, 'usuario_rutina', 'id_usuario', 'id_rutina')
+            ->withPivot('fecha_inicio', 'fecha_fin')
+            ->withTimestamps();
     }
 }

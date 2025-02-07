@@ -2,22 +2,22 @@
 
 namespace Database\Factories;
 
+use App\Models\Ciudad;
+use App\Models\Pais;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ciudad>
- */
 class CiudadFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Ciudad::class;
+
+    public function definition()
     {
+        // Aseguramos que exista al menos un país; de lo contrario se crea uno.
+        $pais = Pais::inRandomOrder()->first() ?: Pais::factory()->create();
+
         return [
-            //
+            'nombre'   => $this->faker->city,
+            'cod_pais' => $pais->cod_pais,
         ];
     }
 }

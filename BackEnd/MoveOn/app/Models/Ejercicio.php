@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Ejercicio extends Model
 {
     use HasFactory;
+    protected $table = 'ejercicio';
+    protected $primaryKey = 'id_ejercicio';
+    protected $hidden = ['created_at', 'updated_at'];
 
-    protected $fillable = [
-        'nombre', 'id_rutina', // Otros campos de la tabla ejercicios
-    ];
-
-    // Relación: un ejercicio pertenece a una rutina
-    public function rutina()
+    // Relación: Ejercicio pertenece a muchas Rutinas (vía la tabla pivote rutina_ejercicio)
+    public function rutinas()
     {
-        return $this->belongsTo(Rutina::class, 'id_rutina');
+        return $this->belongsToMany(Rutina::class, 'rutina_ejercicio', 'id_ejercicio', 'id_rutina')
+            ->withPivot('num_series', 'num_repeticiones')
+            ->withTimestamps();
     }
 }

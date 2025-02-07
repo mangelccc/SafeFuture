@@ -2,22 +2,18 @@
 
 namespace Database\Factories;
 
+use App\Models\Rutina;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Rutina>
- */
 class RutinaFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = Rutina::class;
+
+    public function definition()
     {
         return [
-            //
+            'nombre'      => $this->faker->word,
+            'descripcion' => $this->faker->sentence,
         ];
     }
 }

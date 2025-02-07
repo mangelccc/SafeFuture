@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Dieta extends Model
 {
     use HasFactory;
+    protected $table = 'dieta';
+    protected $primaryKey = 'id_dieta';
+    protected $hidden = ['created_at', 'updated_at'];
 
-    protected $fillable = [
-        'nombre', // Otros campos de la tabla dietas
-    ];
-
-    // Relación: una dieta puede tener muchos alimentos
-    public function alimentos()
+    // Relación: Dieta pertenece a muchos Usuarios (vía la tabla pivote usuario_dieta)
+    public function usuarios()
     {
-        return $this->belongsToMany(Alimento::class, 'alimento_dieta', 'dieta_id', 'alimento_id');
+        return $this->belongsToMany(Usuario::class, 'usuario_dieta', 'id_dieta', 'id_usuario')
+            ->withPivot('peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')
+            ->withTimestamps();
     }
 }

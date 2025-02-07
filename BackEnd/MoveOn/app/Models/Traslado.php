@@ -2,32 +2,31 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Traslado extends Model
 {
     use HasFactory;
+    protected $table = 'traslado';
+    protected $primaryKey = 'id_traslado';
+    protected $hidden = ['created_at', 'updated_at'];
 
-    protected $fillable = [
-        'usuario_id', 'ciudad_origen', 'ciudad_destino', 'fecha', // Otros campos de la tabla traslados
-    ];
-
-    // Relación: un traslado pertenece a un usuario
+    // Relación: Traslado pertenece a un Usuario
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'usuario_id');
+        return $this->belongsTo(Usuario::class, 'id_usuario');
     }
 
-    // Relación: un traslado tiene una ciudad de origen
+    // Relación: Traslado tiene una Ciudad de origen
     public function ciudadOrigen()
     {
-        return $this->belongsTo(Ciudad::class, 'ciudad_origen');
+        return $this->belongsTo(Ciudad::class, 'cod_ciudad_origen');
     }
 
-    // Relación: un traslado tiene una ciudad de destino
+    // Relación: Traslado tiene una Ciudad de destino
     public function ciudadDestino()
     {
-        return $this->belongsTo(Ciudad::class, 'ciudad_destino');
+        return $this->belongsTo(Ciudad::class, 'cod_ciudad_destino');
     }
 }

@@ -7,22 +7,32 @@ use Illuminate\Foundation\Http\FormRequest;
 class UpdateAlimentoRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determina si el usuario está autorizado para realizar esta solicitud.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Reglas de validación para actualizar un alimento.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, mixed>
      */
     public function rules(): array
     {
         return [
-            //
+            'nombre'         => 'required|string|max:100',
+            'categoria'      => 'required|in:Proteínas,Carbohidratos,Grasas,Vitaminas',
+            'imagen_url'     => 'nullable|url',
+            'descripcion'    => 'nullable|string',
+            'peso_kg'        => 'nullable|numeric',
+            'precio_euros'   => 'nullable|numeric',
+            'codigo_barras'  => 'nullable|string|max:50',
+            'calorias'       => 'nullable|numeric',
+            'proteinas'      => 'nullable|numeric',
+            'grasas'         => 'nullable|numeric',
+            'carbohidratos'  => 'nullable|numeric',
         ];
     }
 }
