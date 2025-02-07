@@ -11,6 +11,9 @@ use App\Http\Controllers\RutinaController;
 use App\Http\Controllers\DietaController;
 use App\Http\Controllers\EjercicioController;
 use App\Http\Controllers\TrasladoController;
+use App\Http\Controllers\UsuarioDietaController;
+use App\Http\Controllers\RutinaEjercicioController;
+use App\Http\Controllers\UsuarioRutinaController;
 
 // Rutas para Usuarios
 Route::get('/usuarios', [UsuarioController::class, 'index']);
@@ -75,3 +78,29 @@ Route::post('/traslados', [TrasladoController::class, 'store']);
 Route::put('/traslados/{id}', [TrasladoController::class, 'update']);
 Route::patch('/traslados/{id}', [TrasladoController::class, 'updatePartial']);
 Route::delete('/traslados/{id}', [TrasladoController::class, 'destroy']);
+
+
+
+/** Rutas para la tabla pivote usuario_dieta **/
+Route::get('/usuario-dieta', [UsuarioDietaController::class, 'index']);
+Route::get('/usuario-dieta/{id}', [UsuarioDietaController::class, 'show']);
+Route::post('/usuario-dieta', [UsuarioDietaController::class, 'store']);
+Route::put('/usuario-dieta/{id}', [UsuarioDietaController::class, 'update']);
+Route::patch('/usuario-dieta/{id}', [UsuarioDietaController::class, 'updatePartial']);
+Route::delete('/usuario-dieta/{id}', [UsuarioDietaController::class, 'destroy']);
+
+/** Rutas para la tabla pivote rutina_ejercicio **/
+Route::get('/rutina-ejercicio', [RutinaEjercicioController::class, 'index']);
+Route::get('/rutina-ejercicio/{id}', [RutinaEjercicioController::class, 'show']);
+Route::post('/rutina-ejercicio', [RutinaEjercicioController::class, 'store']);
+Route::put('/rutina-ejercicio/{id}', [RutinaEjercicioController::class, 'update']);
+Route::patch('/rutina-ejercicio/{id}', [RutinaEjercicioController::class, 'updatePartial']);
+Route::delete('/rutina-ejercicio/{id}', [RutinaEjercicioController::class, 'destroy']);
+
+/** Rutas para la tabla pivote usuario_rutina **/
+Route::get('/usuario-rutina', [UsuarioRutinaController::class, 'index']);
+Route::get('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'show']);
+Route::post('/usuario-rutina', [UsuarioRutinaController::class, 'store']);
+Route::put('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'update']);
+Route::patch('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'updatePartial']);
+Route::delete('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'destroy']);

@@ -9,6 +9,12 @@ class Alimento extends Model
 {
     use HasFactory;
 
+    // Nombre de la tabla y clave primaria
+    protected $table = 'alimento';
+    protected $primaryKey = 'id_alimento';
+    protected $hidden = ['created_at', 'updated_at'];
+
+    // Campos asignables
     protected $fillable = [
         'nombre',
         'categoria',
@@ -22,11 +28,4 @@ class Alimento extends Model
         'grasas',
         'carbohidratos'
     ];
-
-    // Especificamos el nombre de la tabla y la clave primaria
-    protected $table = 'alimento';
-    protected $primaryKey = 'id_alimento';
-
-    // Ocultamos los timestamps en la respuesta de la API
-    protected $hidden = ['created_at', 'updated_at'];
 }
