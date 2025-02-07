@@ -39,6 +39,27 @@ const calcularMacronutrientes = ({ peso, altura, edad, sexo, actividad, objetivo
 const precioPorKilo = (pesoKg, precioEuros) => {
     return parseFloat((precioEuros / pesoKg).toFixed(2));
 };
+// Manejador único para todos los clics dentro del contenedor
+const manejarClicAlimentoListado = (e) => {
+    // Encuentra el elemento padre más cercano con la clase "alimento-seleccionado"
+    const alimentoElemento = e.target.closest(".alimento-seleccionado");
+
+    // Si no encuentra el contenedor del alimento, salir
+    if (!alimentoElemento) return;
+
+    // Extraer el ID desde el atributo dataset del contenedor padre
+    const id = alimentoElemento.dataset.id;
+
+    // Verifica si se hizo clic en el botón de sumar
+    if (e.target.classList.contains("btn-sumar")) {
+      sumarAlimento(id);
+    }
+
+    // Verifica si se hizo clic en el botón de restar
+    if (e.target.classList.contains("btn-restar")) {
+      restarAlimento(id);
+    }
+  };
 
 
-export { calcularMacronutrientes,precioPorKilo };
+export { calcularMacronutrientes,precioPorKilo, manejarClicAlimentoListado };

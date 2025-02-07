@@ -286,6 +286,16 @@ const agregarAlimentoEdicion = (alimento) => {
     setAlimentosEdicion([...alimentosEdicion, { ...alimento, quantity: 1 }]);
   }
 };
+// Estado para controlar la vista actual: "crear" o "listas"
+const [modoVista, setModoVista] = useState("crear");
+
+// Función para alternar la vista entre CrearLista y ListasView
+const alternarLista = () => {
+  if (modoVista === "listas") {
+    resetearAlimentos();
+  }
+  setModoVista((modo) => (modo === "crear" ? "listas" : "crear"));
+};
 
 
   /*******************************/
@@ -315,7 +325,9 @@ const agregarAlimentoEdicion = (alimento) => {
 
     //
     agregarAlimentoEdicion,
-    resetearAlimentos
+    resetearAlimentos,
+    modoVista,
+    alternarLista,
   };
 
   return (
