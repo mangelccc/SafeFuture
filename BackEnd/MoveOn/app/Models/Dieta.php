@@ -4,11 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Dieta extends Model
 {
     use HasFactory;
-    protected $table = 'dieta';
-    protected $primaryKey = 'id_dieta';
+
+    protected $fillable = [
+        'nombre', // Otros campos de la tabla dietas
+    ];
+
+    // Relación: una dieta puede tener muchos alimentos
+    public function alimentos()
+    {
+        return $this->belongsToMany(Alimento::class, 'alimento_dieta', 'dieta_id', 'alimento_id');
+    }
 }

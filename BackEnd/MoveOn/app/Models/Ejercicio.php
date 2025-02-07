@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Ejercicio extends Model
 {
     use HasFactory;
-    protected $table = 'ejercicio';
-    protected $primaryKey = 'id_ejercicio';
 
-    public function rutinas()
+    protected $fillable = [
+        'nombre', 'id_rutina', // Otros campos de la tabla ejercicios
+    ];
+
+    // Relación: un ejercicio pertenece a una rutina
+    public function rutina()
     {
-        return $this->belongsToMany(Rutina::class, 'rutina_ejercicio', 'id_ejercicio', 'id_rutina')->withPivot('num_series', 'num_repeticiones');
+        return $this->belongsTo(Rutina::class, 'id_rutina');
     }
 }

@@ -8,7 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Alimento extends Model
 {
     use HasFactory;
-    protected $table = 'alimento';
-    protected $primaryKey = 'id_alimento';
-    protected $fillable = ['nombre', 'categoria', 'imagen_url', 'descripcion', 'peso_kg', 'precio_euros', 'codigo_barras', 'calorias', 'proteinas', 'grasas', 'carbohidratos'];
+
+    protected $fillable = [
+        'nombre', // Otros campos de la tabla alimentos
+    ];
+
+    // Relación: un alimento puede pertenecer a muchas dietas
+    public function dietas()
+    {
+        return $this->belongsToMany(Dieta::class, 'alimento_dieta', 'alimento_id', 'dieta_id');
+    }
 }
