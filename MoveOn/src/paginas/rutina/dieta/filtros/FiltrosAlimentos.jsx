@@ -9,24 +9,23 @@ const FiltrosAlimentos = () => {
         alternarAdmin
     } = useContext(contextoAlimentos);
 
-    // Manejador único de clics con delegación de eventos
     const manejarClic = (e) => {
         const target = e.target;
 
         if (
-            target.classList.contains("delegated-orden-nombre") ||
-            target.classList.contains("delegated-orden-peso") ||
-            target.classList.contains("delegated-orden-precio") ||
-            target.classList.contains("delegated-admin-toggle")
+            target.classList.contains("orden-nombre") ||
+            target.classList.contains("orden-peso") ||
+            target.classList.contains("orden-precio") ||
+            target.classList.contains("admin-cambio")
         ) {
             // Determina la acción a realizar según la clase del botón
-            if (target.classList.contains("delegated-orden-nombre")) {
+            if (target.classList.contains("orden-nombre")) {
                 ordenarAlimentos("nombre");
-            } else if (target.classList.contains("delegated-orden-peso")) {
+            } else if (target.classList.contains("orden-peso")) {
                 ordenarAlimentos("peso");
-            } else if (target.classList.contains("delegated-orden-precio")) {
+            } else if (target.classList.contains("orden-precio")) {
                 ordenarAlimentos("precio");
-            } else if (target.classList.contains("delegated-admin-toggle")) {
+            } else if (target.classList.contains("admin-cambio")) {
                 alternarAdmin();
             }
         }
@@ -36,10 +35,10 @@ const FiltrosAlimentos = () => {
         <div className="contenedor-filtros" onClick={manejarClic}>
             <div className="filtros-botones">
                 {/* Botones con clases delegadas */}
-                <button className="delegated-orden-nombre">Ordenar por Nombre</button>
-                <button className="delegated-orden-peso">Ordenar por Peso</button>
-                <button className="delegated-orden-precio">Ordenar por Precio</button>
-                <button className="delegated-admin-toggle">Act/desc. Admin</button>
+                <button className="orden-nombre">Ordenar por Nombre</button>
+                <button className="orden-peso">Ordenar por Peso</button>
+                <button className="orden-precio">Ordenar por Precio</button>
+                <button className="admin-cambio">Act/desc. Admin</button>
             </div>
             <div className="filtros-busqueda">
                 {/* Este input mantiene su onChange porque requiere interacción directa */}

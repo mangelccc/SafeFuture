@@ -3,10 +3,10 @@ import Alimentos from "./alimentos/Alimentos.jsx";
 import FiltrosAlimentos from "./filtros/FiltrosAlimentos.jsx";
 import CrearAlimento from "./administracion/CrearAlimento.jsx";
 import MisListas from "./crear_lista/MisListas.jsx";
-import "./CrearDieta.css";
+import "./GestorListas.css";
 
 
-const CrearDieta = () => {
+const GestorListas = () => {
   return (
     <>
       <div className="crear-dieta">
@@ -23,4 +23,4 @@ const CrearDieta = () => {
   );
 };
 
-export default CrearDieta;
+export default GestorListas;

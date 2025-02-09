@@ -7,7 +7,7 @@ import Rutina from "../paginas/rutina/Rutina.jsx";
 import Foro from "../paginas/foro/Foro.jsx";
 import Contactanos from "../paginas/contactanos/Contactanos.jsx";
 import FormularioMacros from "../paginas/rutina/dieta/formulario_macros/PasosMultiples.jsx";
-import CrearDieta from "../paginas/rutina/dieta/CrearDieta.jsx";
+import GestorListas from "../paginas/rutina/dieta/GestorListas.jsx";
 
 import Usuario from "../paginas/sesion/Usuario.jsx";
 import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacion.jsx";
@@ -33,7 +33,7 @@ const RutasPaginas = () => {
           }
         />
         <Route path="/Rutina/FormularioMacros" element={<FormularioMacros />} />
-        <Route path="/Rutina/CrearDieta" element={<CrearDieta />} />
+        <Route path="/Rutina/CrearDieta" element={<GestorListas />} />
 
         <Route path='/Foro' element={<Foro />} />
         <Route path='/Contactanos' element={<Contactanos />} />

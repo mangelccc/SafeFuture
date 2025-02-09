@@ -10,8 +10,6 @@ const AlimentoModificableAdm = ({ alimento }) => {
         datosFormulario,
     } = useContext(contextoAlimentos);
 
-    console.log("Estado actual de alimentoEditado:", alimentoEditado);
-
     return (
         <div key={alimento.id} className="alimento">
             <div className="admin-datosalimento">

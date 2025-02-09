@@ -1,5 +1,4 @@
-// src/contextos/ListasContexto.jsx
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import { supabaseConexion } from "../bibliotecas/config.js";
 import { contextoAlimentos } from "./AlimentosContexto.jsx";
 import { contextoAuth } from "./AuthContexto.jsx";
@@ -7,80 +6,74 @@ import { contextoAuth } from "./AuthContexto.jsx";
 const contextoListas = createContext();
 
 const ListasContexto = ({ children }) => {
-  /*** Estados para CREAR LISTA ***/
-  const nombreListaInicial = "";
-  const errorListaInicial = "";
-  const alimentosInicial = [];
 
-  const [nombreLista, setNombreLista] = useState(nombreListaInicial);
-  const [alimentosLista, setAlimentosLista] = useState(alimentosInicial);
-  const [error, setError] = useState(errorListaInicial);
+  const NOMBRE_LISTA_INICIAL = "";
+  const ERROR_INICIAL = "";
+  const ALIMENTOS_INICIAL = [];
+  const LISTAS_USUARIO_INICIAL = [];
+  const LISTA_EN_EDICION_INICIAL = null;
+  const ALIMENTOS_EDICION_INICIAL = [];
+  const MODO_VISTA_INICIAL = "crear";
 
-  /*** Estados para EDITAR LISTAS (UsuarioListas) ***/
-  const [listasUsuario, setListasUsuario] = useState([]);
-  const [listaEnEdicion, setListaEnEdicion] = useState(null);
-  const [alimentosEdicion, setAlimentosEdicion] = useState([]);
+  const [nombreLista, setNombreLista] = useState(NOMBRE_LISTA_INICIAL);
+  const [error, setError] = useState(ERROR_INICIAL);
+  const [alimentosLista, setAlimentosLista] = useState(ALIMENTOS_INICIAL);
+  const [listasUsuario, setListasUsuario] = useState(LISTAS_USUARIO_INICIAL);
+  const [listaEnEdicion, setListaEnEdicion] = useState(LISTA_EN_EDICION_INICIAL);
+  const [alimentosEdicion, setAlimentosEdicion] = useState(ALIMENTOS_EDICION_INICIAL);
+  const [modoVista, setModoVista] = useState(MODO_VISTA_INICIAL);
 
   // Extraer datos de otros contextos
   const { listadoAlimentos } = useContext(contextoAlimentos);
   const { usuario } = useContext(contextoAuth);
 
-  /**************************/
-  /*** FUNCIONES CREAR LISTA ***/
-  /**************************/
-
-  // Función para crear una lista en Supabase
   const createLista = async () => {
-    if (!nombreLista.trim()) {
-      setError("El nombre de la lista es obligatorio.");
-      return;
-    }
-    if (alimentosLista.length === 0) {
-      setError("Debes seleccionar al menos un alimento.");
-      return;
-    }
-    if (!usuario?.id) {
-      setError("No se encontró el usuario autenticado.");
-      return;
-    }
-    setError(errorListaInicial);
-
+    setError(ERROR_INICIAL);
     try {
-      // Inserta la nueva lista en la tabla "listas"
-      const { data, error: errorLista } = await supabaseConexion
+      if (/^\s*$/.test(nombreLista)) {
+        throw new Error("El nombre de la lista es obligatorio.");
+      }      
+      if (alimentosLista.length === 0) {
+        throw new Error("Debes seleccionar al menos un alimento.");
+      }
+      if (!usuario?.id) {
+        throw new Error("No se encontró el usuario autenticado.");
+      }
+      const { data, error} = await supabaseConexion
         .from("listas")
         .insert({ nombre: nombreLista, usuario_id: usuario.id })
         .select();
 
-      if (errorLista) throw errorLista;
+      if (error) throw error;
+      if (!data || data.length === 0) {
+        throw new Error("No se pudo crear la lista. No hay datos devueltos.");
+      }
 
       const listaCreada = data[0];
 
-      // Inserta cada alimento seleccionado en "productos_listas"
-      await Promise.all(
-        alimentosLista.map((alimento) =>
-          supabaseConexion.from("productos_listas").insert({
-            lista_id: listaCreada.id,
-            alimento_id: alimento.id,
-            cantidad: alimento.quantity,
-          })
-        )
+      const insertarProductos = alimentosLista.map((alimento) =>
+        supabaseConexion.from("productos_listas").insert({
+          lista_id: listaCreada.id,
+          alimento_id: alimento.id,
+          cantidad: alimento.quantity,
+        })
       );
 
+      const resultados = await Promise.all(insertarProductos);
+      for (const resultado of resultados) {
+        if (resultado.error) throw resultado.error;
+      }
+
       setError("Lista creada exitosamente.");
-      // Reiniciar estados
-      setNombreLista(nombreListaInicial);
-      setAlimentosLista(alimentosInicial);
+      setNombreLista(NOMBRE_LISTA_INICIAL);
+      setAlimentosLista(ALIMENTOS_INICIAL);
     } catch (error) {
       setError(error.message);
     }
   };
 
-  // Función para agregar un alimento a la lista (estructura para creación)
   const agregarAlimento = (alimento) => {
-    const i = alimentosLista.findIndex(
-      (alimentoLista) => alimentoLista.id === alimento.id
-    );
+    const i = alimentosLista.findIndex((a) => a.id === alimento.id);
     if (i !== -1) {
       const actualizacion = [...alimentosLista];
       actualizacion[i].quantity += 1;
@@ -90,110 +83,114 @@ const ListasContexto = ({ children }) => {
     }
   };
 
-  // Función para incrementar la cantidad de un alimento en la creación
   const sumarAlimento = (alimentoId) => {
     setAlimentosLista(
-      alimentosLista.map((alimentoLista) =>
-        alimentoLista.id === alimentoId
-          ? { ...alimentoLista, quantity: alimentoLista.quantity + 1 }
-          : alimentoLista
+      alimentosLista.map((alimento) =>
+        alimento.id === alimentoId
+          ? { ...alimento, quantity: alimento.quantity + 1 }
+          : alimento
       )
     );
   };
 
-  // Función para decrementar la cantidad o eliminar el alimento en la creación
   const restarAlimento = (alimentoId) => {
     setAlimentosLista(
       alimentosLista
-        .map((alimentoLista) =>
-          alimentoLista.id === alimentoId
-            ? { ...alimentoLista, quantity: alimentoLista.quantity - 1 }
-            : alimentoLista
+        .map((alimento) =>
+          alimento.id === alimentoId
+            ? { ...alimento, quantity: alimento.quantity - 1 }
+            : alimento
         )
-        .filter((alimentoLista) => alimentoLista.quantity > 0)
+        .filter((alimento) => alimento.quantity > 0)
     );
   };
 
-  // Función para asignar el nombre de la lista en la creación
   const nombrarListado = (nombre) => {
     setNombreLista(nombre);
   };
 
-  // Función para actualizar (guardar) los cambios en una lista creada previamente
-  // (usando el estado "alimentosLista")
   const actualizarLista = async (listaId) => {
+    setError(ERROR_INICIAL);
     try {
-      // Eliminamos los registros existentes de productos_listas para esta lista
-      const { error: errorDelete } = await supabaseConexion
+      const { error } = await supabaseConexion
         .from("productos_listas")
         .delete()
         .eq("lista_id", listaId);
-      if (errorDelete) {
-        setError(errorDelete.message);
-        return;
-      }
-      // Insertamos cada alimento según el estado actual de "alimentosLista"
-      await Promise.all(
-        alimentosLista.map((alimento) =>
-          supabaseConexion.from("productos_listas").insert({
-            lista_id: listaId,
-            alimento_id: alimento.id,
-            cantidad: alimento.quantity,
-          })
-        )
+
+      if (error) throw error;
+
+      const insertarProductos = alimentosLista.map((alimento) =>
+        supabaseConexion.from("productos_listas").insert({
+          lista_id: listaId,
+          alimento_id: alimento.id,
+          cantidad: alimento.quantity,
+        })
       );
+
+      const resultados = await Promise.all(insertarProductos);
+      for (const resultado of resultados) {
+        if (resultado.error) throw resultado.error;
+      }
+
       setError("Lista actualizada exitosamente.");
     } catch (error) {
       setError(error.message);
     }
   };
 
-  /*******************************/
-  /*** FUNCIONES EDITAR LISTAS ***/
-  /*******************************/
-
-  // Función para obtener las listas del usuario
   const obtenerListasUsuario = async () => {
-    if (!usuario?.id) return;
-    const { data, error } = await supabaseConexion
-      .from("listas")
-      .select("*")
-      .eq("usuario_id", usuario.id);
-    if (error) {
-      console.error("Error al obtener las listas:", error.message);
-      return;
+    setError(ERROR_INICIAL);
+    try {
+      if (!usuario?.id) {
+        throw new Error("No se encontró el usuario autenticado para obtener listas.");
+      }
+
+      const { data, error } = await supabaseConexion
+        .from("listas")
+        .select("*")
+        .eq("usuario_id", usuario.id);
+
+      if (error) throw error;
+      if (!data) {
+        throw new Error("No se obtuvieron listas de Supabase.");
+      }
+      setListasUsuario(data);
+    } catch (error) {
+      setError(error.message);
     }
-    setListasUsuario(data);
   };
 
-  // Función para cargar la información de una lista (alimentos) para editarla
   const editarLista = async (lista) => {
-    const { data, error } = await supabaseConexion
-      .from("productos_listas")
-      .select("*")
-      .eq("lista_id", lista.id);
-    if (error) {
-      console.error("Error al cargar la lista:", error.message);
-      return;
-    }
-    // Se completa la información de cada alimento buscando en el listadoAlimentos
-    const alimentosConDetalle = data
-      .map((item) => {
-        const alimento = listadoAlimentos.find(
-          (a) => a.id === item.alimento_id
-        );
-        if (alimento) {
-          return { ...alimento, quantity: item.cantidad };
-        }
-        return null;
-      })
-      .filter((item) => item !== null);
+    setError(ERROR_INICIAL);
+    try {
+      if (!lista || !lista.id) {
+        throw new Error("La lista que intentas editar no es válida.");
+      }
 
-    setListaEnEdicion(lista);
-    setAlimentosEdicion(alimentosConDetalle);
+      const { data, error } = await supabaseConexion
+        .from("productos_listas")
+        .select("*")
+        .eq("lista_id", lista.id);
+
+      if (error) throw error;
+
+      const alimentosConDetalle = data
+        .map((alimentoDetalle) => {
+          const alimento = listadoAlimentos.find((a) => a.id === alimentoDetalle.alimento_id);
+          if (alimento) {
+            return { ...alimento, quantity: alimentoDetalle.cantidad };
+          }
+          return null;
+        })
+        .filter((alimentoDetalle) => alimentoDetalle !== null);
+
+      setListaEnEdicion(lista);
+      setAlimentosEdicion(alimentosConDetalle);
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
-  // Función para incrementar la cantidad de un alimento en la edición
   const sumarAlimentoEdicion = (alimentoId) => {
     setAlimentosEdicion(
       alimentosEdicion.map((alimento) =>
@@ -204,7 +201,6 @@ const ListasContexto = ({ children }) => {
     );
   };
 
-  // Función para decrementar la cantidad o eliminar el alimento en la edición
   const restarAlimentoEdicion = (alimentoId) => {
     setAlimentosEdicion(
       alimentosEdicion
@@ -217,102 +213,138 @@ const ListasContexto = ({ children }) => {
     );
   };
 
-  // Función para actualizar la lista en edición en Supabase
   const actualizarListaEdicion = async () => {
-    if (!listaEnEdicion) return;
+    setError(ERROR_INICIAL);
     try {
-      // Eliminamos los registros existentes para esta lista
-      const { error: errorDelete } = await supabaseConexion
+      if (!listaEnEdicion) {
+        throw new Error("No hay ninguna lista en edición.");
+      }
+
+      const { error } = await supabaseConexion
         .from("productos_listas")
         .delete()
         .eq("lista_id", listaEnEdicion.id);
-      if (errorDelete) throw errorDelete;
-      // Insertamos cada alimento con la cantidad actualizada
-      await Promise.all(
-        alimentosEdicion.map((alimento) =>
-          supabaseConexion.from("productos_listas").insert({
-            lista_id: listaEnEdicion.id,
-            alimento_id: alimento.id,
-            cantidad: alimento.quantity,
-          })
-        )
+
+      if (error) throw error;
+
+      const insertarProductos = alimentosEdicion.map((alimento) =>
+        supabaseConexion.from("productos_listas").insert({
+          lista_id: listaEnEdicion.id,
+          alimento_id: alimento.id,
+          cantidad: alimento.quantity,
+        })
       );
-      alert("Lista actualizada exitosamente.");
-      // Limpiamos el estado de edición
-      setListaEnEdicion(false);
-      setAlimentosEdicion([]);
-      // Actualizamos las listas del usuario
+      const resultados = await Promise.all(insertarProductos);
+      for (const resultado of resultados) {
+        if (resultado.error) throw resultado.error;
+      }
+
+      setError("Lista actualizada exitosamente.");
+      setListaEnEdicion(LISTA_EN_EDICION_INICIAL);
+      setAlimentosEdicion(ALIMENTOS_EDICION_INICIAL);
       obtenerListasUsuario();
     } catch (error) {
-      console.error("Error al actualizar la lista:", error.message);
-      alert("Error al actualizar la lista: " + error.message);
+      setError("Error al actualizar la lista: " + error.message);
     }
   };
 
   const resetearAlimentos = () => {
-    setAlimentosLista(alimentosInicial);
-    setListaEnEdicion(false);
-  }
+    setAlimentosLista(ALIMENTOS_INICIAL);
+    setListaEnEdicion(LISTA_EN_EDICION_INICIAL);
+  };
 
-  /*******************************/
-  /*** FUNCIÓN ELIMINAR LISTA ***/
-  /*******************************/
   const eliminarLista = async (lista) => {
+    setError(ERROR_INICIAL);
     try {
-      // Se elimina la lista en la tabla "listas"
+      if (!lista || !lista.id) {
+        throw new Error("No se recibió una lista válida para eliminar.");
+      }
+
       const { error } = await supabaseConexion
         .from("listas")
         .delete()
         .eq("id", lista.id);
+
       if (error) throw error;
-      alert("Lista eliminada exitosamente.");
-      setListaEnEdicion(false);
-      // Se refrescan las listas del usuario
+
+      setError("Lista eliminada exitosamente.");
+      setListaEnEdicion(LISTA_EN_EDICION_INICIAL);
       obtenerListasUsuario();
     } catch (error) {
-      console.error("Error al eliminar la lista:", error.message);
-      alert("Error al eliminar la lista: " + error.message);
+      setError("Error al eliminar la lista: " + error.message);
     }
   };
 
-  // Función para agregar un alimento a la lista en edición
-const agregarAlimentoEdicion = (alimento) => {
-  const i = alimentosEdicion.findIndex((a) => a.id === alimento.id);
-  if (i !== -1) {
-    const actualizacion = [...alimentosEdicion];
-    actualizacion[i].quantity += 1;
-    setAlimentosEdicion(actualizacion);
-  } else {
-    setAlimentosEdicion([...alimentosEdicion, { ...alimento, quantity: 1 }]);
-  }
-};
-// Estado para controlar la vista actual: "crear" o "listas"
-const [modoVista, setModoVista] = useState("crear");
+  const agregarAlimentoEdicion = (alimento) => {
+    const i = alimentosEdicion.findIndex((a) => a.id === alimento.id);
+    if (i !== -1) {
+      const actualizacion = [...alimentosEdicion];
+      actualizacion[i].quantity += 1;
+      setAlimentosEdicion(actualizacion);
+    } else {
+      setAlimentosEdicion([...alimentosEdicion, { ...alimento, quantity: 1 }]);
+    }
+  };
 
-// Función para alternar la vista entre CrearLista y ListasView
-const alternarLista = () => {
-  if (modoVista === "listas") {
-    resetearAlimentos();
-  }
-  setModoVista((modo) => (modo === "crear" ? "listas" : "crear"));
-};
+  const alternarLista = () => {
+    if (modoVista === "listas") {
+      resetearAlimentos();
+    }
+    setModoVista((modo) => (modo === "crear" ? "listas" : "crear"));
+  };
 
 
-  /*******************************/
-  /*** DATOS DEL CONTEXTO ***/
-  /*******************************/
+  const manejarClicUsuarioListas = (e) => {
+    // Comprueba que se haya recibido el evento
+    if (!e) return;
+    const target = e.target;
+
+    if (
+      target.classList.contains("ver-lista") ||
+      target.classList.contains("eliminar-lista") ||
+      target.classList.contains("actualizar-lista")
+    ) {
+      // Buscar el contenedor padre que tenga el atributo data-id
+      const listaContenedor = target.closest(".lista-usuario-resumen");
+      if (!listaContenedor) return;
+      const listaId = listaContenedor.getAttribute("data-id");
+
+      // Buscar la lista correspondiente en el estado
+      const lista = listasUsuario.find(
+        (listaUsuario) => listaUsuario.id.toString() === listaId
+      );
+      if (!lista) return;
+
+      if (target.classList.contains("ver-lista")) {
+        editarLista(lista);
+      } else if (target.classList.contains("eliminar-lista")) {
+        const confirmar = window.confirm(
+          `¿Estás seguro de que deseas eliminar la lista "${lista.nombre}"?`
+        );
+        if (confirmar) {
+          eliminarLista(lista);
+        }
+      } else if (target.classList.contains("actualizar-lista")) {
+        actualizarListaEdicion();
+      }
+    }
+  };
+  
   const datosContexto = {
-    // Funciones y estados para creación de listas
+    // Creación de listas
     createLista,
     agregarAlimento,
     sumarAlimento,
     restarAlimento,
     nombrarListado,
+    actualizarLista,
     nombreLista,
     alimentosLista,
-    actualizarLista,
+
+    // Manejo de mensajes
     error,
-    // Funciones y estados para edición de listas
+
+    // Edición de listas
     obtenerListasUsuario,
     listasUsuario,
     editarLista,
@@ -322,12 +354,13 @@ const alternarLista = () => {
     restarAlimentoEdicion,
     actualizarListaEdicion,
     eliminarLista,
-
-    //
     agregarAlimentoEdicion,
+
+    // Utilidades
     resetearAlimentos,
     modoVista,
     alternarLista,
+    manejarClicUsuarioListas,
   };
 
   return (

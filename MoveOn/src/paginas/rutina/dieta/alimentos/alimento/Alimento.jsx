@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
-import { contextoAlimentos } from "../../../../../contextos/AlimentosContexto.jsx";
+import React from "react";
 import { precioPorKilo } from "../../../../../bibliotecas/biblioteca.js";
-import Macros from "../macros/Macros.jsx";
+import Macros from "./Macros.jsx";
 import "./Alimento.css";
 
 const Alimento = ({ alimento, mostrarMacros, admin }) => {
