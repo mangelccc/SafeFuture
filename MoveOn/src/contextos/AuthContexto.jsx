@@ -32,11 +32,9 @@ const AuthContexto = ({ children }) => {
   const [olvidoContrasena, setOlvidoContrasena] = useState(olvidoContrasenaInicial);
   const [panelDerechoActivo, setPanelDerechoActivo] = useState(panelDerechoActivoInicial);
 
-  // Para redireccionar a distintas rutas
   const navegar = useNavigate();
 
   const crearCuenta = async () => {
-    // Limpiar cualquier mensaje previo
     setErrorUsuario("");
 
     // Validaciones de la contraseña
@@ -203,7 +201,7 @@ const AuthContexto = ({ children }) => {
     olvidoContrasena,
     volverInicioSesionClick,
 
-    // Toggle entre vistas de registro/login
+    // Cambio entre vistas de registro/login
     panelDerechoActivo,
     muestraRegistroClick,
   };
