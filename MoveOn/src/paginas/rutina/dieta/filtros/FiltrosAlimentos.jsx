@@ -34,14 +34,12 @@ const FiltrosAlimentos = () => {
     return (
         <div className="contenedor-filtros" onClick={manejarClic}>
             <div className="filtros-botones">
-                {/* Botones con clases delegadas */}
                 <button className="orden-nombre">Ordenar por Nombre</button>
                 <button className="orden-peso">Ordenar por Peso</button>
                 <button className="orden-precio">Ordenar por Precio</button>
                 <button className="admin-cambio">Act/desc. Admin</button>
             </div>
             <div className="filtros-busqueda">
-                {/* Este input mantiene su onChange porque requiere interacción directa */}
                 <input
                     type="text"
                     placeholder="Filtrar por nombre"

@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
+import {validarCrearLista} from "../bibliotecas/biblioteca.js";
 import { supabaseConexion } from "../bibliotecas/config.js";
 import { contextoAlimentos } from "./AlimentosContexto.jsx";
 import { contextoAuth } from "./AuthContexto.jsx";
@@ -30,15 +31,8 @@ const ListasContexto = ({ children }) => {
   const createLista = async () => {
     setError(ERROR_INICIAL);
     try {
-      if (/^\s*$/.test(nombreLista)) {
-        throw new Error("El nombre de la lista es obligatorio.");
-      }      
-      if (alimentosLista.length === 0) {
-        throw new Error("Debes seleccionar al menos un alimento.");
-      }
-      if (!usuario?.id) {
-        throw new Error("No se encontró el usuario autenticado.");
-      }
+      validarCrearLista(nombreLista, alimentosLista, usuario);
+
       const { data, error} = await supabaseConexion
         .from("listas")
         .insert({ nombre: nombreLista, usuario_id: usuario.id })

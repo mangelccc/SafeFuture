@@ -5,7 +5,7 @@ import "./CrearAlimento.css";
 
 const CrearAlimento = () => {
   const { 
-    datosFormulario, 
+    actualizarNuevoAlimento, 
     guardarCreacion, 
     errorAlimento, 
     nuevoAlimento,
@@ -26,7 +26,7 @@ const CrearAlimento = () => {
                 name="imagen_url"
                 value={nuevoAlimento.imagen_url}
                 placeholder="URL de la imagen"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
               />
             </label>
       
@@ -37,10 +37,10 @@ const CrearAlimento = () => {
                 name="nombre"
                 value={nuevoAlimento.nombre}
                 placeholder="nombre del alimento"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
               />
             </label>
-      
+            <br/><br/>
             <label>
               <strong>Kg </strong>
               <input
@@ -48,11 +48,10 @@ const CrearAlimento = () => {
                 name="peso_kg"
                 value={nuevoAlimento.peso_kg}
                 min="0"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
                 step="0.1"
               />
             </label>
-      
             <label>
               <strong>Precio </strong>
               <input
@@ -60,11 +59,11 @@ const CrearAlimento = () => {
                 name="precio_euros"
                 value={nuevoAlimento.precio_euros}
                 min="0"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
                 step="0.1"
               />
             </label>
-      
+            <br/><br/>
             <label>
               <strong>Descripción </strong>
               <input
@@ -72,7 +71,7 @@ const CrearAlimento = () => {
                 name="descripcion"
                 value={nuevoAlimento.descripcion}
                 placeholder="descripción"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
               />
             </label>
       
@@ -83,10 +82,9 @@ const CrearAlimento = () => {
                 name="codigo_barras"
                 value={nuevoAlimento.codigo_barras}
                 placeholder="código de barras"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
               />
             </label>
-      
             <label>
               <strong>Categorías </strong>
               <input
@@ -94,10 +92,10 @@ const CrearAlimento = () => {
                 name="categoria"
                 value={nuevoAlimento.categoria}
                 placeholder="categoría"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
               />
             </label>
-      
+            <br/><br/>
             <label>
               <strong>Hidratos</strong>
               <input
@@ -105,7 +103,7 @@ const CrearAlimento = () => {
                 name="hidratos"
                 value={nuevoAlimento.hidratos}
                 min="0"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
                 step="0.1"
               />
             </label>
@@ -117,7 +115,7 @@ const CrearAlimento = () => {
                 name="grasas"
                 value={nuevoAlimento.grasas}
                 min="0"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
                 step="0.1"
               />
             </label>
@@ -129,7 +127,7 @@ const CrearAlimento = () => {
                 name="proteinas"
                 value={nuevoAlimento.proteinas}
                 min="0"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
                 step="0.1"
               />
             </label>
@@ -141,11 +139,11 @@ const CrearAlimento = () => {
                 name="calorias"
                 value={nuevoAlimento.calorias}
                 min="0"
-                onChange={(e) => datosFormulario(e, "nuevo")}
+                onChange={(e) => actualizarNuevoAlimento(e)}
                 step="0.1"
               />
             </label>
-      
+            <br/><br/>
             <div className="admin-botones">
               <button onClick={guardarCreacion}>Guardar</button>
             </div>

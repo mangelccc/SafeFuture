@@ -83,7 +83,7 @@ const Alimentos = () => {
           <Alimento
             key={alimento.id}
             alimento={alimento}
-            mostrarMacros={!!mostrarMacrosMap[alimento.id]}
+            mostrarMacros={mostrarMacrosMap[alimento.id]}
             admin={admin}
           />
         )

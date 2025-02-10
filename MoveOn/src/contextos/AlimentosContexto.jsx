@@ -1,7 +1,6 @@
-// src/contextos/AlimentosContexto.jsx
-
 import React, { createContext, useState, useEffect } from "react";
 import { supabaseConexion } from "../bibliotecas/config.js";
+import {validarCreacionAlimento,obtenerAlimentosVisibles} from "../bibliotecas/biblioteca.js"
 
 const contextoAlimentos = createContext();
 
@@ -24,6 +23,11 @@ const AlimentosContexto = ({ children }) => {
     codigo_barras: "",
   };
 
+  const buscadorInicial = {
+    nombre:""
+  };
+  const alimentoEdtandoInicial=null;
+  const adminInicial = false;
   // Estados generales
   const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
   const [alimento, setAlimento] = useState(alimentoInicial);
@@ -36,26 +40,25 @@ const AlimentosContexto = ({ children }) => {
   const [orden, setOrden] = useState(ordenInicial);
 
   // Buscador
-  const [buscadorDatos, setBuscadorDatos] = useState({ nombre: "" });
+  const [buscadorDatos, setBuscadorDatos] = useState(buscadorInicial);
 
   // Edición
-  const [alimentoEditando, setAlimentoEditando] = useState(null);
+  const [alimentoEditando, setAlimentoEditando] = useState(alimentoEdtandoInicial);
   const [alimentoEditado, setAlimentoEditado] = useState(alimentoInicial);
 
   // Creación
   const [nuevoAlimento, setNuevoAlimento] = useState(alimentoInicial);
 
   // Modo Administrador
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(adminInicial);
   const alternarAdmin = () => {
-    setAdmin((prevAdmin) => !prevAdmin);
+    setAdmin((admin) => !admin);
   };
 
   /***********************************/
   /***        FUNCIONES CRUD       ***/
   /***********************************/
 
-  // Crear un alimento
   const createAlimento = async (producto) => {
     try {
       // Limpiamos el mensaje antes de iniciar
@@ -73,17 +76,14 @@ const AlimentosContexto = ({ children }) => {
       if (error) throw error;
 
       // Actualizamos el listado local
-      setListadoAlimentos((prev) => [...prev, nuevoAlimento]);
-      // Mensaje de éxito
+      setListadoAlimentos((alimento) => [...alimento, nuevoAlimento]);
       setErrorAlimento("Alimento creado con éxito.");
     } catch (error) {
       setErrorAlimento("Error al crear el alimento: " + error.message);
-      // re-lanzamos si quieres manejarlo externamente
       throw error;
     }
   };
 
-  // Leer todos los alimentos
   const readAlimentos = async () => {
     try {
       setErrorAlimento("");
@@ -93,14 +93,11 @@ const AlimentosContexto = ({ children }) => {
       if (error) throw error;
 
       setListadoAlimentos(data);
-      // Si quieres mostrar mensaje cada vez que se lea con éxito, descomenta:
-      // setErrorAlimento("Alimentos leídos correctamente.");
     } catch (error) {
       setErrorAlimento("Error al leer los alimentos: " + error.message);
     }
   };
 
-  // Actualizar un alimento (por su ID)
   const updateAlimento = async (id, productoActualizado) => {
     try {
       setErrorAlimento("");
@@ -118,7 +115,6 @@ const AlimentosContexto = ({ children }) => {
       setListadoAlimentos(actualizado);
       setAlimento(alimentoInicial);
 
-      // Mensaje de éxito
       setErrorAlimento("Alimento actualizado con éxito.");
     } catch (error) {
       setErrorAlimento("Error al actualizar el alimento: " + error.message);
@@ -126,7 +122,6 @@ const AlimentosContexto = ({ children }) => {
     }
   };
 
-  // Eliminar un alimento (por su ID)
   const deleteAlimento = async (id) => {
     try {
       setErrorAlimento("");
@@ -143,68 +138,32 @@ const AlimentosContexto = ({ children }) => {
       );
       setListadoAlimentos(borrado);
 
-      // Mensaje de éxito
       setErrorAlimento("Alimento eliminado con éxito.");
     } catch (error) {
       setErrorAlimento("Error al eliminar el alimento: " + error.message);
     }
   };
 
-  /*****************************************************************/
-  /***   FUNCIONES DE CREACIÓN (validaciones y luego createAlimento)   ***/
-  /*****************************************************************/
+
   const guardarCreacion = async () => {
     setErrorAlimento("");
-    // Validaciones de campos obligatorios y valores válidos
-    if (!nuevoAlimento.nombre.trim()) {
-      setErrorAlimento("El nombre es obligatorio.");
+  
+    // Ejecutar la validación
+    const error = validarCreacionAlimento(nuevoAlimento);
+    if (error) {
+      setErrorAlimento(error);
       return;
     }
-    if (!nuevoAlimento.imagen_url.trim()) {
-      setErrorAlimento("La URL de la imagen es obligatoria.");
-      return;
-    }
-    if (!nuevoAlimento.descripcion.trim()) {
-      setErrorAlimento("La descripción es obligatoria.");
-      return;
-    }
-    if (!nuevoAlimento.categoria.trim()) {
-      setErrorAlimento("La categoría es obligatoria.");
-      return;
-    }
-    if (nuevoAlimento.peso_kg <= 0) {
-      setErrorAlimento("El peso debe ser mayor que 0.");
-      return;
-    }
-    if (nuevoAlimento.precio_euros <= 0) {
-      setErrorAlimento("El precio debe ser mayor que 0.");
-      return;
-    }
-    if (!nuevoAlimento.codigo_barras.trim()) {
-      setErrorAlimento("El código de barras es obligatorio.");
-      return;
-    }
-    // Validar que los valores nutricionales no sean negativos
-    if (
-      nuevoAlimento.hidratos < 0 ||
-      nuevoAlimento.grasas < 0 ||
-      nuevoAlimento.proteinas < 0 ||
-      nuevoAlimento.calorias < 0
-    ) {
-      setErrorAlimento("Los valores nutricionales no pueden ser negativos.");
-      return;
-    }
-
-    // Si todas las validaciones pasan, se procede a crear el alimento
+  
     try {
       await createAlimento(nuevoAlimento);
-      // Se resetea el formulario si todo fue bien
+      // Se resetea el formulario.
       setNuevoAlimento(alimentoInicial);
     } catch (error) {
-      // En caso de error, createAlimento ya hará setErrorAlimento, pero
-      // lo dejamos atrapado por si en un futuro quieres manejar algo extra.
+      setErrorAlimento(error);
     }
   };
+  
 
   /*****************************************************************/
   /***       FUNCIONES DE EDICIÓN (iniciar, cancelar, guardar)    ***/
@@ -218,7 +177,6 @@ const AlimentosContexto = ({ children }) => {
     setAlimentoEditando(null);
   };
 
-  // Llamamos a updateAlimento y, si falla, lo atrapa su propio try/catch
   const guardarEdicion = async () => {
     if (!alimentoEditando) return;
     try {
@@ -241,54 +199,31 @@ const AlimentosContexto = ({ children }) => {
     setOrden(campo);
   };
 
-  const alimentosVisibles = listadoAlimentos
-    .filter((alimento) =>
-      filtro
-        ? alimento.nombre.toLowerCase().startsWith(filtro.toLowerCase())
-        : true
-    )
-    .sort((a, b) => {
-      if (!orden) return 0;
-      if (orden === "nombre") {
-        return a.nombre.localeCompare(b.nombre, "es", { sensitivity: "base" });
-      }
-      if (orden === "peso") {
-        return a.peso_kg - b.peso_kg;
-      }
-      if (orden === "precio") {
-        return a.precio_euros - b.precio_euros;
-      }
-      return 0;
-    });
+  const alimentosVisibles = obtenerAlimentosVisibles(listadoAlimentos, filtro, orden);
 
   /*****************************************************************/
   /***         MANEJO DEL FORMULARIO (CREACIÓN / EDICIÓN)         ***/
   /*****************************************************************/
-  const datosFormulario = (e, tipo = "editado") => {
+  const actualizarAlimentoEditado = (e) => {
     const { name, value } = e.target;
-    if (tipo === "editado") {
-      setAlimentoEditado((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    } else if (tipo === "nuevo") {
-      setNuevoAlimento((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    setAlimentoEditado((AlimentoEditado) => ({
+      ...AlimentoEditado,
+      [name]: value,
+    }));
   };
-
-  /*****************************************************************/
-  /***                 EFECTO AL MONTAR EL COMPONENTE             ***/
-  /*****************************************************************/
+  const actualizarNuevoAlimento = (e) => {
+    const { name, value } = e.target;
+    setNuevoAlimento((nuevoAlimento) => ({
+      ...nuevoAlimento,
+      [name]: value,
+    }));
+  };
+  
   useEffect(() => {
     readAlimentos();
   }, []);
 
-  /*****************************************************************/
-  /***           DATOS QUE EXPONEMOS DESDE EL CONTEXTO            ***/
-  /*****************************************************************/
+
   const datosContexto = {
     // CRUD
     createAlimento,
@@ -305,7 +240,7 @@ const AlimentosContexto = ({ children }) => {
     filtrarAlimentos,
     ordenarAlimentos,
 
-    // Buscador (ejemplo, si lo usas en algún lado)
+    // Buscador
     buscadorDatos,
 
     // Edición
@@ -320,7 +255,8 @@ const AlimentosContexto = ({ children }) => {
     guardarCreacion,
 
     // Formulario
-    datosFormulario,
+    actualizarAlimentoEditado,
+    actualizarNuevoAlimento,
 
     // Vista final (filtrada y ordenada)
     alimentosVisibles,

@@ -19,8 +19,8 @@ const AlimentosEnListado = ({ alimentosLista, sumarAlimento, restarAlimento }) =
     <div onClick={manejarClic}>
       {alimentosLista.length > 0 ? (
         alimentosLista.map((alimento) => (
-            <AlimentoEnLista alimento={alimento}/>
-        ))
+          <AlimentoEnLista key={alimento.id} alimento={alimento} />
+        ))        
       ) : (
         <p>No hay alimentos en la lista.</p>
       )}

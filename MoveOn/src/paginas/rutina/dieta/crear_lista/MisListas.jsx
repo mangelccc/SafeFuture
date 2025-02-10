@@ -11,6 +11,7 @@ const MisListas = () => {
   const {
     modoVista,
     alternarLista,
+    error
   } = useContext(contextoListas);
 
   return (
@@ -21,7 +22,7 @@ const MisListas = () => {
           {modoVista === "crear" ? "Mis Listas" : "Crear Lista"}
         </button>
       </div>
-
+      <p>{error}</p>
       <div className="crear-lista-container">
         {modoVista === "crear" ? (
           <CrearLista />

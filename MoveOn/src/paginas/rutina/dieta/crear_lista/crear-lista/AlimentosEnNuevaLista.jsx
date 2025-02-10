@@ -13,7 +13,7 @@ const AlimentosEnNuevaLista = () => {
   return (
 
       <div className="lista-alimento-seleccionados">
-      <h3>{nombreLista}</h3>
+      <h3>Lista: {nombreLista}</h3>
         <AlimentosEnLista
           alimentosLista={alimentosLista}
           sumarAlimento={sumarAlimento}

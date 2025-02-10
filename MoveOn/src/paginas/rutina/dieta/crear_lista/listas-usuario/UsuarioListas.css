@@ -1,6 +1,6 @@
 .lista-usuario-resumen {
     border: 3px solid #6320EE;
-    background-color: #FFBA49; 
+    background-color: #ffb949cf; 
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 10px;
@@ -41,7 +41,7 @@
     color: #1a1a1a;
 }
 
-.actualizar-alimento {
+.actualizar-lista {
     background-color: #6320EE;
     color: #f5f5f5;
     border-radius: 5px;
@@ -53,7 +53,7 @@
     transition: all 0.3s;
 }
 
-.actualizar-alimento:hover {
+.actualizar-lista:hover {
     transform: scale(1.1);
     box-shadow: 1px 1px 0 #6320EE,
     2px 2px 0 #6320EE,
