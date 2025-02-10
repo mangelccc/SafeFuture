@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import {validarCrearLista} from "../bibliotecas/biblioteca.js";
 import { supabaseConexion } from "../bibliotecas/config.js";
 import { contextoAlimentos } from "./AlimentosContexto.jsx";
+
 import { contextoAuth } from "./AuthContexto.jsx";
 
 const contextoListas = createContext();

@@ -1,18 +1,13 @@
-// MisListas.jsx
-import React, { useContext } from "react";
+import React from "react";
+import useAppContext from "../../../../hooks/useAppContext";
 import CrearLista from "./crear-lista/CrearLista.jsx";
 import UsuarioListas from "./listas-usuario/UsuarioListas.jsx";
-import { contextoListas } from "../../../../contextos/ListasContexto.jsx";
-
 import "./MisListas.css";
 
 const MisListas = () => {
-
-  const {
-    modoVista,
-    alternarLista,
-    error
-  } = useContext(contextoListas);
+  // Extraemos el contexto de listas desde el hook centralizado
+  const { listas } = useAppContext();
+  const { modoVista, alternarLista, error } = listas;
 
   return (
     <div className="mis-listas">

@@ -1,23 +1,22 @@
-import React, { useContext } from "react";
-import { contextoListas } from "../../../../../contextos/ListasContexto";
+import React from "react";
+import useAppContext from "../../../../../hooks/useAppContext.jsx";
 import "./CrearLista.css";
 
 const CrearLista = () => {
-  const {
-    nombrarListado,
-    nombreLista,
-  } = useContext(contextoListas);
+  // Extraemos el contexto de listas usando el hook centralizado
+  const { listas } = useAppContext();
+  const { nombrarListado, nombreLista } = listas;
 
   return (
-      <div className="lista-campo">
-        <label>Nombre:</label>
-        <input
-          type="text"
-          placeholder="Ingresa el nombre de la lista"
-          value={nombreLista}
-          onChange={(e) => nombrarListado(e.target.value)}
-        />
-      </div>
+    <div className="lista-campo">
+      <label>Nombre:</label>
+      <input
+        type="text"
+        placeholder="Ingresa el nombre de la lista"
+        value={nombreLista}
+        onChange={(e) => nombrarListado(e.target.value)}
+      />
+    </div>
   );
 };
 

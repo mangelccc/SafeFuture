@@ -1,16 +1,11 @@
-// CrearAlimento.jsx
-import React, { useContext } from 'react';
-import { contextoAlimentos } from '../../../../contextos/AlimentosContexto';
+import React from 'react';
+import useAppContext from '../../../../hooks/useAppContext';
 import "./CrearAlimento.css";
 
 const CrearAlimento = () => {
-  const { 
-    actualizarNuevoAlimento, 
-    guardarCreacion, 
-    errorAlimento, 
-    nuevoAlimento,
-    admin, 
-  } = useContext(contextoAlimentos);
+  // Extraemos el contexto de alimentos del hook centralizado
+  const { alimentos } = useAppContext();
+  const { admin, errorAlimento, nuevoAlimento, actualizarNuevoAlimento, guardarCreacion } = alimentos;
 
   return (
     <>
@@ -26,7 +21,7 @@ const CrearAlimento = () => {
                 name="imagen_url"
                 value={nuevoAlimento.imagen_url}
                 placeholder="URL de la imagen"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
               />
             </label>
       
@@ -37,7 +32,7 @@ const CrearAlimento = () => {
                 name="nombre"
                 value={nuevoAlimento.nombre}
                 placeholder="nombre del alimento"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
               />
             </label>
             <br/><br/>
@@ -48,7 +43,7 @@ const CrearAlimento = () => {
                 name="peso_kg"
                 value={nuevoAlimento.peso_kg}
                 min="0"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
                 step="0.1"
               />
             </label>
@@ -59,7 +54,7 @@ const CrearAlimento = () => {
                 name="precio_euros"
                 value={nuevoAlimento.precio_euros}
                 min="0"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
                 step="0.1"
               />
             </label>
@@ -71,7 +66,7 @@ const CrearAlimento = () => {
                 name="descripcion"
                 value={nuevoAlimento.descripcion}
                 placeholder="descripción"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
               />
             </label>
       
@@ -82,7 +77,7 @@ const CrearAlimento = () => {
                 name="codigo_barras"
                 value={nuevoAlimento.codigo_barras}
                 placeholder="código de barras"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
               />
             </label>
             <label>
@@ -92,7 +87,7 @@ const CrearAlimento = () => {
                 name="categoria"
                 value={nuevoAlimento.categoria}
                 placeholder="categoría"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
               />
             </label>
             <br/><br/>
@@ -103,7 +98,7 @@ const CrearAlimento = () => {
                 name="hidratos"
                 value={nuevoAlimento.hidratos}
                 min="0"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
                 step="0.1"
               />
             </label>
@@ -115,7 +110,7 @@ const CrearAlimento = () => {
                 name="grasas"
                 value={nuevoAlimento.grasas}
                 min="0"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
                 step="0.1"
               />
             </label>
@@ -127,7 +122,7 @@ const CrearAlimento = () => {
                 name="proteinas"
                 value={nuevoAlimento.proteinas}
                 min="0"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
                 step="0.1"
               />
             </label>
@@ -139,7 +134,7 @@ const CrearAlimento = () => {
                 name="calorias"
                 value={nuevoAlimento.calorias}
                 min="0"
-                onChange={(e) => actualizarNuevoAlimento(e)}
+                onChange={actualizarNuevoAlimento}
                 step="0.1"
               />
             </label>

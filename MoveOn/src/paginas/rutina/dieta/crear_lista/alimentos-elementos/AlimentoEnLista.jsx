@@ -1,5 +1,5 @@
 import React from "react";
-import BotonesAlimentoEnLista from "./BotonesAlimentoEnLista";
+import BotonesAlimentoEnLista from "./BotonesAlimentoEnLista.jsx";
 
 const AlimentoListado = ({alimento}) => {
     return (

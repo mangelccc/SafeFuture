@@ -1,19 +1,24 @@
-import React, { useContext } from "react";
-import { contextoListas } from "../../../../../contextos/ListasContexto";
+// src/componentes/CrearLista.jsx
+import React from "react";
 import NombreListaInput from "./NombreListaInput.jsx";
 import AlimentoEnNuevaLista from "./AlimentosEnNuevaLista.jsx";
+import useAppContext from "../../../../../hooks/useAppContext.jsx";
 import "./CrearLista.css";
 
 const CrearLista = () => {
-  const {
-    createLista,
-  } = useContext(contextoListas);
+  const { listas } = useAppContext();
 
   return (
     <div className="crear-lista">
-      <NombreListaInput/>
-      <AlimentoEnNuevaLista/>
-      <button onClick={createLista} className="crear-btn">
+      <NombreListaInput />
+      <AlimentoEnNuevaLista />
+      <button
+        onClick={
+          (e) => listas
+            .createLista(e)
+        }
+        className="crear-btn"
+      >
         Crear Lista
       </button>
     </div>

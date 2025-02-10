@@ -1,14 +1,16 @@
-import React, { useContext,useEffect } from "react";
-import { contextoListas } from "../../../../../contextos/ListasContexto";
-import UsuarioLista from "./UsuarioLista";
+import React, { useEffect } from "react";
+import useAppContext from "../../../../../hooks/useAppContext.jsx"; 
+import UsuarioLista from "./UsuarioLista.jsx";
 import "./UsuarioListas.css";
 
 const UsuarioListas = () => {
-  const { listasUsuario, manejarClicUsuarioListas,obtenerListasUsuario } = useContext(contextoListas);
+  // Extraemos el contexto de listas a través del hook centralizado
+  const { listas } = useAppContext();
+  const { listasUsuario, manejarClicUsuarioListas, obtenerListasUsuario } = listas;
   
-    useEffect(() => {
-        obtenerListasUsuario();
-      }, [obtenerListasUsuario]);
+  useEffect(() => {
+    obtenerListasUsuario();
+  }, [obtenerListasUsuario]);
 
   return (
     <div className="lista-contenedor" onClick={(e) => manejarClicUsuarioListas(e)}>

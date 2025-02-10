@@ -1,115 +1,123 @@
-import React, { useContext } from "react";
-import { contextoAlimentos } from "../../../../contextos/AlimentosContexto.jsx";
-import "./AlimentoAdm.css"
+import React from "react";
+import useAppContext from "../../../../hooks/useAppContext.jsx";
+import "./AlimentoAdm.css";
 
 const AlimentoModificableAdm = ({ alimento }) => {
-    const {
-        guardarEdicion,
-        cancelarEdicion,
-        alimentoEditado,
-        actualizarAlimentoEditado,
-    } = useContext(contextoAlimentos);
+    // Extraemos el contexto de alimentos del hook centralizado
+    const { alimentos } = useAppContext();
+    const { guardarEdicion, cancelarEdicion, alimentoEditado, actualizarAlimentoEditado } = alimentos;
 
     return (
         <div key={alimento.id} className="alimento">
             <div className="admin-datosalimento">
-                <label><strong>Imagen: </strong>
+                <label>
+                    <strong>Imagen: </strong>
                     <input 
                         type="text" 
                         name="imagen_url"
                         value={alimentoEditado?.imagen_url || ""} 
-                        onChange={(e) => actualizarAlimentoEditado(e)} 
+                        onChange={actualizarAlimentoEditado} 
                     />
                 </label>
 
-                <label><strong>Nombre: </strong>
+                <label>
+                    <strong>Nombre: </strong>
                     <input 
                         type="text" 
                         name="nombre"
                         value={alimentoEditado?.nombre || ""} 
-                        onChange={(e) => actualizarAlimentoEditado(e)} 
+                        onChange={actualizarAlimentoEditado} 
                     />
                 </label>
 
-                <label><strong>Kg: </strong>
+                <label>
+                    <strong>Kg: </strong>
                     <input 
                         type="number" 
                         name="peso_kg"
                         value={alimentoEditado?.peso_kg || ""} 
-                        onChange={(e) => actualizarAlimentoEditado(e)} 
+                        onChange={actualizarAlimentoEditado} 
                     />
                 </label>
 
-                <label><strong>Precio: </strong>
+                <label>
+                    <strong>Precio: </strong>
                     <input 
                         type="number" 
                         name="precio_euros"
                         value={alimentoEditado?.precio_euros || ""} 
-                        onChange={(e) => actualizarAlimentoEditado(e)} 
+                        onChange={actualizarAlimentoEditado} 
                         step="0.01" 
                     />
                 </label>
 
-                <label><strong>Descripción: </strong>
+                <label>
+                    <strong>Descripción: </strong>
                     <input 
                         type="text" 
                         name="descripcion"
                         value={alimentoEditado?.descripcion || ""} 
-                        onChange={(e) => actualizarAlimentoEditado(e)} 
+                        onChange={actualizarAlimentoEditado} 
                     />
                 </label>
 
-                <label><strong>Código: </strong>
+                <label>
+                    <strong>Código: </strong>
                     <input 
                         type="text" 
                         name="codigo_barras"
                         value={alimentoEditado?.codigo_barras || ""} 
-                        onChange={(e) => actualizarAlimentoEditado(e)} 
+                        onChange={actualizarAlimentoEditado} 
                     />
                 </label>
 
-                <label><strong>Categorías: </strong>
+                <label>
+                    <strong>Categorías: </strong>
                     <input 
                         type="text" 
                         name="categoria"
                         value={alimentoEditado?.categoria || ""} 
-                        onChange={(e) => actualizarAlimentoEditado(e)} 
+                        onChange={actualizarAlimentoEditado} 
                     />
                 </label>
                 <div className="macros-admin">
-                    <label><strong>H:</strong>
+                    <label>
+                        <strong>H:</strong>
                         <input 
                             type="number" 
                             name="hidratos"
                             value={alimentoEditado?.hidratos || ""} 
-                            onChange={(e) => actualizarAlimentoEditado(e)} 
+                            onChange={actualizarAlimentoEditado} 
                         />
                     </label>
 
-                    <label><strong>G:</strong>
+                    <label>
+                        <strong>G:</strong>
                         <input 
                             type="number" 
                             name="grasas"
                             value={alimentoEditado?.grasas || ""} 
-                            onChange={(e) => actualizarAlimentoEditado(e)} 
+                            onChange={actualizarAlimentoEditado} 
                         />
                     </label>
 
-                    <label><strong>P:</strong>
+                    <label>
+                        <strong>P:</strong>
                         <input 
                             type="number" 
                             name="proteinas"
                             value={alimentoEditado?.proteinas || ""} 
-                            onChange={(e) => actualizarAlimentoEditado(e)} 
+                            onChange={actualizarAlimentoEditado} 
                         />
                     </label>
 
-                    <label><strong>C:</strong>
+                    <label>
+                        <strong>C:</strong>
                         <input 
                             type="number" 
                             name="calorias"
                             value={alimentoEditado?.calorias || ""} 
-                            onChange={(e) => actualizarAlimentoEditado(e)} 
+                            onChange={actualizarAlimentoEditado} 
                         />
                     </label>
                 </div>
@@ -120,6 +128,6 @@ const AlimentoModificableAdm = ({ alimento }) => {
             </div>
         </div>
     );
-}
+};
 
 export default AlimentoModificableAdm;
