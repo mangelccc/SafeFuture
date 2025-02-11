@@ -1,6 +1,7 @@
+// src/contextos/AlimentosContexto.jsx
 import React, { createContext, useState, useEffect } from "react";
 import { supabaseConexion } from "../bibliotecas/config.js";
-import {validarCreacionAlimento,obtenerAlimentosVisibles} from "../bibliotecas/biblioteca.js"
+import { validarCreacionAlimento, obtenerAlimentosVisibles } from "../bibliotecas/biblioteca.js";
 
 const contextoAlimentos = createContext();
 
@@ -24,10 +25,11 @@ const AlimentosContexto = ({ children }) => {
   };
 
   const buscadorInicial = {
-    nombre:""
+    nombre: ""
   };
-  const alimentoEdtandoInicial=null;
+  const alimentoEdtandoInicial = null;
   const adminInicial = false;
+
   // Estados generales
   const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
   const [alimento, setAlimento] = useState(alimentoInicial);
@@ -58,25 +60,15 @@ const AlimentosContexto = ({ children }) => {
   /***********************************/
   /***        FUNCIONES CRUD       ***/
   /***********************************/
-
   const createAlimento = async (producto) => {
     try {
-      // Limpiamos el mensaje antes de iniciar
       setErrorAlimento("");
-
-      // Generamos un ID único manualmente (puedes usar supabase si quieres que lo genere)
       const nuevoAlimento = { ...producto, id: crypto.randomUUID() };
-
-      // Insertamos en Supabase
       const { data, error } = await supabaseConexion
         .from("alimentos")
         .insert(nuevoAlimento);
-
-      // Si hay error en la operación
       if (error) throw error;
-
-      // Actualizamos el listado local
-      setListadoAlimentos((alimento) => [...alimento, nuevoAlimento]);
+      setListadoAlimentos((alimentosPrevios) => [...alimentosPrevios, nuevoAlimento]);
       setErrorAlimento("Alimento creado con éxito.");
     } catch (error) {
       setErrorAlimento("Error al crear el alimento: " + error.message);
@@ -91,7 +83,6 @@ const AlimentosContexto = ({ children }) => {
         .from("alimentos")
         .select("*");
       if (error) throw error;
-
       setListadoAlimentos(data);
     } catch (error) {
       setErrorAlimento("Error al leer los alimentos: " + error.message);
@@ -105,16 +96,12 @@ const AlimentosContexto = ({ children }) => {
         .from("alimentos")
         .update(productoActualizado)
         .eq("id", id);
-
       if (error) throw error;
-
-      // Actualizamos el listado local
       const actualizado = listadoAlimentos.map((alimentoAntiguo) =>
         alimentoAntiguo.id === id ? productoActualizado : alimentoAntiguo
       );
       setListadoAlimentos(actualizado);
       setAlimento(alimentoInicial);
-
       setErrorAlimento("Alimento actualizado con éxito.");
     } catch (error) {
       setErrorAlimento("Error al actualizar el alimento: " + error.message);
@@ -129,41 +116,29 @@ const AlimentosContexto = ({ children }) => {
         .from("alimentos")
         .delete()
         .eq("id", id);
-
       if (error) throw error;
-
-      // Quitamos el alimento del estado local
-      const borrado = listadoAlimentos.filter(
-        (alimento) => alimento.id !== id
-      );
+      const borrado = listadoAlimentos.filter((alimento) => alimento.id !== id);
       setListadoAlimentos(borrado);
-
       setErrorAlimento("Alimento eliminado con éxito.");
     } catch (error) {
       setErrorAlimento("Error al eliminar el alimento: " + error.message);
     }
   };
 
-
   const guardarCreacion = async () => {
     setErrorAlimento("");
-  
-    // Ejecutar la validación
-    const error = validarCreacionAlimento(nuevoAlimento);
-    if (error) {
-      setErrorAlimento(error);
+    const errorValidacion = validarCreacionAlimento(nuevoAlimento);
+    if (errorValidacion) {
+      setErrorAlimento(errorValidacion);
       return;
     }
-  
     try {
       await createAlimento(nuevoAlimento);
-      // Se resetea el formulario.
       setNuevoAlimento(alimentoInicial);
     } catch (error) {
       setErrorAlimento(error);
     }
   };
-  
 
   /*****************************************************************/
   /***       FUNCIONES DE EDICIÓN (iniciar, cancelar, guardar)    ***/
@@ -181,10 +156,9 @@ const AlimentosContexto = ({ children }) => {
     if (!alimentoEditando) return;
     try {
       await updateAlimento(alimentoEditando, alimentoEditado);
-      // Si no hay error, finalizamos la edición
       setAlimentoEditando(false);
     } catch (error) {
-      // Si hay error, ya está en setErrorAlimento
+      // El error ya se maneja en setErrorAlimento
     }
   };
 
@@ -206,24 +180,69 @@ const AlimentosContexto = ({ children }) => {
   /*****************************************************************/
   const actualizarAlimentoEditado = (e) => {
     const { name, value } = e.target;
-    setAlimentoEditado((AlimentoEditado) => ({
-      ...AlimentoEditado,
+    setAlimentoEditado((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
   const actualizarNuevoAlimento = (e) => {
     const { name, value } = e.target;
-    setNuevoAlimento((nuevoAlimento) => ({
-      ...nuevoAlimento,
+    setNuevoAlimento((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
-  
+
   useEffect(() => {
     readAlimentos();
   }, []);
 
+  // Estado y función para manejo de macros
+  const [mostrarMacrosMap, setMostrarMacrosMap] = useState({});
+  const alternarMostrarMacros = (id) => {
+    setMostrarMacrosMap((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
+  const manejarClicAlimentos = (e, listaEnEdicion,manejarAgregarAlimento) => {
+    const target = e.target;
+    if (
+      target.classList.contains("macros") ||
+      target.classList.contains("anadir") ||
+      target.classList.contains("modificar") ||
+      target.classList.contains("eliminar")
+    ) {
+      const contenedorAlimento = target.closest(".alimento");
+      if (!contenedorAlimento) return;
+      const id = contenedorAlimento.getAttribute("data-id");
+      const alimento = alimentosVisibles.find(
+        (alimentoVisible) => alimentoVisible.id.toString() === id
+      );
+      if (!alimento) return;
+      if (target.classList.contains("macros")) {
+        alternarMostrarMacros(id);
+      } else if (target.classList.contains("anadir")) {
+          manejarAgregarAlimento(alimento, listaEnEdicion);
+      } else if (target.classList.contains("modificar")) {
+        if (admin) {
+          iniciarEdicion(alimento);
+        }
+      } else if (target.classList.contains("eliminar")) {
+        if (admin) {
+          const confirmar = window.confirm(
+            `¿Estás seguro de que deseas eliminar ${alimento.nombre}?`
+          );
+          if (confirmar) {
+            deleteAlimento(alimento.id);
+          }
+        }
+      }
+    }
+  };
+
+  // Definición del objeto que se proveerá en el contexto
   const datosContexto = {
     // CRUD
     createAlimento,
@@ -264,6 +283,11 @@ const AlimentosContexto = ({ children }) => {
     // Modo admin
     admin,
     alternarAdmin,
+
+    // Macros y manejo de clic
+    mostrarMacrosMap,
+    alternarMostrarMacros,
+    manejarClicAlimentos, // Ahora la función se llama manejarClicAlimentos
   };
 
   return (

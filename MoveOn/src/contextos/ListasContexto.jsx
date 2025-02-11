@@ -1,13 +1,16 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState } from "react";
 import {validarCrearLista} from "../bibliotecas/biblioteca.js";
 import { supabaseConexion } from "../bibliotecas/config.js";
-import { contextoAlimentos } from "./AlimentosContexto.jsx";
+import useAppContext from "../hooks/useAppContext.jsx";
 
-import { contextoAuth } from "./AuthContexto.jsx";
 
 const contextoListas = createContext();
 
 const ListasContexto = ({ children }) => {
+
+  const { alimentos, auth } = useAppContext();
+  const { listadoAlimentos } = alimentos;
+  const { usuario } = auth;
 
   const NOMBRE_LISTA_INICIAL = "";
   const ERROR_INICIAL = "";
@@ -24,10 +27,6 @@ const ListasContexto = ({ children }) => {
   const [listaEnEdicion, setListaEnEdicion] = useState(LISTA_EN_EDICION_INICIAL);
   const [alimentosEdicion, setAlimentosEdicion] = useState(ALIMENTOS_EDICION_INICIAL);
   const [modoVista, setModoVista] = useState(MODO_VISTA_INICIAL);
-
-  // Extraer datos de otros contextos
-  const { listadoAlimentos } = useContext(contextoAlimentos);
-  const { usuario } = useContext(contextoAuth);
 
   const createLista = async () => {
     setError(ERROR_INICIAL);
@@ -324,6 +323,15 @@ const ListasContexto = ({ children }) => {
       }
     }
   };
+
+  const manejarAgregarAlimento = (alimento, listaEnEdicionParam) => {
+    if (listaEnEdicionParam) {
+      agregarAlimentoEdicion(alimento);
+    } else {
+      agregarAlimento(alimento);
+    }
+  };
+  
   
   const datosContexto = {
     // Creación de listas
@@ -356,6 +364,7 @@ const ListasContexto = ({ children }) => {
     modoVista,
     alternarLista,
     manejarClicUsuarioListas,
+    manejarAgregarAlimento,
   };
 
   return (

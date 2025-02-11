@@ -3,7 +3,6 @@ import useAppContext from "../../../../hooks/useAppContext.jsx";
 import "./AlimentoAdm.css";
 
 const AlimentoModificableAdm = ({ alimento }) => {
-    // Extraemos el contexto de alimentos del hook centralizado
     const { alimentos } = useAppContext();
     const { guardarEdicion, cancelarEdicion, alimentoEditado, actualizarAlimentoEditado } = alimentos;
 

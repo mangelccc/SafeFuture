@@ -3,7 +3,6 @@ import useAppContext from "../../../../../hooks/useAppContext.jsx";
 import "./CrearLista.css";
 
 const CrearLista = () => {
-  // Extraemos el contexto de listas usando el hook centralizado
   const { listas } = useAppContext();
   const { nombrarListado, nombreLista } = listas;
 

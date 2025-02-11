@@ -16,13 +16,12 @@ const Alimento = ({ alimento, mostrarMacros, admin }) => {
         <strong>Precio kg/$:</strong> {precioPorKilo(alimento.peso_kg, alimento.precio_euros)}
       </p>
       <div className="admin">
-        {/* Botones delegados */}
-        <button className="delegated-macros">Macros</button>
-        <button className="delegated-anadir">Añadir</button>
+        <button className="macros">Macros</button>
+        <button className="anadir">Añadir</button>
         {admin && (
           <>
-            <button className="delegated-modificar">Modificar</button>
-            <button className="delegated-eliminar">Eliminar</button>
+            <button className="modificar">Modificar</button>
+            <button className="eliminar">Eliminar</button>
           </>
         )}
       </div>
