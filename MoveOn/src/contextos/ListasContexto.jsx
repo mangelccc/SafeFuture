@@ -324,8 +324,8 @@ const ListasContexto = ({ children }) => {
     }
   };
 
-  const manejarAgregarAlimento = (alimento, listaEnEdicionParam) => {
-    if (listaEnEdicionParam) {
+  const manejarAgregarAlimento = (alimento, listaEnEdicion) => {
+    if (listaEnEdicion) {
       agregarAlimentoEdicion(alimento);
     } else {
       agregarAlimento(alimento);
@@ -334,7 +334,6 @@ const ListasContexto = ({ children }) => {
   
   
   const datosContexto = {
-    // Creación de listas
     createLista,
     agregarAlimento,
     sumarAlimento,
@@ -343,11 +342,7 @@ const ListasContexto = ({ children }) => {
     actualizarLista,
     nombreLista,
     alimentosLista,
-
-    // Manejo de mensajes
     error,
-
-    // Edición de listas
     obtenerListasUsuario,
     listasUsuario,
     editarLista,
@@ -358,8 +353,6 @@ const ListasContexto = ({ children }) => {
     actualizarListaEdicion,
     eliminarLista,
     agregarAlimentoEdicion,
-
-    // Utilidades
     resetearAlimentos,
     modoVista,
     alternarLista,

@@ -2,7 +2,7 @@ import React from "react";
 import useAppContext from "../../../../../hooks/useAppContext.jsx";
 import AlimentosEnLista from "../alimentos-elementos/AlimentosEnLista.jsx";
 
-const UsuarioListas = ({ lista }) => {
+const DetalleLista = ({ lista }) => {
   // Extraemos el contexto de listas usando el hook centralizado
   const { listas } = useAppContext();
   const { listaEnEdicion, alimentosEdicion, sumarAlimentoEdicion, restarAlimentoEdicion } = listas;
@@ -25,4 +25,4 @@ const UsuarioListas = ({ lista }) => {
   );
 };
 
-export default UsuarioListas;
+export default DetalleLista;

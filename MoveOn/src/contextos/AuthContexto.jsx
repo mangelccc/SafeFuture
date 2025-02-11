@@ -13,9 +13,6 @@ import { useNavigate } from "react-router-dom";
 const contextoAuth = createContext();
 
 const AuthContexto = ({ children }) => {
-  /****************************************************/
-  /***          VALORES Y ESTADOS INICIALES         ***/
-  /****************************************************/
   const datosSesionInicial = {
     email: "",
     password: "",
@@ -119,10 +116,6 @@ const AuthContexto = ({ children }) => {
     }
   };
 
-  /**
-   * ActualizarDato se encarga de manejar cambios en el formulario de login/registro,
-   * guardando los valores en datosSesion.
-   */
   const actualizarDato = (e) => {
     setDatosSesion({
       ...datosSesion,
