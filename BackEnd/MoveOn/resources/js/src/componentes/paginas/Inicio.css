@@ -1,0 +1,94 @@
+/* Contenedor principal */
+.inicio-container {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+/* Cabecera */
+.inicio-header {
+    background: linear-gradient(to right, #45a247, #283c86);
+    border-radius: 10px;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.inicio-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.inicio-header p {
+    font-size: 1.2rem;
+}
+
+/* Contenido principal */
+.inicio-content {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.card {
+    background: #ffffff33;
+    border-radius: 8px;
+    border: 2px solid #259463;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(83, 253, 114, 0.193);
+}
+
+.card h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    
+}
+
+.card p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: white;
+}
+
+
+.inicio-container .btn {
+    background-color: #259463;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.inicio-container .btn {
+    background-color: #1a6e48;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.inicio-container a .btn {
+    background-color: #212121;;
+    color: #259463;
+    border: 2px solid #259463;
+    transition: all 0.3s ease;
+}
+
+.inicio-container a .btn:hover {
+    background-color: #259463;
+    color: white;
+}

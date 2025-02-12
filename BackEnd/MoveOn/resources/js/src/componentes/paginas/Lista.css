@@ -1,0 +1,10 @@
+.lista-info {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.lista-info thead {
+    background-color: #f2f2f225;
+}

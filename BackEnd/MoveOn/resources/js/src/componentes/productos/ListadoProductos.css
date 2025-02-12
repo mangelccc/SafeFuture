@@ -1,0 +1,37 @@
+.lista-productos {
+    display: flex;
+    flex-flow: wrap column;
+    width: 70%;
+    margin: 1rem;
+}
+
+
+.lista-productos table {
+    margin: 0 auto;
+    border-collapse: collapse; /* Colapsa los bordes */
+    width: 70%;
+}
+
+.lista-productos table th,
+.lista-productos table
+{
+    padding: 0.5rem;
+    border: 1px solid white;
+}
+
+.lista-productos table td{
+    padding-top: 0.5rem;
+    border-top: 1px solid white;
+}
+
+.lista-productos img {
+    width: 100px;
+}
+
+.lista-productos:nth-child(2) table > thead > tr{
+    background-color: #25946350
+}
+
+.lista-productos:nth-child(2) table > tbody > tr{
+    background-color: rgb(32, 32, 32);
+}

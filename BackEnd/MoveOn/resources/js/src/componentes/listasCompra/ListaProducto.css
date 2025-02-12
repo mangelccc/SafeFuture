@@ -1,0 +1,87 @@
+.listas-compra-producto {
+    border: 2px solid #259463;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 150px; 
+    
+}
+
+.listas-compra-producto p, .listas-compra-producto span {
+    margin-bottom: 0px;
+    
+    font-size: 10pt;
+}
+
+.listas-compra-producto .detalles{
+    text-decoration: underline;
+}
+
+.listas-compra-producto :last-child {
+    margin: 0px;
+}
+
+.listas-compra-producto img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.listas-compra-producto > section > div {
+    
+    margin: 8px;
+    padding: 0px 18px;
+    display: flex;
+    flex-direction: row;
+    gap: 22px;
+    
+}
+
+.botones-producto {
+    text-align: center;
+}
+
+.btn-menos, .btn-mas {
+    font-size: 1rem;  /* Tamaño grande */
+    width: 40px;
+    height: 30px;
+    border: none;
+    
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.btn-mas {
+    background-color: green; 
+}
+
+.btn-menos{
+    background-color: red; 
+}
+
+
+ .btn-mas:hover {
+    background-color: rgb(47, 211, 47); 
+}
+
+.btn-menos:hover {
+    background-color: rgb(238, 107, 107); 
+}
+
+.listas-compra-producto  .btn-eliminar {
+    background-color: darkred;
+}
+
+.listas-compra-producto  .btn-eliminar {
+    background-color: rgba(139, 0, 0, 0.8);
+}

@@ -1,0 +1,23 @@
+.productos-eliminar {
+
+    margin: 1rem;
+    text-align: center;
+}
+
+.productos-eliminar > div:nth-child(2) {
+    width: 100%;
+}
+
+.productos-eliminar div:nth-child(2) table > thead > tr{
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.productos-eliminar div:nth-child(2) table > tbody > tr{
+    background-color: rgba(255, 0, 0, 0.05);
+}
+
+.productos-eliminar div:nth-child(2) table > tbody > tr:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+

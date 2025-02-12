@@ -1,0 +1,11 @@
+#content{
+    border: solid #259463 2px;
+    border-radius: 4px;
+    margin-top: 15px;
+    padding: 10px 10px 10px 15px;
+    width: 100%;
+    min-height: 100px;
+    text-align: left;
+
+    background-color: #25946308;
+}

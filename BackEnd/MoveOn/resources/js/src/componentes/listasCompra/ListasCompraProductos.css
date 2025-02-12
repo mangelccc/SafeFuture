@@ -1,0 +1,10 @@
+.listas-compra-productos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.listas-compra-productos .lista-productos-previa {
+    
+    max-width: max-content;
+}

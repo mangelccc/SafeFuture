@@ -1,0 +1,7 @@
+.cerrarsesion span{
+    margin-right: 10px;
+}
+
+.cerrarsesion button:hover {
+    border-color: #259463;
+}

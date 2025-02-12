@@ -1,0 +1,68 @@
+.listas-compra-gestion {
+    margin: 10px 40px;
+    display: flex;
+    gap: 55px;
+}
+
+.listas-compra-gestion-info{
+    min-width: 50%;
+}
+
+
+.listas-compra-gestion-lista{
+    
+
+    padding-right: 26px;
+}
+
+.listas-compra-gestion-lista > div.lista-productos table {
+    text-align: center;
+    margin: 0px;
+    width: 100%;
+}
+
+.listas-compra-gestion-lista > div.lista-productos {
+    width: 100%;
+}
+
+.listas-compra-gestion-botones {
+    border: 2px solid #259463;
+    border-bottom: none;
+    max-width: 600px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(107, 142, 35, 0.2);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 20px 40px 0px;
+}
+
+.listas-compra-gestion-info .lista-productos-previa {
+    border: 2px solid #259463;
+    border-top: none;
+    max-width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: rgba(107, 142, 35, 0.2);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 40px;
+    margin-bottom: 20px;
+}
+
+
+.listas-compra-gestion-lista .lista-productos table > thead > tr{
+    background-color: rgba(255, 179, 0, 0.3);
+}
+
+.listas-compra-gestion-lista .lista-productos table > tbody > tr{
+    background-color: rgba(255, 179, 0, 0.05);
+}
+
+.listas-compra-gestion-lista .lista-productos table > tbody > tr:hover {
+    background-color: rgba(255, 179, 0, 0.25);
+    cursor: pointer;
+}

@@ -1,0 +1,24 @@
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 10px;
+}
+
+#formulario-productos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#formulario-productos button {
+    margin-top: 10px;
+}
+
+.labelError {
+    color: red;
+}
+
+.inputError {
+    outline: 3px solid red;
+}

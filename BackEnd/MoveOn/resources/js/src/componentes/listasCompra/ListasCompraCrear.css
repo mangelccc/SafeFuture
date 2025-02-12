@@ -1,0 +1,86 @@
+.listas-compra-crear {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #1e1e1e; /* Fondo oscuro */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    max-width: 600px;
+    margin: 50px auto;
+    border: 2px solid #259463; /* El borde que mencionaste */
+}
+
+.listas-compra-crear h2 {
+    color: #259463;
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.listas-compra-crear form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.listas-compra-crear label {
+    font-size: 1rem;
+    color: #d4d4d4; /* Texto en un gris claro */
+    font-weight: bold;
+    text-align: center;
+}
+
+.listas-compra-crear input[type="text"] {
+    align-self: center;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #2c2c2c; /* Fondo oscuro del input */
+    border: 2px solid #259463;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #ffffff;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.listas-compra-crear input[type="text"]::placeholder {
+    color: #7a7a7a; /* Placeholder en un gris medio */
+}
+
+.listas-compra-crear input[type="text"]:focus {
+    border-color: #1a6e48;
+    box-shadow: 0 0 5px rgba(37, 148, 99, 0.5);
+}
+
+.listas-compra-crear button {
+    background-color: #259463;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.listas-compra-crear button:hover {
+    background-color: #1a6e48;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.listas-compra-crear a button {
+    background-color: #212121;;
+    color: #259463;
+    border: 2px solid #259463;
+    transition: all 0.3s ease;
+}
+
+.listas-compra-crear a button:hover {
+    background-color: #259463;
+    color: white;
+}
+

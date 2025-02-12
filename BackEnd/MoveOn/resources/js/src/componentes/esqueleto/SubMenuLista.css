@@ -1,0 +1,20 @@
+.submenu-lista-admin {
+    margin: 20px 120px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 30px;
+    border-bottom: solid #259463 2px;
+    
+}
+
+.submenu-lista-admin .navbar-boton:last-child:hover,
+.submenu-lista-admin .navbar-boton:last-child:focus  {
+    background-color: darkred; 
+}
+
+
+.submenu-lista-admin .navbar-boton:nth-child(2):hover,
+.submenu-lista-admin .navbar-boton:nth-child(2):focus {
+    background-color: rgba(0, 0, 255); 
+}
+

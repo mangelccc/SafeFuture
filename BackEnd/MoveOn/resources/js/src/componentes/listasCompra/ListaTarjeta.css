@@ -1,0 +1,77 @@
+.lista-tarjeta {
+    max-width: 500px;
+    display: grid;
+    grid-template-columns: 1fr 0.125fr;
+    grid-template-rows: 1fr;
+    text-align: center;
+}
+
+.lista-tarjeta {
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.lista-tarjeta-nombre {
+    border-bottom: 2px solid white;
+}
+
+.lista-tarjeta-resumen {
+    border-bottom: 2px dashed white;
+}
+
+.lista-tarjeta-extra p {
+    padding: 0px 24px;
+}
+
+.lista-tarjeta-contenido {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 24px;
+}
+
+.lista-tarjeta-der {
+    background: #0f0c29;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #24243e, #302b63, #0f0c29);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    border-left: 4px solid white;
+    border-right: 2px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+.lista-tarjeta img {
+    width: 50px;
+}
+
+.lista-tarjeta-der img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.lista-tarjeta-der img:hover {
+    transform: scale(1.1);
+}
+
+
+.lista-tarjeta-izq {
+    display: flex;
+    flex-direction: column;
+
+    background: #1F1C2C;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6a677c, #1F1C2C);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6a677c, #1F1C2C);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 10px;
+
+}
