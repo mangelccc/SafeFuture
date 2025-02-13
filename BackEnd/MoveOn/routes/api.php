@@ -23,6 +23,8 @@ Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
 Route::patch('/usuarios/{id}', [UsuarioController::class, 'updatePartial']);
 Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
 
+Route::post('/login', [UsuarioController::class, 'login']);
+
 // Rutas para Alimentos
 Route::get('/alimentos', [AlimentoController::class, 'index']);
 Route::get('/alimentos/{id}', [AlimentoController::class, 'show']);
