@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('usuario_dieta', function (Blueprint $table) {
             $table->id('id_usuario_dieta');
-            $table->unsignedBigInteger('id_usuario');
-            $table->unsignedBigInteger('id_dieta');
             $table->decimal('peso_usuario', 5, 2)->nullable();
             $table->decimal('altura_usuario', 5, 2)->nullable();
             $table->enum('actividad_fisica', ['Sedentario', 'Ligero', 'Moderado', 'Activo', 'Muy-activo']);
             $table->enum('objetivo', ['Perder', 'Mantener', 'Ganar']);
             $table->enum('estado', ['Activa', 'Finalizada']);
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
-            $table->foreign('id_dieta')->references('id_dieta')->on('dieta');
+            $table->unsignedBigInteger('usuario_id'); // Añades manualmente la columna de la clave foránea
+            $table->foreign('usuario_id')->references('id_usuario')->on('usuarios'); // Referencia explícita a 'id_usuario'
+            $table->foreignId('dieta_id')->constrained('dietas');
             $table->timestamps();
         });
 

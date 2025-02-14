@@ -12,8 +12,8 @@ class UsuarioDietaFactory extends Factory
     public function definition()
     {
         return [
-            'id_usuario'       => \App\Models\Usuario::factory(),
-            'id_dieta'         => \App\Models\Dieta::factory(),
+            'usuario_id'       => \App\Models\Usuario::factory(),
+            'dieta_id'         => \App\Models\Dieta::factory(),
             'peso_usuario'     => $this->faker->randomFloat(2, 50, 100),
             'altura_usuario'   => $this->faker->randomFloat(2, 1.5, 2),
             'actividad_fisica' => $this->faker->randomElement(['Sedentario','Ligero','Moderado','Activo','Muy-activo']),

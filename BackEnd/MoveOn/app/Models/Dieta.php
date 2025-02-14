@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Dieta extends Model
 {
     use HasFactory;
 
-    protected $table = 'dieta';
+    protected $table = 'dietas';
     protected $primaryKey = 'id_dieta';
     protected $hidden = ['created_at', 'updated_at'];
 
@@ -24,5 +25,9 @@ class Dieta extends Model
         return $this->belongsToMany(Usuario::class, 'usuario_dieta', 'id_dieta', 'id_usuario')
             ->withPivot('peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')
             ->withTimestamps();
+    }
+
+    public function alimentos():BelongsToMany{
+        return $this->belongsToMany(Alimento::class)->withPivot('cantidad');
     }
 }

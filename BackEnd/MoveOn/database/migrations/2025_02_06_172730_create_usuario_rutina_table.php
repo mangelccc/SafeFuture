@@ -13,14 +13,26 @@ return new class extends Migration
     {
         Schema::create('usuario_rutina', function (Blueprint $table) {
             $table->id('id_usuario_rutina');
-            $table->unsignedBigInteger('id_usuario');
-            $table->unsignedBigInteger('id_rutina');
             $table->date('fecha_inicio');
             $table->date('fecha_fin')->nullable();
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
-            $table->foreign('id_rutina')->references('id_rutina')->on('rutina');
+
+            // Aquí creas las columnas que referencian a otras tablas
+            $table->unsignedBigInteger('id_usuario');
+            $table->unsignedBigInteger('id_rutina');
+
+            // Definición de llaves foráneas
+            $table->foreign('id_usuario')
+                ->references('id_usuario')->on('usuarios')
+                ->onDelete('cascade');
+
+            // Si tu tabla se llama 'rutina'
+            $table->foreign('id_rutina')
+                ->references('id_rutina')->on('rutina')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
+
 
     }
 

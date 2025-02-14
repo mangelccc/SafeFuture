@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('cod_ciudad_origen');
             $table->unsignedBigInteger('cod_ciudad_destino');
             $table->date('fecha_solicitud');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
+            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios');
             $table->foreign('cod_ciudad_origen')->references('cod_ciudad')->on('ciudad');
             $table->foreign('cod_ciudad_destino')->references('cod_ciudad')->on('ciudad');
             $table->timestamps();

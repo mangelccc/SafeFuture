@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('alimento', function (Blueprint $table) {
-            $table->id('id_alimento');
+        Schema::create('alimentos', function (Blueprint $table) {
+            $table->id();
             $table->string('nombre', 100);
             $table->enum('categoria', ['Proteínas', 'Carbohidratos', 'Grasas', 'Vitaminas']);
             $table->string('imagen_url', 255)->nullable();
