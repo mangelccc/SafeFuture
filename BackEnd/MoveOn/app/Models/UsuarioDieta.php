@@ -13,8 +13,8 @@ class UsuarioDieta extends Model
     protected $primaryKey = 'id_usuario_dieta';
     protected $hidden = ['created_at', 'updated_at'];
     protected $fillable = [
-        'id_usuario',
-        'id_dieta',
+        'usuario_id',
+        'usuario_id',
         'peso_usuario',
         'altura_usuario',
         'actividad_fisica',

@@ -25,39 +25,6 @@ class UsuarioController extends Controller
         ], 200);
     }
 
-    public function login(Request $request)
-    {
-        // Validar que se envíen correo y contraseña
-        $request->validate([
-            'correo'     => 'required|email',
-            'contrasena' => 'required|string'
-        ]);
-
-        // Buscar al usuario por correo
-        $usuario = Usuario::where('correo', $request->correo)->first();
-
-        if (!$usuario) {
-            return response()->json([
-                'message' => 'Credenciales incorrectas',
-                'status'  => 401
-            ], 401);
-        }
-
-        // Comparar la contraseña en texto plano con la contraseña cifrada almacenada
-        if (!Hash::check($request->contrasena, $usuario->contrasena)) {
-            return response()->json([
-                'message' => 'Credenciales incorrectas',
-                'status'  => 401
-            ], 401);
-        }
-
-        // Si la autenticación es exitosa, se puede retornar información del usuario
-        return response()->json([
-            'message' => 'Login exitoso',
-            'usuario' => $usuario,
-            'status'  => 200
-        ], 200);
-    }
     public function store(StoreUsuarioRequest $request)
     {
         $data = $request->validated();

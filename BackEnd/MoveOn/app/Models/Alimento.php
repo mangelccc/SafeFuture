@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Alimento extends Model
 {
     use HasFactory;
 
     // Nombre de la tabla y clave primaria
-    protected $table = 'alimento';
+    protected $table = 'alimentos';
     protected $primaryKey = 'id_alimento';
     protected $hidden = ['created_at', 'updated_at'];
 
@@ -28,4 +29,8 @@ class Alimento extends Model
         'grasas',
         'carbohidratos'
     ];
+
+    public function dietas():BelongsToMany{
+        return $this->belongsToMany(Dieta::class)->withPivot('cantidad');
+    }
 }

@@ -9,7 +9,7 @@ class Usuario extends Model
 {
     use HasFactory;
 
-    protected $table = 'usuario';
+    protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
     protected $hidden = ['created_at', 'updated_at'];
 

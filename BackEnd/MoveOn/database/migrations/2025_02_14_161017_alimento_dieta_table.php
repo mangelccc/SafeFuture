@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dietas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre', 100);
-            $table->text('descripcion')->nullable();
+        Schema::create('alimento_dieta', function (Blueprint $table) {
+            $table->foreignId('alimento_id')->constrained();
+            $table->foreignId('dieta_id')->constrained();
+            $table->primary(['alimento_id', 'dieta_id']);
+            $table->float('cantidad');
             $table->timestamps();
         });
-
-
     }
 
     /**
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dietas');
+
     }
 };
