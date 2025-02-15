@@ -17,7 +17,7 @@ class UpdateUsuarioRequest extends FormRequest
 
         return [
             'nombre'     => 'required|string|max:100',
-            'correo'     => 'required|email|max:100|unique:usuario,correo,' . $userId . ',id_usuario',
+            'correo'     => 'required|email|max:100|unique:usuarios,correo,' . $userId . ',id_usuario',
             'contrasena' => 'required|string|min:8|max:100',
             'edad'       => 'required|integer',
             'sexo'       => 'required|in:hombre,mujer',

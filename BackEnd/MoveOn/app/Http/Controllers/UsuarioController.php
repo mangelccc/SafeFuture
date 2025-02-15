@@ -88,7 +88,7 @@ class UsuarioController extends Controller
         }
         $validator = \Validator::make($request->all(), [
             'nombre'      => 'sometimes|string|max:100',
-            'correo'      => 'sometimes|email|max:100|unique:usuario,correo,' . $id . ',id_usuario',
+            'correo'      => 'sometimes|email|max:100|unique:usuarios,correo,' . $id . ',id_usuario',
             'contrasena'  => 'sometimes|string|min:8|max:100',
             'edad'        => 'sometimes|integer',
             'sexo'        => 'sometimes|in:hombre,mujer',

@@ -15,7 +15,7 @@ class UpdateUsuarioDietaRequest extends FormRequest
     {
         return [
             'id_usuario'       => 'required|exists:usuario,id_usuario',
-            'id_dieta'         => 'required|exists:dieta,id_dieta',
+            'id_dieta'         => 'required|exists:dietas,id_dieta',
             'peso_usuario'     => 'nullable|numeric',
             'altura_usuario'   => 'nullable|numeric',
             'actividad_fisica' => 'required|in:Sedentario,Ligero,Moderado,Activo,Muy-activo',

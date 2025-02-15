@@ -14,8 +14,8 @@ class UpdateUsuarioRutinaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_usuario'  => 'required|exists:usuario,id_usuario',
-            'id_rutina'   => 'required|exists:rutina,id_rutina',
+            'id_usuario'  => 'required|exists:usuarios,id_usuario',
+            'id_rutina'   => 'required|exists:rutinas,id_rutina',
             'fecha_inicio'=> 'required|date',
             'fecha_fin'   => 'nullable|date',
         ];
