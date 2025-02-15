@@ -4,7 +4,7 @@ import servicios from "../../objetos/servicios.js"
 import ItemServicios from "./ItemServicios.jsx";
 
 const Servicios = () => {
-  console.log(servicios)
+
   return (
     <>
       <h2 id="servicios">NUESTROS SERVICIOS</h2>

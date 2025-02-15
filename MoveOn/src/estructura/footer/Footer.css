@@ -1,5 +1,46 @@
-footer {
-    border-top: 2px solid #F5F5F5;
-    color: #FFBA49;
-    text-align: center;
-  }
+#main-footer {
+    border-top: 2px #F5F5F5 solid;
+}
+
+#main-footer ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+#main-footer h3{
+    color:  #FFBA49;
+}
+
+#main-footer li {
+    
+    padding: 8px 0px;
+    font-size: small;
+    
+}
+
+#main-footer a{
+    text-decoration: none;
+    transition: color 0.5s;
+    
+}
+
+#main-footer a:visited{
+    color: #F5F5F5;
+}
+
+#main-footer a:hover{
+    color: #07beb8;
+    text-decoration: underline;
+    text-decoration-color: #FFBA49;
+}
+
+#main-footer {
+    gap: 20px;
+}
+
+#main-footer iframe {
+    
+    
+    width: 90%;
+    height: 80%;
+}
