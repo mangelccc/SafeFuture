@@ -1,5 +1,8 @@
 #main-footer {
     border-top: 2px #F5F5F5 solid;
+    position: relative;
+    width: 100%;
+    bottom: 0px;
 }
 
 #main-footer ul {
@@ -21,7 +24,7 @@
 #main-footer a{
     text-decoration: none;
     transition: color 0.5s;
-    
+    color: #F5F5F5;
 }
 
 #main-footer a:visited{
