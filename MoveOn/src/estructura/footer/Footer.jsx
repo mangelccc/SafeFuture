@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <>
       <footer>
-        <p>&copy; 2025 - Creado por Miguel Ángel Grimal López y Ramón Galinsoga Cremades </p>
+        <p>&copy; 2025 - Creado por Miguel Ángel Grimal López y Miguel Hernández Monllor </p>
       </footer>
     </>
   );
