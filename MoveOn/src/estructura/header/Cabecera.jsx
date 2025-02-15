@@ -25,7 +25,7 @@ const Cabecera = () => {
           </li>
           <li>
             <Link to="/QueSomos" className="nav-link">
-              ¿Que Somos?
+              ¿Qué Somos?
             </Link>
           </li>
           <li>

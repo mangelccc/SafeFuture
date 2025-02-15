@@ -4,7 +4,7 @@ import "./Foro.css"
 const Foro = () => {
   return (
     <>
-      <h2>Esta sera la pagina de Foro.</h2>
+      <h2 className="titulo-secundario">Esta sera la página de Foro.</h2>
     </>
   );
 };

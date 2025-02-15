@@ -4,7 +4,7 @@ import "./QueSomos.css"
 const QueSomos = () => {
   return (
     <>
-      <h2>Esta sera la pagina de dietas.</h2>
+      <h2 className="titulo-secundario">Esta sera la página de que Qué somos.</h2>
     </>
   );
 };

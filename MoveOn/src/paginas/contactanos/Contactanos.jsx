@@ -4,7 +4,7 @@ import "./Contactanos.css"
 const Contactanos = () => {
   return (
     <>
-      <h2>Esta sera la pagina de Contactanos.</h2>
+      <h2 className="titulo-secundario">Esta sera la página de Contacto.</h2>
     </>
   );
 };
