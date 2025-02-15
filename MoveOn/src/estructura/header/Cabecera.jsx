@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { contextoAuth } from "../../contextos/AuthContexto";
 import { Link } from "react-router-dom";
-import Logo from "../../bibliotecas/logo.svg";
+import Logo from "../../galeria/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import "./Cabecera.css";
