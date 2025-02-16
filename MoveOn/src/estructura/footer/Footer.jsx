@@ -6,7 +6,7 @@ import Redes from './Redes.jsx';
 
 const Footer = () => {
     return (
-        <footer id='main-footer' className='grid grid-cols-4 grid-rows-1 justify-items-center'>
+        <footer id='main-footer' className='grid grid-cols-4 grid-rows-1 justify-items-center p-6'>
             <div>
                 <h3 className='text-gold'>Contacto</h3>
                 <ul>

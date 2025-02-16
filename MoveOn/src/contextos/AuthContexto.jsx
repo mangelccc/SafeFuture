@@ -87,6 +87,7 @@ const AuthContexto = ({ children }) => {
   const iniciarSesion = async () => {
     setErrorUsuario(errorUsuarioInicial);
     try {
+      
       const response = await fetch("http://localhost:8089/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -95,10 +96,11 @@ const AuthContexto = ({ children }) => {
           contrasena: datosSesion.password,
         }),
       });
-  
+      
       const data = await response.json();
   
       if (!response.ok) {
+        
         setErrorUsuario(data.message || "Error al iniciar sesión.");
       } else {
         setErrorUsuario("Sesión iniciada con éxito.");
