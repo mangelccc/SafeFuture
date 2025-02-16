@@ -66,13 +66,22 @@ const AuthContexto = ({ children }) => {
         setErrorUsuario(data.message || "Error al crear la cuenta.");
       } else {
         
-        Swal.fire({
-          title: "¡Cuenta creada exitosamente!",
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Cuenta creada exitosamente."
+        });
+
         setErrorUsuario(errorUsuarioInicial);
         
         setDatosSesion(datosSesionInicial);
@@ -103,7 +112,16 @@ const AuthContexto = ({ children }) => {
         
         setErrorUsuario(data.message || "Error al iniciar sesión.");
       } else {
-        setErrorUsuario("Sesión iniciada con éxito.");
+
+        Swal.fire({
+          title: "Sesión iniciada",
+          icon: 'success',
+          
+          confirmButtonText: 'Aceptar',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
         setUsuario(data.usuario);
         setSesionIniciada(true);
         // Resetea los datos del formulario a sus valores iniciales
@@ -120,7 +138,22 @@ const AuthContexto = ({ children }) => {
   const cerrarSesion = () => {
     setUsuario(usuarioInicial);
     setSesionIniciada(false);
-    setErrorUsuario("Sesión cerrada exitosamente.");
+    
+    const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 2500,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "error",
+    title: "Sesión cerrada exitosamente."
+  });
     navegar("/Usuario");
   };
 
