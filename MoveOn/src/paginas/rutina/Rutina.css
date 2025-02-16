@@ -17,7 +17,7 @@
   .contenedor-rutinas{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 20px;
     padding: 0;
     margin: 0 auto;
@@ -34,11 +34,15 @@
     color: #f5f5f5;
     transition: all 0.3s;
   }
-  .rutinas-item:hover,.crear-rutina-general:hover {
-    background-color: #f5f5f5;
-    color: #1a1a1a;
+  .rutinas-item:hover, .crear-rutina-general:hover {
+    background-color: #6520ee70;
+    color: #FFBA49;
     transform: scale(1.05);
     cursor: pointer;
+  }
+
+  .crear-rutina-general:hover {
+    transform: scale(1.02);
   }
 
   

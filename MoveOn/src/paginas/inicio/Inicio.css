@@ -8,14 +8,21 @@
     gap: 5rem;
 }
 
+#contenedor-inicio h1 {
+  margin: 0px;
+}
+
 #contenedor-inicio h2 {
     color: #07BEB8;
-    font-size: 18px;
     font-weight: normal;
+    padding-left: 0px;
 }
 
 #contenedor-inicio p {
     color: #F5F5F5;
+    text-align: justify;
+    line-height: 1.5;
+    margin-bottom: 2rem;
 }
 #contenedor-inicio button {
     position: relative;

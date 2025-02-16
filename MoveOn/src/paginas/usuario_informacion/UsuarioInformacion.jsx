@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { contextoAuth } from "../../contextos/AuthContexto";
+import { contextoAuth } from "../../contextos/AuthContexto.jsx";
 import "./UsuarioInformacion.css";
 
 const Usuario = () => {
