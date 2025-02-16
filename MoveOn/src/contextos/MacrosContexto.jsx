@@ -92,9 +92,9 @@ const MacrosContexto = ({ children }) => {
         setPaso(letra);
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log(formularioData);
-    }, [formularioData]);
+    }, [formularioData]); */
 
     const navigate = useNavigate();
     useEffect(() => {

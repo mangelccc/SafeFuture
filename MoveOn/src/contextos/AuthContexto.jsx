@@ -2,6 +2,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { validarRegistro } from "../bibliotecas/biblioteca.js";
+import Swal from 'sweetalert2';
 
 const contextoAuth = createContext();
 
@@ -32,10 +33,9 @@ const AuthContexto = ({ children }) => {
 
   const crearCuenta = async () => {
     setErrorUsuario(errorUsuarioInicial);
-  
-    // Ejecutar la validación y obtener el mensaje de error ya formateado
+    // Ejecutar la validación y obtener el mensaje de error ya formateado.
     const mensajeError = validarRegistro(datosSesion);
-  
+    
     if (mensajeError) {
       setErrorUsuario(mensajeError);
       return;
@@ -50,11 +50,14 @@ const AuthContexto = ({ children }) => {
         sexo: datosSesion.sexo,
         rol: datosSesion.rol || "Usuario" 
       };
-  
+      
+      setErrorUsuario("Creando cuenta . . .")
+
       const response = await fetch("http://localhost:8089/api/usuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(nuevoUsuario),
+        
       });
   
       const data = await response.json();
@@ -62,7 +65,16 @@ const AuthContexto = ({ children }) => {
       if (!response.ok) {
         setErrorUsuario(data.message || "Error al crear la cuenta.");
       } else {
-        setErrorUsuario("Cuenta creada con éxito.");
+        
+        Swal.fire({
+          title: "¡Cuenta creada exitosamente!",
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setErrorUsuario(errorUsuarioInicial);
+        
         setDatosSesion(datosSesionInicial);
       }
     } catch (error) {
