@@ -1,0 +1,38 @@
+.admin-datosalimento {
+    display: flex;
+    flex-direction: column;
+    
+}
+.admin-datosalimento input {
+    width: 150px; /* Ajusta el ancho a tu preferencia */
+    height: 20px; /* Ajusta la altura si es necesario */
+    background-color: #6320EE;
+    color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 #FFBA49,
+    2px 2px 0 #FFBA49,
+    3px 3px 0 rgba(0,0,0,0.2);
+    border: 2px solid #FFBA49;
+}
+
+.admin-datosalimento label {
+    margin-bottom: 10px; /* Agrega espacio debajo del label */
+}
+
+.admin-datosalimento input[type="number"] {
+    width: 45px; /* Menos ancho solo para los números */
+}
+
+.macros-admin {
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-botones {
+    display: flex;
+    gap: 5px;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    display: none; /* Oculta las flechas en navegadores modernos */
+}

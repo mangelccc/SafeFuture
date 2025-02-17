@@ -1,0 +1,44 @@
+.contenedor-filtros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.filtros-botones {
+        display: flex;
+        gap: 10px;  
+}
+
+.filtros-botones button {
+    background-color: #6320EE;
+    color: #FFBA49;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 0 #FFBA49,
+    2px 2px 0 #FFBA49,
+    3px 3px 0 rgba(0,0,0,0.2);
+    border: 2px solid #FFBA49;
+    transition: all 0.3s;
+}
+.filtros-botones button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: #3900aa;
+}
+
+.filtros-busqueda input {
+    background-color: #6320EE;
+    color: #FFBA49;
+    font-style: bold;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 0 #FFBA49,
+    2px 2px 0 #FFBA49,
+    3px 3px 0 rgba(0,0,0,0.2);
+    border: 2px solid #FFBA49;
+}
+.filtros-busqueda input::placeholder  {
+    color: #FFBA49;
+    font-style: bold;
+
+}
