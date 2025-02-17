@@ -10,7 +10,6 @@ Este proyecto está organizado en diferentes ramas para mantener un flujo de tra
 
 - **Google Drive**: https://bit.ly/42dvDNs
 - **Entidad Relación**: https://bit.ly/406Iq1e
-- **Ramón Galinsoga PT:** https://chatgpt.com/share/6787db79-97f4-8008-9158-3b10d3b74d22
 
 ## Ejemplo de Ejecución para Subir Cambios a Develop
 
@@ -83,9 +82,11 @@ npm install --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg
 ```
 
 **Descripción de los paquetes instalados:**
-- **@fortawesome/fontawesome-svg-core**: Contiene el núcleo de Font Awesome.
-- **@fortawesome/free-solid-svg-icons**: Incluye los iconos sólidos gratuitos.
-- **@fortawesome/react-fontawesome**: Permite integrar Font Awesome con React.
+- SweetAlert2: Biblioteca para mostrar alertas personalizadas y modernas con diseños atractivos y opciones avanzadas.
+- Font Awesome: Biblioteca de iconos escalables basada en CSS y SVG que proporciona una amplia colección de iconos personalizables.
+- Tailwind CSS: Framework de CSS utilitario que permite diseñar interfaces de manera rápida usando clases predefinidas.
+- Cookie Consent: Biblioteca para mostrar avisos de consentimiento de cookies de forma personalizable y cumplir con normativas como GDPR.
+
 
 **Ejecución**
 <div style="page-break-before: always;"></div>
@@ -95,7 +96,7 @@ Una vez instaladas las dependencias, puedes iniciar el servidor de desarrollo co
 npm run dev
 ```
 
-Esto abrirá la aplicación en tu navegador en la dirección [http://localhost:3000](http://localhost:3000) (por defecto).
+Esto abrirá la aplicación en tu navegador en la dirección [http://localhost:5173](http://localhost:5173) (por defecto).
 
 ¡Listo! El frontend está configurado y listo para usarse.
 
