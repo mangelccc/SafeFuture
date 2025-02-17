@@ -1,0 +1,84 @@
+/* Contenedor principal */
+.pasoA-container {
+    margin-top: 1rem;
+    /* Puedes agregar más estilos según tus necesidades */
+  }
+  
+  /* Título del paso */
+  .pasoA-title {
+    font-size: 1.25rem; /* Equivale aproximadamente a text-xl de Tailwind */
+    font-weight: 700;   /* Equivale a font-bold */
+    color: #6320EE;     /* Equivale a text-blue-900 */
+    text-shadow: #FFBA49 1px 1px 0px;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Contenedor de cada "campo" (label + input) */
+  .pasoA-fieldContainer {
+    margin-bottom: 0.5rem; /* Equivale a my-2 (aprox) */
+  }
+  
+  /* Label de los campos */
+  .pasoA-label {
+    display: block; /* Para asegurar que el label se muestre en una línea separada */
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Input */
+  .pasoA-input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #6320EE; /* Equivale a border-gray-400 */
+    padding: 0.5rem;           /* px-2 py-1 (aprox) */
+    border-radius: 0.25rem;    /* Equivale a rounded (aprox) */
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  /* Efecto focus en el input */
+  .pasoA-input:focus {
+    border-color: #6320EE; /* Equivale a border-blue-600 */
+  }
+  
+  /* Contenedor del botón */
+  .pasoA-buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  
+  .pasoB-buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+  
+  /* Botón */
+  .pasoA-button {
+    background-color: #FFBA49; /* bg-green-400 (aprox) */
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;    /* rounded (aprox) */
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+    border: 2px solid #07BEB8; /* border-green-400 (aprox) */
+  }
+  
+  .pasoA-button:hover {
+    background-color: #ff9d00; /* Efecto hover (un verde más oscuro) */
+  }
+
+  .pasoA-button-anterior {
+    background-color: #07BEB8; /* bg-green-400 (aprox) */
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;    /* rounded (aprox) */
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out;
+    border: 2px solid #FFBA49; /* border-green-400 (aprox) */
+  }
+  .pasoA-button-anterior:hover {
+    background-color: #007874; /* Efecto hover (un verde más oscuro) */
+  }
+  
