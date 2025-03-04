@@ -24,3 +24,4 @@ yarn-error.log
 .idea
 **/composer.lock
 **/output.css
+../../BackEnd/MoveOn/composer.lock
