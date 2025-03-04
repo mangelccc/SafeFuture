@@ -3,9 +3,7 @@ import "./Cuerpo.css";
 
 const Cuerpo = ({ children }) => {
   return (
-    <>
       <main id='contenido-pagina'>{children}</main>
-    </>
   );
 };
 

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer
       id="main-footer"
-      className="grid grid-cols-4 justify-items-center p-6 border-t-2 border-t-white relative w-full bottom-0 gap-5"
+      className="grid grid-cols-4 justify-items-center p-6 border-t-2 border-t-white w-full bottom-0 gap-5"
     >
       <div>
         <h3 className="text-gold">Contacto</h3>
@@ -50,7 +50,7 @@ const Footer = () => {
       </div>
       <div>
         <h3 className="text-gold">Redes sociales</h3>
-        <ul className="list-none p-0">
+        <ul className="list-none flex flex-col justify-center gap-2 pt-2">
           {redesSociales.map((redSocial, index) => (
             <Redes
               key={index}
