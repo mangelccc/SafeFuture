@@ -9,7 +9,7 @@ const Footer = () => {
       className="grid grid-cols-4 justify-items-center p-6 border-t-2 border-t-white w-full bottom-0 gap-5"
     >
       <div>
-        <h3 className="text-gold">Contacto</h3>
+        <h3 className="text-gold pb-2">Contacto</h3>
         <ul className="list-none p-0">
           <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Preguntas frecuentes</li>
@@ -29,7 +29,7 @@ const Footer = () => {
         </ul>
       </div>
       <div>
-        <h3 className="text-gold">Información</h3>
+        <h3 className="text-gold pb-2">Información</h3>
         <ul className="list-none p-0">
           <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Acerca de nosotros</li>
@@ -49,7 +49,7 @@ const Footer = () => {
         </ul>
       </div>
       <div>
-        <h3 className="text-gold">Redes sociales</h3>
+        <h3 className="text-gold pb-2">Redes sociales</h3>
         <ul className="list-none flex flex-col justify-center gap-2 pt-2">
           {redesSociales.map((redSocial, index) => (
             <Redes
@@ -67,7 +67,7 @@ const Footer = () => {
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          /* className="w-[90%] h-[80%]" */
+          className='w-11/12 h-11/12 rounded-xl'
         ></iframe>
       </div>
     </footer>
