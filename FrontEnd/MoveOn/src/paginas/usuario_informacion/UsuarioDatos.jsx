@@ -7,7 +7,7 @@ const UsuarioDatos = ({usuario}) => {
 
     return (
         <>
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
+            <article className="w-1/2 ml-8 mb-8 border border-gold text-white">
                 <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
                     <p>Nombre de usuario</p>
                     <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
@@ -24,7 +24,7 @@ const UsuarioDatos = ({usuario}) => {
                 </div>
             </article>
 
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
+            <article className="w-1/2 ml-8 mb-8 border border-gold text-white">
                 <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
                     <p>Correo electrónico</p>
                     <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
@@ -41,7 +41,7 @@ const UsuarioDatos = ({usuario}) => {
                 </div>
             </article>
 
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
+            <article className="w-1/2 ml-8 mb-8 border border-gold text-white">
                 <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
                     <p>Contraseña</p>
                     <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
@@ -56,7 +56,7 @@ const UsuarioDatos = ({usuario}) => {
                 </div>
             </article>
 
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
+            <article className="w-1/2 ml-8 mb-8 border border-gold text-white">
                 <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
                     <p>Edad</p>
                     <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
@@ -71,7 +71,7 @@ const UsuarioDatos = ({usuario}) => {
                 </div>
             </article>
 
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
+            <article className="w-1/2 ml-8 mb-8 border border-gold text-white">
                 <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
                     <p>Sexo</p>
                     <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
