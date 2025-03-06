@@ -1,5 +1,6 @@
  /** @type {import('tailwindcss').Config} */
  export default {
+  darkMode: "class",
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
@@ -12,6 +13,7 @@
         purpleOp: '#6520ee70',
         turq: '#07BEB8',
         white: '#F5F5F5',
+        black: '#101010',
         black1: '#1A1A1A',
         black2: '#2F2F2F',
         black3: '#3E3E3E'

@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import Logo from "../../galeria/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import BotonTema from "./BotonTema.jsx";
 
 const Cabecera = () => {
   const { sesionIniciada } = useContext(contextoAuth);
 
   return (
-    <header className="h-24 w-full flex justify-around items-center bg-[#101010] border-b-2 border-white">
+    <header className="h-24 w-full flex justify-around items-center bg-white dark:bg-black border-b-2 dark:border-white border-black ">
       <div className="w-16 h-16">
         <Link to="/">
           <img src={Logo} className="w-full h-full object-contain" />
@@ -19,54 +20,47 @@ const Cabecera = () => {
       <nav>
         <ul className="list-none flex gap-5">
           <li>
-            <Link to="/" className="text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple">
+            <Link to="/" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Inicio
             </Link>
           </li>
           <li>
-            <Link to="/QueSomos" className="text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple">
+            <Link to="/QueSomos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               ¿Qué Somos?
             </Link>
           </li>
           <li>
-            <Link to="/Servicios" className="text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple">
+            <Link to="/Servicios" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Servicios
             </Link>
           </li>
           <li>
-            <Link to="/Rutina" className="text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple">
+            <Link to="/Rutina" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Plantea tu rutina
             </Link>
           </li>
           <li>
-            <Link to="/Foro" className="text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple">
+            <Link to="/Foro" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Foro
             </Link>
           </li>
           <li>
-            <Link to="/Contactanos" className="text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple">
+            <Link to="/Contactanos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Contacto
             </Link>
           </li>
         </ul>
       </nav>
 
-      <div>
-        {sesionIniciada ? (
-          <Link to="/UsuarioInformacion">
-            <FontAwesomeIcon
-              className="text-4xl text-white p-1.5 border-4 border-white rounded-lg hover:text-gold hover:border-purple hover:shadow-[0_0_15px_#07BEB8] transition-colors duration-300"
-              icon={faUser}
-            />
-          </Link>
-        ) : (
-          <Link to="/Usuario">
-            <FontAwesomeIcon
-              className="text-4xl text-white p-1.5 border-4 border-white rounded-lg hover:text-gold hover:border-purple hover:shadow-[0_0_15px_#07BEB8] transition-colors duration-300"
-              icon={faUser}
-            />
-          </Link>
-        )}
+      <div className="flex justify-center ">
+        <BotonTema />
+        <Link to={sesionIniciada ? "/UsuarioInformacion" : "/Usuario"}>
+          <FontAwesomeIcon
+            className="text-4xl dark:text-white p-1.5 border-4 border-black dark:border-white dark:hover:border-purple rounded-lg dark:hover:text-gold hover:bg-gold dark:bg-transparent hover:border-purple dark:hover:shadow-[0_0_15px_#07BEB8] transition-colors duration-300"
+            icon={faUser}
+          />
+        </Link>
+
       </div>
     </header>
   );
