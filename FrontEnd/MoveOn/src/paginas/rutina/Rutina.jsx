@@ -23,27 +23,27 @@ const Rutina = () => {
         </div>
         <div className="contenedor-rutinas">
 
-          <Link to="/Rutina/Ejercicio" className="rutinas-item">
+          <Link to="/rutina/ejercicio" className="rutinas-item">
             <FontAwesomeIcon icon={faDumbbell} size="5x" />
           </Link>
 
-          <Link to="/Rutina/FormularioMacros" className="rutinas-item">
+          <Link to="/rutina/FormularioMacros" className="rutinas-item">
             <FontAwesomeIcon icon={faEgg} size="5x" />
           </Link>
 
-          <Link to="/Rutina/Calendario" className="rutinas-item">
+          <Link to="/rutina/Calendario" className="rutinas-item">
             <FontAwesomeIcon icon={faCalendar} size="5x" />
           </Link>
 
-          <Link to="/Rutina/Finanzas" className="rutinas-item">
+          <Link to="/rutina/Finanzas" className="rutinas-item">
             <FontAwesomeIcon icon={faPiggyBank} size="5x" />
           </Link>
 
-          <Link to="/Rutina/NoFumar" className="rutinas-item">
+          <Link to="/rutina/NoFumar" className="rutinas-item">
             <FontAwesomeIcon icon={faSmokingBan} size="5x" />
           </Link>
 
-          <Link to="/Rutina/Trabajo" className="rutinas-item">
+          <Link to="/rutina/Trabajo" className="rutinas-item">
             <FontAwesomeIcon icon={faBriefcase} size="5x" />
           </Link>
           

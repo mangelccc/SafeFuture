@@ -180,10 +180,6 @@ const AuthContexto = ({ children }) => {
     setErrorUsuario(errorUsuarioInicial);
   };
 
-  useEffect(() => {
-    // Aquí se pueden agregar efectos secundarios si es necesario
-  }, []);
-
   const datosContexto = {
     errorUsuario,
     crearCuenta,

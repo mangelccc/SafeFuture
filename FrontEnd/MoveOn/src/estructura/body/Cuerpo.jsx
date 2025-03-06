@@ -1,9 +1,14 @@
 import React from "react";
-import "./Cuerpo.css";
 
 const Cuerpo = ({ children }) => {
   return (
+<<<<<<< HEAD
       <main id='contenido-pagina'>{children}</main>
+=======
+    <>
+      <main className="my-8 mx-4">{children}</main>
+    </>
+>>>>>>> func-deporte
   );
 };
 
