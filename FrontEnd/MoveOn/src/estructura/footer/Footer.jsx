@@ -6,51 +6,51 @@ const Footer = () => {
   return (
     <footer
       id="main-footer"
-      className="grid grid-cols-4 justify-items-center p-6 border-t-2 border-t-wsmk relative w-full bottom-0 gap-5"
+      className="grid grid-cols-4 justify-items-center p-6 border-t-2 border-t-white w-full bottom-0 gap-5"
     >
       <div>
-        <h3 className="text-gold">Contacto</h3>
+        <h3 className="text-gold pb-2">Contacto</h3>
         <ul className="list-none p-0">
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Preguntas frecuentes</li>
           </a>
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Contacto</li>
           </a>
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Teléfono: 697 123 456</li>
           </a>
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">(Petrer) 03610</li>
           </a>
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">moveon@gmail.com</li>
           </a>
         </ul>
       </div>
       <div>
-        <h3 className="text-gold">Información</h3>
+        <h3 className="text-gold pb-2">Información</h3>
         <ul className="list-none p-0">
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Acerca de nosotros</li>
           </a>
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Política de Privacidad</li>
           </a>
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Política de cookies</li>
           </a>
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Aviso Legal</li>
           </a>
-          <a href="#" className="no-underline transition-colors duration-500 text-wsmk hover:text-turq hover:underline hover:decoration-gold">
+          <a href="#" className="no-underline transition-colors duration-500 text-white hover:text-turq hover:underline hover:decoration-gold">
             <li className="py-2 text-sm">Puntos de Fidelidad</li>
           </a>
         </ul>
       </div>
       <div>
-        <h3 className="text-gold">Redes sociales</h3>
-        <ul className="list-none p-0">
+        <h3 className="text-gold pb-2">Redes sociales</h3>
+        <ul className="list-none flex flex-col justify-center gap-2 pt-2">
           {redesSociales.map((redSocial, index) => (
             <Redes
               key={index}
@@ -67,7 +67,7 @@ const Footer = () => {
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          className="w-[90%] h-[80%]"
+          className='w-11/12 h-11/12 rounded-xl'
         ></iframe>
       </div>
     </footer>
