@@ -4,15 +4,10 @@ import React from "react";
 const Inicio = () => {
   return (
     <>
-      <div className="bg-purpleOp rounded-2xl p-12 grid grid-cols-2 gap-20">
+      <div className="bg-purpleOp rounded-2xl p-12 grid grid-cols-2 gap-20 flex-grow">
         <article>
           <h1 className="m-0">Cambio de Vida</h1>
           <h2 className="text-turq font-normal pl-0">Introduccion</h2>
-
-          <div className="p-6 rounded-lg dark:bg-gray-800 bg-white dark:text-white text-black shadow-md">
-            <h2 className="text-xl font-semibold">Modo Oscuro por Defecto</h2>
-            <p>Este es un ejemplo de cómo aplicar el modo claro solo si se elige.</p>
-          </div>
 
           <p className="text-white text-justify leading-normal mb-8">
             Safe Future es una innovadora plataforma diseñada para brindar
