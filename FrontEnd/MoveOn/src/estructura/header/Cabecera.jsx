@@ -10,7 +10,7 @@ const Cabecera = () => {
   const { sesionIniciada } = useContext(contextoAuth);
 
   return (
-    <header className="h-24 w-full flex justify-around items-center bg-white dark:bg-black border-b-2 dark:border-white border-black ">
+    <header className="min-h-24 w-full flex justify-around items-center bg-white dark:bg-black border-b-2 dark:border-white border-black ">
       <div className="w-16 h-16">
         <Link to="/">
           <img src={Logo} className="w-full h-full object-contain" />

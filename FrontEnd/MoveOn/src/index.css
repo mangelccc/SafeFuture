@@ -6,7 +6,8 @@
     @apply h-screen flex flex-col;
 }
 
+
 .text-shadow {
-    text-shadow: 1px 1px 4px black;
+    text-shadow: 1px 1px 4px gray;
 }
 

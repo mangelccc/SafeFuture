@@ -1,13 +1,12 @@
 import React from "react";
-/* import "./Inicio.css"; */
 
 const Inicio = () => {
   return (
     <>
-      <div className="bg-purpleOp rounded-2xl p-12 grid grid-cols-2 gap-20 flex-grow">
+      <div className="bg-purple dark:bg-purpleOp rounded-2xl p-12 grid grid-cols-2 gap-20 flex-grow">
         <article>
-          <h1 className="m-0">Cambio de Vida</h1>
-          <h2 className="text-turq font-normal pl-0">Introduccion</h2>
+          <h1 className="m-0 text-gold">Cambio de Vida</h1>
+          <h2 className="text-turq font-normal pl-0 pb-4">Introduccion</h2>
 
           <p className="text-white text-justify leading-normal mb-8">
             Safe Future es una innovadora plataforma diseñada para brindar

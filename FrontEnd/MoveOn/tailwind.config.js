@@ -3,7 +3,7 @@
   darkMode: "class",
   content: [
     './index.html',
-    './src/**/*.{js,ts,jsx,tsx}',
+    './src/**/*.{js,ts,jsx,tsx,css}',
   ],
   theme: {
     extend: {
@@ -19,6 +19,9 @@
         black1: '#1A1A1A',
         black2: '#2F2F2F',
         black3: '#3E3E3E'
+      },
+      scale: {
+        '102': '1.02',
       },
       spacing: {
         /* 
