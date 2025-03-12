@@ -8,7 +8,7 @@ const RouterAuth = ({ children }) => {
 
   // Si la sesión no está iniciada, redirige a la página de inicio de sesión
   if (!sesionIniciada) {
-    return <Navigate to="/Usuario" replace />;
+    return <Navigate to="/usuario" replace />;
   }
 
   // Si está iniciada, muestra el componente hijo

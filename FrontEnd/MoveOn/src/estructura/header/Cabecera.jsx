@@ -25,27 +25,27 @@ const Cabecera = () => {
             </Link>
           </li>
           <li>
-            <Link to="/QueSomos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+            <Link to="/que-somos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               ¿Qué Somos?
             </Link>
           </li>
           <li>
-            <Link to="/Servicios" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+            <Link to="/servicios" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Servicios
             </Link>
           </li>
           <li>
-            <Link to="/Rutina" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+            <Link to="/rutina" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Plantea tu rutina
             </Link>
           </li>
           <li>
-            <Link to="/Foro" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+            <Link to="/foro" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Foro
             </Link>
           </li>
           <li>
-            <Link to="/Contactanos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+            <Link to="/contactanos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
               Contacto
             </Link>
           </li>
@@ -54,7 +54,7 @@ const Cabecera = () => {
 
       <div className="flex justify-center ">
         <BotonTema />
-        <Link to={sesionIniciada ? "/UsuarioInformacion" : "/Usuario"}>
+        <Link to={sesionIniciada ? "/usuario-informacion" : "/usuario"}>
           <FontAwesomeIcon
             className="text-4xl dark:text-white p-1.5 border-4 border-black dark:border-white dark:hover:border-purple rounded-lg dark:hover:text-gold hover:bg-gold dark:bg-transparent hover:border-purple dark:hover:shadow-[0_0_15px_#07BEB8] transition-colors duration-300"
             icon={faUser}

@@ -32,18 +32,18 @@ const RutasPaginas = () => {
     <>
       <Routes>
         <Route path='/' element={<Inicio />} />
-        <Route path='/QueSomos' element={<QueSomos />} />
-        <Route path='/Servicios' element={<Servicios />} />
+        <Route path='/que-somos' element={<QueSomos />} />
+        <Route path='/servicios' element={<Servicios />} />
 
 
-        <Route path="/rutina" element={<Rutina />}/>
-        <Route path="/Rutina/FormularioMacros" element={<FormularioMacros />} />
-        <Route path="/Rutina/CrearDieta" element={<GestorListas />} />
+        <Route path="/rutina" element={<Rutina />} />
+        <Route path="/rutina/formulario-macros" element={<FormularioMacros />} />
+        <Route path="/rutina/crear-dieta" element={<GestorListas />} />
 
         <Route
           path="/rutina/ejercicio"
           element={
-              <Ejercicio />
+            <Ejercicio />
           }
         >
           <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
@@ -53,12 +53,12 @@ const RutasPaginas = () => {
           <Route path='entrenador-personal' element={<AgenteEntrenadorIA />} />
         </Route>
 
-        <Route path='/Foro' element={<Foro />} />
-        <Route path='/Contactanos' element={<Contactanos />} />
+        <Route path='/foro' element={<Foro />} />
+        <Route path='/contactanos' element={<Contactanos />} />
 
-        <Route path='/Usuario' element={<Usuario />} />
-        <Route path='/UsuarioInformacion' element={<UsuarioInformacion />} />
-        
+        <Route path='/usuario' element={<Usuario />} />
+        <Route path='/usuario-informacion' element={<UsuarioInformacion />} />
+
         <Route path='*' element={<Error />} />
       </Routes>
     </>
