@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ItemServicios = ({ icono, texto }) => {
   return (
     <article
-      className="group border-2 border-black dark:border-white2 rounded-lg shadow-md text-center cursor-pointer transition duration-300 ease overflow-hidden group-hover:scale-102 hover:shadow-[0_6px_8px_rgba(0,0,0,0.15)] bg-purple dark:bg-black  hover:bg-purple dark:hover:bg-purpleOp "
+      className="group border-2 border-black dark:border-white2 rounded-lg shadow-md text-center cursor-pointer transition duration-300 ease overflow-hidden group-hover:scale-102 hover:shadow-[0_6px_8px_rgba(0,0,0,0.15)] bg-purple dark:bg-black  hover:bg-purple dark:hover:bg-purpleOp hover:dark:border-turq"
     >
       <FontAwesomeIcon 
         icon={icono} 
