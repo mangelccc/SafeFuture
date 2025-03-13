@@ -12,7 +12,7 @@ const Usuario = () => {
     <section id="usuario-informacion" className="flex justify-center flex-col">
 
       <div className="flex justify-between pr-14 mb-8">
-      <h2 className="titulo-secundario underline decoration-purple underline-offset-4 "> Detalles de la cuenta </h2>
+      <h2 className="titulo-secundario text-black1 dark:text-white  pl-8 underline decoration-purple underline-offset-4 "> Detalles de la cuenta </h2>
       <button className="" onClick={cerrarSesion}>Cerrar sesión</button>
       </div>
 
