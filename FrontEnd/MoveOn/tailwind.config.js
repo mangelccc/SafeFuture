@@ -23,6 +23,9 @@
       scale: {
         '102': '1.02',
       },
+      screens: {
+        'sm': { 'max': '640px' }, // Breakpoint para pantallas más pequeñas o iguales a 480px
+      },
       spacing: {
         /* 
         18: '4.5rem',

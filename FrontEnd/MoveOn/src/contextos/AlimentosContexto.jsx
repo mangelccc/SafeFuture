@@ -1,6 +1,6 @@
 // src/contextos/AlimentosContexto.jsx
 import React, { createContext, useState, useEffect } from "react";
-import { supabaseConexion } from "../bibliotecas/config.js";
+/* import { supabaseConexion } from "../bibliotecas/config.js"; */
 import { validarCreacionAlimento, obtenerAlimentosVisibles } from "../bibliotecas/biblioteca.js";
 
 const contextoAlimentos = createContext();
