@@ -47,7 +47,7 @@ const Navegacion = ({ menu, alternar }) => {
                     <li className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white hover:border-2 hover:border-black outline-2 cursor-pointer bg-white3 dark:bg-black2"
                         onClick={alternarTema}>
                         <span className='flex items-center gap-2 ml-4'>
-                            <p>Cambiar tema a {tema === "dark" ? "claro" : "oscuro"}</p><BotonTema desactivar={false}/>
+                            <p>Cambiar tema a {tema === "dark" ? "claro" : "oscuro"}</p><BotonTema desactivar={true}/>
                         </span>
                     </li>}
             </ul>

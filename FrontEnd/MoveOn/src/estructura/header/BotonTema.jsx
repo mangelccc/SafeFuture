@@ -7,7 +7,7 @@ const BotonTema = ({desactivar}) => {
     return (
         <button
         
-    onClick={desactivar && alternarTema}
+    onClick={!desactivar && alternarTema}
     className="flex p-2 mr-4 self-center rounded-full bg-black1 dark:bg-gray-200
                 hover:shadow-[0_0_15px_#6B46C1]"
 >
