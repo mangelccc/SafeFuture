@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
+import BotonTema from "./BotonTema.jsx";
+import { useTema } from '../../contextos/TemaContexto.jsx';
 
 const Navegacion = ({ menu, alternar }) => {
+    const { tema, alternarTema } = useTema();
+
     return (
-        <nav className={`sm:w-full sm:py-8 sm:flex sm:flex-col sm:flex-nowrap sm:justify-center sm:items-center sm:hidden ${menu && "activo borde-b sm:border-b-2"}  border-black dark:border-white`}
+        <nav className={`hsm:w-full hsm:py-8 hsm:flex hsm:flex-col hsm:flex-nowrap hsm:justify-center hsm:items-center hsm:hidden ${menu && "activo borde-b hsm:border-b-2"}  border-black dark:border-white`}
             onClick={(evento) => {
                 menu && evento.target.tagName === "A" && alternar()
             }}
         >
-            <ul className="list-none flex gap-5 sm:gap-8 sm:flex-col sm:items-center">
+            <ul className="list-none flex gap-5 hsm:gap-8 hsm:flex-col hsm:items-center">
                 <li>
                     <Link to="/" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white ">
                         Inicio
@@ -39,6 +43,13 @@ const Navegacion = ({ menu, alternar }) => {
                         Contacto
                     </Link>
                 </li>
+                {menu &&
+                    <li className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white hover:border-2 hover:border-black outline-2 cursor-pointer bg-white3 dark:bg-black2"
+                        onClick={alternarTema}>
+                        <span className='flex items-center gap-2 ml-4'>
+                            <p>Cambiar tema a {tema === "dark" ? "claro" : "oscuro"}</p><BotonTema desactivar={false}/>
+                        </span>
+                    </li>}
             </ul>
         </nav>
     )

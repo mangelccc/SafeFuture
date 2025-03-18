@@ -24,7 +24,7 @@
         '102': '1.02',
       },
       screens: {
-        'sm': { 'max': '640px' }, // Breakpoint para pantallas más pequeñas o iguales a 480px
+        'hsm': { 'max': '640px' }, // Breakpoint para pantallas más pequeñas o iguales a 480px
       },
       spacing: {
         /* 

@@ -5,8 +5,8 @@ import Logo from "../../galeria/logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faXmarkSquare } from "@fortawesome/free-solid-svg-icons";
 import BotonTema from "./BotonTema.jsx";
-import "./Cabecera.css";
 import Navegacion from "./Navegacion.jsx";
+import "./Cabecera.css";
 
 const Cabecera = () => {
   const { sesionIniciada } = useContext(contextoAuth);
@@ -19,22 +19,22 @@ const Cabecera = () => {
     <>
       <header className="min-h-24 w-full flex justify-around items-center bg-white dark:bg-black border-b-2 dark:border-white border-black ">
 
-        <FontAwesomeIcon className="sm:block md:hidden text-4xl bg-gold dark:bg-black dark:text-gold border border-2 border-black dark:border-white p-2 rounded-lg cursor-pointer"
+        <FontAwesomeIcon className="sm:hidden hsm:block text-4xl bg-gold dark:bg-black dark:text-gold border border-2 border-black dark:border-white p-2 rounded-lg cursor-pointer"
           onClick={alternarMenu}
           icon={menu ? faXmarkSquare : faBars} />
 
-        <div className="w-16 h-16">
+        <div className="w-14 h-14 min-w-14 min-h-14 ">
           <Link to="/">
-            <img src={Logo} className="sm:w-2 sm:h-2 w-full h-full object-contain" />
+            <img src={Logo} className="hsm:w-2 hsm:h-2 w-full h-full object-contain" />
           </Link>
         </div>
 
-        <div className="sm:hidden md:block">
+        <div className="hsm:hidden sm:block">
           <Navegacion />
         </div>
 
         <div className="flex justify-center align-center">
-          <div className="sm:hidden md:block md:flex">
+          <div className="hsm:hidden sm:block sm:flex">
             <BotonTema />
           </div>
           <Link to={sesionIniciada ? "/usuario-informacion" : "/usuario"}>
@@ -46,7 +46,7 @@ const Cabecera = () => {
         </div>
         
       </header>
-      <div className="sm:block md:hidden">
+      <div className="hsm:block sm:hidden">
         <Navegacion menu={menu} alternar={alternarMenu} />
       </div>
     </>

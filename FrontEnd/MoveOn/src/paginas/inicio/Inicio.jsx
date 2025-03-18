@@ -28,7 +28,7 @@ const Inicio = () => {
         <div>
           <iframe
             className="w-full h-full rounded-xl border border-gold"
-            src="https://www.youtube.com/embed/cJZlSS0aKj8"
+            /* src="https://www.youtube.com/embed/cJZlSS0aKj8" */
             title="Video de Safe Future"
           ></iframe>
         </div>
