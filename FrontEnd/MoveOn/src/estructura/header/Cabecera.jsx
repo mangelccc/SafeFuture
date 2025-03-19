@@ -39,7 +39,7 @@ const Cabecera = () => {
           </div>
           <Link to={sesionIniciada ? "/usuario-informacion" : "/usuario"}>
             <FontAwesomeIcon
-              className="text-4xl dark:text-white p-1.5 border-4 border-black dark:border-white dark:hover:border-purple rounded-lg dark:hover:text-gold hover:bg-gold dark:bg-transparent hover:border-purple dark:hover:shadow-[0_0_15px_#07BEB8] transition-colors duration-300"
+              className="text-4xl dark:text-white p-1.5 border-4 border-black dark:border-white dark:hover:border-purple rounded-lg dark:hover:text-gold hover:bg-gold dark:bg-transparent hover:border-purple dark:hover:shadow-[0_0_15px_#07BEB8] transition-colors duration-300 active:scale-102"
               icon={faUser}
             />
           </Link>

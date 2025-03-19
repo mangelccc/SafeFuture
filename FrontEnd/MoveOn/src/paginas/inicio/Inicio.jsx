@@ -3,10 +3,10 @@ import React from "react";
 const Inicio = () => {
   return (
     <>
-      <div className="bg-purple dark:bg-purpleOp rounded-2xl p-12 grid grid-cols-2 gap-20 flex-grow">
-        <article>
+      <div className="bg-purple dark:bg-purpleOp sm:rounded-2xl p-12 grid sm:grid-cols-2 hsm:grid-cols-1 sm:gap-20 hsm:gap-6 sm:flex-grow">
+        <article className="hsm:order-last">
           <h1 className="m-0 text-gold">Cambio de Vida</h1>
-          <h2 className="text-turq font-normal pl-0 pb-4">Introduccion</h2>
+          <h2 className="text-turq font-normal pl-0 pb-4">Introducción</h2>
 
           <p className="text-white text-justify leading-normal mb-8">
             Safe Future es una innovadora plataforma diseñada para brindar
@@ -20,15 +20,15 @@ const Inicio = () => {
             misión y cómo funcionamos.
           </p>
           <button
-            className="relative bg-black1 border-0 text-white rounded-xl text-2xl py-3 px-6 font-semibold transition ease-in-out duration-200 cursor-pointer hover:bg-gold hover:text-black1 hover:-translate-y-1.5 active:translate-y-1 active:bg-gold"
+            className="relative bg-black1 border-0 text-white rounded-xl text-2xl py-3 px-6 font-semibold transition ease-in-out duration-200 cursor-pointer hover:bg-gold hover:text-black1 hover:-translate-y-1.5 active:translate-y-1 active:bg-gold hsm:center"
           >
             Descubre más
           </button>
         </article>
         <div>
           <iframe
-            className="w-full h-full rounded-xl border border-gold"
-            /* src="https://www.youtube.com/embed/cJZlSS0aKj8" */
+            className="w-full sm:h-full hsm:h-60 rounded-xl border border-gold"
+            /* src="https://www.youtube.com/embed/cJZlSS0aKj8" */ //! No se porque da problemas en consola WTF
             title="Video de Safe Future"
           ></iframe>
         </div>

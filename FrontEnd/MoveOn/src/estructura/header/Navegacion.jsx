@@ -14,32 +14,32 @@ const Navegacion = ({ menu, alternar }) => {
         >
             <ul className="list-none flex gap-5 hsm:gap-8 hsm:flex-col hsm:items-center">
                 <li>
-                    <Link to="/" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white ">
+                    <Link to="/" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
                         Inicio
                     </Link>
                 </li>
                 <li>
-                    <Link to="/que-somos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white ">
+                    <Link to="/que-somos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
                         ¿Qué Somos?
                     </Link>
                 </li>
                 <li>
-                    <Link to="/servicios" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+                    <Link to="/servicios" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
                         Servicios
                     </Link>
                 </li>
                 <li>
-                    <Link to="/rutina" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+                    <Link to="/rutina" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
                         Plantea tu rutina
                     </Link>
                 </li>
                 <li>
-                    <Link to="/foro" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+                    <Link to="/foro" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
                         Foro
                     </Link>
                 </li>
                 <li>
-                    <Link to="/contactanos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white">
+                    <Link to="/contactanos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
                         Contacto
                     </Link>
                 </li>

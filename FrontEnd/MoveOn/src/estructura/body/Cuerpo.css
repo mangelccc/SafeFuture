@@ -1,5 +1,17 @@
-#contenido-pagina {
+@media (max-width: 640px){
+    #contenido-pagina {
     
-    margin: 2rem;
+        margin: 0rem;
+        
+    }
+}
+
+@media (min-width: 641px){
+
+    #contenido-pagina {
     
+        margin: 2rem;
+        
+    }
+
 }
