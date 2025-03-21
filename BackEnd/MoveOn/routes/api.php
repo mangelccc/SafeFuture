@@ -14,6 +14,7 @@ use App\Http\Controllers\TrasladoController;
 use App\Http\Controllers\UsuarioDietaController;
 use App\Http\Controllers\RutinaEjercicioController;
 use App\Http\Controllers\UsuarioRutinaController;
+use App\Http\Controllers\AlimentoDietaController;
 
 // Rutas para Usuarios
 Route::get('/usuarios', [UsuarioController::class, 'index']);
@@ -106,3 +107,13 @@ Route::post('/usuario-rutina', [UsuarioRutinaController::class, 'store']);
 Route::put('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'update']);
 Route::patch('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'updatePartial']);
 Route::delete('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'destroy']);
+
+
+Route::prefix('alimento-dieta')->group(function () {
+    Route::get('/', [AlimentoDietaController::class, 'index']);
+    Route::post('/', [AlimentoDietaController::class, 'store']);
+    Route::get('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'show']);
+    Route::put('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'update']);
+    Route::patch('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'updatePartial']);
+    Route::delete('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'destroy']);
+});

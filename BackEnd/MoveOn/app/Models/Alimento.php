@@ -28,4 +28,12 @@ class Alimento extends Model
         'grasas',
         'carbohidratos'
     ];
+
+    public function dietas()
+    {
+        return $this->belongsToMany(Dieta::class, 'alimento_dieta', 'id_alimento', 'id_dieta')
+            ->withPivot('cantidad')
+            ->withTimestamps();
+    }
+
 }
