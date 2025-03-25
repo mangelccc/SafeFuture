@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 
 const EjerciciosUsuarioLink = () => {
   return (
-    <Link to='/rutina/ejercicio/ejercicios'>
-        Mis Ejercicios
-    </Link>
+      <Link 
+        className="p-2 block w-full text-left border-b dark:border-white border-black"
+        to='/rutina/ejercicio/ejercicios'
+      >
+          Mis Ejercicios
+      </Link>
   );
 };
 

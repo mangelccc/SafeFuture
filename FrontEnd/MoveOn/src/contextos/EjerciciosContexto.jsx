@@ -20,10 +20,8 @@ const EjerciciosContexto = ({ children }) => {
   const [errorEjercicio, setErrorEjercicio] = useState(errorEjercicioInicial);
 
   const apiUrl = 'http://localhost:8089/api/ejercicios';
-
-  // Obtención de datos al montar el componente
-  useEffect(() => {
-    fetch(apiUrl)
+  const readEjercicios = () => {
+    return fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         // Se asume que la respuesta tiene la propiedad "ejercicios"
@@ -33,6 +31,11 @@ const EjerciciosContexto = ({ children }) => {
         console.error(`Se ha producido un error: ${error.message}`);
         setErrorEjercicio(`Se ha producido un error: ${error.message}`);
       });
+  }
+
+  // Obtención de datos al montar el componente
+  useEffect(() => {
+    readEjercicios(apiUrl);
   }, [apiUrl]);
 
   // Función para crear un nuevo ejercicio (POST)
@@ -115,6 +118,7 @@ const EjerciciosContexto = ({ children }) => {
     ejercicios,
     errorEjercicio,
     createEjercicio,
+    readEjercicios,
     updateEjercicio,
     deleteEjercicio,
   };
