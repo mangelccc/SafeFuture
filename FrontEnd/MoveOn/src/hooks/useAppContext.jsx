@@ -3,13 +3,15 @@ import { useContext } from "react";
 import { contextoAlimentos } from "../contextos/AlimentosContexto";
 import { contextoAuth } from "../contextos/AuthContexto";
 import { contextoListas } from "../contextos/ListasContexto";
+import { ContextoEjercicios } from "../contextos/EjerciciosContexto";
 
 const useAppContext = () => {
   const alimentos = useContext(contextoAlimentos);
   const auth = useContext(contextoAuth);
   const listas = useContext(contextoListas);
+  const ejerciciosContex = useContext(ContextoEjercicios);
   
-  return { alimentos, auth, listas };
+  return { alimentos, auth, listas, ejerciciosContex };
 };
 
 export default useAppContext;
