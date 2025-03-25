@@ -11,7 +11,7 @@ import GestorListas from "../paginas/rutina/dieta/GestorListas.jsx";
 
 import Ejercicio from "../paginas/rutina/ejercicio/MiniAppEjercicios.jsx";
 
-import Ejercicios from "../paginas/rutina/ejercicio/Ejercicios.jsx";
+import GestorEjercicios from "../paginas/rutina/ejercicio/GestorEjercicios.jsx";
 import Entrenamientos from "../paginas/rutina/ejercicio/Entrenamientos.jsx";
 import Plantillas from "../paginas/rutina/ejercicio/Plantillas.jsx";
 import AgenteEntrenadorIA from "../paginas/rutina/ejercicio/AgenteEntrenadorIA.jsx";
@@ -47,7 +47,7 @@ const RutasPaginas = () => {
           }
         >
           <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
-          <Route path='ejercicios' element={<Ejercicios />} />
+          <Route path='ejercicios' element={<GestorEjercicios />} />
           <Route path='entrenamientos' element={<Entrenamientos />} />
           <Route path='plantillas' element={<Plantillas />} />
           <Route path='entrenador-personal' element={<AgenteEntrenadorIA />} />
