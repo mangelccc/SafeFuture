@@ -25,4 +25,11 @@ class Dieta extends Model
             ->withPivot('peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')
             ->withTimestamps();
     }
+    public function dietas()
+    {
+        return $this->belongsToMany(Dieta::class, 'alimento_dieta', 'id_alimento', 'id_dieta')
+            ->withPivot('cantidad')
+            ->withTimestamps();
+    }
+
 }
