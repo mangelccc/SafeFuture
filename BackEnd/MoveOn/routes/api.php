@@ -119,4 +119,4 @@ Route::prefix('alimento-dieta')->group(function () {
 });
 
 // Ruta para permitir a un usuario crear su dieta personalizada.
-Route::post('/usuarios/{id_usuario}/dietas', [UsuarioDietaController::class, 'createDieta']);
+Route::post('/usuario/{id_usuario}/dieta', [UsuarioDietaController::class, 'createDieta']);
