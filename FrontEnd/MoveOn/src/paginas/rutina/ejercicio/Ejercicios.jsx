@@ -7,7 +7,7 @@ const Ejercicios = () => {
   const { ejercicios } = ejerciciosContex;
 
   return (
-    <div className="grid grid-cols-3 gap-4 h-[500px] overflow-y-scroll">
+    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-[500px] overflow-y-scroll">
       {ejercicios.length > 0 ? (
         ejercicios.map((ejercicio) => (
           <Ejercicio
@@ -20,7 +20,7 @@ const Ejercicios = () => {
           />
         ))
       ) : (
-        <p>No hay ejercicios.</p>
+        <p className="col-span-full text-center text-gray-500">No hay ejercicios.</p>
       )}
     </div>
   );
