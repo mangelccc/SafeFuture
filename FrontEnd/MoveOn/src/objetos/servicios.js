@@ -1,4 +1,4 @@
-import { faRobot, faPlane, faVideo, faGlobe, faBed, faRandom } from "@fortawesome/free-solid-svg-icons";
+import { faRobot, faPlane, faVideo, faGlobe, faBed, faRandom, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 const servicios = [
   { icono: faRobot, texto: "Ramón AI (Especialista en ayudarte)" },
@@ -6,7 +6,7 @@ const servicios = [
   { icono: faPlane, texto: "Información Emigrar Países" },
   { icono: faGlobe, texto: "Mapamundi Ubicaciones Destacadas" },
   { icono: faBed, texto: "Vuelos y Alojamientos Baratos" },
-  { icono: faRandom, texto: "Plan Aleatorio de Vida" },
+  { icono: faUtensils, texto: "Dietas personalizadas" },
 ];
 
 export default servicios;

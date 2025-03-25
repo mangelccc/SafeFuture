@@ -120,4 +120,38 @@ class UsuarioDietaController extends Controller
             'status'  => 200
         ], 200);
     }
+
+    //Funciones definidas por el programador (MiguelH).
+
+    public function createDieta(Request $request, $id_usuario)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'alimentos' => 'required|array',
+            'alimentos.*.id_alimento' => 'required|exists:alimento,id_alimento',
+            'alimentos.*.cantidad' => 'required|numeric|min:0.01'
+        ]);
+
+        // Creamos la dieta
+        $dieta = Dieta::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+        ]);
+
+        // Asociamos la dieta con el usuario
+        UsuarioDieta::create([
+            'id_usuario' => $id_usuario,
+            'id_dieta' => $dieta->id_dieta
+        ]);
+
+        // Añadimos los alimentos a la dieta
+        foreach ($request->alimentos as $alimento) {
+            $dieta->alimentos()->attach($alimento['id_alimento'], [
+                'cantidad' => $alimento['cantidad']
+            ]);
+        }
+
+        return response()->json(['message' => 'Dieta creada con éxito', 'dieta' => $dieta], 201);
+    }
 }

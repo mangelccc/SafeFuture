@@ -108,7 +108,7 @@ Route::put('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'update']);
 Route::patch('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'updatePartial']);
 Route::delete('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'destroy']);
 
-
+/** Rutas para la tabla intermedia dieta_alimento **/
 Route::prefix('alimento-dieta')->group(function () {
     Route::get('/', [AlimentoDietaController::class, 'index']);
     Route::post('/', [AlimentoDietaController::class, 'store']);
@@ -117,3 +117,6 @@ Route::prefix('alimento-dieta')->group(function () {
     Route::patch('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'updatePartial']);
     Route::delete('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'destroy']);
 });
+
+// Ruta para permitir a un usuario crear su dieta personalizada.
+Route::post('/usuarios/{id_usuario}/dietas', [UsuarioDietaController::class, 'createDieta']);
