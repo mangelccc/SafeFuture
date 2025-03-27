@@ -6,7 +6,6 @@ import Servicios from "../paginas/servicios/Servicios.jsx";
 import Rutina from "../paginas/rutina/Rutina.jsx";
 import Foro from "../paginas/foro/Foro.jsx";
 import Contactanos from "../paginas/contactanos/Contactanos.jsx";
-import FormularioMacros from "../paginas/rutina/dieta/formulario_macros/PasosMultiples.jsx";
 import GestorListas from "../paginas/rutina/dieta/GestorListas.jsx";
 
 import Ejercicio from "../paginas/rutina/ejercicio/MiniAppEjercicios.jsx";
@@ -17,12 +16,16 @@ import Plantillas from "../paginas/rutina/ejercicio/Plantillas.jsx";
 import AgenteEntrenadorIA from "../paginas/rutina/ejercicio/AgenteEntrenadorIA.jsx";
 import CrearEntrenamiento from "../paginas/rutina/ejercicio/CrearEntrenamiento.jsx";
 
-
-
+/* Perfil e info del usuario */
 import Usuario from "../paginas/sesion/Usuario.jsx";
 import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacion.jsx";
 
-import RouterAuth from "./RouterAuth.jsx";
+/* Para dietas */
+import Dietas from "../paginas/rutina/dieta/Dietas.jsx"
+import DietasCrear from "../paginas/rutina/dieta/DietasCrear.jsx"
+
+import FormularioMacros from "../paginas/rutina/dieta/formulario_macros/PasosMultiples.jsx";
+
 
 import Error from "../paginas/error/Error.jsx";
 
@@ -37,7 +40,8 @@ const RutasPaginas = () => {
 
 
         <Route path="/rutina" element={<Rutina />} />
-        <Route path="/rutina/formulario-macros" element={<FormularioMacros />} />
+        <Route path="/rutina/dietas" element={<Dietas />} />
+        <Route path="/rutina/dietas-crear" element={<DietasCrear />} />
         <Route path="/rutina/crear-dieta" element={<GestorListas />} />
 
         <Route

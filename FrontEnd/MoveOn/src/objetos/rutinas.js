@@ -2,7 +2,7 @@ import { faDumbbell, faEgg, faCalendar, faPiggyBank, faSmokingBan, faBriefcase }
 
 const rutinas = [
   { icono: faDumbbell, link: "/rutina/ejercicio" },
-  { icono: faEgg, link: "/rutina/formulario-macros" },
+  { icono: faEgg, link: "/rutina/dietas" },
   { icono: faCalendar, link: "/rutina/calendario" },
   { icono: faPiggyBank, link: "/rutina/finanzas" },
   { icono: faSmokingBan, link: "/rutina/no-fumar" },
