@@ -17,6 +17,7 @@ const EjerciciosContexto = ({ children }) => {
   // Estados usando las variables iniciales
   const [ejercicio, setEjercicio] = useState(ejercicioInicial);
   const [ejercicios, setEjercicios] = useState(ejerciciosIniciales);
+  const [ejerciciosFiltrados, setEjerciciosFiltrados] = useState(ejerciciosIniciales);
   const [errorEjercicio, setErrorEjercicio] = useState(errorEjercicioInicial);
 
   const apiUrl = 'http://localhost:8089/api/ejercicios';
@@ -112,15 +113,31 @@ const EjerciciosContexto = ({ children }) => {
       });
   };
 
+  // Función para filtrar los ejercicios por buscador actual.
+  const filtrarEjercicios = (filtro) => {
+    const ejerciciosFiltradosReturn = 
+      ejercicios
+        .filter((ejercicio) => {
+        ejercicio.nombre
+                .toLowerCase()
+                .includes(filtro.toLowerCase());
+      });
+    filtro === "" ? 
+    setEjerciciosFiltrados(ejercicios) : 
+    setEjerciciosFiltrados(ejerciciosFiltradosReturn);
+  }
+
 
   const datosContexto = {
     ejercicio,
     ejercicios,
+    ejerciciosFiltrados,
     errorEjercicio,
     createEjercicio,
     readEjercicios,
     updateEjercicio,
     deleteEjercicio,
+    filtrarEjercicios
   };
 
   return (
