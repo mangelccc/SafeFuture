@@ -22,11 +22,9 @@ const DietasContexto = ({ children }) => {
     }
 
     const [nuevaDieta, setNuevaDieta] = useState(dietaVacia);
-    const [dietasUsuario, setDietasUsuario] = useState(arrayVacio);
-    /* Estado para la inserción múltiple de la tabla productos_listas,
-    es decir donde almacenaré los productos que va incluyendo el usuario en la lista de compra. */
-    const [listaCompra, setListaCompra] = useState(arrayVacio);
+    const [dietaCreada, setDietaCreada] = useState(null);
 
+    const [dietasUsuario, setDietasUsuario] = useState(arrayVacio);
     const [errorDietas, setErrorDietas] = useState(cadenaVacia);
 
     /* Hook de navigate para poder redireccionar al usuario. */
@@ -35,8 +33,13 @@ const DietasContexto = ({ children }) => {
     /* Obtengo la sesión del usuario y sus datos desde el contexto. */
     const { usuario, sesionIniciada } = useContext(contextoAuth);
 
+    //!-----------------------------------------------------------------------------------vvvvvvvvvvvvvvvvvvvvvvvvvv
+
     /*     const { filtrarProductoDisponible, reiniciarListado, mostrarProductoDisponible } = useContext(contextoProductos); */ //! CONTEXTO ALIMENTOS
 
+    /* Estado para la inserción múltiple de la tabla productos_listas,
+es decir donde almacenaré los productos que va incluyendo el usuario en la lista de compra. */
+    const [listaCompra, setListaCompra] = useState(arrayVacio);
 
     const anyadirProductosALista = (evento, idLista) => {
         const tr = evento.target.closest('tr');
@@ -306,7 +309,7 @@ const DietasContexto = ({ children }) => {
         }
     }, [sesionIniciada, usuario]);
 
-    
+
 
     //!-------------------------------------------------------------
 
@@ -330,7 +333,7 @@ const DietasContexto = ({ children }) => {
             /* Además tengo que asegurarme de que no se comprueben los botones. */
             let elemento = formulario.elements[i];
             if (elemento.tagName === "INPUT") {
-                
+
                 // Variable que almacenará un array de los posibles errores que haya en los elementos del formulario.
                 let erroresElemento = validarCamposDieta(formulario.elements[i]);
                 // En esta otra, selecciono el label de los input.
@@ -354,6 +357,8 @@ const DietasContexto = ({ children }) => {
     };
 
 
+    
+
     const crearDieta = async () => {
         try {
             const response = await fetch("http://localhost:8089/api/dietas", {
@@ -361,27 +366,26 @@ const DietasContexto = ({ children }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(nuevaDieta),
             });
-
             const data = await response.json();
 
             if (!response.ok) {
                 setErrorDietas(data.message || "Error al crear la dieta.");
             } else {
-
-                // Actualizo el estado de las listas con el registro insertado, como es un array ponemos el [0].
-                setDietasUsuario([...dietasUsuario, data[0]]);
-
-                // Reinicio el formulario al estado inicial.
+                // Suponiendo que data es el objeto creado con su id
+                setDietasUsuario([...dietasUsuario, data]);
+                setDietaCreada(data); // Aquí guardamos la dieta con su id
                 setNuevaDieta(dietaVacia);
 
                 Swal.fire({
-                    title: "Dieta creada correctamente.",
+                    title: "Dieta guardada correctamente.",
                     icon: "success",
                     timer: 1500,
                     showConfirmButton: false
                 });
 
-                navegar("/rutina/dietas");
+                // Aquí puedes decidir si navegar o renderizar condicionalmente
+                // Por ejemplo, podrías redirigir a una ruta que incluya el id:
+                // navegar(`/rutina/dietas/${data.id}/objetivos`);
             }
         } catch (error) {
             setErrorDietas(error.message);
@@ -402,6 +406,7 @@ const DietasContexto = ({ children }) => {
         errorDietas,
         crearDieta,
         restablecerErroresDietas,
+        dietaCreada,
 
         dietasUsuario,
         eliminarListaDeCompra,
