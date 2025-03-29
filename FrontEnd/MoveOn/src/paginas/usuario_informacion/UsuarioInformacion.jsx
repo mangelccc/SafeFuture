@@ -6,7 +6,7 @@ import UsuarioDatos from "./UsuarioDatos.jsx";
 const Usuario = () => {
   // Se extrae el usuario autenticado y la función para cerrar sesión
   const { usuario, cerrarSesion } = useContext(contextoAuth);
-  console.log(JSON.stringify(usuario))
+  console.log(JSON.stringify(usuario)) //! DATOS DEL USUARIO INICIADO.
 
   return (
     <section id="usuario-informacion" className="flex justify-center flex-col">

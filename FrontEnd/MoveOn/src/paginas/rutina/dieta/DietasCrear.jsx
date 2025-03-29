@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
-/* import Errores from '../Errores.jsx'; */
+import FormularioMacros from "../../../paginas/rutina/dieta/formulario_macros/PasosMultiples.jsx";
+import Errores from './ErroresDietas.jsx';
 
 import useAppContext from '../../../hooks/useAppContext.jsx';
 
@@ -12,13 +13,12 @@ const ListasCompraCrear = () => {
         nuevaDieta,
         errorDietas,
         crearDieta,
-        
-        restablecerErroresLista } = dietas;
+        restablecerErroresDietas } = dietas;
 
 
-/*     useEffect(() =>{
-        restablecerErroresLista();
-    },[]) */
+    useEffect(() =>{
+        restablecerErroresDietas();
+    },[])
 
     return (
         <section className="flex flex-col items-center justify-center gap-5 p-5 bg-[#1e1e1e] border-2 border-[#259463] rounded-lg shadow-lg max-w-xl mx-auto my-12">
@@ -61,7 +61,7 @@ const ListasCompraCrear = () => {
                 Crear dieta
             </button>
         </form>
-        {/* <Errores>{errorDietas}</Errores> */}
+        {errorDietas && <Errores>{errorDietas}</Errores>}
     </div>
     <div>
         <Link to="/rutina/dietas">

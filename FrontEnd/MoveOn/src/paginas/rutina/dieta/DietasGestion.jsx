@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 /* import ListaTarjeta from '../listasCompra/ListaTarjeta.jsx'; */
 /* import useContexto from '../../hooks/useContexto.jsx' */
 
-const ListasCompra = () => {
+const DietasGestion = () => {
 
   /* const { listasUsuario } = useContexto("listas"); */
   const listasUsuario = [];
@@ -35,4 +35,4 @@ const ListasCompra = () => {
   )
 }
 
-export default ListasCompra;
+export default DietasGestion;

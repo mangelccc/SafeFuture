@@ -306,10 +306,7 @@ const DietasContexto = ({ children }) => {
         }
     }, [sesionIniciada, usuario]);
 
-    /* Para encapsular el set para los errores de las listas. */
-    const restablecerErroresLista = () => {
-        setErrorDietas(cadenaVacia);
-    }
+    
 
     //!-------------------------------------------------------------
 
@@ -391,6 +388,11 @@ const DietasContexto = ({ children }) => {
         }
     };
 
+    /* Para encapsular el set para los errores de las listas. */
+    const restablecerErroresDietas = () => {
+        setErrorDietas(cadenaVacia);
+    }
+
     //!------------------------------------------
     /* Objeto para exportar con lo necesario. */
     const datosDietas = {
@@ -399,10 +401,10 @@ const DietasContexto = ({ children }) => {
         validarDieta,
         errorDietas,
         crearDieta,
+        restablecerErroresDietas,
 
         dietasUsuario,
         eliminarListaDeCompra,
-        restablecerErroresLista,
         obtenerListaPorId,
         anyadirProductosALista,
         listaCompra,
