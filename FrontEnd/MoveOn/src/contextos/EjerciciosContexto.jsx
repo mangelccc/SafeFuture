@@ -60,7 +60,7 @@ const EjerciciosContexto = ({ children }) => {
         const ejercicioCreado = data.ejercicio || data;
         setEjercicios([...ejercicios, ejercicioCreado]);
         // Reseteamos el estado del ejercicio actual a su estado inicial
-        resetEjercicio();
+        setEjercicio(ejercicioInicial);
       })
       .catch(error => {
         console.error("Error al crear el ejercicio:", error);
