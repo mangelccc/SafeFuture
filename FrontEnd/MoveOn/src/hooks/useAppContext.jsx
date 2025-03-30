@@ -1,9 +1,10 @@
 // src/hooks/useAppContext.js
 import { useContext } from "react";
-import { contextoAlimentos } from "../contextos/AlimentosContexto.jsx";
-import { contextoAuth } from "../contextos/AuthContexto.jsx";
-import { contextoListas } from "../contextos/ListasContexto.jsx";
-import { ContextoEjercicios } from "../contextos/EjerciciosContexto.jsx";
+import { contextoAlimentos } from "../contextos/AlimentosContexto";
+import { contextoAuth } from "../contextos/AuthContexto";
+import { contextoListas } from "../contextos/ListasContexto";
+import { ContextoEntrenamiento } from "../contextos/EntrenamientoContexto";
+import { ContextoEjercicios } from "../contextos/EjerciciosContexto";
 import { contextoDietas } from "../contextos/DietasContexto.jsx";
 
 const useAppContext = () => {
@@ -11,9 +12,10 @@ const useAppContext = () => {
   const auth = useContext(contextoAuth);
   const listas = useContext(contextoListas);
   const ejerciciosContex = useContext(ContextoEjercicios);
+  const entrenamiento = useContext(ContextoEntrenamiento);
   const dietas = useContext(contextoDietas);
   
-  return { alimentos, auth, listas, ejerciciosContex, dietas };
+  return { alimentos, auth, listas, ejerciciosContex, entrenamiento, dietas };
 };
 
 export default useAppContext;

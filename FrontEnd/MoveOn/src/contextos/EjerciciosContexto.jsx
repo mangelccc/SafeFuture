@@ -17,6 +17,7 @@ const EjerciciosContexto = ({ children }) => {
   // Estados usando las variables iniciales
   const [ejercicio, setEjercicio] = useState(ejercicioInicial);
   const [ejercicios, setEjercicios] = useState(ejerciciosIniciales);
+  const [ejerciciosFiltrados, setEjerciciosFiltrados] = useState(ejerciciosIniciales);
   const [errorEjercicio, setErrorEjercicio] = useState(errorEjercicioInicial);
 
   const apiUrl = 'http://localhost:8089/api/ejercicios';
@@ -26,6 +27,7 @@ const EjerciciosContexto = ({ children }) => {
       .then(data => {
         // Se asume que la respuesta tiene la propiedad "ejercicios"
         setEjercicios(data.ejercicios);
+        setEjerciciosFiltrados(data.ejercicios)
       })
       .catch(error => {
         console.error(`Se ha producido un error: ${error.message}`);
@@ -58,7 +60,7 @@ const EjerciciosContexto = ({ children }) => {
         const ejercicioCreado = data.ejercicio || data;
         setEjercicios([...ejercicios, ejercicioCreado]);
         // Reseteamos el estado del ejercicio actual a su estado inicial
-        resetEjercicio();
+        setEjercicio(ejercicioInicial);
       })
       .catch(error => {
         console.error("Error al crear el ejercicio:", error);
@@ -112,15 +114,33 @@ const EjerciciosContexto = ({ children }) => {
       });
   };
 
+  // Función para filtrar los ejercicios por buscador actual.
+  const filtrarEjercicios = (filtro) => {
+    const ejerciciosFiltradosReturn = 
+      ejercicios
+        .filter(ejercicio => 
+        ejercicio.nombre
+                .toLowerCase()
+                .startsWith(filtro.toLowerCase())
+      );
+      
+    filtro === "" ? 
+    setEjerciciosFiltrados(ejercicios) : 
+    setEjerciciosFiltrados(ejerciciosFiltradosReturn);
+    console.log(ejerciciosFiltrados);
+  }
+
 
   const datosContexto = {
     ejercicio,
     ejercicios,
+    ejerciciosFiltrados,
     errorEjercicio,
     createEjercicio,
     readEjercicios,
     updateEjercicio,
     deleteEjercicio,
+    filtrarEjercicios
   };
 
   return (
