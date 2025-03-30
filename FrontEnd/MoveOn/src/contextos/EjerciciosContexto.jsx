@@ -27,6 +27,7 @@ const EjerciciosContexto = ({ children }) => {
       .then(data => {
         // Se asume que la respuesta tiene la propiedad "ejercicios"
         setEjercicios(data.ejercicios);
+        setEjerciciosFiltrados(data.ejercicios)
       })
       .catch(error => {
         console.error(`Se ha producido un error: ${error.message}`);
@@ -117,14 +118,16 @@ const EjerciciosContexto = ({ children }) => {
   const filtrarEjercicios = (filtro) => {
     const ejerciciosFiltradosReturn = 
       ejercicios
-        .filter((ejercicio) => {
+        .filter(ejercicio => 
         ejercicio.nombre
                 .toLowerCase()
-                .includes(filtro.toLowerCase());
-      });
+                .startsWith(filtro.toLowerCase())
+      );
+      
     filtro === "" ? 
     setEjerciciosFiltrados(ejercicios) : 
     setEjerciciosFiltrados(ejerciciosFiltradosReturn);
+    console.log(ejerciciosFiltrados);
   }
 
 

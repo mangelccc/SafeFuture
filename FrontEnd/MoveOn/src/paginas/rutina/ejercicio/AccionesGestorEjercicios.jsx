@@ -2,6 +2,8 @@ import React from 'react';
 import useAppContext from "../../../hooks/useAppContext.jsx";
 
 const AccionesGestorEjercicios = () => {
+    const { ejerciciosContex } = useAppContext();
+    const { filtrarEjercicios } = ejerciciosContex;
     return (
         <div className='flex flex-col items-center justify-center'>
             <h2 className='pb-4'>

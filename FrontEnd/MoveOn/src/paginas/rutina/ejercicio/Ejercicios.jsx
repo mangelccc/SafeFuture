@@ -4,12 +4,12 @@ import Ejercicio from "./Ejercicio.jsx";
 
 const Ejercicios = () => {
   const { ejerciciosContex } = useAppContext();
-  const { ejercicios } = ejerciciosContex;
+  const { ejerciciosFiltrados } = ejerciciosContex;
 
   return (
     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-[500px] overflow-y-scroll">
-      {ejercicios.length > 0 ? (
-        ejercicios.map((ejercicio) => (
+      {ejerciciosFiltrados.length > 0 ? (
+        ejerciciosFiltrados.map((ejercicio) => (
           <Ejercicio
             key={ejercicio.id_ejercicio}
             nombre={ejercicio.nombre}
