@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { contextoMacros } from "../../../../contextos/MacrosContexto.jsx";
+import React from "react";
 import NumerosPasos from "./NumeroPasos.jsx";
 import PasoA from "./PasoA.jsx";
 import PasoB from "./PasoB.jsx";
@@ -9,11 +8,7 @@ import PasoFinal from "./PasoFinal.jsx";
 
 import "./PasosMultiples.css"; 
 
-const PasosMultiples = () => {
-  
-  const {
-    paso
-  } = useContext(contextoMacros);
+const PasosMultiples = ({paso}) => {
 
   return (
     <div className="form-container">

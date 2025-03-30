@@ -1,8 +1,8 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { contextoAuth } from "../contextos/AuthContexto.jsx"
-import { validarCamposDieta } from '../bibliotecas/biblioteca.js';
+import { contextoAuth } from "./AuthContexto.jsx"
+import { validarCamposDieta, calcularMacronutrientes } from '../bibliotecas/biblioteca.js';
 
 /* import { contextoProductos } from './ProveedorProductos.jsx'; */ //! esto será el contexto de los alimentos.
 
@@ -33,7 +33,107 @@ const DietasContexto = ({ children }) => {
     /* Obtengo la sesión del usuario y sus datos desde el contexto. */
     const { usuario, sesionIniciada } = useContext(contextoAuth);
 
-    //!-----------------------------------------------------------------------------------vvvvvvvvvvvvvvvvvvvvvvvvvv
+    
+    //?VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV LOS MACROS DEL DANDY
+
+
+    const iniciaFormulario = {
+        peso: 0,
+        altura: 0,
+        edad: 0,
+        sexo: "",
+        actividad: "",
+        objetivo: "",
+    };
+
+    const pasosArray = ["A", "B", "C", "D"];
+
+    const [paso, setPaso] = useState("A");
+    const [formularioData, setFormularioData] = useState(iniciaFormulario);
+
+    const siguientePaso = () => {
+        if (paso === "A") setPaso("B");
+        else if (paso === "B") setPaso("C");
+        else if (paso === "C") setPaso("D");
+    };
+
+    const anteriorPaso = () => {
+        if (paso === "D") setPaso("C");
+        else if (paso === "C") setPaso("B");
+        else if (paso === "B") setPaso("A");
+    };
+
+    const cambiarFormulario = (e) => {
+        setFormularioData({
+            ...formularioData,
+            [e.target.name]: e.target.value,
+        });
+        console.log(formularioData)
+    };
+
+    const terminarFormulario = async () => {
+        await guardarDatosMacros(); // Llama a la función para guardar datos antes de continuar
+        setPaso("final");
+    };
+
+    const guardarDatosMacros = async () => {
+        if (!usuario || !usuario.id) {
+            console.error("No se encontró el usuario autenticado.");
+            return;
+        }
+    
+        // Calcular macronutrientes con los datos actuales del formulario
+        const macrosCalculados = calcularMacronutrientes(formularioData);
+    
+        try {
+            const { data, error } = await undefined
+                .from("usuario_macros")
+                .insert([
+                    {
+                        uuid_usuario: usuario.id,
+                        peso: formularioData.peso,
+                        altura: formularioData.altura,
+                        edad: formularioData.edad,
+                        sexo: formularioData.sexo,
+                        actividad: formularioData.actividad,
+                        objetivo: formularioData.objetivo,
+                        calorias_diarias: Math.round(macrosCalculados.caloriasObjetivo), // Convertir a entero
+                        proteinas_diarias: parseFloat(macrosCalculados.proteinas.toFixed(2)), // Redondear a 2 decimales
+                        grasas_diarias: parseFloat(macrosCalculados.grasas.toFixed(2)), // Redondear a 2 decimales
+                        carbohidratos_diarias: parseFloat(macrosCalculados.carbohidratos.toFixed(2)) // Redondear a 2 decimales
+                    },
+                ]);
+    
+            if (error) {
+                throw error;
+            }
+    
+            console.log("Datos guardados correctamente en Supabase:", data);
+        } catch (error) {
+            console.error("Error al guardar los datos en Supabase:", error.message);
+        }
+    };
+    
+    
+
+    const seleccionarPaso = (letra) => {
+        setPaso(letra);
+    }
+
+    /* useEffect(() => {
+        console.log(formularioData);
+    }, [formularioData]); */
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (paso === "final") {
+            navigate("/Rutina/CrearDieta");
+            setPaso("A"); 
+        }
+    }, [paso, navigate]);
+
+
+    //!-----------------------------------------------------------------------------------vvvvvvvvvvvvvvvvvvvvvvvvvv POR MODIFICAR /EDITAR Y QUITAR
 
     /*     const { filtrarProductoDisponible, reiniciarListado, mostrarProductoDisponible } = useContext(contextoProductos); */ //! CONTEXTO ALIMENTOS
 
@@ -408,6 +508,18 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
         restablecerErroresDietas,
         dietaCreada,
 
+
+        //? V V LOS MACROS DEL DANDY
+        siguientePaso,
+        anteriorPaso,
+        cambiarFormulario,
+        terminarFormulario,
+        pasosArray,
+        paso,
+        formularioData,
+        seleccionarPaso,
+
+        //! V V LOS QUE FALTAN POR CAMBIAR / QUITAR
         dietasUsuario,
         eliminarListaDeCompra,
         obtenerListaPorId,

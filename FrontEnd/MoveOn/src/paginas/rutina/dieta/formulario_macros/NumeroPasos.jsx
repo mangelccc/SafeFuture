@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
-import { contextoMacros } from "../../../../contextos/MacrosContexto.jsx";
+import useAppContext from '../../../../hooks/useAppContext.jsx';
+
 
 const NumerosPasos = () => {
 
-    const {
-        seleccionarPaso,
-        pasosArray,
-        paso
-    } = useContext(contextoMacros);
+    const { dietas } = useAppContext();
+    const { seleccionarPaso, pasosArray, paso } = dietas;
 
     return (
       <section className="steps-section">

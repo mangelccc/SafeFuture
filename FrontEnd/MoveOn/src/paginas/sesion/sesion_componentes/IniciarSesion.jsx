@@ -8,25 +8,29 @@ const IniciarSesion = () => {
   return (
     <>
       <h2>Iniciar Sesión</h2>
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        onChange={actualizarDato}
-        value={datosSesion.email || ""}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        onChange={actualizarDato}
-        value={datosSesion.password || ""}
-      />
+      <form>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={actualizarDato}
+          value={datosSesion.email || ""}
+
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={actualizarDato}
+          value={datosSesion.password || ""}
+
+        />
+      </form>
       <a onClick={() => volverInicioSesionClick(true)}>
         ¿Has olvidado la contraseña?
       </a>
       <p>{errorUsuario}</p>
-      <button onClick={(e)=>iniciarSesion(e)}>Entrar</button>
+      <button onClick={(e) => iniciarSesion(e)}>Entrar</button>
     </>
   );
 };

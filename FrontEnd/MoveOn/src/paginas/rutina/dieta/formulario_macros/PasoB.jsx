@@ -1,15 +1,19 @@
-import React, { useContext } from "react";
-import { contextoMacros } from "../../../../contextos/MacrosContexto.jsx";
+import React from "react";
+import useAppContext from '../../../../hooks/useAppContext.jsx';
 import "./Paso.css";
 
 const PasoB = () => {
+
+  const { dietas } = useAppContext(); 
 
   const {
     formularioData, 
     cambiarFormulario, 
     siguientePaso,
     anteriorPaso,
-  } = useContext(contextoMacros);
+  } = dietas;
+  
+
   return (
     <div className="pasoA-container">
       <h2 className="pasoA-title">Paso B</h2>
