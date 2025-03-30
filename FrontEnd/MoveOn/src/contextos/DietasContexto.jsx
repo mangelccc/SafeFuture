@@ -40,8 +40,6 @@ const DietasContexto = ({ children }) => {
     const iniciaFormulario = {
         peso: 0,
         altura: 0,
-        edad: 0,
-        sexo: "",
         actividad: "",
         objetivo: "",
     };

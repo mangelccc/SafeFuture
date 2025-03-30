@@ -15,7 +15,7 @@ const PasoD = () => {
 
   return (
     <div className="pasoA-container">
-      <h2 className="pasoA-title">Paso D</h2>
+      <h2 className="pasoA-title">Último paso</h2>
 
       <div className="pasoA-fieldContainer">
         <label className="pasoA-label">Objetivo</label>

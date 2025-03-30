@@ -15,7 +15,7 @@ const PasoC = () => {
 
   return (
     <div className="pasoA-container">
-      <h2 className="pasoA-title">Paso C</h2>
+      <h2 className="pasoA-title">Tercer paso</h2>
 
       <div className="pasoA-fieldContainer">
         <label className="pasoA-label">Nivel de actividad</label>
