@@ -49,12 +49,7 @@ const EjerciciosContexto = ({ children }) => {
       },
       body: JSON.stringify(nuevoEjercicio)
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al crear el ejercicio');
-        }
-        return response.json();
-      })
+      .then(response => {response.json()})
       .then(data => {
         // Se asume que la respuesta devuelve el ejercicio creado en la propiedad "ejercicio"
         const ejercicioCreado = data.ejercicio || data;
@@ -63,26 +58,20 @@ const EjerciciosContexto = ({ children }) => {
         setEjercicio(ejercicioInicial);
       })
       .catch(error => {
-        console.error("Error al crear el ejercicio:", error);
-        setErrorEjercicio("Error al crear el ejercicio");
+        setErrorEjercicio(`Error al crear el ejercicio: ${error.message}`);
       });
   };
 
   // Función para actualizar un ejercicio (PUT)
   const updateEjercicio = (id, updatedData) => {
     fetch(`${apiUrl}/${id}`, {
-      method: 'PUT', // o 'PATCH' según la implementación de la API
+      method: 'PUT', // o 'PATCH' según la implementación de la API.
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(updatedData)
     })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al actualizar el ejercicio');
-        }
-        return response.json();
-      })
+      .then(response => {response.json()})
       .then(data => {
         // Se asume que la respuesta devuelve el ejercicio actualizado en la propiedad "ejercicio"
         const ejercicioActualizado = data.ejercicio || data;
@@ -91,26 +80,19 @@ const EjerciciosContexto = ({ children }) => {
         );
       })
       .catch(error => {
-        console.error("Error al actualizar el ejercicio:", error);
-        setErrorEjercicio("Error al actualizar el ejercicio");
+        setErrorEjercicio(`Error al actualizar el ejercicio: ${error.message}`);
       });
   };
 
   // Función para eliminar un ejercicio (DELETE)
   const deleteEjercicio = (id) => {
-    fetch(`${apiUrl}/${id}`, {
-      method: 'DELETE'
-    })
+    fetch(`${apiUrl}/${id}`, {method: 'DELETE'})
       .then(response => {
-        if (!response.ok) {
-          throw new Error('Error al eliminar el ejercicio');
-        }
         // Se actualiza el estado filtrando el ejercicio eliminado
         setEjercicios(ejercicios.filter(ejercicio => ejercicio.id_ejercicio !== id));
       })
       .catch(error => {
-        console.error(`Error al eliminar el ejercicio: ${error.message}`);
-        setErrorEjercicio("Error al eliminar el ejercicio");
+        setErrorEjercicio(`Error al eliminar el ejercicio: ${error.message}`);
       });
   };
 

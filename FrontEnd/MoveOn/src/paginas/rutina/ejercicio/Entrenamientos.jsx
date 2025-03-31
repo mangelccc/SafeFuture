@@ -11,8 +11,7 @@ const Entrenamientos = () => {
       {entrenamientos.map((e) => (
         <Entrenamiento 
           key={e.id_ejercicio}
-          nombre={e.nombre}
-          descripcion={e.descripcion} 
+          entrenamiento={e}
         />
       ))}
     </div>
