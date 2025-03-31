@@ -5,6 +5,7 @@ import { contextoAuth } from "../contextos/AuthContexto";
 import { contextoListas } from "../contextos/ListasContexto";
 import { ContextoEntrenamiento } from "../contextos/EntrenamientoContexto";
 import { ContextoEjercicios } from "../contextos/EjerciciosContexto";
+import { contextoDietas } from "../contextos/DietasContexto.jsx";
 
 const useAppContext = () => {
   const alimentos = useContext(contextoAlimentos);
@@ -12,8 +13,9 @@ const useAppContext = () => {
   const listas = useContext(contextoListas);
   const ejerciciosContex = useContext(ContextoEjercicios);
   const entrenamiento = useContext(ContextoEntrenamiento);
+  const dietas = useContext(contextoDietas);
   
-  return { alimentos, auth, listas, ejerciciosContex,entrenamiento };
+  return { alimentos, auth, listas, ejerciciosContex, entrenamiento, dietas };
 };
 
 export default useAppContext;

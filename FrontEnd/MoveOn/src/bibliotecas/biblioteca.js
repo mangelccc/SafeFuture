@@ -1,38 +1,38 @@
 // Función para calcular macronutrientes
 const calcularMacronutrientes = ({ peso, altura, edad, sexo, actividad, objetivo }) => {
   let tmb;
-  
+
   if (sexo === 'masculino') {
-      tmb = 10 * peso + 6.25 * altura - 5 * edad + 5;
+    tmb = 10 * peso + 6.25 * altura - 5 * edad + 5;
   } else {
-      tmb = 10 * peso + 6.25 * altura - 5 * edad - 161;
+    tmb = 10 * peso + 6.25 * altura - 5 * edad - 161;
   }
-  
+
   // Factores de actividad
   const factoresActividad = {
-      sedentario: 1.2,
-      ligero: 1.375,
-      moderado: 1.55,
-      activo: 1.725,
-      muy_activo: 1.9
+    sedentario: 1.2,
+    ligero: 1.375,
+    moderado: 1.55,
+    activo: 1.725,
+    muy_activo: 1.9
   };
-  
+
   const caloriasMantenimiento = tmb * (factoresActividad[actividad] || 1.2);
   let caloriasObjetivo;
-  
+
   if (objetivo === 'perder_peso') {
-      caloriasObjetivo = caloriasMantenimiento - 500;
+    caloriasObjetivo = caloriasMantenimiento - 500;
   } else if (objetivo === 'ganar_musculo') {
-      caloriasObjetivo = caloriasMantenimiento + 500;
+    caloriasObjetivo = caloriasMantenimiento + 500;
   } else {
-      caloriasObjetivo = caloriasMantenimiento;
+    caloriasObjetivo = caloriasMantenimiento;
   }
-  
+
   // División de macronutrientes
   const proteinas = peso * 2;
   const grasas = (caloriasObjetivo * 0.25) / 9;
   const carbohidratos = (caloriasObjetivo - (proteinas * 4 + grasas * 9)) / 4;
-  
+
   return { caloriasObjetivo, proteinas, grasas, carbohidratos };
 };
 
@@ -156,7 +156,73 @@ const validarRegistro = (datos) => {
 // Devolver los errores ya formateados como una cadena de texto
 /* return errores.length && `Errores encontrados:\n${errores.map(e => ` ${e}`).toString()}`; */
 
+//!DIETAS DEBAJO
+
+const validarCamposDieta = (elemento) => {
+  // Elemento target desestructurado.
+  const { name, value } = elemento;
+  // Variable para almacenar los posibles errores de cada elemento.
+  let erroresElemento = [];
+
+  // Comprobaciones para cada uno de los elementos del formulario.
+  switch (name) {
+    case "nombre":
+      // Comprobación por si no hay nada escrito.
+      if (!value.length) {
+        erroresElemento = [...erroresElemento, `El campo ${name} no tiene valores.`];
+      }
+      // Comprobación de los requisitos del campo.
+      if (!/.{3,}/.test(value)) {
+        erroresElemento = [
+          ...erroresElemento,
+          `El nombre debe contener al menos 3 caracteres.`,
+        ];
+      }
+      break;
+    case "descripcion":
+      if (!value.length) {
+        erroresElemento = [...erroresElemento, `El campo ${name} no tiene valores.`];
+      }
+      if (!/.{10,}/.test(value)) {
+        erroresElemento = [
+          ...erroresElemento,
+          `La descripción debe tener mínimo 10 caracteres.`,
+        ];
+      }
+      break;
+
+      
+
+    case "peso":
+      if (!value.length) {
+        erroresElemento = [...erroresElemento, `El campo ${name} no tiene valores.`];
+      }
+      if (!/^\d+([.]\d{1,2})?$/.test(value)) {
+        erroresElemento = [
+          ...erroresElemento,
+          `El peso debe tener mínimo un caracter numérico y como mucho dos decimales (Con un punto).`,
+        ];
+      }
+      break;
+    case "precio":
+      if (!value.length) {
+        erroresElemento = [...erroresElemento, `El campo ${name} no tiene valores.`];
+      }
+      if (!/^\d+([.]\d{1,2})?$/.test(value)) {
+        erroresElemento = [
+          ...erroresElemento,
+          `El precio debe tener mínimo un caracter numérico y como mucho dos decimales (Con un punto).`,
+        ];
+      }
+      break;
+
+  }
+  // Devolvemos el listado de errores.
+  return erroresElemento;
+};
 
 
-
-export { validarRegistro,calcularMacronutrientes,precioPorKilo, validarCreacionAlimento,obtenerAlimentosVisibles,validarCrearLista };
+export {
+  validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
+  validarCamposDieta
+};
