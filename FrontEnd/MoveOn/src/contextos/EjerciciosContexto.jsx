@@ -49,7 +49,7 @@ const EjerciciosContexto = ({ children }) => {
       },
       body: JSON.stringify(nuevoEjercicio)
     })
-      .then(response => {response.json()})
+      .then(response => response.json())
       .then(data => {
         // Se asume que la respuesta devuelve el ejercicio creado en la propiedad "ejercicio"
         const ejercicioCreado = data.ejercicio || data;
@@ -71,7 +71,7 @@ const EjerciciosContexto = ({ children }) => {
       },
       body: JSON.stringify(updatedData)
     })
-      .then(response => {response.json()})
+      .then(response => response.json())
       .then(data => {
         // Se asume que la respuesta devuelve el ejercicio actualizado en la propiedad "ejercicio"
         const ejercicioActualizado = data.ejercicio || data;
@@ -109,7 +109,6 @@ const EjerciciosContexto = ({ children }) => {
     filtro === "" ? 
     setEjerciciosFiltrados(ejercicios) : 
     setEjerciciosFiltrados(ejerciciosFiltradosReturn);
-    console.log(ejerciciosFiltrados);
   }
 
 

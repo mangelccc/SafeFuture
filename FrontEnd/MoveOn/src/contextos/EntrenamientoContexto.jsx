@@ -44,18 +44,31 @@ const EntrenamientoContexto = ({children}) => {
             method: "POST",
             body: JSON.stringify(nuevoEntrenamiento),
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al crear el entrenamiento');
-            }
-            return response.json();
-        })
+        .then(response => {return response.json()})
         .then(data => {
-            const entrenamientoCreado = data.rutina || data;
+            const entrenamientoCreado = data.rutina;
             setEntrenamientos([...entrenamientos, entrenamientoCreado]);
             setEntrenamiento(entrenamientoInicial);
-        })  
+        })
+        .catch(error => {
+            setErrorEntrenamiento(`Se ha producido un error: ${error.message}`);
+        });  
     }
+
+    const deleteEntrenamiento = (id) => {
+      fetch(`${apiUrl}/${id}`,{
+          method: "DELETE"
+      })
+      .then(response => response.json())  
+      .then(data => {
+        setEntrenamientos(entrenamientos.filter(e => e.id_rutina !== id));
+        console.log(`Se ha eliminado el entrenamiento con id: ${id}`);
+      })    
+      .catch(error => {
+          setErrorEntrenamiento(`Se ha producido un error: ${error.message}`);
+      });
+    }
+
 
     const datosContexto = {
         entrenamiento,
@@ -63,7 +76,8 @@ const EntrenamientoContexto = ({children}) => {
         entrenamientosFiltrados,
         errorEntrenamiento,
         readEntrenamientos,
-        createEntrenamiento
+        createEntrenamiento,
+        deleteEntrenamiento,
     };
 
 

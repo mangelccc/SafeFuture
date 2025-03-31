@@ -12,10 +12,10 @@ const useAppContext = () => {
   const auth = useContext(contextoAuth);
   const listas = useContext(contextoListas);
   const ejerciciosContex = useContext(ContextoEjercicios);
-  const entrenamiento = useContext(ContextoEntrenamiento);
+  const entrenamientoContexto = useContext(ContextoEntrenamiento);
   const dietas = useContext(contextoDietas);
   
-  return { alimentos, auth, listas, ejerciciosContex, entrenamiento, dietas };
+  return { alimentos, auth, listas, ejerciciosContex, entrenamientoContexto, dietas };
 };
 
 export default useAppContext;
