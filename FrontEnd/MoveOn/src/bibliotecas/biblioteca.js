@@ -36,6 +36,8 @@ const calcularMacronutrientes = ({ peso, altura, edad, sexo, actividad, objetivo
   return { caloriasObjetivo, proteinas, grasas, carbohidratos };
 };
 
+
+
 const precioPorKilo = (pesoKg, precioEuros) => {
   return parseFloat((precioEuros / pesoKg).toFixed(2));
 };

@@ -26,9 +26,9 @@ const PasoD = () => {
           className="pasoA-input"
         >
           <option value="" disabled>Selecciona tu opción</option>
-          <option value="perder">Perder peso</option>
-          <option value="mantener">Mantener peso</option>
-          <option value="ganar">Ganar masa muscular</option>
+          <option value="Perder">Perder peso</option>
+          <option value="Mantener">Mantener peso</option>
+          <option value="Ganar">Ganar masa muscular</option>
         </select>
       </div>
 
