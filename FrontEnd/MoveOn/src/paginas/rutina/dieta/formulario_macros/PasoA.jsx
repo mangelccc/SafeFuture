@@ -14,31 +14,25 @@ const PasoA = () => {
 
   return (
     <div className="pasoA-container">
-      <h2 className="pasoA-title">Paso A</h2>
+      <h2 className="pasoA-title">Primer paso</h2>
 
+        <form>
       <div className="pasoA-fieldContainer">
-        <label className="pasoA-label">Peso</label>
+        <label className="pasoA-label">Indica tu peso actual</label>
         <input
           type="number"
+          step="1"
+          min="12"
+          max="99"
           name="peso"
           value={formularioData.peso}
           onChange={(e) => cambiarFormulario(e)}
-          placeholder="Peso"
+          placeholder="75 ( En Kg )"
           className="pasoA-input"
         />
       </div>
-
-      <div className="pasoA-fieldContainer">
-        <label className="pasoA-label">Altura</label>
-        <input
-          type="number"
-          name="altura"
-          value={formularioData.altura}
-          onChange={(e) => cambiarFormulario(e)}
-          placeholder="Altura"
-          className="pasoA-input"
-        />
-      </div>
+      </form>
+      
 
       <div className="pasoA-buttonContainer">
         <button className="pasoA-button" onClick={siguientePaso}>

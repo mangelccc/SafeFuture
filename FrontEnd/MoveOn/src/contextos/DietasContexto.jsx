@@ -22,7 +22,7 @@ const DietasContexto = ({ children }) => {
     }
 
     const [nuevaDieta, setNuevaDieta] = useState(dietaVacia);
-    const [dietaCreada, setDietaCreada] = useState(null);
+    const [dietaCreada, setDietaCreada] = useState(cadenaVacia);
 
     const [dietasUsuario, setDietasUsuario] = useState(arrayVacio);
     const [errorDietas, setErrorDietas] = useState(cadenaVacia);
@@ -33,15 +33,14 @@ const DietasContexto = ({ children }) => {
     /* Obtengo la sesión del usuario y sus datos desde el contexto. */
     const { usuario, sesionIniciada } = useContext(contextoAuth);
 
-    
+    const establecerNuevaDieta = () => {
+        setDietaCreada(cadenaVacia)
+    }
     //?VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV LOS MACROS DEL DANDY
-
 
     const iniciaFormulario = {
         peso: 0,
         altura: 0,
-        edad: 0,
-        sexo: "",
         actividad: "",
         objetivo: "",
     };
@@ -68,69 +67,25 @@ const DietasContexto = ({ children }) => {
             ...formularioData,
             [e.target.name]: e.target.value,
         });
-        console.log(formularioData)
+        console.log(formularioData) // ⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️
     };
-
-    const terminarFormulario = async () => {
-        await guardarDatosMacros(); // Llama a la función para guardar datos antes de continuar
-        setPaso("final");
-    };
-
-    const guardarDatosMacros = async () => {
-        if (!usuario || !usuario.id) {
-            console.error("No se encontró el usuario autenticado.");
-            return;
-        }
-    
-        // Calcular macronutrientes con los datos actuales del formulario
-        const macrosCalculados = calcularMacronutrientes(formularioData);
-    
-        try {
-            const { data, error } = await undefined
-                .from("usuario_macros")
-                .insert([
-                    {
-                        uuid_usuario: usuario.id,
-                        peso: formularioData.peso,
-                        altura: formularioData.altura,
-                        edad: formularioData.edad,
-                        sexo: formularioData.sexo,
-                        actividad: formularioData.actividad,
-                        objetivo: formularioData.objetivo,
-                        calorias_diarias: Math.round(macrosCalculados.caloriasObjetivo), // Convertir a entero
-                        proteinas_diarias: parseFloat(macrosCalculados.proteinas.toFixed(2)), // Redondear a 2 decimales
-                        grasas_diarias: parseFloat(macrosCalculados.grasas.toFixed(2)), // Redondear a 2 decimales
-                        carbohidratos_diarias: parseFloat(macrosCalculados.carbohidratos.toFixed(2)) // Redondear a 2 decimales
-                    },
-                ]);
-    
-            if (error) {
-                throw error;
-            }
-    
-            console.log("Datos guardados correctamente en Supabase:", data);
-        } catch (error) {
-            console.error("Error al guardar los datos en Supabase:", error.message);
-        }
-    };
-    
-    
 
     const seleccionarPaso = (letra) => {
         setPaso(letra);
     }
 
+    useEffect(() => {
+        if (paso === "final") {
+            navegar("/Rutina/CrearDieta");
+            setPaso("A");
+        }
+    }, [paso, navegar]);
+
+    // ✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️
+
     /* useEffect(() => {
         console.log(formularioData);
     }, [formularioData]); */
-
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (paso === "final") {
-            navigate("/Rutina/CrearDieta");
-            setPaso("A"); 
-        }
-    }, [paso, navigate]);
 
 
     //!-----------------------------------------------------------------------------------vvvvvvvvvvvvvvvvvvvvvvvvvv POR MODIFICAR /EDITAR Y QUITAR
@@ -424,7 +379,7 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
     const validarDieta = (evento) => {
         // Accedemos al elemento del formulario, ya que su parent solo puede ser él.
         const formulario = evento.target.parentNode;
-        console.log(formulario); //!<<<<<<<<<<<
+        console.log(formulario); //!<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         // Array vacío para guardar todos los errores del formulario.
         let erroresFormulario = [];
         // Compruebo cada elemento del formulario.
@@ -457,7 +412,7 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
     };
 
 
-    
+
 
     const crearDieta = async () => {
         try {
@@ -471,10 +426,13 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
             if (!response.ok) {
                 setErrorDietas(data.message || "Error al crear la dieta.");
             } else {
-                // Suponiendo que data es el objeto creado con su id
+                // Actualizamos solo con la parte "dieta" del objeto recibido
+                setDietaCreada(data.dieta);
                 setDietasUsuario([...dietasUsuario, data]);
-                setDietaCreada(data); // Aquí guardamos la dieta con su id
-                setNuevaDieta(dietaVacia);
+
+                console.log(data); // Muestra la respuesta completa
+                console.log(data.dieta); // Muestra el objeto de la dieta
+                console.log("id_dieta:", data.dieta.id_dieta); // Ahora deberías ver el id correctamente
 
                 Swal.fire({
                     title: "Dieta guardada correctamente.",
@@ -482,20 +440,62 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
                     timer: 1500,
                     showConfirmButton: false
                 });
-
-                // Aquí puedes decidir si navegar o renderizar condicionalmente
-                // Por ejemplo, podrías redirigir a una ruta que incluya el id:
-                // navegar(`/rutina/dietas/${data.id}/objetivos`);
             }
         } catch (error) {
             setErrorDietas(error.message);
         }
     };
 
+
     /* Para encapsular el set para los errores de las listas. */
     const restablecerErroresDietas = () => {
         setErrorDietas(cadenaVacia);
     }
+
+    const terminarFormulario = async () => {
+        await guardarDietaPersonalizada(); // Llama a la función para guardar datos antes de continuar
+        setPaso("final");
+    };
+
+
+    const guardarDietaPersonalizada = async () => {
+        if (!usuario || !usuario.id_usuario) {
+            console.error("No se encontró el usuario autenticado.");
+            return;
+        }
+        console.log(dietaCreada);
+        console.log(dietaCreada.id_dieta);
+        const dietaPersonalizada = {
+            id_usuario: usuario.id_usuario.toString(),
+            id_dieta: dietaCreada.id_dieta.toString(),
+            peso_usuario: parseFloat(formularioData.peso),
+            altura_usuario: parseFloat(formularioData.altura),
+            actividad_fisica: formularioData.actividad,
+            objetivo: formularioData.objetivo,
+            estado: "Activa"
+        }
+        console.log(dietaPersonalizada);
+
+        try {
+            const response = await fetch("http://localhost:8089/api/usuario-dieta", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dietaPersonalizada),
+            });
+
+            if (!response.ok) {
+                throw new Error("Error en la solicitud: " + response.statusText);
+            }
+
+            const data = await response.json();
+            console.log("Datos guardados correctamente en Laravel:", data);
+        } catch (error) {
+            console.error("Error al guardar los datos en Laravel:", error.message);
+        }
+    };
+
+
+
 
     //!------------------------------------------
     /* Objeto para exportar con lo necesario. */
@@ -507,17 +507,18 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
         crearDieta,
         restablecerErroresDietas,
         dietaCreada,
+        establecerNuevaDieta,
+        pasosArray,
+        paso,
+        seleccionarPaso,
+        siguientePaso,
+        anteriorPaso,
+        terminarFormulario,
 
 
         //? V V LOS MACROS DEL DANDY
-        siguientePaso,
-        anteriorPaso,
         cambiarFormulario,
-        terminarFormulario,
-        pasosArray,
-        paso,
         formularioData,
-        seleccionarPaso,
 
         //! V V LOS QUE FALTAN POR CAMBIAR / QUITAR
         dietasUsuario,
