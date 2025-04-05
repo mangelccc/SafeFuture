@@ -12,6 +12,7 @@ class UsuarioFactory extends Factory
     public function definition()
     {
         return [
+            'id_usuario' => $this->faker->uuid(),
             'nombre'     => $this->faker->name,
             'correo'     => $this->faker->unique()->safeEmail,
             'contrasena' => bcrypt('password'), // Contraseña fija para pruebas

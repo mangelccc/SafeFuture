@@ -12,6 +12,7 @@ class UsuarioDieta extends Model
     protected $table = 'usuario_dieta';
     protected $primaryKey = 'id_usuario_dieta';
     protected $hidden = ['created_at', 'updated_at'];
+
     protected $fillable = [
         'id_usuario',
         'id_dieta',

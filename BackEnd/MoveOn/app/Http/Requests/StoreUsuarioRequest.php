@@ -14,6 +14,7 @@ class StoreUsuarioRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id_usuario' => 'required|unique:usuario,id_usuario',
             'nombre'     => 'required|string|max:100',
             'correo'     => 'required|email|max:100|unique:usuario,correo',
             'contrasena' => 'required|string|min:8|max:100',

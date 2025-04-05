@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('traslado', function (Blueprint $table) {
             $table->id('id_traslado');
-            $table->unsignedBigInteger('id_usuario');
+            $table->uuid('id_usuario');
             $table->unsignedBigInteger('cod_ciudad_origen');
             $table->unsignedBigInteger('cod_ciudad_destino');
             $table->date('fecha_solicitud');
