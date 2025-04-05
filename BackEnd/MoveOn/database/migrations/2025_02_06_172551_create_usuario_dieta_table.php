@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('usuario_dieta', function (Blueprint $table) {
             $table->id('id_usuario_dieta');
-            $table->unsignedBigInteger('id_usuario');
-            $table->unsignedBigInteger('id_dieta');
+            $table->string('id_usuario');
+            $table->string('id_dieta');
             $table->decimal('peso_usuario', 5, 2)->nullable();
             $table->decimal('altura_usuario', 5, 2)->nullable();
             $table->enum('actividad_fisica', ['Sedentario', 'Ligero', 'Moderado', 'Activo', 'Muy-activo']);

@@ -9,6 +9,6 @@ class UsuarioDietaSeeder extends Seeder
 {
     public function run()
     {
-        UsuarioDieta::factory()->count(10)->create();
+//        UsuarioDieta::factory()->count(10)->create();
     }
 }

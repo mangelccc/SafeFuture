@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('alimento_dieta', function (Blueprint $table) {
             $table->unsignedBigInteger('id_alimento');
-            $table->unsignedBigInteger('id_dieta');
+            $table->string('id_dieta');
             $table->primary(['id_alimento', 'id_dieta']);
             $table->float('cantidad');
             $table->timestamps();

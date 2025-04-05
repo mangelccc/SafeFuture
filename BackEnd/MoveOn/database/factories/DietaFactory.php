@@ -12,6 +12,7 @@ class DietaFactory extends Factory
     public function definition()
     {
         return [
+            'id_dieta' => $this->faker->uuid(),
             'nombre'      => $this->faker->word,
             'descripcion' => $this->faker->sentence,
         ];

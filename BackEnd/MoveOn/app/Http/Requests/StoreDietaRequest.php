@@ -14,6 +14,7 @@ class StoreDietaRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'id_dieta' => 'required|unique:dieta,id_dieta',
             'nombre'      => 'required|string|max:100',
             'descripcion' => 'nullable|string',
         ];

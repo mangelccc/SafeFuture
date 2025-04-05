@@ -12,18 +12,18 @@ const contextoDietas = createContext();
 
 const DietasContexto = ({ children }) => {
 
-
     /* Constantes iniciales por defecto. */
     const arrayVacio = [];
     const cadenaVacia = "";
+    const semaforoRojo = false;
     const dietaVacia = {
         nombre: cadenaVacia,
         descripcion: cadenaVacia,
     }
 
     const [nuevaDieta, setNuevaDieta] = useState(dietaVacia);
-    const [dietaCreada, setDietaCreada] = useState(cadenaVacia);
-
+    // Guardar la dieta, y generar su ID para posteriormente hacer los siguientes pasos.
+    const [guardarDieta, setGuardarDieta] = useState(semaforoRojo);
     const [dietasUsuario, setDietasUsuario] = useState(arrayVacio);
     const [errorDietas, setErrorDietas] = useState(cadenaVacia);
 
@@ -34,13 +34,15 @@ const DietasContexto = ({ children }) => {
     const { usuario, sesionIniciada } = useContext(contextoAuth);
 
     const establecerNuevaDieta = () => {
-        setDietaCreada(cadenaVacia)
+        setGuardarDieta(semaforoRojo);
+
+        setNuevaDieta(dietaVacia);
     }
     //?VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV LOS MACROS DEL DANDY
 
     const iniciaFormulario = {
-        peso: 0,
-        altura: 0,
+        peso: "",
+        altura: "",
         actividad: "",
         objetivo: "",
     };
@@ -76,285 +78,15 @@ const DietasContexto = ({ children }) => {
 
     useEffect(() => {
         if (paso === "final") {
-            navegar("/Rutina/CrearDieta");
+            navegar("/rutina/dietas");
+            setFormularioData(iniciaFormulario);
             setPaso("A");
+
+            //! REINICIAR AQUI EL FORMULARIO, REDIRIGIR A RUTA CORRECTA
         }
     }, [paso, navegar]);
 
     // ✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️
-
-    /* useEffect(() => {
-        console.log(formularioData);
-    }, [formularioData]); */
-
-
-    //!-----------------------------------------------------------------------------------vvvvvvvvvvvvvvvvvvvvvvvvvv POR MODIFICAR /EDITAR Y QUITAR
-
-    /*     const { filtrarProductoDisponible, reiniciarListado, mostrarProductoDisponible } = useContext(contextoProductos); */ //! CONTEXTO ALIMENTOS
-
-    /* Estado para la inserción múltiple de la tabla productos_listas,
-es decir donde almacenaré los productos que va incluyendo el usuario en la lista de compra. */
-    const [listaCompra, setListaCompra] = useState(arrayVacio);
-
-    const anyadirProductosALista = (evento, idLista) => {
-        const tr = evento.target.closest('tr');
-        if (tr && tr.id) {
-            const idProducto = tr.id;
-            // Actualizamos la lista de productos seleccionados.
-            setListaCompra(prod => [...prod,
-            {
-                id_producto: idProducto,
-                id_lista: idLista,
-                cantidad: 1
-            }
-            ]);
-            filtrarProductoDisponible(idProducto);
-        }
-    };
-
-
-    // Función para eliminar un producto de la lista de compra y devolverlo a los disponibles.
-    const eliminarProductoDeLista = (idProducto) => {
-        setListaCompra((listaC) => {
-            const nuevaDieta = listaC.filter((producto) => producto.id_producto !== idProducto);
-            mostrarProductoDisponible(idProducto);
-            return nuevaDieta;
-        });
-    };
-
-    const borrarYReiniciarLista = () => {
-        setListaCompra(arrayVacio); // Se vacía la lista de compra.
-        reiniciarListado(); // Y se reinicia el listado de productos.
-    };
-
-    // Función para obtener los productos de la lista de compra. ListaActual es el ID de la lista. 
-    const obtenerProductosListas = async (ListaActual) => {
-        try {
-            /* Se realiza la consulta múltiple, teniendo en cuenta que la lista que buscamos coincida con el id pasado por parámetro. */
-            const { data, error } = await undefined
-                .from("productos_listas")
-                .select(`id_lista, id_producto, cantidad, lista:listas_compra(id_usuario)`)
-                .eq("lista.id_usuario", usuario.id)
-                .eq("id_lista", ListaActual);
-
-            /* Por si hay errores. */
-            if (error) {
-                throw error;
-            } else {
-                setListaCompra(data);
-            }
-        } catch (error) {
-            setErrorDietas(error.message);
-        }
-    };
-
-    /* Función que utilizaré para eliminar los productos que se quiten en la lista de compra cuando se guarden los cambios. */
-    const eliminarProductosNoSeleccionados = async (ListaActual) => {
-        // Obtenemos los ids de los productos que queremos conservar
-        const idsAConservar = listaCompra.map(item => item.id_producto);
-
-        try {
-            const { error } = await undefined
-                .from('productos_listas')
-                .delete()
-                .eq('id_lista', ListaActual)
-                // Usamos la condición .not para eliminar aquellos registros cuyo id_producto NO esté en la lista de IDs a conservar.
-                .not('id_producto', 'in', `(${idsAConservar.join(',')})`);
-
-            if (error) {
-                throw error;
-            }
-        } catch (error) {
-            setErrorDietas(error.message);
-        }
-    };
-
-
-    /* Función nueva, si el registro ya existe, se actualiza la cantidad, si no existe, se inserta. */
-    const actualizarProductosEnDB = async (ListaActual) => {
-
-        try {
-            // 1. Elimino los productos que ya no están en el estado.
-            await eliminarProductosNoSeleccionados(ListaActual);
-
-            // 2. Preparo los datos a actualizar/insertar.
-            const productosParaUpsert = listaCompra.map(({ id_producto, cantidad }) => ({
-                id_lista: ListaActual,
-                id_producto,
-                cantidad,
-            }));
-
-            // 3. Se realiza el upsert
-            const { error } = await undefined
-                .from('productos_listas')
-                .upsert(productosParaUpsert);
-
-            if (error) {
-                Swal.fire({
-                    title: "Error",
-                    text: error.message,
-                    icon: "error",
-                    timer: 1500,
-                    showConfirmButton: true
-                });
-            } else {
-                Swal.fire({
-                    title: "Lista actualizada",
-                    icon: "success",
-                    timer: 1500,
-                    showConfirmButton: false
-                });
-
-                // Refresco el estado para evitar errores.
-                obtenerProductosListas(ListaActual);
-                navegar(`/listas-compra/${ListaActual}`);
-            }
-        } catch (error) {
-            setErrorDietas(error.message)
-        }
-    };
-
-    /* Función para sumarle o restarle cantidad a un producto en la lista de compra. */
-    const actualizarCantidadProducto = (clase, idProducto, cantidad) => {
-
-        // Si es el botón de "mas".
-        if (clase === "btn-mas") {
-            setListaCompra(listaC => {
-                return listaC.map(item =>
-                    item.id_producto === idProducto
-                        ? { ...item, cantidad: item.cantidad + 1 }
-                        : item
-                );
-            });
-        }
-
-        // Si es el botón de "menos".
-        else if (clase === "btn-menos") {
-            setListaCompra(listaC => {
-                return listaC.map(item => {
-                    if (item.id_producto === idProducto) {
-                        /* Si la cantidad baja de 1, procede a eliminarse. */
-                        if (cantidad > 1) {
-                            return { ...item, cantidad: item.cantidad - 1 };
-                        } else {
-                            eliminarProductoDeLista(idProducto);
-                        }
-                    }
-                    return item;
-                });
-            });
-        }
-
-    };
-
-    // Utilizando delegación de eventos, establezco la función del botón seleccionado en la lista de compra.
-    const botonesDelProducto = (e) => {
-
-        const datos = e.target.closest('.botones-producto');
-        const claseBoton = e.target.className;
-        const idProducto = datos.getAttribute('data-id');
-        const cantidad = datos.getAttribute('data-cantidad');
-
-        switch (claseBoton) {
-            case "btn-menos":
-                actualizarCantidadProducto(claseBoton, idProducto, cantidad);
-                break;
-
-            case "btn-mas":
-                actualizarCantidadProducto(claseBoton, idProducto, cantidad);
-                break;
-
-            case "btn-eliminar":
-                eliminarProductoDeLista(idProducto);
-                break;
-        }
-
-    };
-
-
-    /* Obtiene la lista de compra que coincide con el id recibido */
-    const obtenerListaPorId = (idLista) => {
-        return dietasUsuario.find(lista => lista.id_lista === idLista);
-    };
-
-
-
-
-
-
-
-    /* Función para obtener el listado de los productos de la base de datos. */
-    const obtenerListasDeCompra = async () => {
-        try {
-            const { data, error } = await undefined
-                .from("listas_compra")
-                .select("*")
-                .eq("id_usuario", usuario.id);
-
-            /* Comprobación de errores. */
-            if (error || !data) {
-                throw new Error("Ha habido un error al obtener el listado de productos.");
-            }
-            /* Establezco el estado con las listas de compra del usuario. */
-            setDietasUsuario(data);
-
-        } catch (error) {
-            setErrorDietas(error.message);
-        }
-    };
-
-    const eliminarListaDeCompra = (evento) => {
-        try {
-            // Obtengo el ID de la lista.
-            const id = evento.target.parentNode.parentNode.id;
-            if (id) {
-                // Muestro una ventana de confirmación.
-                Swal.fire({
-                    title: "¿Estás seguro que quieres borrar la lista?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#d33",
-                    cancelButtonColor: "#3085d6",
-                    confirmButtonText: "Eliminar",
-                    cancelButtonText: "Cancelar",
-                }).then(async (result) => {
-                    if (result.isConfirmed) {
-                        // Si se confirma, realiza el borrado en la base de datos.
-                        const { data, error } = await undefined
-                            .from("listas_compra")
-                            .delete()
-                            .eq("id_lista", id);
-
-                        if (error) {
-                            throw new Error(error.message);
-                        }
-
-                        /* Con este filter obtengo todos los productos del listado, menos el seleccionado. */
-                        const listasActualizadas = dietasUsuario.filter((lista) => {
-                            if (lista.id_lista !== id) {
-                                return lista;
-                            }
-                        });
-                        /* Actualizo el estado de las listas de productos. */
-                        setDietasUsuario(listasActualizadas);
-
-                        // Muestro la confirmación de borrado.
-                        Swal.fire({
-                            title: "La lista ha sido eliminada.",
-                            icon: "error",
-                            timer: 1500,
-                            showConfirmButton: false
-                        });
-                    }
-                });
-            }
-        } catch (error) {
-            setDietasUsuario(error.message);
-        }
-    };
-
-
-
 
 
     /* Obtengo el listado cuando se inicia la sesión en el sitio web. */
@@ -411,35 +143,57 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
         return erroresFormulario.length === 0;
     };
 
+    
 
 
+    const crearIdDieta = () => {
+            setGuardarDieta(true);
+            setNuevaDieta({...nuevaDieta, id_dieta: crypto.randomUUID()});
+    };
 
-    const crearDieta = async () => {
+    const registrarDietaEnBD = async (dietaPersonalizada) => {
+        console.log(JSON.stringify(nuevaDieta));
+
         try {
-            const response = await fetch("http://localhost:8089/api/dietas", {
+            const resp1 = await fetch("http://localhost:8089/api/dietas", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(nuevaDieta),
             });
-            const data = await response.json();
 
-            if (!response.ok) {
+            const resp2 = await fetch("http://localhost:8089/api/usuario-dieta", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dietaPersonalizada),
+            });
+
+            if (!resp2.ok) {
+                throw new Error("Error en la solicitud: " + resp2.statusText);
+            }
+
+            Swal.fire({
+                title: "Dieta guardada correctamente.",
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false
+            });
+
+            const data = await resp2.json();
+
+            if (!resp2.ok) {
                 setErrorDietas(data.message || "Error al crear la dieta.");
             } else {
-                // Actualizamos solo con la parte "dieta" del objeto recibido
-                setDietaCreada(data.dieta);
-                setDietasUsuario([...dietasUsuario, data]);
-
-                console.log(data); // Muestra la respuesta completa
-                console.log(data.dieta); // Muestra el objeto de la dieta
-                console.log("id_dieta:", data.dieta.id_dieta); // Ahora deberías ver el id correctamente
-
-                Swal.fire({
-                    title: "Dieta guardada correctamente.",
-                    icon: "success",
-                    timer: 1500,
-                    showConfirmButton: false
-                });
+                // Actualizamos las dietas del usuario para evitar mas llamadas si es posible, POR PROBAR //!<<<<<<<<<<<<
+                setDietasUsuario([...dietasUsuario, dietaPersonalizada]);
+                setPaso("final");
+                
+            Swal.fire({
+                title: "Dieta guardada correctamente.",
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false
+            });
+                
             }
         } catch (error) {
             setErrorDietas(error.message);
@@ -453,49 +207,27 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
     }
 
     const terminarFormulario = async () => {
-        await guardarDietaPersonalizada(); // Llama a la función para guardar datos antes de continuar
-        setPaso("final");
-    };
+        //!Aqui se pueden comprobar los datos del formulario 2.
 
-
-    const guardarDietaPersonalizada = async () => {
-        if (!usuario || !usuario.id_usuario) {
-            console.error("No se encontró el usuario autenticado.");
-            return;
-        }
-        console.log(dietaCreada);
-        console.log(dietaCreada.id_dieta);
         const dietaPersonalizada = {
             id_usuario: usuario.id_usuario.toString(),
-            id_dieta: dietaCreada.id_dieta.toString(),
+            id_dieta: nuevaDieta.id_dieta.toString(),
             peso_usuario: parseFloat(formularioData.peso),
             altura_usuario: parseFloat(formularioData.altura),
             actividad_fisica: formularioData.actividad,
             objetivo: formularioData.objetivo,
             estado: "Activa"
         }
-        console.log(dietaPersonalizada);
-
-        try {
-            const response = await fetch("http://localhost:8089/api/usuario-dieta", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(dietaPersonalizada),
-            });
-
-            if (!response.ok) {
-                throw new Error("Error en la solicitud: " + response.statusText);
-            }
-
-            const data = await response.json();
-            console.log("Datos guardados correctamente en Laravel:", data);
-        } catch (error) {
-            console.error("Error al guardar los datos en Laravel:", error.message);
-        }
+        registrarDietaEnBD(dietaPersonalizada);
+        
+        
     };
 
+    const cargarDietasDelUsuario = async () => {
 
 
+
+    }
 
     //!------------------------------------------
     /* Objeto para exportar con lo necesario. */
@@ -504,9 +236,10 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
         nuevaDieta,
         validarDieta,
         errorDietas,
-        crearDieta,
+        crearIdDieta,
+        guardarDieta,
         restablecerErroresDietas,
-        dietaCreada,
+
         establecerNuevaDieta,
         pasosArray,
         paso,
@@ -515,23 +248,11 @@ es decir donde almacenaré los productos que va incluyendo el usuario en la list
         anteriorPaso,
         terminarFormulario,
 
+        dietasUsuario,
 
         //? V V LOS MACROS DEL DANDY
         cambiarFormulario,
         formularioData,
-
-        //! V V LOS QUE FALTAN POR CAMBIAR / QUITAR
-        dietasUsuario,
-        eliminarListaDeCompra,
-        obtenerListaPorId,
-        anyadirProductosALista,
-        listaCompra,
-        botonesDelProducto,
-        eliminarProductoDeLista,
-        borrarYReiniciarLista,
-        actualizarProductosEnDB,
-        obtenerProductosListas,
-        actualizarCantidadProducto,
     };
 
     return (

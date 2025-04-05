@@ -5,8 +5,8 @@ import useAppContext from '../../../../hooks/useAppContext.jsx';
 import { useEffect } from 'react';
 
 const DietasCrear = () => {
-    const { dietas } = useAppContext(); // Asegúrate de exponer dietaCreada en tu contexto
-    const { dietaCreada, paso, establecerNuevaDieta } = dietas;
+    const { dietas } = useAppContext(); 
+    const { guardarDieta, paso, establecerNuevaDieta } = dietas;
 
     useEffect(()=>{
         establecerNuevaDieta();
@@ -14,8 +14,8 @@ const DietasCrear = () => {
 
     return (
         <>
-            {dietaCreada
-                ? <PasosMultiples paso={paso} /* dietaId={dietaCreada.id} */ /> // Pasas el id a tu siguiente formulario
+            {guardarDieta
+                ? <PasosMultiples paso={paso} /> 
                 : <DietasGuardar />
             }
         </>

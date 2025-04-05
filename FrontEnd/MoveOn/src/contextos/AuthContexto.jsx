@@ -43,6 +43,7 @@ const AuthContexto = ({ children }) => {
   
     try {
       const nuevoUsuario = {
+        id_usuario: crypto.randomUUID(),
         nombre: datosSesion.nombre,
         correo: datosSesion.email,
         contrasena: datosSesion.password,

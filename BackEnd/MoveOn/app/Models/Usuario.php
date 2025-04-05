@@ -12,8 +12,11 @@ class Usuario extends Model
     protected $table = 'usuario';
     protected $primaryKey = 'id_usuario';
     protected $hidden = ['created_at', 'updated_at'];
+    public $incrementing = false;  // Indica que la clave no es autoincremental
+    protected $keyType = 'string'; // Indica que la clave es de tipo string
 
     protected $fillable = [
+        'id_usuario',
         'nombre',
         'correo',
         'contrasena',

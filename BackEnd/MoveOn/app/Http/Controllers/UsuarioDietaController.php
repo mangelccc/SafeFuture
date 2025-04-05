@@ -154,4 +154,9 @@ class UsuarioDietaController extends Controller
 
         return response()->json(['message' => 'Dieta creada con éxito', 'dieta' => $dieta], 201);
     }
+
+
+
+
+
 }
