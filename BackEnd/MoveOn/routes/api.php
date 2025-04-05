@@ -24,6 +24,7 @@ Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
 Route::patch('/usuarios/{id}', [UsuarioController::class, 'updatePartial']);
 Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
 
+
 Route::post('/login', [UsuarioController::class, 'login']);
 
 // Rutas para Alimentos
@@ -87,6 +88,7 @@ Route::delete('/traslados/{id}', [TrasladoController::class, 'destroy']);
 /** Rutas para la tabla pivote usuario_dieta **/
 Route::get('/usuario-dieta', [UsuarioDietaController::class, 'index']);
 Route::get('/usuario-dieta/{id}', [UsuarioDietaController::class, 'show']);
+Route::get('/usuario-dieta/{id_user}', [UsuarioDietaController::class, 'getDietasPorUsuario']);
 Route::post('/usuario-dieta', [UsuarioDietaController::class, 'store']);
 Route::put('/usuario-dieta/{id}', [UsuarioDietaController::class, 'update']);
 Route::patch('/usuario-dieta/{id}', [UsuarioDietaController::class, 'updatePartial']);
@@ -120,3 +122,6 @@ Route::prefix('alimento-dieta')->group(function () {
 
 // Ruta para permitir a un usuario crear su dieta personalizada.
 Route::post('/usuario/{id_usuario}/dieta', [UsuarioDietaController::class, 'createDieta']);
+
+Route::get('/usuario/{id_usuario}/dietas', [UsuarioController::class, 'getDietasPorUsuario']);
+

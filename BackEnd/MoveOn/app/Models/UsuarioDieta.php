@@ -22,4 +22,10 @@ class UsuarioDieta extends Model
         'objetivo',
         'estado',
     ];
+
+    public function dieta()
+    {
+        return $this->belongsTo(Dieta::class, 'id_dieta', 'id_dieta');
+    }
+
 }

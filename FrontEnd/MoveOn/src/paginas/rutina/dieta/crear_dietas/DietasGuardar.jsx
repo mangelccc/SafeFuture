@@ -9,9 +9,8 @@ const DietasGuardar = () => {
     const { dietas } = useAppContext();
     const { actualizarFormDieta,
         validarDieta,
-        nuevaDieta,
         errorDietas,
-        crearDieta,
+        crearIdDieta,
         restablecerErroresDietas } = dietas;
 
 
@@ -52,7 +51,7 @@ const DietasGuardar = () => {
                 onClick={(e) => {
                     e.preventDefault();
                     if (validarDieta(e)) {
-                        crearDieta();
+                        crearIdDieta();
                     }
                 }}
                 className="bg-[#259463] text-white text-lg font-bold py-2 px-4 rounded-lg cursor-pointer transition-all duration-300 hover:bg-[#1a6e48] hover:shadow-lg"

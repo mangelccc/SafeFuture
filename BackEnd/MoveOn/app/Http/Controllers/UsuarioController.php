@@ -161,4 +161,27 @@ class UsuarioController extends Controller
             'status'  => 200
         ], 200);
     }
+
+    //Funciones definidas por el programador.
+
+    public function getDietasPorUsuario($id_usuario)
+    {
+        $usuario = Usuario::find($id_usuario);
+
+        if (!$usuario) {
+            return response()->json([
+                'message' => 'Usuario no encontrado',
+                'status'  => 404
+            ], 404);
+        }
+
+        // Obtener las dietas completas con los datos de la pivote
+        $dietas = $usuario->dietas()->withPivot('peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')->get();
+
+        return response()->json([
+            'dietas' => $dietas,
+            'status' => 200
+        ], 200);
+    }
+
 }

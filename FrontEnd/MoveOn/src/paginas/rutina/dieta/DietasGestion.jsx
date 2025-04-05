@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-/* import ListaTarjeta from '../listasCompra/ListaTarjeta.jsx'; */
-/* import useContexto from '../../hooks/useContexto.jsx' */
+import DietasUsuario from './DietasUsuario.jsx';
+import useAppContext from '../../../hooks/useAppContext.jsx';
 
 const DietasGestion = () => {
-
-  /* const { listasUsuario } = useContexto("listas"); */
-  const listasUsuario = [];
+    const { dietas } = useAppContext(); 
+    const { dietasUsuario } = dietas;
 
   return (
     <>
@@ -24,9 +23,9 @@ const DietasGestion = () => {
     </section>
     <section className='dietas-listas m-10 text-center flex flex-wrap justify-evenly gap-x-20 gap-y-10'>
     
-        {listasUsuario.length && Array.isArray(listasUsuario) 
-        ? listasUsuario.map((lista) => {
-            return {/* <ListaTarjeta key={lista.id_lista} lista={lista}/> */}
+        {dietasUsuario.length && Array.isArray(dietasUsuario) 
+        ? dietasUsuario.map((dieta) => {
+            return <DietasUsuario key={dieta.id_dieta} dieta={dieta}/>
         })
         : <Link to="/rutina/dietas-crear"><p className='border border-2 border-gold dark:border-purple bg-purple dark:bg-black rounded-xl px-10 py-5 text-white'>Aún no tienes ninguna dieta, crea una dieta ahora</p></Link> }
         
