@@ -1,0 +1,77 @@
+.lista-tarjeta {
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.lista-tarjeta {
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.lista-tarjeta-nombre {
+    border-bottom: 2px solid white;
+    padding: 8px;
+}
+
+.lista-tarjeta-resumen {
+    padding: 8px;
+}
+
+
+.lista-tarjeta-extra p {
+    padding: 0px 24px;
+}
+
+.lista-tarjeta-contenido {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 24px;
+}
+
+.lista-tarjeta-contenido p {
+    padding: 6px 8px;
+    
+}
+
+.lista-tarjeta-der {
+    background: #0f0c29;
+    background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);
+    background: linear-gradient(to left, #24243e, #302b63, #0f0c29);
+
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 12px;
+}
+
+.lista-tarjeta img {
+    width: 50px;
+    margin: 8px 
+}
+
+.lista-tarjeta-der img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.lista-tarjeta-der img:hover {
+    transform: scale(1.1);
+}
+
+
+.lista-tarjeta-izq {
+    display: flex;
+    flex-direction: column;
+
+    background: #1F1C2C;
+    background: -webkit-linear-gradient(to right, #6a677c, #1F1C2C);
+    background: linear-gradient(to right, #6a677c, #1F1C2C);
+    
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
