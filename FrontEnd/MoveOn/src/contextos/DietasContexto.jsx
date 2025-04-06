@@ -20,12 +20,22 @@ const DietasContexto = ({ children }) => {
         nombre: cadenaVacia,
         descripcion: cadenaVacia,
     }
+    
+    const pasosArray = ["A", "B", "C", "D"];
+    const iniciaFormulario = {
+        peso: "",
+        altura: "",
+        actividad: "",
+        objetivo: "",
+    };
 
     const [nuevaDieta, setNuevaDieta] = useState(dietaVacia);
     // Guardar la dieta, y generar su ID para posteriormente hacer los siguientes pasos.
     const [guardarDieta, setGuardarDieta] = useState(semaforoRojo);
     const [dietasUsuario, setDietasUsuario] = useState(arrayVacio);
     const [errorDietas, setErrorDietas] = useState(cadenaVacia);
+    const [paso, setPaso] = useState(pasosArray[0]);
+    const [formularioData, setFormularioData] = useState(iniciaFormulario);
 
     /* Hook de navigate para poder redireccionar al usuario. */
     const navegar = useNavigate();
@@ -38,19 +48,9 @@ const DietasContexto = ({ children }) => {
 
         setNuevaDieta(dietaVacia);
     }
-    //?VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV LOS MACROS DEL DANDY
 
-    const iniciaFormulario = {
-        peso: "",
-        altura: "",
-        actividad: "",
-        objetivo: "",
-    };
 
-    const pasosArray = ["A", "B", "C", "D"];
 
-    const [paso, setPaso] = useState("A");
-    const [formularioData, setFormularioData] = useState(iniciaFormulario);
 
     const siguientePaso = () => {
         if (paso === "A") setPaso("B");
@@ -69,7 +69,6 @@ const DietasContexto = ({ children }) => {
             ...formularioData,
             [e.target.name]: e.target.value,
         });
-        console.log(formularioData) // ⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️
     };
 
     const seleccionarPaso = (letra) => {
@@ -86,19 +85,6 @@ const DietasContexto = ({ children }) => {
         }
     }, [paso, navegar]);
 
-    // ✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️
-
-
-    /* Obtengo el listado cuando se inicia la sesión en el sitio web. */
-    useEffect(() => {
-        if (sesionIniciada === true && usuario && usuario.id) {
-            obtenerListasDeCompra();
-        }
-    }, [sesionIniciada, usuario]);
-
-
-
-    //!-------------------------------------------------------------
 
     /* Función para actualizar los datos de una dieta que se está creando. */
     const actualizarFormDieta = (evento) => {
@@ -143,12 +129,10 @@ const DietasContexto = ({ children }) => {
         return erroresFormulario.length === 0;
     };
 
-    
-
 
     const crearIdDieta = () => {
-            setGuardarDieta(true);
-            setNuevaDieta({...nuevaDieta, id_dieta: crypto.randomUUID()});
+        setGuardarDieta(true);
+        setNuevaDieta({ ...nuevaDieta, id_dieta: crypto.randomUUID() });
     };
 
     const registrarDietaEnBD = async (dietaPersonalizada) => {
@@ -186,14 +170,14 @@ const DietasContexto = ({ children }) => {
                 // Actualizamos las dietas del usuario para evitar mas llamadas si es posible, POR PROBAR //!<<<<<<<<<<<<
                 setDietasUsuario([...dietasUsuario, dietaPersonalizada]);
                 setPaso("final");
-                
-            Swal.fire({
-                title: "Dieta guardada correctamente.",
-                icon: "success",
-                timer: 1500,
-                showConfirmButton: false
-            });
-                
+
+                Swal.fire({
+                    title: "Dieta guardada correctamente.",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+
             }
         } catch (error) {
             setErrorDietas(error.message);
@@ -219,15 +203,42 @@ const DietasContexto = ({ children }) => {
             estado: "Activa"
         }
         registrarDietaEnBD(dietaPersonalizada);
-        
-        
+
+
     };
 
     const cargarDietasDelUsuario = async () => {
 
+        try {
+            const respuesta = await fetch(`http://localhost:8089/api/usuario/${usuario.id_usuario}/dietas`, {
 
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    // Otros headers si es necesario, como tokens de autenticación
+                }
 
+            });
+            if (!respuesta) {
+                throw new Error("Ha habido un error al obtener las dietas del usuario.");
+            }
+
+            const data = await respuesta.json();
+
+            console.log(data);
+            setDietasUsuario(data.dietas);
+
+        } catch (error) {
+            setErrorDietas(error.message);
+        }
     }
+
+    useEffect(() => {
+        if (sesionIniciada === true && usuario && usuario.id_usuario) {
+            cargarDietasDelUsuario();
+            console.log("hola dentro de cargar dietas")
+        }
+    }, [sesionIniciada, usuario]);
 
     //!------------------------------------------
     /* Objeto para exportar con lo necesario. */

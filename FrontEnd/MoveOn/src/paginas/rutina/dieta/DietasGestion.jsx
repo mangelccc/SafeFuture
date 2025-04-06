@@ -12,7 +12,7 @@ const DietasGestion = () => {
     <section className='mx-10 my-2 flex justify-between'>
         <div>
         <h2 className='p-0'>Tus Dietas</h2>
-        <p>Haz clic en los iconos laterales para ver detalles de las dietas o eliminarlas.</p>
+        <p>Haz clic en los iconos para ver sus detalles o eliminarlas.</p>
         </div>
         <div>
             <Link to="/rutina/dietas-crear">
