@@ -14,6 +14,7 @@ import Entrenamientos from "../paginas/rutina/ejercicio/Entrenamientos.jsx";
 import Plantillas from "../paginas/rutina/ejercicio/Plantillas.jsx";
 import AgenteEntrenadorIA from "../paginas/rutina/ejercicio/AgenteEntrenadorIA.jsx";
 import CrearEntrenamiento from "../paginas/rutina/ejercicio/CrearEntrenamiento.jsx";
+import FormularioEjercicio from "../paginas/rutina/ejercicio/FormularioEjercicio.jsx";
 
 /* Perfil e info del usuario */
 import Usuario from "../paginas/sesion/Usuario.jsx";
@@ -50,6 +51,7 @@ const RutasPaginas = () => {
         >
           <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
           <Route path='ejercicios' element={<GestorEjercicios />} />
+          <Route path='crear-ejercicio' element={<FormularioEjercicio />} />
           <Route path='entrenamientos' element={<Entrenamientos />} />
           <Route path='plantillas' element={<Plantillas />} />
           <Route path='entrenador-personal' element={<AgenteEntrenadorIA />} />

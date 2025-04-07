@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { validarDatoEjercicio } from '../bibliotecas/biblioteca.js';
 
 const ContextoEjercicios = createContext();
 
@@ -111,6 +112,44 @@ const EjerciciosContexto = ({ children }) => {
     setEjerciciosFiltrados(ejerciciosFiltradosReturn);
   }
 
+  const actualizarDato = (e) => {
+    // Se obtienen los datos necesarios de evento que lanza esta función: el input.
+    const { name, value } = e.target;
+    // Se asigna al estado.
+    setEjercicio({ ...ejercicio, [name]: value });
+  };
+
+  // Función para validar el formulario.
+  const validarFormularioEjercicio = (evento) => {
+    // Se accede al elemento <form> que contiene el listado de todos sus elementos (elements).
+    const formulario = evento.target.form;
+    // Array vacío para guardar todos los errores del formulario.
+    let erroresListado = [];
+  
+    // Se recorre el formulario comprobando cada elemento.
+    for (let i = 0; i < formulario.elements.length; i++) {
+      const elemento = formulario.elements[i];
+      // Validamos solo los campos relevantes (que tengan atributo 'name')
+      if (elemento.name) {
+        // Validar dato devuelve un array con los errores de ese elemento.
+        let erroresElemento = validarDatoEjercicio(elemento);
+        // Se comprueba si hay errores o no (aplicando un estilo).
+        erroresElemento.length !== 0
+          ? elemento.classList.add("error")
+          : elemento.classList.remove("error");
+        // Se añaden los errores (si existen) de cada elemento a erroresListado.
+        erroresListado = [...erroresListado, ...erroresElemento];
+      }
+    }
+  
+    // Se cambia el valor el estado por los errores producidos.
+    setErrorEjercicio(erroresListado);
+  
+    // Se devuelve un booleano para poder realizar una acción tras la comprobación.
+    // Si no hay errores se devuelve true.
+    return erroresListado.length === 0;
+  };
+
 
   const datosContexto = {
     ejercicio,
@@ -121,7 +160,9 @@ const EjerciciosContexto = ({ children }) => {
     readEjercicios,
     updateEjercicio,
     deleteEjercicio,
-    filtrarEjercicios
+    filtrarEjercicios,
+    actualizarDato,
+    validarFormularioEjercicio
   };
 
   return (

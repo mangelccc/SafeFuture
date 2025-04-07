@@ -62,12 +62,18 @@ const EntrenamientoContexto = ({children}) => {
       .then(response => response.json())  
       .then(data => {
         setEntrenamientos(entrenamientos.filter(e => e.id_rutina !== id));
+        setEntrenamientosFiltrados(entrenamientos.filter(e => e.id_rutina !== id));
+        readEntrenamientos(); 
         console.log(`Se ha eliminado el entrenamiento con id: ${id}`);
       })    
       .catch(error => {
           setErrorEntrenamiento(`Se ha producido un error: ${error.message}`);
       });
     }
+    const actualizarDatoEntrenamiento = (evento) => {
+      const { name, value } = evento.target;
+      setEntrenamiento({ ...entrenamiento, [name]: value });
+    };
 
 
     const datosContexto = {

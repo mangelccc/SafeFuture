@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import useAppContext from "../../../hooks/useAppContext.jsx";
 
 const AccionesGestorEjercicios = () => {
+
+    const navigate = useNavigate();
     const { ejerciciosContex } = useAppContext();
     const { filtrarEjercicios } = ejerciciosContex;
     return (
@@ -18,7 +21,14 @@ const AccionesGestorEjercicios = () => {
                     border-black p-2 outline-none focus:border-purple transition duration-300"
                     onChange={(e) => filtrarEjercicios(e.target.value)}
                 />
-                <button className="bg-purple dark:bg-gold text-white2 dark:text-black font-bold px-3 py-1 rounded hover:outline dark:hover:outline-3 outline-gold dark:outline-purple">
+                <button
+                    className="bg-purple dark:bg-gold text-white2 dark:text-black font-bold px-3 
+                    py-1 rounded hover:outline dark:hover:outline-3 outline-gold dark:outline-purple"
+                    onClick={() => {
+                        navigate("/rutina/ejercicio/crear-ejercicio");
+                    }
+                    }
+                >
                     +
                 </button>
             </div>
