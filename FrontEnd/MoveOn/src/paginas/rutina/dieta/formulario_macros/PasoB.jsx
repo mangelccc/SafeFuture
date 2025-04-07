@@ -27,6 +27,7 @@ const PasoB = () => {
           onChange={(e) => cambiarFormulario(e)}
           placeholder="1.70 (Metros y centímetros)"
           className="pasoA-input"
+          step="0.01"
         />
       </div>
       </form>

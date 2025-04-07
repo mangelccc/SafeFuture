@@ -4,7 +4,7 @@ import PasoA from "./PasoA.jsx";
 import PasoB from "./PasoB.jsx";
 import PasoC from "./PasoC.jsx";
 import PasoD from "./PasoD.jsx";
-import PasoFinal from "./PasoFinal.jsx";
+/* import PasoFinal from "./PasoFinal.jsx"; */
 
 import "./PasosMultiples.css"; 
 
@@ -18,7 +18,7 @@ const PasosMultiples = ({paso}) => {
       {paso === "B" && <PasoB />}
       {paso === "C" && <PasoC />}
       {paso === "D" && <PasoD />}
-      {paso === "final" && <PasoFinal />}
+{/*       {paso === "final" && <PasoFinal />} */}
     </div>
   );
 };

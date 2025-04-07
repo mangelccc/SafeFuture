@@ -6,10 +6,9 @@ import "./ListaTarjeta.css";
 
 
 const DietasUsuario = ({dieta}) => {
-    console.log(dieta);
 
     return (
-      <section className='lista-tarjeta' /* id={} */
+      <section className='lista-tarjeta' id={dieta.id_dieta} data-dieta={dieta.pivot.id_dieta}
         onClick={(evento) => {
           if (evento.target.classList.contains("del")) {
             //eliminarListaDeCompra(evento);
