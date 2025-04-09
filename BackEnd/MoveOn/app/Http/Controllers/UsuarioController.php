@@ -167,7 +167,6 @@ class UsuarioController extends Controller
     public function getDietasPorUsuario($id_usuario)
     {
         $usuario = Usuario::find($id_usuario);
-
         if (!$usuario) {
             return response()->json([
                 'message' => 'Usuario no encontrado',
@@ -175,13 +174,19 @@ class UsuarioController extends Controller
             ], 404);
         }
 
-        // Obtener las dietas completas con los datos de la pivote
-        $dietas = $usuario->dietas()->withPivot('peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')->get();
+        $dietas = $usuario->dietas()->withPivot('id_usuario_dieta', 'peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')->get();
+
+        $dietasTransformadas = $dietas->map(function ($dieta) {
+            $dieta->id_dieta = $dieta->pivot->id_usuario_dieta;
+            unset($dieta->pivot->id_usuario_dieta); // Oculta ese campo de la respuesta
+            return $dieta;
+        });
 
         return response()->json([
-            'dietas' => $dietas,
+            'dietas' => $dietasTransformadas,
             'status' => 200
         ], 200);
     }
+
 
 }

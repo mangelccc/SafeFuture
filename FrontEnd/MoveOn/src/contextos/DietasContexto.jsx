@@ -270,7 +270,7 @@ const DietasContexto = ({ children }) => {
                             headers: {
                               'Content-Type': 'application/json'}
                         })
-                        const respuesta2 = await fetch(`http://localhost:8089/api/dietas/${id}`, {
+                        const respuesta2 = await fetch(`http://localhost:8089/api/dietas/${idDieta}`, {
                             method: 'DELETE',
                             headers: {'Content-Type': 'application/json'}
                           })
