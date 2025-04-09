@@ -18,7 +18,7 @@ const PasosMultiples = ({paso}) => {
       {paso === "B" && <PasoB />}
       {paso === "C" && <PasoC />}
       {paso === "D" && <PasoD />}
-{/*       {paso === "final" && <PasoFinal />} */}
+      
     </div>
   );
 };

@@ -1,4 +1,5 @@
  /** @type {import('tailwindcss').Config} */
+ const textShadow = require('tailwindcss-textshadow');
  export default {
   darkMode: "class",
   content: [
@@ -44,7 +45,7 @@
       }
     },
   },
-  plugins: [],
+  plugins: [textShadow],
 }
 
 /* npx tailwindcss -i ./src/index.css -o ./src/output.css --watch */
