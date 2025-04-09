@@ -5,7 +5,7 @@ import useAppContext from '../../../hooks/useAppContext.jsx';
 
 const DietasGestion = () => {
     const { dietas } = useAppContext(); 
-    const { dietasUsuario } = dietas;
+    const { dietasUsuario, eliminarDieta } = dietas;
 
   return (
     <>
@@ -21,11 +21,11 @@ const DietasGestion = () => {
         </div>
 
     </section>
-    <section className='dietas-listas m-10 text-center flex flex-wrap justify-evenly gap-x-20 gap-y-10'>
+    <section className='dietas-listas m-10 text-center flex flex-wrap justify-evenly gap-x-20 gap-y-10' onClick={eliminarDieta}>
     
         {dietasUsuario.length && Array.isArray(dietasUsuario) 
         ? dietasUsuario.map((dieta) => {
-            return <DietasUsuario key={dieta.id_dieta} dieta={dieta}/>
+            return <DietasUsuario key={dieta.pivot.id_dieta} dieta={dieta}/>
         })
         : <Link to="/rutina/dietas-crear"><p className='border border-2 border-gold dark:border-purple bg-purple dark:bg-black rounded-xl px-10 py-5 text-white'>Aún no tienes ninguna dieta, crea una dieta ahora</p></Link> }
         

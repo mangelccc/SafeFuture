@@ -11,6 +11,7 @@ const PasoD = () => {
     cambiarFormulario, 
     terminarFormulario,
     anteriorPaso,
+    erroresFormDietas
   } = dietas;
 
   return (
@@ -18,7 +19,7 @@ const PasoD = () => {
       <h2 className="pasoA-title">Último paso</h2>
 
       <div className="pasoA-fieldContainer">
-        <label className="pasoA-label">Objetivo</label>
+        <label className="pasoA-label py-2">Objetivo</label>
         <select
           name="objetivo"
           value={formularioData.objetivo}
@@ -30,9 +31,13 @@ const PasoD = () => {
           <option value="Mantener">Mantener peso</option>
           <option value="Ganar">Ganar masa muscular</option>
         </select>
+        {/* Mostrar el error si existe */}
+        {erroresFormDietas && erroresFormDietas.objetivo && (
+            <p className="text-red-600 py-2">{erroresFormDietas.objetivo}</p>
+          )}
       </div>
 
-      <div className="pasoB-buttonContainer">
+      <div className="pasoB-buttonContainer pt-2">
         <button className="pasoA-button-anterior" onClick={anteriorPaso}>
           Anterior
         </button>

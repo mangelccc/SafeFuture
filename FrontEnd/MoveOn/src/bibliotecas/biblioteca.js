@@ -193,7 +193,6 @@ const validarCamposDieta = (elemento) => {
       }
       break;
 
-      
 
     case "peso":
       if (!value.length) {
@@ -303,7 +302,41 @@ const validarDatoEjercicio = (elemento) => {
   return erroresElemento;
 };
 
+//Validar el siguiente formulario para la dieta personalizada al usuario
+
+const validarFormularioData = (formularioData) => {
+  const errores = {};
+
+  // Validar el campo peso
+  if (!formularioData.peso) {
+    errores.peso = "El peso es obligatorio.";
+  } else if (parseFloat(formularioData.peso) < 30 || parseFloat(formularioData.peso) > 300) {
+    errores.peso = "El peso debe estar entre 30 y 300 kg.";
+  }
+
+  // Validar el campo altura
+  if (!formularioData.altura) {
+    errores.altura = "La altura es obligatoria.";
+  } else if (parseFloat(formularioData.altura) < 0.5 || parseFloat(formularioData.altura) > 2.5) {
+    errores.altura = "La altura debe estar entre 0.50 y 2.50 m.";
+  }
+
+  // Validar el select de actividad
+  if (!formularioData.actividad) {
+    errores.actividad = "Debes seleccionar un nivel de actividad.";
+  }
+
+  // Validar el select de objetivo
+  if (!formularioData.objetivo) {
+    errores.objetivo = "Debes seleccionar un objetivo.";
+  }
+
+  return errores;
+}
+
+
+
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
-  validarCamposDieta,validarDatoEjercicio
+  validarCamposDieta, validarDatoEjercicio, validarFormularioData
 };
