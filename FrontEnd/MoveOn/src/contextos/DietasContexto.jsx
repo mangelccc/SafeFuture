@@ -2,9 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { contextoAuth } from "./AuthContexto.jsx"
-import { validarCamposDieta, calcularMacronutrientes, validarFormularioData } from '../bibliotecas/biblioteca.js';
-
-/* import { contextoProductos } from './ProveedorProductos.jsx'; */ //! esto será el contexto de los alimentos.
+import { validarCamposDieta, validarFormularioData } from '../bibliotecas/biblioteca.js';
 
 import Swal from 'sweetalert2';
 

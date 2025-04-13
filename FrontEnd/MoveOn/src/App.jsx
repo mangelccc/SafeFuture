@@ -10,6 +10,8 @@ import "./App.css";
 import Footer from "./estructura/footer/Footer.jsx";
 import DietasContexto from "./contextos/DietasContexto.jsx";
 
+import PrimeReactProvider from "primereact/api";
+
 
 const App = () => {
   /* //! METER TODOS LOS CONTEXTOS EN UNO SOLO, Y DENTRO DE ESTE contexto, TODOS LOS QUE HEMOS DEFINIDO PARA QUE SE QUEDE CLEAN */
@@ -17,7 +19,7 @@ const App = () => {
     <>
       <AuthContexto>
         <Cabecera />
-
+    
         <DietasContexto>
           <AlimentosContexto>
 

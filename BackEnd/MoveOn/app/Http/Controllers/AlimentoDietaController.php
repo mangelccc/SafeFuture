@@ -155,4 +155,52 @@ class AlimentoDietaController extends Controller
             'status'  => 200
         ], 200);
     }
+
+    //Funciones definidas por los programadores.
+
+    public function updateMultiples(Request $request)
+    {
+        // Validamos la solicitud
+        $validated = $request->validate([
+            'id_dieta' => 'required|exists:dieta,id_dieta',
+            'alimentos' => 'required|array',
+            'alimentos.*.id_alimento' => 'required|exists:alimento,id_alimento',
+            'alimentos.*.cantidad' => 'required|numeric|min:1'
+        ]);
+
+        $id_dieta = $validated['id_dieta'];
+        $alimentosArray = $validated['alimentos'];
+
+        // Preparamos los datos a insertar o actualizar
+        $dataUpsert = array_map(function ($alimentoData) use ($id_dieta) {
+            return [
+                'id_alimento' => $alimentoData['id_alimento'],
+                'id_dieta' => $id_dieta,
+                'cantidad' => $alimentoData['cantidad'],
+                'updated_at' => now(),
+                // Si deseas que se inserte también la fecha de creación en caso de nuevo registro:
+                'created_at' => now(),
+            ];
+        }, $alimentosArray);
+
+        try {
+            // upsert actualiza los registros que existan y los inserta si no existen.
+            // Las columnas que identifican de forma única el registro son 'id_alimento' y 'id_dieta'.
+            \DB::table('alimento_dieta')
+                ->upsert($dataUpsert, ['id_alimento', 'id_dieta'], ['cantidad', 'updated_at']);
+
+            return response()->json([
+                'message' => 'Registros actualizados correctamente',
+                'status' => 200,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error al actualizar la relación alimento-dieta',
+                'error' => $e->getMessage(),
+                'status' => 500,
+            ], 500);
+        }
+    }
+
+
 }

@@ -22,6 +22,7 @@ import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacio
 /* Para dietas */
 import Dietas from "../paginas/rutina/dieta/DietasGestion.jsx"
 import DietasCrear from "../paginas/rutina/dieta/crear_dietas/DietasCrear.jsx"
+import SeleccionarAlimentos from "../paginas/rutina/dieta/alimentos/SeleccionarAlimentos.jsx";
 
 
 import Error from "../paginas/error/Error.jsx";
@@ -38,6 +39,7 @@ const RutasPaginas = () => {
 
         <Route path="/rutina" element={<Rutina />} />
         <Route path="/rutina/dietas" element={<Dietas />} />
+        <Route path="/rutina/dietas/:id" element={<SeleccionarAlimentos />} />
         <Route path="/rutina/dietas-crear" element={<DietasCrear />} />
 
 
