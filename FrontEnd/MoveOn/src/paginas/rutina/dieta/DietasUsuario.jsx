@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import borrar from "../../../imagenes/borrar.png";
-import ver from "../../../imagenes/ver.png";
+import borrar from "../../../galeria/imagenes/borrar.png";
+import ver from "../../../galeria/imagenes/ver.png";
 
 
 
 const DietasUsuario = ({dieta}) => {
-
+    
     return (
       <section className="max-w-lg flex flex-col text-center border-2 border-black dark:border-white rounded-[9px]" id={dieta.id_dieta} data-dieta={dieta.pivot.id_dieta}
         onClick={(evento) => {
@@ -33,7 +33,7 @@ const DietasUsuario = ({dieta}) => {
         </div>
         <div className="flex justify-around items-center p-3 rounded-b-lg bg-gradient-to-l from-[#000000] via-[#3a3661] to-[#000000]">
 
-          <Link> {/* Ejemplo en listas (UseParams) -> /listas-compra/${lista.id_lista} */}
+          <Link to={`/rutina/dietas/${dieta.pivot.id_dieta}`}>
             <img src={ver} alt='Ver' title="Ver contenido de la lista" className="w-12 my-2 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110"/>
           </Link>
           <img src={borrar} className='del w-12 my-2 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110' alt='Borrar' title="Borrar la lista actual " />

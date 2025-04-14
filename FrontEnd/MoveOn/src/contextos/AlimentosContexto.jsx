@@ -1,14 +1,46 @@
 // src/contextos/AlimentosContexto.jsx
 import React, { createContext, useState, useEffect } from "react";
-/* import { supabaseConexion } from "../bibliotecas/config.js"; */
-import { validarCreacionAlimento, obtenerAlimentosVisibles } from "../bibliotecas/biblioteca.js";
+
+import { validarCreacionAlimento } from "../bibliotecas/biblioteca.js";
 
 const contextoAlimentos = createContext();
 
 const AlimentosContexto = ({ children }) => {
   /*** VALORES INICIALES ***/
-  const errorInicial = "";
+  const cadenaVacia = "";
   const listaInicial = [];
+
+  // Estados generales
+  const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
+  const [errorAlimento, setErrorAlimento] = useState(cadenaVacia);
+
+  // Función para obtener los alimentos desde la API
+  const getAlimentos = async () => {
+    try {
+      setErrorAlimento(cadenaVacia);
+
+      const response = await fetch("http://localhost:8089/api/alimentos", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // Otros headers si es necesario, como tokens de autenticación
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Error en la respuesta de la API: " + response.statusText);
+      }
+
+      const data = await response.json();
+      setListadoAlimentos(data.alimentos); // Establecemos los alimentos obtenidos en el estado
+
+    } catch (error) {
+      setErrorAlimento("Error al leer los alimentos: " + error.message); // Manejo de errores
+    }
+  };
+
+  //! LINEA DIVISORIA, ARRIBA LO BUENO, ABAJO POR COMPROBAR.
+
   const alimentoInicial = {
     id: null,
     nombre: "",
@@ -28,18 +60,12 @@ const AlimentosContexto = ({ children }) => {
     nombre: ""
   };
   const alimentoEdtandoInicial = null;
-  const adminInicial = false;
 
-  // Estados generales
-  const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
   const [alimento, setAlimento] = useState(alimentoInicial);
-  const [errorAlimento, setErrorAlimento] = useState(errorInicial);
 
   // Filtros de búsqueda y orden
-  const filtroInicial = "";
-  const ordenInicial = "";
-  const [filtro, setFiltro] = useState(filtroInicial);
-  const [orden, setOrden] = useState(ordenInicial);
+  const [filtro, setFiltro] = useState(cadenaVacia);
+  const [orden, setOrden] = useState(cadenaVacia);
 
   // Buscador
   const [buscadorDatos, setBuscadorDatos] = useState(buscadorInicial);
@@ -51,20 +77,15 @@ const AlimentosContexto = ({ children }) => {
   // Creación
   const [nuevoAlimento, setNuevoAlimento] = useState(alimentoInicial);
 
-  // Modo Administrador
-  const [admin, setAdmin] = useState(adminInicial);
-  const alternarAdmin = () => {
-    setAdmin((admin) => !admin);
-  };
 
   /***********************************/
   /***        FUNCIONES CRUD       ***/
   /***********************************/
   const createAlimento = async (producto) => {
     try {
-      setErrorAlimento("");
+      setErrorAlimento(cadenaVacia);
       const nuevoAlimento = { ...producto, id: crypto.randomUUID() };
-      const { data, error } = await supabaseConexion
+      const { data, error } = await undefined
         .from("alimentos")
         .insert(nuevoAlimento);
       if (error) throw error;
@@ -76,23 +97,11 @@ const AlimentosContexto = ({ children }) => {
     }
   };
 
-  const readAlimentos = async () => {
-    try {
-      setErrorAlimento("");
-      const { data, error } = await supabaseConexion
-        .from("alimentos")
-        .select("*");
-      if (error) throw error;
-      setListadoAlimentos(data);
-    } catch (error) {
-      setErrorAlimento("Error al leer los alimentos: " + error.message);
-    }
-  };
 
   const updateAlimento = async (id, productoActualizado) => {
     try {
-      setErrorAlimento("");
-      const { data, error } = await supabaseConexion
+      setErrorAlimento(cadenaVacia);
+      const { data, error } = await undefined
         .from("alimentos")
         .update(productoActualizado)
         .eq("id", id);
@@ -111,8 +120,8 @@ const AlimentosContexto = ({ children }) => {
 
   const deleteAlimento = async (id) => {
     try {
-      setErrorAlimento("");
-      const { data, error } = await supabaseConexion
+      setErrorAlimento(cadenaVacia);
+      const { data, error } = await undefined
         .from("alimentos")
         .delete()
         .eq("id", id);
@@ -126,7 +135,7 @@ const AlimentosContexto = ({ children }) => {
   };
 
   const guardarCreacion = async () => {
-    setErrorAlimento("");
+    setErrorAlimento(cadenaVacia);
     const errorValidacion = validarCreacionAlimento(nuevoAlimento);
     if (errorValidacion) {
       setErrorAlimento(errorValidacion);
@@ -169,84 +178,22 @@ const AlimentosContexto = ({ children }) => {
     setFiltro(textoFiltro);
   };
 
-  const ordenarAlimentos = (campo) => {
-    setOrden(campo);
-  };
 
-  const alimentosVisibles = obtenerAlimentosVisibles(listadoAlimentos, filtro, orden);
 
   /*****************************************************************/
-  /***         MANEJO DEL FORMULARIO (CREACIÓN / EDICIÓN)         ***/
+  /***         MANEJO DEL FORMULARIO (CREACIÓN / EDICIÓN) SOLO ADMINS  ***/
   /*****************************************************************/
-  const actualizarAlimentoEditado = (e) => {
-    const { name, value } = e.target;
-    setAlimentoEditado((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-  const actualizarNuevoAlimento = (e) => {
-    const { name, value } = e.target;
-    setNuevoAlimento((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+
 
   useEffect(() => {
-    readAlimentos();
+    getAlimentos();
   }, []);
-
-  // Estado y función para manejo de macros
-  const [mostrarMacrosMap, setMostrarMacrosMap] = useState({});
-  const alternarMostrarMacros = (id) => {
-    setMostrarMacrosMap((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const manejarClicAlimentos = (e, listaEnEdicion,manejarAgregarAlimento) => {
-    const target = e.target;
-    if (
-      target.classList.contains("macros") ||
-      target.classList.contains("anadir") ||
-      target.classList.contains("modificar") ||
-      target.classList.contains("eliminar")
-    ) {
-      const contenedorAlimento = target.closest(".alimento");
-      if (!contenedorAlimento) return;
-      const id = contenedorAlimento.getAttribute("data-id");
-      const alimento = alimentosVisibles.find(
-        (alimentoVisible) => alimentoVisible.id.toString() === id
-      );
-      if (!alimento) return;
-      if (target.classList.contains("macros")) {
-        alternarMostrarMacros(id);
-      } else if (target.classList.contains("anadir")) {
-          manejarAgregarAlimento(alimento, listaEnEdicion);
-      } else if (target.classList.contains("modificar")) {
-        if (admin) {
-          iniciarEdicion(alimento);
-        }
-      } else if (target.classList.contains("eliminar")) {
-        if (admin) {
-          const confirmar = window.confirm(
-            `¿Estás seguro de que deseas eliminar ${alimento.nombre}?`
-          );
-          if (confirmar) {
-            deleteAlimento(alimento.id);
-          }
-        }
-      }
-    }
-  };
 
   // Definición del objeto que se proveerá en el contexto
   const datosContexto = {
     // CRUD
     createAlimento,
-    readAlimentos,
+    getAlimentos,
     updateAlimento,
     deleteAlimento,
 
@@ -257,7 +204,6 @@ const AlimentosContexto = ({ children }) => {
 
     // Filtro y orden
     filtrarAlimentos,
-    ordenarAlimentos,
 
     // Buscador
     buscadorDatos,
@@ -273,21 +219,7 @@ const AlimentosContexto = ({ children }) => {
     nuevoAlimento,
     guardarCreacion,
 
-    // Formulario
-    actualizarAlimentoEditado,
-    actualizarNuevoAlimento,
 
-    // Vista final (filtrada y ordenada)
-    alimentosVisibles,
-
-    // Modo admin
-    admin,
-    alternarAdmin,
-
-    // Macros y manejo de clic
-    mostrarMacrosMap,
-    alternarMostrarMacros,
-    manejarClicAlimentos, // Ahora la función se llama manejarClicAlimentos
   };
 
   return (
