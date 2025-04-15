@@ -42,7 +42,11 @@ const AlimentosContexto = ({ children }) => {
     maxCarbohidratos: 100,
     minProteinas: 0,
     maxProteinas: 100,
-});
+    minCalorias: 0,     
+    maxCalorias: 1000,   
+    minGrasas: 0,       
+    maxGrasas: 100,      
+  });
 
   // Función para obtener los alimentos desde la API
   const getAlimentos = async () => {
@@ -168,12 +172,16 @@ const actualizarFiltro = (campo, valor) => {
 
 const alimentosFiltrados = listadoAlimentos.filter((alimento) => {
   return (
-      alimento.nombre.toLowerCase().includes(busqueda.toLowerCase()) &&
-      (filtros.categoria ? alimento.categoria === filtros.categoria : true) &&
-      alimento.carbohidratos >= filtros.minCarbohidratos &&
-      alimento.carbohidratos <= filtros.maxCarbohidratos &&
-      alimento.proteinas >= filtros.minProteinas &&
-      alimento.proteinas <= filtros.maxProteinas
+    alimento.nombre.toLowerCase().includes(busqueda.toLowerCase()) &&
+    (filtros.categoria ? alimento.categoria === filtros.categoria : true) &&
+    alimento.carbohidratos >= filtros.minCarbohidratos &&
+    alimento.carbohidratos <= filtros.maxCarbohidratos &&
+    alimento.proteinas >= filtros.minProteinas &&
+    alimento.proteinas <= filtros.maxProteinas &&
+    alimento.calorias >= filtros.minCalorias &&
+    alimento.calorias <= filtros.maxCalorias &&
+    alimento.grasas >= filtros.minGrasas &&
+    alimento.grasas <= filtros.maxGrasas              
   );
 });
 
