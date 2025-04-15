@@ -8,17 +8,12 @@ import ver from "../../../galeria/imagenes/ver.png";
 const DietasUsuario = ({dieta}) => {
     
     return (
-      <section className="max-w-lg flex flex-col text-center border-2 border-black dark:border-white rounded-[9px]" id={dieta.id_dieta} data-dieta={dieta.pivot.id_dieta}
-        onClick={(evento) => {
-          if (evento.target.classList.contains("del")) {
-            //eliminarListaDeCompra(evento);
-          }
-        }}>
+      <section className="max-w-lg flex flex-col text-center border-2 border-black dark:border-white rounded-[9px]" id={dieta.id_dieta} data-dieta={dieta.pivot.id_dieta}>
         <div className="flex flex-col rounded-t-lg bg-gradient-to-r from-[#FFBA49] to-[#5001ed] text-shadow-xl">
           <section className="border-b-2 border-black dark:border-white p-2">
-            <h3>{dieta.nombre}</h3>
+            <h3 className=''>{dieta.nombre}</h3>
           </section>
-          <section className="p-2">
+          <section className="p-2 border-b-2 border-black dark:border-white">
             <div className="flex justify-between px-6">
               <p className="py-2 px-2">Tu objetivo:</p>
               <p className="py-2 px-2">{dieta.pivot.objetivo} {dieta.pivot.objetivo === "Ganar" ? "masa" : "peso"}</p>

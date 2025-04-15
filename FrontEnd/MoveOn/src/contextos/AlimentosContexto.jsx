@@ -9,10 +9,40 @@ const AlimentosContexto = ({ children }) => {
   /*** VALORES INICIALES ***/
   const cadenaVacia = "";
   const listaInicial = [];
+  const alimentoInicial = {
+    id: null,
+    nombre: "",
+    hidratos: 0,
+    grasas: 0,
+    proteinas: 0,
+    calorias: 0,
+    imagen_url: "",
+    categoria: "",
+    descripcion: "",
+    peso_kg: 0,
+    precio_euros: 0,
+    codigo_barras: "",
+  };
+  // Estado del buscador
+  const [busqueda, setBusqueda] = useState('');
+
+  const buscarAlimento = (busqueda) =>{
+    setBusqueda(busqueda);
+  }
 
   // Estados generales
   const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
   const [errorAlimento, setErrorAlimento] = useState(cadenaVacia);
+  const [alimentosSeleccionados, setAlimentosSeleccionados] = useState([]);
+
+  // Estados para los filtros
+  const [filtros, setFiltros] = useState({
+    categoria: '',
+    minCarbohidratos: 0,
+    maxCarbohidratos: 100,
+    minProteinas: 0,
+    maxProteinas: 100,
+});
 
   // Función para obtener los alimentos desde la API
   const getAlimentos = async () => {
@@ -39,151 +69,126 @@ const AlimentosContexto = ({ children }) => {
     }
   };
 
-  //! LINEA DIVISORIA, ARRIBA LO BUENO, ABAJO POR COMPROBAR.
-
-  const alimentoInicial = {
-    id: null,
-    nombre: "",
-    hidratos: 0,
-    grasas: 0,
-    proteinas: 0,
-    calorias: 0,
-    imagen_url: "",
-    categoria: "",
-    descripcion: "",
-    peso_kg: 0,
-    precio_euros: 0,
-    codigo_barras: "",
-  };
-
-  const buscadorInicial = {
-    nombre: ""
-  };
-  const alimentoEdtandoInicial = null;
-
-  const [alimento, setAlimento] = useState(alimentoInicial);
-
-  // Filtros de búsqueda y orden
-  const [filtro, setFiltro] = useState(cadenaVacia);
-  const [orden, setOrden] = useState(cadenaVacia);
-
-  // Buscador
-  const [buscadorDatos, setBuscadorDatos] = useState(buscadorInicial);
-
-  // Edición
-  const [alimentoEditando, setAlimentoEditando] = useState(alimentoEdtandoInicial);
-  const [alimentoEditado, setAlimentoEditado] = useState(alimentoInicial);
-
-  // Creación
-  const [nuevoAlimento, setNuevoAlimento] = useState(alimentoInicial);
-
 
   /***********************************/
   /***        FUNCIONES CRUD       ***/
   /***********************************/
-  const createAlimento = async (producto) => {
-    try {
-      setErrorAlimento(cadenaVacia);
-      const nuevoAlimento = { ...producto, id: crypto.randomUUID() };
-      const { data, error } = await undefined
-        .from("alimentos")
-        .insert(nuevoAlimento);
-      if (error) throw error;
-      setListadoAlimentos((alimentosPrevios) => [...alimentosPrevios, nuevoAlimento]);
-      setErrorAlimento("Alimento creado con éxito.");
-    } catch (error) {
-      setErrorAlimento("Error al crear el alimento: " + error.message);
-      throw error;
-    }
-  };
 
-
-  const updateAlimento = async (id, productoActualizado) => {
+  const guardarAlimentosEnDietaPersonalizada = async (id) => {
     try {
-      setErrorAlimento(cadenaVacia);
-      const { data, error } = await undefined
-        .from("alimentos")
-        .update(productoActualizado)
-        .eq("id", id);
-      if (error) throw error;
-      const actualizado = listadoAlimentos.map((alimentoAntiguo) =>
-        alimentoAntiguo.id === id ? productoActualizado : alimentoAntiguo
-      );
-      setListadoAlimentos(actualizado);
-      setAlimento(alimentoInicial);
-      setErrorAlimento("Alimento actualizado con éxito.");
-    } catch (error) {
-      setErrorAlimento("Error al actualizar el alimento: " + error.message);
-      throw error;
-    }
-  };
+        // Preparar el array que enviarás. En este ejemplo se envía solo id_alimento y cantidad.
+        const payload = {
+            id_dieta: id, // El id de la dieta (extraído de useParams)
+            alimentos: alimentosSeleccionados.map(({ id_alimento, cantidad }) => ({
+                id_alimento,
+                cantidad,
+            })),
+        };
 
-  const deleteAlimento = async (id) => {
-    try {
-      setErrorAlimento(cadenaVacia);
-      const { data, error } = await undefined
-        .from("alimentos")
-        .delete()
-        .eq("id", id);
-      if (error) throw error;
-      const borrado = listadoAlimentos.filter((alimento) => alimento.id !== id);
-      setListadoAlimentos(borrado);
-      setErrorAlimento("Alimento eliminado con éxito.");
-    } catch (error) {
-      setErrorAlimento("Error al eliminar el alimento: " + error.message);
-    }
-  };
+        const response = await fetch("http://localhost:8089/api/alimento-dieta/multiples", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+        });
 
-  const guardarCreacion = async () => {
-    setErrorAlimento(cadenaVacia);
-    const errorValidacion = validarCreacionAlimento(nuevoAlimento);
-    if (errorValidacion) {
-      setErrorAlimento(errorValidacion);
-      return;
-    }
-    try {
-      await createAlimento(nuevoAlimento);
-      setNuevoAlimento(alimentoInicial);
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || "Error al guardar cambios.");
+        }
+
+        const data = await response.json();
+        // Puedes mostrar un mensaje de éxito, por ejemplo con alert o en un estado propio
+        alert("¡Cambios guardados correctamente!");
+        console.log(data);
     } catch (error) {
-      setErrorAlimento(error);
+        console.error("Error al guardar cambios:", error);
+        alert("Error: " + error.message);
     }
-  };
+};
+
 
   /*****************************************************************/
   /***       FUNCIONES DE EDICIÓN (iniciar, cancelar, guardar)    ***/
   /*****************************************************************/
-  const iniciarEdicion = (producto) => {
-    setAlimentoEditando(producto.id);
-    setAlimentoEditado(producto);
-  };
 
-  const cancelarEdicion = () => {
-    setAlimentoEditando(null);
-  };
-
-  const guardarEdicion = async () => {
-    if (!alimentoEditando) return;
-    try {
-      await updateAlimento(alimentoEditando, alimentoEditado);
-      setAlimentoEditando(false);
-    } catch (error) {
-      // El error ya se maneja en setErrorAlimento
-    }
-  };
 
   /*****************************************************************/
   /***             FILTRO Y ORDEN DE LOS ALIMENTOS                ***/
   /*****************************************************************/
-  const filtrarAlimentos = (textoFiltro) => {
-    setFiltro(textoFiltro);
-  };
 
+  const seleccionarAlimento = (alimento, idDiet) => {
+
+    setAlimentosSeleccionados((prevSeleccionados) => {
+        const existe = prevSeleccionados.find(item => item.id_alimento === alimento.id_alimento);
+        if (existe) {
+            // Si ya existe, se actualiza la cantidad
+            return prevSeleccionados.map(item =>
+                item.id_alimento === alimento.id_alimento
+                    ? { ...item, cantidad: item.cantidad + 1 }
+                    : item
+            );
+        } else {
+            // Si no existe, se agrega como nuevo
+            return [...prevSeleccionados, { ...alimento, cantidad: 1, id_dieta: idDiet }];
+        }
+    });
+};
+
+const aumentarCantidad = (idAlimento) => {
+  setAlimentosSeleccionados((prev) =>
+      prev.map((item) =>
+          item.id_alimento === idAlimento
+              ? { ...item, cantidad: item.cantidad + 1 }
+              : item
+      )
+  );
+};
+
+const disminuirCantidad = (idAlimento) => {
+  setAlimentosSeleccionados((prev) =>
+      prev
+          .map((item) => {
+              if (item.id_alimento === idAlimento) {
+                  if (item.cantidad === 1) {
+                      return null; // marcar para eliminar
+                  }
+                  return { ...item, cantidad: item.cantidad - 1 };
+              }
+              return item;
+          })
+          .filter((item) => item !== null) // eliminar los null
+  );
+};
+
+const actualizarFiltro = (campo, valor) => {
+  setFiltros((prev) => ({...prev, [campo]: valor,}));
+};
+
+const alimentosFiltrados = listadoAlimentos.filter((alimento) => {
+  return (
+      alimento.nombre.toLowerCase().includes(busqueda.toLowerCase()) &&
+      (filtros.categoria ? alimento.categoria === filtros.categoria : true) &&
+      alimento.carbohidratos >= filtros.minCarbohidratos &&
+      alimento.carbohidratos <= filtros.maxCarbohidratos &&
+      alimento.proteinas >= filtros.minProteinas &&
+      alimento.proteinas <= filtros.maxProteinas
+  );
+});
+
+const eliminarAlimento = (idAlimento) => {
+  setAlimentosSeleccionados((prev) =>
+      prev.filter((item) => item.id_alimento !== idAlimento)
+  );
+};
 
 
   /*****************************************************************/
   /***         MANEJO DEL FORMULARIO (CREACIÓN / EDICIÓN) SOLO ADMINS  ***/
   /*****************************************************************/
 
+  //!----------------------------------------------------------------
 
   useEffect(() => {
     getAlimentos();
@@ -192,33 +197,23 @@ const AlimentosContexto = ({ children }) => {
   // Definición del objeto que se proveerá en el contexto
   const datosContexto = {
     // CRUD
-    createAlimento,
+
     getAlimentos,
-    updateAlimento,
-    deleteAlimento,
-
-    // Estados principales
-    alimento,
     listadoAlimentos,
+    guardarAlimentosEnDietaPersonalizada,
+    filtros,
+    busqueda,
+    buscarAlimento,
+    alimentosFiltrados,
+    actualizarFiltro,
+    // Estados alimento
+    seleccionarAlimento,
+    alimentosSeleccionados,
+    aumentarCantidad,
+    disminuirCantidad,
+    eliminarAlimento,
+    
     errorAlimento,
-
-    // Filtro y orden
-    filtrarAlimentos,
-
-    // Buscador
-    buscadorDatos,
-
-    // Edición
-    alimentoEditado,
-    alimentoEditando,
-    iniciarEdicion,
-    cancelarEdicion,
-    guardarEdicion,
-
-    // Creación
-    nuevoAlimento,
-    guardarCreacion,
-
 
   };
 

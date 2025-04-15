@@ -6,22 +6,25 @@ import { calcularMacronutrientes } from "../../../../bibliotecas/biblioteca.js";
 const SeleccionarAlimentos = () => {
     const { id } = useParams();
     const { alimentos, auth, dietas } = useAppContext();
-    const { listadoAlimentos } = alimentos;
+    const { 
+        guardarAlimentosEnDietaPersonalizada,
+        seleccionarAlimento,
+        alimentosSeleccionados,
+        aumentarCantidad,
+        disminuirCantidad,
+        eliminarAlimento,
+        filtros,
+        busqueda,
+        buscarAlimento,
+        alimentosFiltrados,
+        actualizarFiltro } = alimentos;
     const { usuario } = auth;
     const { dietasUsuario } = dietas;
 
-    // Estado del buscador
-    const [busqueda, setBusqueda] = useState('');
-
-    // Estado de los filtros
-    const [categoriaFiltro, setCategoriaFiltro] = useState('');
-    const [minCarbohidratos, setMinCarbohidratos] = useState(0);
-    const [maxCarbohidratos, setMaxCarbohidratos] = useState(100);
-    const [minProteinas, setMinProteinas] = useState(0);
-    const [maxProteinas, setMaxProteinas] = useState(100);
-
+    
     // Encontrar la dieta actual según id y extraer datos
     const dietaActual = dietasUsuario.filter((dieta) => dieta.pivot.id_dieta === id);
+
     const datosUsuario = {
         peso: dietaActual[0].pivot.peso_usuario,
         altura: dietaActual[0].pivot.altura_usuario,
@@ -34,43 +37,9 @@ const SeleccionarAlimentos = () => {
     // Objetivos de macronutrientes calculados (diarios)
     const macronutrientesObjetivos = calcularMacronutrientes(datosUsuario);
 
-    // Estado para los alimentos seleccionados
-    // Cada objeto tendrá: id, nombre, cantidad, y otros datos relevantes
-    const [alimentosSeleccionados, setAlimentosSeleccionados] = useState([]);
-
-    // Filtrar alimentos según búsquedas y filtros
-    const alimentosFiltrados = listadoAlimentos.filter((alimento) => {
-        return (
-            alimento.nombre.toLowerCase().includes(busqueda.toLowerCase()) &&
-            (categoriaFiltro ? alimento.categoria === categoriaFiltro : true) &&
-            alimento.carbohidratos >= minCarbohidratos &&
-            alimento.carbohidratos <= maxCarbohidratos &&
-            alimento.proteinas >= minProteinas &&
-            alimento.proteinas <= maxProteinas
-        );
-    });
-
-    const seleccionarAlimento = (alimento) => {
-        console.log('Seleccionando alimento:', alimento); // Verifica el id que llega
-        setAlimentosSeleccionados((prevSeleccionados) => {
-            const existe = prevSeleccionados.find(item => item.id_alimento === alimento.id_alimento);
-            if (existe) {
-                // Si ya existe, se actualiza la cantidad
-                return prevSeleccionados.map(item =>
-                    item.id_alimento === alimento.id_alimento
-                        ? { ...item, cantidad: item.cantidad + 1 }
-                        : item
-                );
-            } else {
-                // Si no existe, se agrega como nuevo
-                return [...prevSeleccionados, { ...alimento, cantidad: 1, id_dieta: id }];
-            }
-        });
-    };
-
-
     // Función para calcular los macros acumulados a partir de los alimentos seleccionados
     const calcularMacros = () => {
+        console.log("calculando macros")
         return alimentosSeleccionados.reduce((acc, item) => {
             // Se multiplica cada macronutriente por la cantidad seleccionada para ese alimento.
             acc.proteinas += parseFloat(item.proteinas) * item.cantidad;
@@ -85,6 +54,7 @@ const SeleccionarAlimentos = () => {
 
     // Función para comparar y asignar color de semáforo según diferencia
     const compararConObjetivos = (valor, objetivo) => {
+        console.log("comparando objetivos para colores")
         const diferencia = Math.abs(valor - objetivo);
         if (diferencia <= objetivo * 0.1) return "green";       // Dentro de ±10%
         else if (diferencia <= objetivo * 0.2) return "orange";   // Entre 10% y 20%
@@ -99,76 +69,6 @@ const SeleccionarAlimentos = () => {
     const estadoGrasas = compararConObjetivos(macrosAcumulados.grasas, macronutrientesObjetivos.grasas);
 
 
-    const aumentarCantidad = (idAlimento) => {
-        setAlimentosSeleccionados((prev) =>
-            prev.map((item) =>
-                item.id_alimento === idAlimento
-                    ? { ...item, cantidad: item.cantidad + 1 }
-                    : item
-            )
-        );
-    };
-
-    const disminuirCantidad = (idAlimento) => {
-        setAlimentosSeleccionados((prev) =>
-            prev
-                .map((item) => {
-                    if (item.id_alimento === idAlimento) {
-                        if (item.cantidad === 1) {
-                            return null; // marcar para eliminar
-                        }
-                        return { ...item, cantidad: item.cantidad - 1 };
-                    }
-                    return item;
-                })
-                .filter((item) => item !== null) // eliminar los null
-        );
-    };
-
-
-    const eliminarAlimento = (idAlimento) => {
-        setAlimentosSeleccionados((prev) =>
-            prev.filter((item) => item.id_alimento !== idAlimento)
-        );
-    };
-
-
-
-    const guardarAlimentosEnDietaPersonalizada = async () => {
-        try {
-            // Preparar el array que enviarás. En este ejemplo se envía solo id_alimento y cantidad.
-            const payload = {
-                id_dieta: id, // El id de la dieta (extraído de useParams)
-                alimentos: alimentosSeleccionados.map(({ id_alimento, cantidad }) => ({
-                    id_alimento,
-                    cantidad,
-                })),
-            };
-
-            const response = await fetch("http://localhost:8089/api/alimento-dieta/multiples", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(payload),
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || "Error al guardar cambios.");
-            }
-
-            const data = await response.json();
-            // Puedes mostrar un mensaje de éxito, por ejemplo con alert o en un estado propio
-            alert("¡Cambios guardados correctamente!");
-            console.log(data);
-        } catch (error) {
-            console.error("Error al guardar cambios:", error);
-            alert("Error: " + error.message);
-        }
-    };
-
-
 
     return (
         <div>
@@ -179,45 +79,48 @@ const SeleccionarAlimentos = () => {
                     type="text"
                     placeholder="Buscar alimento..."
                     value={busqueda}
-                    onChange={(e) => setBusqueda(e.target.value)}
+                    onChange={(e) => buscarAlimento(e.target.value)}
                 />
             </div>
 
             {/* Filtros */}
             <div>
-                <label>Categoria: </label>
-                <select onChange={(e) => setCategoriaFiltro(e.target.value)} value={categoriaFiltro}>
-                    <option value="">Todas</option>
-                    <option value="Proteínas">Proteínas</option>
-                    <option value="Carbohidratos">Carbohidratos</option>
-                    <option value="Grasas">Grasas</option>
-                    <option value="Vitaminas">Vitaminas</option>
-                </select>
+    <label>Categoria: </label>
+    <select
+        onChange={(e) => actualizarFiltro('categoria', e.target.value)}
+        value={filtros.categoria}
+    >
+        <option value="">Todas</option>
+        <option value="Proteínas">Proteínas</option>
+        <option value="Carbohidratos">Carbohidratos</option>
+        <option value="Grasas">Grasas</option>
+        <option value="Vitaminas">Vitaminas</option>
+    </select>
 
-                <label>Carbohidratos:</label>
-                <input
-                    type="number"
-                    value={minCarbohidratos}
-                    onChange={(e) => setMinCarbohidratos(Number(e.target.value))}
-                />
-                <input
-                    type="number"
-                    value={maxCarbohidratos}
-                    onChange={(e) => setMaxCarbohidratos(Number(e.target.value))}
-                />
+    <label>Carbohidratos:</label>
+    <input
+        type="number"
+        value={filtros.minCarbohidratos}
+        onChange={(e) => actualizarFiltro('minCarbohidratos', Number(e.target.value))}
+    />
+    <input
+        type="number"
+        value={filtros.maxCarbohidratos}
+        onChange={(e) => actualizarFiltro('maxCarbohidratos', Number(e.target.value))}
+    />
 
-                <label>Proteínas:</label>
-                <input
-                    type="number"
-                    value={minProteinas}
-                    onChange={(e) => setMinProteinas(Number(e.target.value))}
-                />
-                <input
-                    type="number"
-                    value={maxProteinas}
-                    onChange={(e) => setMaxProteinas(Number(e.target.value))}
-                />
-            </div>
+    <label>Proteínas:</label>
+    <input
+        type="number"
+        value={filtros.minProteinas}
+        onChange={(e) => actualizarFiltro('minProteinas', Number(e.target.value))}
+    />
+    <input
+        type="number"
+        value={filtros.maxProteinas}
+        onChange={(e) => actualizarFiltro('maxProteinas', Number(e.target.value))}
+    />
+</div>
 
             {/* Lista de Alimentos */}
             <div>
@@ -229,7 +132,7 @@ const SeleccionarAlimentos = () => {
                                 <div>
                                     <img src={alimento.imagen_url} alt={alimento.nombre} width="50" />
                                     <span>{alimento.nombre}</span>
-                                    <button onClick={() => seleccionarAlimento(alimento)}>Seleccionar</button>
+                                    <button onClick={() => seleccionarAlimento(alimento, id)}>Seleccionar</button>
                                 </div>
                             </li>
                         ))
@@ -304,7 +207,10 @@ const SeleccionarAlimentos = () => {
 
             {/* Botón para guardar cambios */}
             <div style={{ marginTop: "20px" }}>
-                <button onClick={guardarAlimentosEnDietaPersonalizada}>
+                <button onClick={() => {
+                    // El id de la dieta (extraído de useParams)
+                    guardarAlimentosEnDietaPersonalizada(id)
+                }}>
                     Guardar cambios
                 </button>
             </div>
