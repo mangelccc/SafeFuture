@@ -13,7 +13,7 @@ const EjerciciosContexto = ({ children }) => {
     video_url: '',
     grupo_muscular: '',
   };
-  const errorEjercicioInicial = "";
+  const errorEjercicioInicial = {};
 
   // Estados usando las variables iniciales
   const [ejercicio, setEjercicio] = useState(ejercicioInicial);
@@ -87,7 +87,7 @@ const EjerciciosContexto = ({ children }) => {
 
   // Función para eliminar un ejercicio (DELETE)
   const deleteEjercicio = (id) => {
-    fetch(`${apiUrl}/${id}`, {method: 'DELETE'})
+    fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
       .then(response => {
         // Se actualiza el estado filtrando el ejercicio eliminado
         setEjercicios(ejercicios.filter(ejercicio => ejercicio.id_ejercicio !== id));
@@ -99,17 +99,17 @@ const EjerciciosContexto = ({ children }) => {
 
   // Función para filtrar los ejercicios por buscador actual.
   const filtrarEjercicios = (filtro) => {
-    const ejerciciosFiltradosReturn = 
+    const ejerciciosFiltradosReturn =
       ejercicios
-        .filter(ejercicio => 
-        ejercicio.nombre
-                .toLowerCase()
-                .startsWith(filtro.toLowerCase())
-      );
-      
-    filtro === "" ? 
-    setEjerciciosFiltrados(ejercicios) : 
-    setEjerciciosFiltrados(ejerciciosFiltradosReturn);
+        .filter(ejercicio =>
+          ejercicio.nombre
+            .toLowerCase()
+            .startsWith(filtro.toLowerCase())
+        );
+
+    filtro === "" ?
+      setEjerciciosFiltrados(ejercicios) :
+      setEjerciciosFiltrados(ejerciciosFiltradosReturn);
   }
 
   const actualizarDato = (e) => {
@@ -121,34 +121,27 @@ const EjerciciosContexto = ({ children }) => {
 
   // Función para validar el formulario.
   const validarFormularioEjercicio = (evento) => {
-    // Se accede al elemento <form> que contiene el listado de todos sus elementos (elements).
     const formulario = evento.target.form;
-    // Array vacío para guardar todos los errores del formulario.
-    let erroresListado = [];
-  
-    // Se recorre el formulario comprobando cada elemento.
+    const erroresPorCampo = {};
+
+    // Recorremos cada elemento del formulario
     for (let i = 0; i < formulario.elements.length; i++) {
       const elemento = formulario.elements[i];
-      // Validamos solo los campos relevantes (que tengan atributo 'name')
       if (elemento.name) {
-        // Validar dato devuelve un array con los errores de ese elemento.
         let erroresElemento = validarDatoEjercicio(elemento);
-        // Se comprueba si hay errores o no (aplicando un estilo).
-        erroresElemento.length !== 0
-          ? elemento.classList.add("error")
-          : elemento.classList.remove("error");
-        // Se añaden los errores (si existen) de cada elemento a erroresListado.
-        erroresListado = [...erroresListado, ...erroresElemento];
+        if (erroresElemento.length !== 0) {
+          elemento.classList.add("error");
+          erroresPorCampo[elemento.name] = erroresElemento;
+        } else {
+          elemento.classList.remove("error");
+        }
       }
     }
-  
-    // Se cambia el valor el estado por los errores producidos.
-    setErrorEjercicio(erroresListado);
-  
-    // Se devuelve un booleano para poder realizar una acción tras la comprobación.
-    // Si no hay errores se devuelve true.
-    return erroresListado.length === 0;
+    setErrorEjercicio(erroresPorCampo);
+    // Retorna true si no hay errores
+    return Object.keys(erroresPorCampo).length === 0;
   };
+
 
 
   const datosContexto = {

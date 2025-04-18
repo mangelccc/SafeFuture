@@ -3,7 +3,7 @@ import useAppContext from "../../../hooks/useAppContext.jsx";
 
 const FormularioEjercicio = () => {
   const { ejerciciosContex } = useAppContext();
-  const { actualizarDato, ejercicio, validarFormularioEjercicio,errorEjercicio } = ejerciciosContex;
+  const { actualizarDato, ejercicio, validarFormularioEjercicio, errorEjercicio, createEjercicio } = ejerciciosContex;
 
   return (
     <div className="max-w-3xl w-full mx-auto p-6 bg-white dark:bg-black rounded-lg shadow-md">
@@ -20,6 +20,9 @@ const FormularioEjercicio = () => {
             onChange={actualizarDato}
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-black outline-none focus:ring-2 focus:ring-purple dark:focus:ring-gold transition duration-300"
           />
+          {errorEjercicio.nombre && errorEjercicio.nombre.map((err, idx) => (
+            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
+          ))}
         </div>
 
         <div>
@@ -34,6 +37,9 @@ const FormularioEjercicio = () => {
             onChange={actualizarDato}
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-black outline-none focus:ring-2 focus:ring-purple dark:focus:ring-gold transition duration-300"
           />
+          {errorEjercicio.descripcion && errorEjercicio.descripcion.map((err, idx) => (
+            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
+          ))}
         </div>
 
         <div>
@@ -48,6 +54,9 @@ const FormularioEjercicio = () => {
             onChange={actualizarDato}
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-black outline-none focus:ring-2 focus:ring-purple dark:focus:ring-gold transition duration-300"
           />
+          {errorEjercicio.imagen_url && errorEjercicio.imagen_url.map((err, idx) => (
+            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
+          ))}
         </div>
 
         <div>
@@ -62,6 +71,9 @@ const FormularioEjercicio = () => {
             onChange={actualizarDato}
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-black outline-none focus:ring-2 focus:ring-purple dark:focus:ring-gold transition duration-300"
           />
+          {errorEjercicio.video_url && errorEjercicio.video_url.map((err, idx) => (
+            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
+          ))}
         </div>
 
         <div>
@@ -86,8 +98,11 @@ const FormularioEjercicio = () => {
             <option value="cardio">Cardio</option>
             <option value="movilidad">Movilidad / Flexibilidad</option>
           </select>
+          {errorEjercicio.grupo_muscular && errorEjercicio.grupo_muscular.map((err, idx) => (
+            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
+          ))}
         </div>
-        <p>{errorEjercicio}</p>
+
         <div>
           <input
             type="button"

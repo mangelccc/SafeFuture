@@ -7,7 +7,7 @@ const Entrenamientos = () => {
     const { entrenamientos } = entrenamientoContexto;
 
   return (
-    <div>
+    <div key={1}>
       {entrenamientos.map((e) => (
         <Entrenamiento 
           key={e.id_ejercicio}
