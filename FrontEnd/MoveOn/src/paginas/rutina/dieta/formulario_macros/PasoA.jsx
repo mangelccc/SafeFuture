@@ -39,7 +39,7 @@ const PasoA = () => {
       </form>
 
 
-      <div className="pasoA-buttonContainer pt-2">
+      <div className="pasoA-buttonContainer py-3">
         <button className="pasoA-button" onClick={siguientePaso}>
           Siguiente
         </button>

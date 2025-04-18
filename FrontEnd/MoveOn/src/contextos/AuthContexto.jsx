@@ -125,7 +125,9 @@ const AuthContexto = ({ children }) => {
 
         setUsuario(data.usuario);
         setSesionIniciada(true);
-        // Resetea los datos del formulario a sus valores iniciales
+        localStorage.setItem("usuario", JSON.stringify(data.usuario));
+        localStorage.setItem("sesionIniciada", "true");
+
         setDatosSesion(datosSesionInicial);
         navegar("/"); 
       }
@@ -133,13 +135,25 @@ const AuthContexto = ({ children }) => {
       setErrorUsuario(error.message);
     }
   };
+
+
+  useEffect(() => {
+    const usuarioGuardado = localStorage.getItem("usuario");
+    const sesionGuardada = localStorage.getItem("sesionIniciada");
+  
+    if (usuarioGuardado && sesionGuardada === "true") {
+      setUsuario(JSON.parse(usuarioGuardado));
+      setSesionIniciada(true);
+    }
+  }, []);
+  
   
 
-  // Al cerrar sesión se limpian los estados y se redirige a "/usuario"
   const cerrarSesion = () => {
     setUsuario(usuarioInicial);
     setSesionIniciada(false);
-    
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("sesionIniciada");
     navegar("/Usuario");
   };
 

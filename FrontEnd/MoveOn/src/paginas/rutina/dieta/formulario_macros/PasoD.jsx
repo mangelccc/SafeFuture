@@ -37,7 +37,7 @@ const PasoD = () => {
           )}
       </div>
 
-      <div className="pasoB-buttonContainer pt-2">
+      <div className="pasoB-buttonContainer py-3">
         <button className="pasoA-button-anterior" onClick={anteriorPaso}>
           Anterior
         </button>
