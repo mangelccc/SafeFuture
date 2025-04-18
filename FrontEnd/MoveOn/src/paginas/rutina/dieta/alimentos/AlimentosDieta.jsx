@@ -84,7 +84,7 @@ const AlimentosDieta = () => {
   
     return (
       <div className="seleccionar-alimentos">
-        <h2 className='p-0 dark:text-gold underline underline-offset-3 decoration-turq hsm:p-4'>Seleccionar Alimentos para la Dieta</h2>
+        <h2 className='p-0 dark:text-gold underline underline-offset-3 decoration-turq hsm:p-4 sm:mb-4'>Seleccionar Alimentos para la Dieta</h2>
         <div className='bg-purple p-5 mt-2 sm:rounded-lg'>
           <BuscadorAlimentos busqueda={busqueda} buscarAlimento={buscarAlimento} />
           <FiltrosAlimentos filtros={filtros} actualizarFiltro={actualizarFiltro} />
