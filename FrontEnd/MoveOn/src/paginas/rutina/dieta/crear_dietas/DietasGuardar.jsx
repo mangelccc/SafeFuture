@@ -21,7 +21,7 @@ const DietasGuardar = () => {
     return (
         <section className="flex flex-col items-center justify-center gap-5 p-5 bg-[#1e1e1e] border-2 border-purple rounded-lg shadow-lg max-w-xl mx-auto my-12">
     <div>
-        <h2 className="dark:text-white text-3xl text-center px-4">Crear una nueva lista</h2>
+        <h2 className="text-gold text-3xl text-center px-4">Crear una nueva lista</h2>
         <form id="crear-lista" className="flex flex-col gap-4 w-full pt-4">
             <label htmlFor="nombre" className="text-lg text-[#d4d4d4] font-bold text-center">
                 Elige el nombre de tu dieta:
@@ -54,7 +54,7 @@ const DietasGuardar = () => {
                         crearIdDieta();
                     }
                 }}
-                className="dark:bg-gold dark:text-black text-lg font-bold py-2 px-4 rounded-lg cursor-pointer transition-all duration-300 dark:hover:bg-turq hover:text-turq hover:shadow-lg"
+                className="bg-gold dark:text-black text-lg font-bold py-2 px-4 rounded-lg cursor-pointer transition-all duration-300 hover:bg-turq hover:shadow-lg"
             >
                 Crear dieta
             </button>
@@ -63,7 +63,7 @@ const DietasGuardar = () => {
     </div>
     <div>
         <Link to="/rutina/dietas">
-            <button className="bg-purple text-white border-2 transition-all duration-300 hover:bg-turq hover:text-black px-2 py-1 rounded-md">
+            <button className="bg-purple text-white font-bold border-2 transition-all duration-300 hover:bg-turq hover:border-turq hover:text-black px-2 py-1 rounded-md">
                 Volver a tus dietas
             </button>
         </Link>
