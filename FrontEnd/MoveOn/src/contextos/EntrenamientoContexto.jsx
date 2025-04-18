@@ -21,8 +21,8 @@ const EntrenamientoContexto = ({children}) => {
 
     //crud
 
-    const readEntrenamientos = () => {
-    return fetch(apiUrl)
+    const readEntrenamientos = async () => {
+    return await fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         setEntrenamientos(data.rutinas);
@@ -38,8 +38,8 @@ const EntrenamientoContexto = ({children}) => {
         }
     , [apiUrl]);
 
-    const createEntrenamiento = (nuevoEntrenamiento) => {
-        fetch(apiUrl, {
+    const createEntrenamiento = async (nuevoEntrenamiento) => {
+        await fetch(apiUrl, {
             headers: { "Content-Type": "application/json" },
             method: "POST",
             body: JSON.stringify(nuevoEntrenamiento),
@@ -55,15 +55,14 @@ const EntrenamientoContexto = ({children}) => {
         });  
     }
 
-    const deleteEntrenamiento = (id) => {
-      fetch(`${apiUrl}/${id}`,{
+    const deleteEntrenamiento = async (id) => {
+      await fetch(`${apiUrl}/${id}`,{
           method: "DELETE"
       })
       .then(response => response.json())  
       .then(data => {
         setEntrenamientos(entrenamientos.filter(e => e.id_rutina !== id));
         setEntrenamientosFiltrados(entrenamientos.filter(e => e.id_rutina !== id));
-        readEntrenamientos(); 
         console.log(`Se ha eliminado el entrenamiento con id: ${id}`);
       })    
       .catch(error => {
