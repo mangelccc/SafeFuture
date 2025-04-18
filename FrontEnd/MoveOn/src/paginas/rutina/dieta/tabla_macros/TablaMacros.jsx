@@ -1,47 +1,44 @@
 import React from 'react'
 
-const TablaMacros = ({ objetivos, macrosAcumulados, estados }) => (
-    <div className="tabla-macros my-10">
-      <table>
+const TablaMacros = ({ objetivos, macrosAcumulados, estados }) => {
+  return (
+    <div className="tabla-macros my-10 bg-turq p-4 rounded-lg shadow-lg">
+      <h2 className='text-center text-2xl font-bold pb-2'>Macros Acumulados</h2>
+      <table className='w-full shadow-lg'>
         <thead>
-          <tr>
-            <th colSpan="4">Macros Recomendados</th>
-          </tr>
-          <tr>
-            <th>Carbohidratos</th>
-            <th>Proteínas</th>
-            <th>Grasas</th>
-            <th>Calorías</th>
+          <tr className='bg-black1 text-white'>
+            <th colSpan={1}></th>
+            <th className='px-4 py-2'>Objetivos de tu dieta</th>
+            <th>Macros actuales</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{objetivos.carbohidratos}g</td>
-            <td>{objetivos.proteinas}g</td>
-            <td>{objetivos.grasas}g</td>
-            <td>{objetivos.caloriasObjetivo} kcal</td>
+          <tr className='bg-white2 border-b-2 border-white3'>
+            <td className='ps-2 px-4 py-2'>Proteínas</td>
+            <td className='text-center'>{objetivos.proteinas} g</td>
+            <td className='text-center'>{macrosAcumulados.proteinas} g <span style={{ color: estados.proteinas }}>●</span></td>
+          </tr>
+          <tr className='bg-white2 border-b-2 border-white3'>
+            <td className='ps-2 px-4 py-2'>Carbohidratos</td>
+            <td className='text-center'>{objetivos.carbohidratos} g</td>
+            <td className='text-center'>{macrosAcumulados.carbohidratos} g <span style={{ color: estados.carbohidratos }}>●</span></td>
+          </tr>
+          <tr className='bg-white2 border-b-2 border-white3'>
+            <td className='ps-2 px-4 py-2'>Grasas</td>
+            <td className='text-center'>{objetivos.grasas} g</td>
+            <td className='text-center'>{macrosAcumulados.grasas.toFixed(2)} g <span style={{ color: estados.grasas }}>●</span></td>
+          </tr>
+          <tr className='bg-white2'>
+            <td className='ps-2 px-4 py-2'>Calorías</td>
+            <td className='text-center'>{objetivos.caloriasObjetivo} kcal</td>
+            <td className='text-center'>{macrosAcumulados.calorias} kcal <span style={{ color: estados.calorias }}>●</span></td>
+            
           </tr>
         </tbody>
       </table>
-      <div className="macros-acumulados">
-        <h3>
-          Calorías: {macrosAcumulados.calorias}{" "}
-          <span style={{ color: estados.calorias }}>●</span>
-        </h3>
-        <h3>
-          Proteínas: {macrosAcumulados.proteinas}g{" "}
-          <span style={{ color: estados.proteinas }}>●</span>
-        </h3>
-        <h3>
-          Carbohidratos: {macrosAcumulados.carbohidratos}g{" "}
-          <span style={{ color: estados.carbohidratos }}>●</span>
-        </h3>
-        <h3>
-          Grasas: {macrosAcumulados.grasas.toFixed(2)}g{" "}
-          <span style={{ color: estados.grasas }}>●</span>
-        </h3>
-      </div>
+      
     </div>
-  );
+  )
+};
 
 export default TablaMacros

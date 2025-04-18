@@ -106,7 +106,7 @@ const AlimentosDieta = () => {
           eliminarAlimento={eliminarAlimento}
         />
         <div style={{ marginTop: "20px" }}>
-          <button onClick={() => guardarAlimentosEnDietaPersonalizada(id)}>
+          <button className='bg-gold dark:text-black text-lg font-bold py-2 px-4 rounded-lg cursor-pointer transition-all duration-300 hover:text-white dark:hover:text-white hover:bg-purple hover:shadow-lg' onClick={() => guardarAlimentosEnDietaPersonalizada(id)}>
             Guardar cambios
           </button>
         </div>
