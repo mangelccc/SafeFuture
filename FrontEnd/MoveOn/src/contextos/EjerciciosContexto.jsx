@@ -119,15 +119,16 @@ const EjerciciosContexto = ({ children }) => {
     setEjercicio({ ...ejercicio, [name]: value });
   };
 
-  // Función para validar el formulario.
   const validarFormularioEjercicio = (evento) => {
     const formulario = evento.target.form;
     const erroresPorCampo = {};
-
-    // Recorremos cada elemento del formulario
+    console.log("Elementos del formulario:", formulario.elements); // Log para ver todos los elementos
+  
     for (let i = 0; i < formulario.elements.length; i++) {
       const elemento = formulario.elements[i];
       if (elemento.name) {
+        // Log para ver qué elemento se está intentando validar
+        console.log(`Intentando validar elemento con name: ${elemento.name}`);
         let erroresElemento = validarDatoEjercicio(elemento);
         if (erroresElemento.length !== 0) {
           elemento.classList.add("error");
@@ -137,8 +138,8 @@ const EjerciciosContexto = ({ children }) => {
         }
       }
     }
+    console.log("Errores encontrados:", erroresPorCampo); // Log para ver el resultado final
     setErrorEjercicio(erroresPorCampo);
-    // Retorna true si no hay errores
     return Object.keys(erroresPorCampo).length === 0;
   };
 

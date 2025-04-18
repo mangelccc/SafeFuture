@@ -228,14 +228,10 @@ const validarCamposDieta = (elemento) => {
   return erroresElemento;
 };
 
-// Función que valida el valor de un input.
 const validarDatoEjercicio = (elemento) => {
-  // Desestructuración del objeto target (situado dentro de evento).
   const { name, value } = elemento;
-  // Variable con los errores de cada elemento.
   let erroresElemento = [];
 
-  // Validación para el campo nombre
   if (name === "nombre") {
     if (!value.length) {
       erroresElemento = [
@@ -251,9 +247,14 @@ const validarDatoEjercicio = (elemento) => {
     }
   }
 
-  // Validación para el campo descripcion (opcional)
   if (name === "descripcion") {
-    if (value.length > 65535) { // Límite aproximado de un campo TEXT en MySQL
+    if (!value.length) {
+      erroresElemento = [
+        ...erroresElemento,
+        `El campo ${name} debe tener un valor.`,
+      ];
+    }
+    if (value.length > 65535) {
       erroresElemento = [
         ...erroresElemento,
         `La descripción es demasiado larga.`,
@@ -261,7 +262,6 @@ const validarDatoEjercicio = (elemento) => {
     }
   }
 
-  // Validación para el campo imagen_url
   if (name === "imagen_url") {
     if (value.length > 255) {
       erroresElemento = [
@@ -269,7 +269,6 @@ const validarDatoEjercicio = (elemento) => {
         `La URL de la imagen no puede superar los 255 caracteres.`,
       ];
     }
-    // Validación básica de URL (opcional)
     if (value && !/^https?:\/\/.+/.test(value)) {
       erroresElemento = [
         ...erroresElemento,
@@ -278,7 +277,6 @@ const validarDatoEjercicio = (elemento) => {
     }
   }
 
-  // Validación para el campo video_url
   if (name === "video_url") {
     if (value.length > 255) {
       erroresElemento = [
@@ -294,8 +292,13 @@ const validarDatoEjercicio = (elemento) => {
     }
   }
 
-  // Validación para el campo grupo_muscular
   if (name === "grupo_muscular") {
+    if (!value) { // En el select, el valor vacío es "" que es falsy.
+      erroresElemento = [
+        ...erroresElemento,
+        `Debes seleccionar un grupo muscular.`,
+      ];
+    }
     if (value.length > 100) {
       erroresElemento = [
         ...erroresElemento,
@@ -303,10 +306,11 @@ const validarDatoEjercicio = (elemento) => {
       ];
     }
   }
+  console.log(erroresElemento);
 
-  // Se devuelve el listado de errores (o ninguno).
   return erroresElemento;
 };
+
 
 //Validar el siguiente formulario para la dieta personalizada al usuario
 

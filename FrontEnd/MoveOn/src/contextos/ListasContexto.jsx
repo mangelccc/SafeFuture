@@ -1,6 +1,5 @@
 import React, { createContext, useState } from "react";
 import {validarCrearLista} from "../bibliotecas/biblioteca.js";
-import { supabaseConexion } from "../bibliotecas/config.js";
 import useAppContext from "../hooks/useAppContext.jsx";
 
 
@@ -33,7 +32,7 @@ const ListasContexto = ({ children }) => {
     try {
       validarCrearLista(nombreLista, alimentosLista, usuario);
 
-      const { data, error} = await supabaseConexion
+      const { data, error} = await Undefined
         .from("listas")
         .insert({ nombre: nombreLista, usuario_id: usuario.id })
         .select();
@@ -46,7 +45,7 @@ const ListasContexto = ({ children }) => {
       const listaCreada = data[0];
 
       const insertarProductos = alimentosLista.map((alimento) =>
-        supabaseConexion.from("productos_listas").insert({
+        Undefined.from("productos_listas").insert({
           lista_id: listaCreada.id,
           alimento_id: alimento.id,
           cantidad: alimento.quantity,
@@ -106,7 +105,7 @@ const ListasContexto = ({ children }) => {
   const actualizarLista = async (listaId) => {
     setError(ERROR_INICIAL);
     try {
-      const { error } = await supabaseConexion
+      const { error } = await Undefined
         .from("productos_listas")
         .delete()
         .eq("lista_id", listaId);
@@ -114,7 +113,7 @@ const ListasContexto = ({ children }) => {
       if (error) throw error;
 
       const insertarProductos = alimentosLista.map((alimento) =>
-        supabaseConexion.from("productos_listas").insert({
+        Undefined.from("productos_listas").insert({
           lista_id: listaId,
           alimento_id: alimento.id,
           cantidad: alimento.quantity,
@@ -139,7 +138,7 @@ const ListasContexto = ({ children }) => {
         throw new Error("No se encontró el usuario autenticado para obtener listas.");
       }
 
-      const { data, error } = await supabaseConexion
+      const { data, error } = await Undefined
         .from("listas")
         .select("*")
         .eq("usuario_id", usuario.id);
@@ -161,7 +160,7 @@ const ListasContexto = ({ children }) => {
         throw new Error("La lista que intentas editar no es válida.");
       }
 
-      const { data, error } = await supabaseConexion
+      const { data, error } = await Undefined
         .from("productos_listas")
         .select("*")
         .eq("lista_id", lista.id);
@@ -214,7 +213,7 @@ const ListasContexto = ({ children }) => {
         throw new Error("No hay ninguna lista en edición.");
       }
 
-      const { error } = await supabaseConexion
+      const { error } = await Undefined
         .from("productos_listas")
         .delete()
         .eq("lista_id", listaEnEdicion.id);
@@ -222,7 +221,7 @@ const ListasContexto = ({ children }) => {
       if (error) throw error;
 
       const insertarProductos = alimentosEdicion.map((alimento) =>
-        supabaseConexion.from("productos_listas").insert({
+        Undefined.from("productos_listas").insert({
           lista_id: listaEnEdicion.id,
           alimento_id: alimento.id,
           cantidad: alimento.quantity,
@@ -254,7 +253,7 @@ const ListasContexto = ({ children }) => {
         throw new Error("No se recibió una lista válida para eliminar.");
       }
 
-      const { error } = await supabaseConexion
+      const { error } = await Undefined
         .from("listas")
         .delete()
         .eq("id", lista.id);
