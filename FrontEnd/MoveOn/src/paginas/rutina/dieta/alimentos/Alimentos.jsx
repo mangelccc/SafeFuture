@@ -1,26 +1,23 @@
-import React from 'react'
+import React from 'react';
+import Alimento from './Alimento.jsx';
 
-const Alimentos = ({ alimentos, seleccionarAlimento, dietaId }) => (
+const Alimentos = ({ alimentos, seleccionarAlimento, dietaId }) => {
+  console.log(alimentos);
+  return(
   <div className="lista-alimentos">
     <h3>Alimentos</h3>
+    
     <ul>
-      {alimentos.length > 0 ? (
-        alimentos.map((alimento) => (
-          <li key={alimento.id_alimento}>
-            <div>
-              <img src={alimento.imagen_url} alt={alimento.nombre} width="50" />
-              <span>{alimento.nombre}</span>
-              <button onClick={() => seleccionarAlimento(alimento, dietaId)}>
-                Seleccionar
-              </button>
-            </div>
-          </li>
-        ))
-      ) : (
+      {alimentos.length && Array.isArray(alimentos) ? 
+        alimentos.map((alimento) => 
+          <Alimento key={alimento.id_alimento} alimento={alimento} dietaId={dietaId} seleccionarAlimento={seleccionarAlimento}/>
+        )
+       : 
         <li>No se encontraron alimentos.</li>
-      )}
+      }
     </ul>
   </div>
-);
+  );
+};
 
 export default Alimentos

@@ -1,40 +1,23 @@
-import React from "react";
-import { precioPorKilo } from "../../../../bibliotecas/biblioteca.js";
-import Macros from "./alimento/Macros.jsx";
-import "./Alimento.css";
+import React from 'react';
 
-const Alimento = ({ alimento, mostrarMacros, admin }) => {
+const Alimento = ({ alimento, seleccionarAlimento, dietaId }) => {
+
+
+
   return (
-    <div className="alimento" data-id={alimento.id}>
-      <div className="alimento-img-container">
-        <img src={alimento.imagen_url} alt={alimento.nombre} />
+    <li>
+      <div className='border-1 border-black p-2 rounded-md'>
+        <p className="font-bold">{alimento.nombre}</p>
+        <img src={alimento.imagen_url} alt={alimento.nombre} width="50" />
+        <span>{alimento.precio_euros} € / {alimento.peso_kg} kg</span>
+        <button 
+        className='bg-purple text-white rounded-md hover:bg-gold hover:text-black transition-all duration-200'
+        onClick={() => seleccionarAlimento(alimento, dietaId)}>
+          Seleccionar
+        </button>
       </div>
-      <p>
-        <strong>Nombre:</strong> {alimento.nombre}
-      </p>
-      <p>
-        <strong>Precio kg/$:</strong> {precioPorKilo(alimento.peso_kg, alimento.precio_euros)}
-      </p>
-      <div className="admin">
-        <button className="macros">Macros</button>
-        <button className="anadir">Añadir</button>
-        {admin && (
-          <>
-            <button className="modificar">Modificar</button>
-            <button className="eliminar">Eliminar</button>
-          </>
-        )}
-      </div>
-      {mostrarMacros && (
-        <Macros
-          hidratos={alimento.hidratos}
-          grasas={alimento.grasas}
-          proteinas={alimento.proteinas}
-          calorias={alimento.calorias}
-        />
-      )}
-    </div>
-  );
-};
+    </li>
+  )
+}
 
 export default Alimento;

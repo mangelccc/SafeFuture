@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useParams, Link } from "react-router-dom";
 import useAppContext from '../../../../hooks/useAppContext.jsx';
 import { calcularMacronutrientes } from "../../../../bibliotecas/biblioteca.js";
-import BuscadorAlimentos from '../buscador/BuscadorAlimentos.jsx';
+import BuscadorAlimentos from './BuscadorAlimentos.jsx';
 import FiltrosAlimentos from './FiltrosAlimentos.jsx';
 import Alimentos from './Alimentos.jsx';
 import TablaMacros from '../tabla_macros/TablaMacros.jsx';
@@ -84,8 +84,11 @@ const AlimentosDieta = () => {
   
     return (
       <div className="seleccionar-alimentos">
-        <BuscadorAlimentos busqueda={busqueda} buscarAlimento={buscarAlimento} />
-        <FiltrosAlimentos filtros={filtros} actualizarFiltro={actualizarFiltro} />
+        <h2 className='p-0 dark:text-gold underline underline-offset-3 decoration-turq hsm:p-4'>Seleccionar Alimentos para la Dieta</h2>
+        <div className='bg-purple p-5 mt-2 sm:rounded-lg'>
+          <BuscadorAlimentos busqueda={busqueda} buscarAlimento={buscarAlimento} />
+          <FiltrosAlimentos filtros={filtros} actualizarFiltro={actualizarFiltro} />
+        </div>
         <Alimentos
           alimentos={alimentosFiltrados}
           seleccionarAlimento={seleccionarAlimento}
