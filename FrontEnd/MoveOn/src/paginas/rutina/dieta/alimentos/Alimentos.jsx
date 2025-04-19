@@ -2,7 +2,6 @@ import React from 'react';
 import Alimento from './Alimento.jsx';
 
 const Alimentos = ({ alimentos, seleccionarAlimento, dietaId }) => {
-  console.log(alimentos);
   return(
   <div className="lista-alimentos">
     <h2 className='p-0 dark:text-gold underline underline-offset-3 decoration-turq hsm:p-4 sm:my-4'>Alimentos</h2>

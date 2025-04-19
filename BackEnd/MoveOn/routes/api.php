@@ -112,6 +112,10 @@ Route::delete('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'destroy'
 Route::prefix('alimento-dieta')->group(function () {
     Route::get('/', [AlimentoDietaController::class, 'index']);
     Route::post('/', [AlimentoDietaController::class, 'store']);
+    // Ruta para obtener todos los alimentos de una dieta.
+    Route::get('/{id_dieta}', [AlimentoDietaController::class, 'getByDieta']);
+    // Ruta para permitir multiples inserciones a dieta_alimento.
+    Route::put('/multiples', [AlimentoDietaController::class, 'updateMultiples']);
     Route::get('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'show']);
     Route::put('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'update']);
     Route::patch('/{id_alimento}/{id_dieta}', [AlimentoDietaController::class, 'updatePartial']);
@@ -122,6 +126,7 @@ Route::prefix('alimento-dieta')->group(function () {
 Route::post('/usuario/{id_usuario}/dieta', [UsuarioDietaController::class, 'createDieta']);
 Route::get('/usuario/{id_usuario}/dietas', [UsuarioController::class, 'getDietasPorUsuario']);
 
-// Ruta para permitir multiples inserciones a dieta_alimento.
-Route::put('/alimento-dieta/multiples', [AlimentoDietaController::class, 'updateMultiples']);
+
+
+
 

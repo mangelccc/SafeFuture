@@ -202,5 +202,23 @@ class AlimentoDietaController extends Controller
         }
     }
 
+    //Función definidas por el programador.
+    public function getByDieta($id_dieta)
+    {
+        $registros = AlimentoDieta::where('id_dieta', $id_dieta)->get();
+
+        if ($registros->isEmpty()) {
+            return response()->json([
+                'message' => 'No se encontraron registros para esta dieta',
+                'status' => 404
+            ], 404);
+        }
+
+        return response()->json([
+            'alimento_dietas' => $registros,
+            'status' => 200
+        ], 200);
+    }
+
 
 }
