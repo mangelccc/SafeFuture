@@ -1,6 +1,6 @@
 // src/contextos/AlimentosContexto.jsx
 import React, { createContext, useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import { validarCreacionAlimento } from "../bibliotecas/biblioteca.js";
 
@@ -30,6 +30,7 @@ const AlimentosContexto = ({ children }) => {
   const [isSaving, setIsSaving] = useState(falso);
 
   const navegar = useNavigate();
+  const cambioDeRuta = useLocation();
 
   const buscarAlimento = (busqueda) => {
     setBusqueda(busqueda);
@@ -39,7 +40,7 @@ const AlimentosContexto = ({ children }) => {
   const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
   const [errorAlimento, setErrorAlimento] = useState(cadenaVacia);
   const [alimentosSeleccionados, setAlimentosSeleccionados] = useState(listaInicial);
-  const [listaAlimentosDieta, setlistaAlimentosDieta] = useState(listaInicial);
+  const [listaAlimentosDieta, setlistaAlimentosDieta] = useState(listaInicial); //! No hace nada
 
   // Estados para los filtros
   const [filtros, setFiltros] = useState({
@@ -88,7 +89,6 @@ const AlimentosContexto = ({ children }) => {
     if (!isSaving) {
       try {
         setIsSaving(true);
-        setErrorAlimento(cadenaVacia);
         console.log("Guardando dieta");
         const payload = {
           id_dieta: id, // El id de la dieta (extraído de useParams)
@@ -131,6 +131,7 @@ const AlimentosContexto = ({ children }) => {
 
       // Función para obtener los productos de la lista de compra. ListaActual es el ID de la lista. 
       const obtenerAlimentosDieta = async (idDieta) => {
+        setAlimentosSeleccionados(listaInicial); // Reiniciar la lista de alimentos seleccionados
         try {
             /* Se realiza la consulta múltiple, teniendo en cuenta que la lista que buscamos coincida con el id pasado por parámetro. */
             const response = await fetch(`http://localhost:8089/api/alimento-dieta/${idDieta}`, {
@@ -143,11 +144,10 @@ const AlimentosContexto = ({ children }) => {
             const data = await response.json();
             console.log(data)
             if (!response.ok) {
-                throw new Error("Error en la respuesta de la API: " + response.statusText);
+                throw new Error("Error en la respuesta: " + response.statusText);
             }
             
             setAlimentosSeleccionados(data);
-            console.log(alimentosSeleccionados)
         } catch (error) {
             setErrorAlimento(error.message);
         }
@@ -242,6 +242,13 @@ const AlimentosContexto = ({ children }) => {
   useEffect(() => {
     getAlimentos();
   }, []);
+
+   /* Para establecer el estado de errores a 0, al navegar por el sitio web. */
+   useEffect(() => {
+    if (errorAlimento.length) { 
+        setErrorAlimento(cadenaVacia);
+    }
+}, [cambioDeRuta.pathname])
 
   // Definición del objeto que se proveerá en el contexto
   const datosContexto = {

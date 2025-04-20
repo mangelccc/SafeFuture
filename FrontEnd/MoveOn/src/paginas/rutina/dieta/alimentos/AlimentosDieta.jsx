@@ -67,7 +67,7 @@ const AlimentosDieta = () => {
   return (
     <div className="seleccionar-alimentos">
       <h2 className="p-0 dark:text-gold underline underline-offset-3 decoration-turq hsm:p-4 sm:mb-4">
-        Seleccionar Alimentos para la Dieta
+        Filtros para encontrar tus alimentos
       </h2>
 
       <div className="bg-purple p-5 mt-2 sm:rounded-lg">
@@ -111,7 +111,7 @@ const AlimentosDieta = () => {
           to={`/rutina/dietas/${id}/detalles`}
           className="hsm:w-full sm:w-1/3 sm:m-auto"
         >
-          <button className="bg-purple dark:text-white text-lg font-bold py-2 px-4 hsm:w-full rounded-lg cursor-pointer transition-all duration-300 hover:text-black dark:hover:text-black active:hover:text-black hover:bg-white2 active:bg-white2 hover:shadow-lg">
+          <button className="bg-purple text-white text-lg font-bold py-2 px-4 hsm:w-full rounded-lg cursor-pointer transition-all duration-300 hover:text-black dark:hover:text-black active:hover:text-black hover:bg-white2 active:bg-white2 hover:shadow-lg">
             Ver los detalles de la dieta
           </button>
         </Link>
