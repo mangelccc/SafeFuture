@@ -42,8 +42,6 @@ const calcularMacronutrientes = ({ peso, altura, edad, sexo, actividad, objetivo
 };
 
 
-
-
 const precioPorKilo = (pesoKg, precioEuros) => {
   return parseFloat((precioEuros / pesoKg).toFixed(2));
 };
@@ -345,8 +343,30 @@ const validarFormularioData = (formularioData) => {
 }
 
 
+// Cálculo de macronutrientes acumulados
+const calcularMacrosAcumulados = (alimentosSeleccionados) => {
+  return alimentosSeleccionados.reduce(
+    (acc, item) => {
+      acc.proteinas += parseFloat(item.proteinas) * item.cantidad;
+      acc.carbohidratos += parseFloat(item.carbohidratos) * item.cantidad;
+      acc.grasas += parseFloat(item.grasas) * item.cantidad;
+      acc.calorias += parseFloat(item.calorias) * item.cantidad;
+      return acc;
+    },
+    { proteinas: 0, carbohidratos: 0, grasas: 0, calorias: 0 }
+  );
+};
+
+// Comparar valores con objetivo para colorear
+const compararConObjetivos = (valor, objetivo) => {
+  const diff = Math.abs(valor - objetivo);
+  if (diff <= objetivo * 0.1) return "green";
+  if (diff <= objetivo * 0.2) return "orange";
+  return "red";
+};
+
 
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
-  validarCamposDieta, validarDatoEjercicio, validarFormularioData
+  validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos
 };
