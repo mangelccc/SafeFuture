@@ -20,4 +20,15 @@ class AlimentoDieta extends Model
         'id_dieta',
         'cantidad'
     ];
+
+    public function alimento()
+        {
+            return $this->belongsTo(Alimento::class, 'id_alimento', 'id_alimento');
+        }
+
+        // (Opcional) relación hacia Dieta
+        public function dieta()
+        {
+            return $this->belongsTo(Dieta::class, 'id_dieta', 'id_dieta');
+        }
 }

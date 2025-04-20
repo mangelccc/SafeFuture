@@ -116,6 +116,6 @@ class DietaController extends Controller
         ], 200);
     }
 
-
+    //Funciones definidas por el programador.
 
 }

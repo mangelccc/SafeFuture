@@ -141,13 +141,13 @@ const AlimentosContexto = ({ children }) => {
               }
             });
             const data = await response.json();
-            console.log(data.alimento_dietas)
-            /* Por si hay errores. */
-            if (error) {
-                throw error;
-            } else {
-              setlistaAlimentosDieta(data.alimento_dietas);
+            console.log(data)
+            if (!response.ok) {
+                throw new Error("Error en la respuesta de la API: " + response.statusText);
             }
+            
+            setAlimentosSeleccionados(data);
+            console.log(alimentosSeleccionados)
         } catch (error) {
             setErrorAlimento(error.message);
         }

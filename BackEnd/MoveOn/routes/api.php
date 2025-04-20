@@ -62,10 +62,12 @@ Route::delete('/rutinas/{id}', [RutinaController::class, 'destroy']);
 // Rutas para Dietas
 Route::get('/dietas', [DietaController::class, 'index']);
 Route::get('/dietas/{id}', [DietaController::class, 'show']);
+Route::get('/dietas/{id_dieta}/alimentos', [AlimentoDietaController::class, 'getByDieta']);
 Route::post('/dietas', [DietaController::class, 'store']);
 Route::put('/dietas/{id}', [DietaController::class, 'update']);
 Route::patch('/dietas/{id}', [DietaController::class, 'updatePartial']);
 Route::delete('/dietas/{id}', [DietaController::class, 'destroy']);
+
 
 // Rutas para Ejercicios
 Route::get('/ejercicios', [EjercicioController::class, 'index']);
@@ -125,8 +127,5 @@ Route::prefix('alimento-dieta')->group(function () {
 // Ruta para permitir a un usuario crear/obtener sus dieta personalizada.
 Route::post('/usuario/{id_usuario}/dieta', [UsuarioDietaController::class, 'createDieta']);
 Route::get('/usuario/{id_usuario}/dietas', [UsuarioController::class, 'getDietasPorUsuario']);
-
-
-
 
 

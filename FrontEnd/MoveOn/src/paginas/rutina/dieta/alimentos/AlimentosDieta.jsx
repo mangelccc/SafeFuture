@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from "react-router-dom";
 import useAppContext from '../../../../hooks/useAppContext.jsx';
 import { calcularMacronutrientes } from "../../../../bibliotecas/biblioteca.js";
@@ -11,7 +11,6 @@ import AlimentosSeleccionados from './AlimentosSeleccionados.jsx';
 const AlimentosDieta = () => {
   const { id } = useParams();
   const { alimentos, auth, dietas } = useAppContext();
-
   const {
     guardarAlimentosEnDietaPersonalizada,
     seleccionarAlimento,
@@ -24,18 +23,16 @@ const AlimentosDieta = () => {
     buscarAlimento,
     alimentosFiltrados,
     actualizarFiltro,
+    obtenerAlimentosDieta
   } = alimentos;
-
   const { usuario } = auth;
   const { dietasUsuario } = dietas;
 
-  // Encontrar la dieta actual
-  const dietaActual = dietasUsuario.find(
-    (dieta) => dieta.pivot.id_dieta === id
-  );
+  // Buscamos la dieta
+  const dietaActual = dietasUsuario.find(d => d.pivot.id_dieta === id);
   if (!dietaActual) return <p>Dieta no encontrada.</p>;
 
-  // Datos de usuario basados en la dieta actual
+  // Datos para macros objetivo
   const datosUsuario = {
     peso: dietaActual.pivot.peso_usuario,
     altura: dietaActual.pivot.altura_usuario,
@@ -44,43 +41,38 @@ const AlimentosDieta = () => {
     actividad: dietaActual.pivot.actividad_fisica,
     objetivo: dietaActual.pivot.objetivo,
   };
-
-  // Cálculo de macronutrientes recomendados
   const macronutrientesObjetivos = calcularMacronutrientes(datosUsuario);
 
-  // Función para calcular los macros acumulados
-  const calcularMacros = () => {
-    return alimentosSeleccionados.reduce(
-      (acc, item) => {
-        acc.proteinas += parseFloat(item.proteinas) * item.cantidad;
-        acc.carbohidratos += parseFloat(item.carbohidratos) * item.cantidad;
-        acc.grasas += parseFloat(item.grasas) * item.cantidad;
-        acc.calorias += parseFloat(item.calorias) * item.cantidad;
-        return acc;
-      },
-      { proteinas: 0, carbohidratos: 0, grasas: 0, calorias: 0 }
-    );
-  };
+  useEffect(() => {
+    if (id) obtenerAlimentosDieta(id);
+  }, [id]);
 
-  const macrosAcumulados = useMemo(() => calcularMacros(), [alimentosSeleccionados]);
-
-  // Función para comparar y asignar colores según la cercanía al objetivo
-  const compararConObjetivos = (valor, objetivo) => {
-    const diferencia = Math.abs(valor - objetivo);
-    if (diferencia <= objetivo * 0.1) return "green"; // Dentro de ±10%
-    if (diferencia <= objetivo * 0.2) return "orange"; // Entre 10% y 20%
-    return "red"; // Más de 20%
-  };
-
-  const estados = useMemo(
-    () => ({
-      calorias: compararConObjetivos(macrosAcumulados.calorias, macronutrientesObjetivos.caloriasObjetivo),
-      proteinas: compararConObjetivos(macrosAcumulados.proteinas, macronutrientesObjetivos.proteinas),
-      carbohidratos: compararConObjetivos(macrosAcumulados.carbohidratos, macronutrientesObjetivos.carbohidratos),
-      grasas: compararConObjetivos(macrosAcumulados.grasas, macronutrientesObjetivos.grasas),
-    }),
-    [macrosAcumulados, macronutrientesObjetivos]
+  // Cálculo directo de macros 
+  const macrosAcumulados = alimentosSeleccionados.reduce(
+    (acc, item) => {
+      acc.proteinas += parseFloat(item.proteinas) * item.cantidad;
+      acc.carbohidratos += parseFloat(item.carbohidratos) * item.cantidad;
+      acc.grasas += parseFloat(item.grasas) * item.cantidad;
+      acc.calorias += parseFloat(item.calorias) * item.cantidad;
+      return acc;
+    },
+    { proteinas: 0, carbohidratos: 0, grasas: 0, calorias: 0 }
   );
+
+  // Estados sin memo
+  const compararConObjetivos = (valor, objetivo) => {
+    const diff = Math.abs(valor - objetivo);
+    if (diff <= objetivo * 0.1) return "green";
+    if (diff <= objetivo * 0.2) return "orange";
+    return "red";
+  };
+
+  const estados = {
+    calorias: compararConObjetivos(macrosAcumulados.calorias, macronutrientesObjetivos.caloriasObjetivo),
+    proteinas: compararConObjetivos(macrosAcumulados.proteinas, macronutrientesObjetivos.proteinas),
+    carbohidratos: compararConObjetivos(macrosAcumulados.carbohidratos, macronutrientesObjetivos.carbohidratos),
+    grasas: compararConObjetivos(macrosAcumulados.grasas, macronutrientesObjetivos.grasas),
+  };
 
   return (
     <div className="seleccionar-alimentos">

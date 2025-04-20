@@ -205,20 +205,43 @@ class AlimentoDietaController extends Controller
     //Función definidas por el programador.
     public function getByDieta($id_dieta)
     {
-        $registros = AlimentoDieta::where('id_dieta', $id_dieta)->get();
+        // Cargamos el pivot junto con cada Alimento relacionado
+        $registros = AlimentoDieta::with('alimento')
+                        ->where('id_dieta', $id_dieta)
+                        ->get();
 
         if ($registros->isEmpty()) {
             return response()->json([
                 'message' => 'No se encontraron registros para esta dieta',
-                'status' => 404
+                'status'  => 404
             ], 404);
         }
 
-        return response()->json([
-            'alimento_dietas' => $registros,
-            'status' => 200
-        ], 200);
+        // Recorremos cada registro y extraemos los datos del alimento + cantidad + id_dieta
+        $alimentos = $registros->map(function ($reg) {
+            $a = $reg->alimento;
+            return [
+                'id_alimento'    => $a->id_alimento,
+                'nombre'         => $a->nombre,
+                'categoria'      => $a->categoria,
+                'imagen_url'     => $a->imagen_url,
+                'descripcion'    => $a->descripcion,
+                'peso_kg'        => $a->peso_kg,
+                'precio_euros'   => $a->precio_euros,
+                'codigo_barras'  => $a->codigo_barras,
+                'calorias'       => $a->calorias,
+                'proteinas'      => $a->proteinas,
+                'grasas'         => $a->grasas,
+                'carbohidratos'  => $a->carbohidratos,
+                'cantidad'       => $reg->cantidad,
+                'id_dieta'       => $reg->id_dieta,
+            ];
+        });
+
+        // Devolver solo el array plano (como tu “Objeto1”)
+        return response()->json($alimentos, 200);
     }
+
 
 
 }
