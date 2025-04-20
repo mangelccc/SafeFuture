@@ -160,7 +160,7 @@ class AlimentoDietaController extends Controller
 
     public function updateMultiples(Request $request)
     {
-        // Validamos la solicitud
+        // 1) Validar la solicitud
         $validated = $request->validate([
             'id_dieta' => 'required|exists:dieta,id_dieta',
             'alimentos' => 'required|array',
@@ -168,39 +168,52 @@ class AlimentoDietaController extends Controller
             'alimentos.*.cantidad' => 'required|numeric|min:1'
         ]);
 
-        $id_dieta = $validated['id_dieta'];
+        $id_dieta       = $validated['id_dieta'];
         $alimentosArray = $validated['alimentos'];
+        // Extraemos solo los IDs de alimento que el cliente envía
+        $idsAlimentos   = array_column($alimentosArray, 'id_alimento');
 
-        // Preparamos los datos a insertar o actualizar
+        // 2) Preparamos datos para upsert
         $dataUpsert = array_map(function ($alimentoData) use ($id_dieta) {
             return [
                 'id_alimento' => $alimentoData['id_alimento'],
-                'id_dieta' => $id_dieta,
-                'cantidad' => $alimentoData['cantidad'],
-                'updated_at' => now(),
-                // Si deseas que se inserte también la fecha de creación en caso de nuevo registro:
-                'created_at' => now(),
+                'id_dieta'    => $id_dieta,
+                'cantidad'    => $alimentoData['cantidad'],
+                'updated_at'  => now(),
+                'created_at'  => now(),
             ];
         }, $alimentosArray);
 
         try {
-            // upsert actualiza los registros que existan y los inserta si no existen.
-            // Las columnas que identifican de forma única el registro son 'id_alimento' y 'id_dieta'.
+            \DB::beginTransaction();
+
+            // 3) Eliminar los alimentos que ya no están en el array
+            \DB::table('alimento_dieta')
+                ->where('id_dieta', $id_dieta)
+                ->whereNotIn('id_alimento', $idsAlimentos)
+                ->delete();
+
+            // 4) Upsert del resto de alimentos (inserta nuevos o actualiza existentes)
             \DB::table('alimento_dieta')
                 ->upsert($dataUpsert, ['id_alimento', 'id_dieta'], ['cantidad', 'updated_at']);
 
+            \DB::commit();
+
             return response()->json([
-                'message' => 'Registros actualizados correctamente',
-                'status' => 200,
+                'message' => 'Relación alimento-dieta sincronizada correctamente',
+                'status'  => 200,
             ], 200);
+
         } catch (\Exception $e) {
+            \DB::rollBack();
             return response()->json([
-                'message' => 'Error al actualizar la relación alimento-dieta',
-                'error' => $e->getMessage(),
-                'status' => 500,
+                'message' => 'Error al sincronizar la relación alimento-dieta',
+                'error'   => $e->getMessage(),
+                'status'  => 500,
             ], 500);
         }
     }
+
 
     //Función definidas por el programador.
     public function getByDieta($id_dieta)
