@@ -1,12 +1,17 @@
-import "./SearchResultsList.css";
-import { SearchResult } from "./SearchResult";
+import React from 'react';
+import { SearchResult } from './SearchResult';
+import './SearchResultsList.css';
 
-export const SearchResultsList = ({ results }) => {
+export const SearchResultsList = ({ results, onSelect }) => {
   return (
     <div className="results-list">
-      {results.map((result, id) => {
-        return <SearchResult result={result} key={id} />;
-      })}
+      {results.map((result) => (
+        <SearchResult
+          key={result.id_ejercicio}
+          result={result}
+          onSelect={onSelect}
+        />
+      ))}
     </div>
   );
 };

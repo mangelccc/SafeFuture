@@ -1,10 +1,12 @@
-import "./SearchResult.css";
+/* SearchResult.jsx */
+import React from 'react';
+import './SearchResult.css';
 
-export const SearchResult = ({ result }) => {
+export const SearchResult = ({ result, onSelect }) => {
   return (
     <div
-      className="search-result"
-      onClick={(e) => console.log(`Selecionado: ${result.id_ejercicio}!`)}
+      className="search-result cursor-pointer"
+      onClick={() => onSelect(result)}
     >
       {result.nombre}
     </div>
