@@ -1,30 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
+import useAppContext from "../../../../hooks/useAppContext.jsx";
 
 import "./SearchBar.css";
 
 export const SearchBar = ({ setResults }) => {
+  const { ejerciciosContex } = useAppContext();
+  const { ejercicios,readEjercicios } = ejerciciosContex;
   const [input, setInput] = useState("");
+  useEffect(() => {
+    readEjercicios();
+  }, []);
 
-  const fetchData = (value) => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((json) => {
-        const results = json.filter((user) => {
-          return (
-            value &&
-            user &&
-            user.name &&
-            user.name.toLowerCase().includes(value)
-          );
-        });
-        setResults(results);
-      });
-  };
-
+  // 2. Filtrar localmente cuando cambie el input
   const handleChange = (value) => {
     setInput(value);
-    fetchData(value);
+
+    const filtered = ejercicios.filter(ej =>
+      ej.nombre?.toLowerCase().includes(value.toLowerCase())
+    );
+    setResults(filtered);
+    console.log(filtered);
   };
 
   return (
@@ -33,7 +29,7 @@ export const SearchBar = ({ setResults }) => {
       <input
         placeholder="Type to search..."
         value={input}
-        onChange={(e) => handleChange(e.target.value)}
+        onChange={e => handleChange(e.target.value)}
       />
     </div>
   );

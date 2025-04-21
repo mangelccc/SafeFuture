@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { SearchBar } from "./buscador/SearchBar";
 import { SearchResultsList } from "./buscador/SearchResultsList";
+import Ejercicio from "./Ejercicio";
 
 function FormularioEntrenamiento() {
     const [results, setResults] = useState([]);
@@ -37,14 +38,16 @@ function FormularioEntrenamiento() {
                     />
                 </div>
             </form>
-            <div className="search-bar-container flex flex-row">
-                <SearchBar setResults={setResults} />
-                {results && results.length > 0 && <SearchResultsList results={results} />}
-                <div className="mt-4 p-4 rounded-2xl border border-gray-300 dark:border-gray-600 shadow-lg dark:shadow-gray-900 bg-white dark:bg-gray-800 transition-all duration-300">
-                    {/* Contenido opcional aquí */}
+            <div className="search-bar-container h-full w-full flex">
+                <div className="w-1/2">
+                    <SearchBar setResults={setResults} />
+                    {results && results.length > 0 && <SearchResultsList results={results} />}
                 </div>
-
+                <div className="w-1/2">
+                    <p>eeeee</p>
+                </div>
             </div>
+
 
         </div>
     )
