@@ -10,7 +10,7 @@
   align-items: center;
 }
 
-input {
+.search-input input {
   background-color: transparent;
   border: none;
   height: 100%;
@@ -19,7 +19,7 @@ input {
   margin-left: 5px;
 }
 
-input:focus {
+.search-input input:focus {
   outline: none;
 }
 
