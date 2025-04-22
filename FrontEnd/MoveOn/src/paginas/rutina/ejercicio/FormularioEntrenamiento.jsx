@@ -5,7 +5,7 @@ import { SearchResultsList } from './buscador/SearchResultsList'
 import { ContextoEntrenamiento } from '../../../contextos/EntrenamientoContexto.jsx'
 
 const FormularioEntrenamiento = () => {
-  // Obtener funciones del contexto de entrenamiento
+  // Contexto de entrenamiento
   const { readEntrenamientos } = useContext(ContextoEntrenamiento)
 
   // Estados locales
@@ -13,8 +13,9 @@ const FormularioEntrenamiento = () => {
   const [descripcion, setDescripcion] = useState('')
   const [results, setResults] = useState([])
   const [selectedEjercicios, setSelectedEjercicios] = useState([])
+  const [guardando, setGuardando] = useState(false)
 
-  // Seleccionar ejercicios sin duplicados
+  // Selección de ejercicios sin duplicados
   const handleSelect = (ejercicio) => {
     setSelectedEjercicios(prev =>
       prev.some(e => e.id_ejercicio === ejercicio.id_ejercicio)
@@ -29,17 +30,22 @@ const FormularioEntrenamiento = () => {
       console.warn('Debes indicar un nombre para la rutina')
       return
     }
+    if (guardando) {
+      return // Previene dobles envíos
+    }
+
+    setGuardando(true)
     try {
-      // 1) POST -> /api/rutinas
-      const respuestaRutina = await fetch('http://localhost:8089/api/rutinas', {
+      // 1) Crear rutina
+      const resRutina = await fetch('http://localhost:8089/api/rutinas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, descripcion })
       })
-      const datoRutina = await respuestaRutina.json()
-      const nuevaRutina = datoRutina.rutina || datoRutina
+      const dataRutina = await resRutina.json()
+      const nuevaRutina = dataRutina.rutina || dataRutina
 
-      // 2) POST -> /api/rutina-ejercicio por cada ejercicio
+      // 2) Ligado de ejercicios
       await Promise.all(
         selectedEjercicios.map(ej =>
           fetch('http://localhost:8089/api/rutina-ejercicio', {
@@ -55,23 +61,25 @@ const FormularioEntrenamiento = () => {
         )
       )
 
-      // 3) Refrescar y limpiar
+      // 3) Refrescar lista y limpiar formulario
       readEntrenamientos()
       setNombre('')
       setDescripcion('')
       setSelectedEjercicios([])
       setResults([])
-      console.log('Rutina creada y ejercicios ligados exitosamente')
+      console.log('Rutina creada y ejercicios ligados correctamente')
 
     } catch (error) {
       console.error('Error creando rutina o ligando ejercicios:', error)
+    } finally {
+      setGuardando(false)
     }
   }
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-black rounded-lg shadow-md">
       <form onSubmit={e => e.preventDefault()} className="space-y-6">
-        {/* Nombre Rutina */}
+        {/* Nombre de la Rutina */}
         <div>
           <label htmlFor="nombre" className="block mb-1 font-medium text-black dark:text-white">
             Nombre de la Rutina:
@@ -102,7 +110,7 @@ const FormularioEntrenamiento = () => {
           />
         </div>
 
-        {/* Buscador y Selección */}
+        {/* Buscador y Ejercicios Seleccionados */}
         <div className="flex gap-4">
           <div className="w-2/5">
             <SearchBar setResults={setResults} />
@@ -123,13 +131,14 @@ const FormularioEntrenamiento = () => {
           </div>
         </div>
 
-        {/* Botón sin recarga */}
+        {/* Botón crear sin recarga, deshabilitado si está guardando */}
         <button
           type="button"
           onClick={handleCreateRutina}
-          className="w-full bg-purple dark:bg-gold text-white font-bold py-2 rounded hover:scale-105 transition-transform duration-300"
+          disabled={guardando}
+          className={`w-full py-2 font-bold rounded transition-transform duration-300 ${guardando ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-purple text-white hover:scale-105 dark:bg-gold dark:text-black'}`}
         >
-          Crear Rutina y Ligar Ejercicios
+          {guardando ? 'Guardando...' : 'Crear Rutina y Ligar Ejercicios'}
         </button>
       </form>
     </div>
