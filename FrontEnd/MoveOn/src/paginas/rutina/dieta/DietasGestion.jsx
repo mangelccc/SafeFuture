@@ -13,7 +13,7 @@ const DietasGestion = () => {
                 <div>
                     <h2 className='p-0 pb-4 dark:text-gold underline underline-offset-3 decoration-purple dark:decoration-turq '>Tus Dietas</h2>
                     <p className='dark:text-gold'>Añade los alimentos que te gusten ajustándote a los macros que te recomendamos.😊 </p>
-                    {dietasUsuario.length &&
+                    {dietasUsuario.length !== 0 &&
                     <>
                         <p className='dark:text-gold pt-4'>Utiliza los iconos para editar, ver o borrar una dieta.</p>
                     </>}
