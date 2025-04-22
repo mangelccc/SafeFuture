@@ -19,6 +19,7 @@ import FormularioEjercicio from "../paginas/rutina/ejercicio/FormularioEjercicio
 /* Perfil e info del usuario */
 import Usuario from "../paginas/sesion/Usuario.jsx";
 import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacion.jsx";
+import VistaRutina from '../paginas/rutina/ejercicio/VistaRutina.jsx';
 
 /* Para dietas */
 import Dietas from "../paginas/rutina/dieta/DietasGestion.jsx"
@@ -54,6 +55,7 @@ const RutasPaginas = () => {
           <Route path='entrenamientos' element={<Entrenamientos />} />
           <Route path='plantillas' element={<Plantillas />} />
           <Route path='entrenador-personal' element={<AgenteEntrenadorIA />} />
+          <Route path="ver-rutina/:id" element={<VistaRutina />} />
         </Route>
 
         <Route path='/foro' element={<Foro />} />
