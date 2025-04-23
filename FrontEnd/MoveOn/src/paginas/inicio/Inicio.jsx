@@ -26,11 +26,11 @@ const Inicio = () => {
           </button>
         </article>
         <div>
-          <iframe
-            className="w-full sm:h-full hsm:h-60 rounded-xl border border-gold"
-            /* src="https://www.youtube.com/embed/cJZlSS0aKj8" */ //! No se porque da problemas en consola WTF
-            title="Video de Safe Future"
-          ></iframe>
+          <video
+            className="max-w-full rounded-xl border border-gold" controls autoPlay loop muted>
+            <source src="/videos/move-on.mp4" type="video/mp4" />
+            Tu navegador no soporta la etiqueta de video.
+          </video>
         </div>
       </div>
     </>
