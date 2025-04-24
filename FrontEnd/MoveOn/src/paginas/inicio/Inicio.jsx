@@ -3,7 +3,7 @@ import React from "react";
 const Inicio = () => {
   return (
     <>
-      <div className="bg-purple dark:bg-purpleOp sm:rounded-2xl p-12 grid sm:grid-cols-2 hsm:grid-cols-1 sm:gap-20 hsm:gap-6 sm:flex-grow">
+      <div className="bg-purple dark:bg-purpleOp sm:rounded-2xl p-12 hsm:mt-[-1.5rem] hsm:mb-[-0.5rem] grid sm:grid-cols-2 hsm:grid-cols-1 sm:gap-20 hsm:gap-6 sm:flex-grow">
         <article className="hsm:order-last">
           <h1 className="m-0 text-gold">Cambio de Vida</h1>
           <h2 className="text-turq font-normal pl-0 pb-4">Introducción</h2>

@@ -9,7 +9,7 @@ const DietasGestion = () => {
 
     return (
         <>
-            <section className='mx-10 my-2 flex sm:justify-between hsm:flex-col gap-14'>
+            <section className='mx-10 my-2 flex sm:justify-between hsm:flex-col hsm:gap-8 sm:gap-14'>
                 <div>
                     <h2 className='p-0 pb-4 dark:text-gold underline underline-offset-3 decoration-purple dark:decoration-turq '>Tus Dietas</h2>
                     <p className='dark:text-gold'>Añade los alimentos que te gusten ajustándote a los macros que te recomendamos.😊 </p>
@@ -20,7 +20,7 @@ const DietasGestion = () => {
                 </div>
                 <div className='hsm:w-full hsm:self-center sm:self-end'>
                     <Link to="/rutina/dietas-crear">
-                        <button className='mt-5 bg-black1 border-0 text-white dark:text-black dark:bg-white2 rounded-xl  py-3 px-6 font-semibold transition ease-in-out duration-200 cursor-pointer hover:bg-gold dark:hover:bg-gold hover:text-black1 hover:-translate-y-1.5 hover:border-2 border-black dark:border-purple active:translate-y-1 active:bg-gold hsm:w-full'> Crear nueva dieta </button>
+                        <button className='mt-5 bg-black1 border-0 text-white dark:text-black dark:bg-white2 rounded-xl py-3 px-6 font-semibold transition ease-in-out duration-200 cursor-pointer hover:bg-gold dark:hover:bg-gold hover:text-black1 hover:-translate-y-1.5 hover:border-2 border-black dark:border-purple active:translate-y-1 active:bg-gold hsm:w-full'> Crear nueva dieta </button>
                     </Link>
                 </div>
 

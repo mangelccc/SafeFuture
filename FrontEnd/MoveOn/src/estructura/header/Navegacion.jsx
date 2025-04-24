@@ -33,11 +33,7 @@ const Navegacion = ({ menu, alternar }) => {
                         Plantea tu rutina
                     </Link>
                 </li>
-                <li>
-                    <Link to="/foro" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
-                        Foro
-                    </Link>
-                </li>
+
                 <li>
                     <Link to="/contactanos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
                         Contacto

@@ -4,7 +4,6 @@ import Inicio from "../paginas/inicio/Inicio.jsx";
 import QueSomos from "../paginas/biografia/QueSomos.jsx";
 import Servicios from "../paginas/servicios/Servicios.jsx";
 import Rutina from "../paginas/rutina/Rutina.jsx";
-import Foro from "../paginas/foro/Foro.jsx";
 import Contactanos from "../paginas/contactanos/Contactanos.jsx";
 
 import Ejercicio from "../paginas/rutina/ejercicio/MiniAppEjercicios.jsx";
@@ -58,7 +57,6 @@ const RutasPaginas = () => {
           <Route path="ver-rutina/:id" element={<VistaRutina />} />
         </Route>
 
-        <Route path='/foro' element={<Foro />} />
         <Route path='/contactanos' element={<Contactanos />} />
 
         <Route path='/usuario' element={<Usuario />} />
