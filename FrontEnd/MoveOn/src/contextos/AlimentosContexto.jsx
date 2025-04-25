@@ -60,7 +60,7 @@ const AlimentosContexto = ({ children }) => {
     try {
       setErrorAlimento(cadenaVacia);
 
-      const response = await fetch("http://localhost:8089/api/alimentos", {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/alimentos`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const AlimentosContexto = ({ children }) => {
           })),
         };
 
-        const response = await fetch("http://localhost:8089/api/alimento-dieta/multiples", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/alimento-dieta/multiples`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -134,7 +134,7 @@ const AlimentosContexto = ({ children }) => {
         setAlimentosSeleccionados(listaInicial); // Reiniciar la lista de alimentos seleccionados
         try {
             /* Se realiza la consulta múltiple, teniendo en cuenta que la lista que buscamos coincida con el id pasado por parámetro. */
-            const response = await fetch(`http://localhost:8089/api/alimento-dieta/${idDieta}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/alimento-dieta/${idDieta}`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",

@@ -52,7 +52,7 @@ const AuthContexto = ({ children }) => {
           rol: datosSesion.rol || "Usuario"
         };
 
-        const response = await fetch("http://localhost:8089/api/usuarios", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/usuarios`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(nuevoUsuario),
@@ -106,7 +106,7 @@ const AuthContexto = ({ children }) => {
       setCargando(true);
       try {
 
-        const response = await fetch("http://localhost:8089/api/login", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

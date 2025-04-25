@@ -11,7 +11,7 @@ const EntrenamientoContexto = ({children}) => {
       descripcion: ''
     };
     const errorEntrenamientoInicial = "";
-    const apiUrl = 'http://localhost:8089/api/rutinas';
+    const apiUrl = `${process.env.REACT_APP_API_URL}/rutinas`;
 
     // Estados usando las variables iniciales
     const [entrenamiento, setEntrenamiento] = useState(entrenamientoInicial);

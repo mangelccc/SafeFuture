@@ -21,9 +21,8 @@ const EjerciciosContexto = ({ children }) => {
   const [ejerciciosFiltrados, setEjerciciosFiltrados] = useState(ejerciciosIniciales);
   const [errorEjercicio, setErrorEjercicio] = useState(errorEjercicioInicial);
 
-  const apiUrl = 'http://localhost:8089/api/ejercicios';
   const readEjercicios = () => {
-    return fetch(apiUrl)
+    return fetch(`${process.env.REACT_APP_API_URL}/ejercicios`)
       .then(response => response.json())
       .then(data => {
         // Se asume que la respuesta tiene la propiedad "ejercicios"
