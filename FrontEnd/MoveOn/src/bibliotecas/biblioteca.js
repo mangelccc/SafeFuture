@@ -113,54 +113,44 @@ const validarCrearLista = (nombreLista, alimentosLista, usuario) => {
 };
 
 
-const validarRegistro = (datos) => {
-  let errores = [];
+const validarRegistro = (datos, tipo = "registro") => {
+  const errores = {};
 
-  // Validar el nombre: debe existir y tener más de 3 caracteres (después de eliminar espacios).
-  if (!datos.nombre || datos.nombre.trim().length <= 3) {
-    errores = [...errores, "El nombre debe contener más de 3 caracteres"];
+  // Validar el email
+  if (!datos.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)) {
+    errores.email = "El email no tiene un formato válido.";
   }
 
-  // Validar el email: debe tener un formato de email válido.
-  if (
-    !datos.email ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.email)
-  ) {
-    errores = [...errores, "El email no tiene un formato válido"];
+  // Validar la contraseña
+  if (!datos.password) {
+    errores.password = "La contraseña es obligatoria.";
+  } else {
+    if (datos.password.length < 8) {
+      errores.password = "La contraseña debe tener al menos 8 caracteres.";
+    } else if (!/[A-Z]/.test(datos.password)) {
+      errores.password = "La contraseña debe contener al menos una letra mayúscula.";
+    }
   }
 
-  // Validar la contraseña: debe tener al menos 8 caracteres.
-  if (!datos.password || datos.password.length < 8) {
-    errores = [...errores, "La contraseña debe tener al menos 8 caracteres"];
-  }
+  if (tipo === "registro") {
+    // Validar el nombre
+    if (!datos.nombre || datos.nombre.trim().length <= 3) {
+      errores.nombre = "El nombre debe contener más de 3 caracteres.";
+    }
 
-  // Validar la contraseña: Debe contener al menos una letra mayúscula.
-  if (!datos.password || !/[A-Z]/.test(datos.password)) {
-    errores = [
-      ...errores,
-      "La contraseña debe contener al menos una letra mayúscula",
-    ];
-  }
+    // Validar la edad
+    if (!datos.edad || isNaN(datos.edad) || Number(datos.edad) <= 0) {
+      errores.edad = "Debe ingresar una edad válida.";
+    }
 
-  // Validar la edad: debe ser un número mayor que 0.
-  if (!datos.edad || isNaN(datos.edad) || Number(datos.edad) <= 0) {
-    errores = [...errores, "Debe ingresar una edad válida"];
+    // Validar el sexo
+    if (!datos.sexo || !["hombre", "mujer"].includes(datos.sexo.toLowerCase())) {
+      errores.sexo = "Debe seleccionar un sexo válido.";
+    }
   }
-
-  // Validar el sexo: debe ser "hombre" o "mujer".
-  if (
-    !datos.sexo ||
-    !["hombre", "mujer"].includes(datos.sexo.toLowerCase())
-  ) {
-    errores = [...errores, "Debe seleccionar un sexo válido"];
-  }
-
-  // Devolver los errores formateados en una cadena, o una cadena vacía si no hay errores.
-  return errores.length && `Errores encontrados:\n${errores.map(e => ` ${e}`).toString()}`;
+  return errores;
 };
 
-// Devolver los errores ya formateados como una cadena de texto
-/* return errores.length && `Errores encontrados:\n${errores.map(e => ` ${e}`).toString()}`; */
 
 //!DIETAS DEBAJO
 

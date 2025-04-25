@@ -18,121 +18,131 @@ const AuthContexto = ({ children }) => {
   };
 
   const usuarioInicial = {};
-  const errorUsuarioInicial = "";
-  const olvidoContrasenaInicial = false;
-  const panelDerechoActivoInicial = false;
+  const falseBool = false;
 
   const [datosSesion, setDatosSesion] = useState(datosSesionInicial);
   const [usuario, setUsuario] = useState(usuarioInicial);
-  const [errorUsuario, setErrorUsuario] = useState(errorUsuarioInicial);
-  const [sesionIniciada, setSesionIniciada] = useState(false);
-  const [olvidoContrasena, setOlvidoContrasena] = useState(olvidoContrasenaInicial);
-  const [panelDerechoActivo, setPanelDerechoActivo] = useState(panelDerechoActivoInicial);
+  const [errorUsuario, setErrorUsuario] = useState(usuarioInicial);
+  const [sesionIniciada, setSesionIniciada] = useState(falseBool);
+  const [olvidoContrasena, setOlvidoContrasena] = useState(falseBool);
+  const [panelDerechoActivo, setPanelDerechoActivo] = useState(falseBool);
+  const [cargando, setCargando] = useState(falseBool);
 
   const navegar = useNavigate();
 
   const crearCuenta = async () => {
-    setErrorUsuario(errorUsuarioInicial);
-    // Ejecutar la validación y obtener el mensaje de error ya formateado.
-    const mensajeError = validarRegistro(datosSesion);
-    
-    if (mensajeError) {
-      setErrorUsuario(mensajeError);
+    setErrorUsuario(usuarioInicial);
+    const errores = validarRegistro(datosSesion, "registro");
+
+    if (Object.keys(errores).length > 0) {
+      setErrorUsuario(errores);
       return;
     }
-  
-    try {
-      const nuevoUsuario = {
-        id_usuario: crypto.randomUUID(),
-        nombre: datosSesion.nombre,
-        correo: datosSesion.email,
-        contrasena: datosSesion.password,
-        edad: Number(datosSesion.edad),
-        sexo: datosSesion.sexo,
-        rol: datosSesion.rol || "Usuario" 
-      };
-      
-      setErrorUsuario("Creando cuenta . . .")
 
-      const response = await fetch("http://localhost:8089/api/usuarios", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(nuevoUsuario),
-        
-      });
-  
-      const data = await response.json();
-  
-      if (!response.ok) {
-        setErrorUsuario(data.message || "Error al crear la cuenta.");
-      } else {
-        
-        const Toast = Swal.mixin({
-          toast: true,
-          position: "top-end",
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-          }
-        });
-        Toast.fire({
-          icon: "success",
-          title: "Cuenta creada exitosamente."
-        });
-
-        setErrorUsuario(errorUsuarioInicial);
-        
-        setDatosSesion(datosSesionInicial);
-      }
-    } catch (error) {
-      setErrorUsuario(error.message);
-    }
-  };
-  
-  
-
-  const iniciarSesion = async () => {
-    setErrorUsuario(errorUsuarioInicial);
-    try {
-      
-      const response = await fetch("http://localhost:8089/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+    if (!cargando) {
+      try {
+        setCargando(true);
+        const nuevoUsuario = {
+          id_usuario: crypto.randomUUID(),
+          nombre: datosSesion.nombre,
           correo: datosSesion.email,
           contrasena: datosSesion.password,
-        }),
-      });
-      
-      const data = await response.json();
-  
-      if (!response.ok) {
-        
-        setErrorUsuario(data.message || "Error al iniciar sesión.");
-      } else {
+          edad: Number(datosSesion.edad),
+          sexo: datosSesion.sexo,
+          rol: datosSesion.rol || "Usuario"
+        };
 
-        Swal.fire({
-          title: "Sesión iniciada",
-          icon: 'success',
-          
-          confirmButtonText: 'Aceptar',
-          showConfirmButton: false,
-          timer: 1500
-        })
+        const response = await fetch("http://localhost:8089/api/usuarios", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(nuevoUsuario),
 
-        setUsuario(data.usuario);
-        setSesionIniciada(true);
-        localStorage.setItem("usuario", JSON.stringify(data.usuario));
-        localStorage.setItem("sesionIniciada", "true");
+        });
 
-        setDatosSesion(datosSesionInicial);
-        navegar("/"); 
+        const data = await response.json();
+
+        if (!response.ok) {
+          setErrorUsuario(data.message || "Error al crear la cuenta.");
+        } else {
+
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: falseBool,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Cuenta creada exitosamente."
+          });
+          setErrorUsuario(usuarioInicial);
+          setDatosSesion(datosSesionInicial);
+        }
+      } catch (error) {
+        setErrorUsuario({fetch: "Este email ya existe."});
+      } finally {
+        setCargando(falseBool);
       }
-    } catch (error) {
-      setErrorUsuario(error.message);
+    }
+  };
+
+
+
+  const iniciarSesion = async () => {
+    setErrorUsuario(usuarioInicial);
+
+    const errores = validarRegistro(datosSesion, "login");
+
+    if (Object.keys(errores).length > 0) {
+      setErrorUsuario(errores);
+      return;
+    }
+    if (!cargando) {
+      setCargando(true);
+      try {
+
+        const response = await fetch("http://localhost:8089/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            correo: datosSesion.email,
+            contrasena: datosSesion.password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+          setErrorUsuario(data.message || "Error al iniciar sesión.");
+        } else {
+
+          Swal.fire({
+            title: "Sesión iniciada",
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            showConfirmButton: falseBool,
+            timer: 1500
+          })
+
+          setUsuario(data.usuario);
+          setSesionIniciada(true);
+          localStorage.setItem("usuario", JSON.stringify(data.usuario));
+          localStorage.setItem("sesionIniciada", "true");
+
+          setDatosSesion(datosSesionInicial);
+          navegar("/");
+        }
+      } catch (error) {
+        setErrorUsuario(error.message);
+      } finally {
+        setCargando(falseBool);
+      }
     }
   };
 
@@ -140,18 +150,18 @@ const AuthContexto = ({ children }) => {
   useEffect(() => {
     const usuarioGuardado = localStorage.getItem("usuario");
     const sesionGuardada = localStorage.getItem("sesionIniciada");
-  
+
     if (usuarioGuardado && sesionGuardada === "true") {
       setUsuario(JSON.parse(usuarioGuardado));
       setSesionIniciada(true);
     }
   }, []);
-  
-  
+
+
 
   const cerrarSesion = () => {
     setUsuario(usuarioInicial);
-    setSesionIniciada(false);
+    setSesionIniciada(falseBool);
     localStorage.removeItem("usuario");
     localStorage.removeItem("sesionIniciada");
     navegar("/Usuario");
@@ -167,7 +177,7 @@ const AuthContexto = ({ children }) => {
 
   const volverInicioSesionClick = (booleano) => {
     setOlvidoContrasena(booleano);
-    setErrorUsuario(errorUsuarioInicial);
+    setErrorUsuario(usuarioInicial);
   };
 
   // Función no implementada
@@ -177,7 +187,7 @@ const AuthContexto = ({ children }) => {
 
   const muestraRegistroClick = (booleano) => {
     setPanelDerechoActivo(booleano);
-    setErrorUsuario(errorUsuarioInicial);
+    setErrorUsuario(usuarioInicial);
   };
 
   const datosContexto = {
@@ -193,7 +203,8 @@ const AuthContexto = ({ children }) => {
     olvidoContrasena,
     volverInicioSesionClick,
     panelDerechoActivo,
-    muestraRegistroClick
+    muestraRegistroClick,
+    cargando,
   };
 
   return (
