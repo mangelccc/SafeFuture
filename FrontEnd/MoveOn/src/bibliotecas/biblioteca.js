@@ -139,8 +139,8 @@ const validarRegistro = (datos, tipo = "registro") => {
     }
 
     // Validar la edad
-    if (!datos.edad || isNaN(datos.edad) || Number(datos.edad) <= 0) {
-      errores.edad = "Debe ingresar una edad válida.";
+    if (!datos.edad || isNaN(datos.edad) || Number(datos.edad) < 18 || Number(datos.edad) > 64) {
+      errores.edad = "Debe ingresar una edad válida entre 18 y 64 años.";
     }
 
     // Validar el sexo

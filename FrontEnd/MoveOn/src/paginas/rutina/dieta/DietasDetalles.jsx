@@ -56,7 +56,7 @@ const DietasDetalles = () => {
         </div>
       </div>
     )) : (
-      <p className='text-center text-white font-bold text-shadow py-4'>
+      <p className='text-center text-white dark:text-black font-bold text-shadow py-4'>
         No has añadido ningún alimento a tu dieta
       </p>
     )

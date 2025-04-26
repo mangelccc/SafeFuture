@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { validarDatoEjercicio } from '../bibliotecas/biblioteca.js';
+import { API_URL } from "../bibliotecas/config.js";
 
 const ContextoEjercicios = createContext();
 
@@ -22,7 +23,7 @@ const EjerciciosContexto = ({ children }) => {
   const [errorEjercicio, setErrorEjercicio] = useState(errorEjercicioInicial);
 
   const readEjercicios = () => {
-    return fetch(`${process.env.REACT_APP_API_URL}/ejercicios`)
+    return fetch(`${API_URL}/ejercicios`)
       .then(response => response.json())
       .then(data => {
         // Se asume que la respuesta tiene la propiedad "ejercicios"
@@ -37,12 +38,12 @@ const EjerciciosContexto = ({ children }) => {
 
   // Obtención de datos al montar el componente
   useEffect(() => {
-    readEjercicios(apiUrl);
-  }, [apiUrl]);
+    readEjercicios();
+  }, [API_URL]);
 
   // Función para crear un nuevo ejercicio (POST)
   const createEjercicio = (nuevoEjercicio) => {
-    fetch(apiUrl, {
+    fetch(API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -64,7 +65,7 @@ const EjerciciosContexto = ({ children }) => {
 
   // Función para actualizar un ejercicio (PUT)
   const updateEjercicio = (id, updatedData) => {
-    fetch(`${apiUrl}/${id}`, {
+    fetch(`${API_URL}/${id}`, {
       method: 'PUT', // o 'PATCH' según la implementación de la API.
       headers: {
         'Content-Type': 'application/json'
@@ -86,7 +87,7 @@ const EjerciciosContexto = ({ children }) => {
 
   // Función para eliminar un ejercicio (DELETE)
   const deleteEjercicio = (id) => {
-    fetch(`${apiUrl}/${id}`, { method: 'DELETE' })
+    fetch(`${API_URL}/${id}`, { method: 'DELETE' })
       .then(response => {
         // Se actualiza el estado filtrando el ejercicio eliminado
         setEjercicios(ejercicios.filter(ejercicio => ejercicio.id_ejercicio !== id));

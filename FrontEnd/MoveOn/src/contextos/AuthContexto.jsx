@@ -2,6 +2,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { validarRegistro } from "../bibliotecas/biblioteca.js";
+import { API_URL } from "../bibliotecas/config.js";
 import Swal from 'sweetalert2';
 
 const contextoAuth = createContext();
@@ -31,6 +32,7 @@ const AuthContexto = ({ children }) => {
   const navegar = useNavigate();
 
   const crearCuenta = async () => {
+    
     setErrorUsuario(usuarioInicial);
     const errores = validarRegistro(datosSesion, "registro");
 
@@ -52,7 +54,7 @@ const AuthContexto = ({ children }) => {
           rol: datosSesion.rol || "Usuario"
         };
 
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/usuarios`, {
+        const response = await fetch(`${API_URL}/usuarios`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(nuevoUsuario),
@@ -95,7 +97,7 @@ const AuthContexto = ({ children }) => {
 
   const iniciarSesion = async () => {
     setErrorUsuario(usuarioInicial);
-
+    console.log(API_URL)
     const errores = validarRegistro(datosSesion, "login");
 
     if (Object.keys(errores).length > 0) {
@@ -106,7 +108,7 @@ const AuthContexto = ({ children }) => {
       setCargando(true);
       try {
 
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+        const response = await fetch(`${API_URL}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

@@ -1,8 +1,9 @@
 // src/contextos/AlimentosContexto.jsx
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Swal from "sweetalert2";
 import { validarCreacionAlimento } from "../bibliotecas/biblioteca.js";
+import { API_URL } from "../bibliotecas/config.js";
+import Swal from "sweetalert2";
 
 const contextoAlimentos = createContext();
 
@@ -60,7 +61,7 @@ const AlimentosContexto = ({ children }) => {
     try {
       setErrorAlimento(cadenaVacia);
 
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/alimentos`, {
+      const response = await fetch(`${API_URL}/alimentos`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +99,7 @@ const AlimentosContexto = ({ children }) => {
           })),
         };
 
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/alimento-dieta/multiples`, {
+        const response = await fetch(`${API_URL}/alimento-dieta/multiples`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -134,7 +135,7 @@ const AlimentosContexto = ({ children }) => {
         setAlimentosSeleccionados(listaInicial); // Reiniciar la lista de alimentos seleccionados
         try {
             /* Se realiza la consulta múltiple, teniendo en cuenta que la lista que buscamos coincida con el id pasado por parámetro. */
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/alimento-dieta/${idDieta}`, {
+            const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",

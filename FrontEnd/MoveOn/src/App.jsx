@@ -5,7 +5,7 @@ import SubFooter from "./estructura/footer/SubFooter.jsx";
 
 import AuthContexto from "./contextos/AuthContexto.jsx";
 import AlimentosContexto from "./contextos/AlimentosContexto.jsx";
-import ListasContexto from "./contextos/ListasContexto.jsx";
+
 import "./App.css";
 import Footer from "./estructura/footer/Footer.jsx";
 import DietasContexto from "./contextos/DietasContexto.jsx";
@@ -22,9 +22,9 @@ const App = () => {
           <AlimentosContexto>
 
             <Cuerpo>
-              <ListasContexto>
+
                 <RutasPaginas />
-              </ListasContexto>
+
             </Cuerpo>
             
           </AlimentosContexto>

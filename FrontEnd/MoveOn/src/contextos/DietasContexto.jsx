@@ -1,8 +1,8 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { contextoAuth } from "./AuthContexto.jsx"
 import { validarCamposDieta, validarFormularioData } from '../bibliotecas/biblioteca.js';
+import { API_URL } from "../bibliotecas/config.js";
 
 import Swal from 'sweetalert2';
 
@@ -136,13 +136,13 @@ const DietasContexto = ({ children }) => {
 
 
         try {
-            const resp1 = await fetch(`${process.env.REACT_APP_API_URL}/dietas`, {
+            const resp1 = await fetch(`${API_URL}/dietas`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(nuevaDieta),
             });
 
-            const resp2 = await fetch(`${process.env.REACT_APP_API_URL}/usuario-dieta`, {
+            const resp2 = await fetch(`${API_URL}/usuario-dieta`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(dietaPersonalizada),
@@ -217,9 +217,9 @@ const DietasContexto = ({ children }) => {
     };
 
     const cargarDietasDelUsuario = async () => {
-
+        
         try {
-            const respuesta = await fetch(`${process.env.REACT_APP_API_URL}/usuario/${usuario.id_usuario}/dietas`, {
+            const respuesta = await fetch(`${API_URL}/usuario/${usuario.id_usuario}/dietas`, {
 
                 method: "GET",
                 headers: {
@@ -268,13 +268,13 @@ const DietasContexto = ({ children }) => {
                     }).then(async (result) => {
                         if (result.isConfirmed) {
                             // Si se confirma, realiza el borrado en la base de datos.
-                            const respuesta1 = await fetch(`${process.env.REACT_APP_API_URL}/usuario-dieta/${id}`, {
+                            const respuesta1 = await fetch(`${API_URL}/usuario-dieta/${id}`, {
                                 method: 'DELETE',
                                 headers: {
                                     'Content-Type': 'application/json'
                                 }
                             })
-                            const respuesta2 = await fetch(`${process.env.REACT_APP_API_URL}/dietas/${idDieta}`, {
+                            const respuesta2 = await fetch(`${API_URL}/dietas/${idDieta}`, {
                                 method: 'DELETE',
                                 headers: { 'Content-Type': 'application/json' }
                             })

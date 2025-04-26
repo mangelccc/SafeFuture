@@ -1,4 +1,5 @@
 import React, {createContext,useEffect,useState} from 'react';
+import { API_URL } from "../bibliotecas/config.js";
 
 const ContextoEntrenamiento = createContext();
 
@@ -11,7 +12,7 @@ const EntrenamientoContexto = ({children}) => {
       descripcion: ''
     };
     const errorEntrenamientoInicial = "";
-    const apiUrl = `${process.env.REACT_APP_API_URL}/rutinas`;
+    const apiUrl = `${API_URL}/rutinas`;
 
     // Estados usando las variables iniciales
     const [entrenamiento, setEntrenamiento] = useState(entrenamientoInicial);
