@@ -17,9 +17,7 @@ const UsuarioDatos = ({usuario}) => {
 
                     </span>
                     <span className="col-start-2 ">
-                        {usuario && usuario.nombre
-                            ? usuario.nombre
-                            : "No hay usuario activo"}
+                        {usuario && usuario.nombre ? usuario.nombre : "No hay usuario activo"}
                     </span>
                 </div>
             </article>
@@ -34,9 +32,7 @@ const UsuarioDatos = ({usuario}) => {
 
                     </span>
                     <span className="col-start-2">
-                        {usuario && usuario.correo
-                            ? usuario.correo
-                            : "Correo no encontrado"}
+                        {usuario && usuario.correo ? usuario.correo : "Correo no encontrado"}
                     </span>
                 </div>
             </article>
@@ -64,9 +60,7 @@ const UsuarioDatos = ({usuario}) => {
                 <div className="bg-black2 py-4 px-8 grid grid-cols-3">
                     <span className="col-start-1">Edad</span>
                     <span className="col-start-2">
-                        {usuario && usuario.edad
-                            ? usuario.edad
-                            : "Edad no encontrada"}
+                        {usuario && usuario.edad ? usuario.edad : "Edad no encontrada"}
                     </span>
                 </div>
             </article>
@@ -79,9 +73,7 @@ const UsuarioDatos = ({usuario}) => {
                 <div className="bg-black2 py-4 px-8 grid grid-cols-3">
                     <span className="col-start-1">Sexo</span>
                     <span className="col-start-2">
-                        {usuario && usuario.sexo
-                            ? usuario.sexo
-                            : "Sexo no encontrado"}
+                        {usuario && usuario.sexo ? usuario.sexo : "Sexo no encontrado"}
                     </span>
                 </div>
             </article>

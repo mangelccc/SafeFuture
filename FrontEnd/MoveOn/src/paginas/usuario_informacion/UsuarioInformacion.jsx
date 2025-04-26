@@ -5,11 +5,11 @@ import UsuarioDatos from "./UsuarioDatos.jsx";
 
 const Usuario = () => {
   // Se extrae el usuario autenticado y la función para cerrar sesión
-  const { usuario, cerrarSesion } = useContext(contextoAuth);
+  const { usuario, cerrarSesion, editarDatoUsuario } = useContext(contextoAuth);
   console.log(JSON.stringify(usuario)) //! DATOS DEL USUARIO INICIADO.
 
   return (
-    <section id="usuario-informacion" className="flex justify-center flex-col">
+    <section id="usuario-informacion" className="flex justify-center flex-col" onClick={(event) => { editarDatoUsuario(event) }}>
 
       <div className="flex justify-between sm:pr-14 hsm:pr-8 hsm:pt-8 items-center mb-8">
         <h2 className="titulo-secundario text-black1 dark:text-white  pl-8 underline decoration-purple underline-offset-4 "> Detalles de la cuenta </h2>

@@ -148,6 +148,13 @@ const AuthContexto = ({ children }) => {
     }
   };
 
+  const editarDatoUsuario = async (evento, dato) => {
+    const clic = evento.target.tagName;
+    if (clic === "path" || clic === "svg") {
+      console.log("click en icono de editar");
+    }
+  }
+
 
   useEffect(() => {
     const usuarioGuardado = localStorage.getItem("usuario");
@@ -166,7 +173,7 @@ const AuthContexto = ({ children }) => {
     setSesionIniciada(falseBool);
     localStorage.removeItem("usuario");
     localStorage.removeItem("sesionIniciada");
-    navegar("/Usuario");
+    navegar("/usuario");
   };
 
   // Actualiza los datos del formulario (nombre, email, password, etc.)
@@ -182,7 +189,7 @@ const AuthContexto = ({ children }) => {
     setErrorUsuario(usuarioInicial);
   };
 
-  // Función no implementada
+  //! Función no implementada
   const recuperarContrasena = async () => {
     setErrorUsuario("Funcionalidad no implementada.");
   };
@@ -203,6 +210,7 @@ const AuthContexto = ({ children }) => {
     sesionIniciada,
     recuperarContrasena,
     olvidoContrasena,
+    editarDatoUsuario,
     volverInicioSesionClick,
     panelDerechoActivo,
     muestraRegistroClick,
