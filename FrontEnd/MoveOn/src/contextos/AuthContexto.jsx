@@ -177,13 +177,13 @@ const AuthContexto = ({ children }) => {
     }
     setCampoEditable(usuarioInicial);
     setUsuario((campos) => {
-      const nuevosCampos = {
-        ...campos,
-        [campoEditable.campo]: campoEditable.valor
-      };
-      localStorage.setItem('usuario', JSON.stringify(nuevosCampos));
-      return nuevosCampos;
-   });
+   const nuevosCampos = {
+     ...campos,
+     [campoEditable.campo]: campoEditable.valor
+   };
+   localStorage.setItem('usuario', JSON.stringify(nuevosCampos));
+   return nuevosCampos;
+});
     
  };
 

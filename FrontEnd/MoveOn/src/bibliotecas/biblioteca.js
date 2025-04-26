@@ -152,6 +152,53 @@ const validarRegistro = (datos, tipo = "registro") => {
 };
 
 
+const validarCampoUsuario = (campo, valor) => {
+  let error = "";
+
+  switch (campo) {
+    case "nombre":
+      if (!valor || valor.trim().length <= 3) {
+        error = "El nombre debe contener más de 3 caracteres.";
+      }
+      break;
+
+    case "correo":
+      if (!valor || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor)) {
+        error = "El correo no tiene un formato válido.";
+      }
+      break;
+
+    case "contrasena":
+      if (!valor) {
+        error = "La contraseña es obligatoria.";
+      } else if (valor.length < 8) {
+        error = "La contraseña debe tener al menos 8 caracteres.";
+      } else if (!/[A-Z]/.test(valor)) {
+        error = "La contraseña debe contener al menos una letra mayúscula.";
+      }
+      break;
+
+    case "edad":
+      if (!valor || isNaN(valor) || Number(valor) < 18 || Number(valor) > 64) {
+        error = "Debe ingresar una edad válida entre 18 y 64 años.";
+      }
+      break;
+
+    case "sexo":
+      if (!valor || !["hombre", "mujer"].includes(valor.toLowerCase())) {
+        error = "Debe seleccionar un sexo válido.";
+      }
+      break;
+
+    default:
+      break;
+  }
+
+  return error;
+};
+
+
+
 //!DIETAS DEBAJO
 
 const validarCamposDieta = (elemento) => {
@@ -358,5 +405,5 @@ const compararConObjetivos = (valor, objetivo) => {
 
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
-  validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos
+  validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos, validarCampoUsuario
 };
