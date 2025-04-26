@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { contextoAuth } from "../../contextos/AuthContexto.jsx";
-/* import "./UsuarioInformacion.css"; */
 import UsuarioDatos from "./UsuarioDatos.jsx";
 
 const Usuario = () => {
   // Se extrae el usuario autenticado y la función para cerrar sesión
   const { usuario, cerrarSesion, editarDatoUsuario } = useContext(contextoAuth);
-  console.log(JSON.stringify(usuario)) //! DATOS DEL USUARIO INICIADO.
 
   return (
     <section id="usuario-informacion" className="flex justify-center flex-col" onClick={(event) => { editarDatoUsuario(event) }}>
@@ -22,7 +20,7 @@ const Usuario = () => {
 
       </div>
 
-      <UsuarioDatos usuario={usuario} />
+      <UsuarioDatos usuario={usuario}  />
 
     </section>
   );

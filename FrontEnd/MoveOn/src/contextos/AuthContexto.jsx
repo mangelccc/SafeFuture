@@ -148,12 +148,44 @@ const AuthContexto = ({ children }) => {
     }
   };
 
-  const editarDatoUsuario = async (evento, dato) => {
+  const [campoEditable, setCampoEditable] = useState(usuarioInicial);
+  const editarDatoUsuario = async (evento) => {
     const clic = evento.target.tagName;
     if (clic === "path" || clic === "svg") {
-      console.log("click en icono de editar");
+      const clave = evento.target.closest("article").dataset.key;
+      const valor = usuario[clave]; 
+
+      setCampoEditable({ campo: clave, valor: valor }); //Cuando se le da clic al icono del nombre = {nombre: 'Gloria Pepe'} 
+      
     }
   }
+
+
+  const guardarDatoParcialUsuario = async () => {
+    try {
+       const response = await fetch(`${API_URL}/usuarios/${usuario.id_usuario}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ [campoEditable.campo]: campoEditable.valor }),
+       });
+       if (response.ok) {
+          Swal.fire("Actualizado", "El campo fue actualizado con éxito", "success");
+          // Aquí actualizas el estado del usuario con los nuevos valores
+       }
+    } catch (error) {
+       Swal.fire("Error", "No se pudo actualizar el campo", "error");
+    }
+    setCampoEditable(usuarioInicial);
+    setUsuario((campos) => {
+      const nuevosCampos = {
+        ...campos,
+        [campoEditable.campo]: campoEditable.valor
+      };
+      localStorage.setItem('usuario', JSON.stringify(nuevosCampos));
+      return nuevosCampos;
+   });
+    
+ };
 
 
   useEffect(() => {
@@ -215,6 +247,10 @@ const AuthContexto = ({ children }) => {
     panelDerechoActivo,
     muestraRegistroClick,
     cargando,
+
+    campoEditable,
+    setCampoEditable,
+    guardarDatoParcialUsuario
   };
 
   return (
