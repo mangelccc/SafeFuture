@@ -8,7 +8,7 @@ const Alimento = ({ alimento, seleccionarAlimento, dietaId }) => {
     <li>
       <div className='border-1 border-black p-2 rounded-md dark:bg-white h-full flex flex-col'>
         <p className="font-bold">{alimento.nombre}</p>
-        <img className='m-auto py-4' src={alimento.imagen_url} alt={alimento.nombre} width="65" />
+        <img className='m-auto py-4 w-20' src={alimento.imagen_url} alt={alimento.nombre} />
         <span className='mb-2 self-center'>{alimento.precio_euros} € / {alimento.peso_kg} kg</span>
         <div className='flex justify-between'>
           <span className='font-bold'>Calorias:</span><span>{alimento.calorias}</span>

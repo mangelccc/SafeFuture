@@ -29,6 +29,7 @@ const AlimentosContexto = ({ children }) => {
   // Estado del buscador
   const [busqueda, setBusqueda] = useState('');
   const [isSaving, setIsSaving] = useState(falso);
+  const [loading, setLoading] = useState(true);
 
   const navegar = useNavigate();
   const cambioDeRuta = useLocation();
@@ -120,7 +121,7 @@ const AlimentosContexto = ({ children }) => {
           showConfirmButton: false
         });
         console.log(data);
-        navegar(`/rutina/dietas/${id}/detalles`); 
+        navegar(`/rutina/dietas/${id}/detalles`);
 
       } catch (error) {
         setErrorAlimento("Error al guardar los alimentos en la dieta: " + error.message);
@@ -130,29 +131,31 @@ const AlimentosContexto = ({ children }) => {
     }
   };
 
-      // Función para obtener los productos de la lista de compra. ListaActual es el ID de la lista. 
-      const obtenerAlimentosDieta = async (idDieta) => {
-        setAlimentosSeleccionados(listaInicial); // Reiniciar la lista de alimentos seleccionados
-        try {
-            /* Se realiza la consulta múltiple, teniendo en cuenta que la lista que buscamos coincida con el id pasado por parámetro. */
-            const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`, {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                // Otros headers si es necesario, como tokens de autenticación
-              }
-            });
-            const data = await response.json();
-            console.log(data)
-            if (!response.ok) {
-                throw new Error("Error en la respuesta: " + response.statusText);
-            }
-            
-            setAlimentosSeleccionados(data);
-        } catch (error) {
-            setErrorAlimento(error.message);
+  // Función para obtener los productos de la lista de compra. ListaActual es el ID de la lista. 
+  const obtenerAlimentosDieta = async (idDieta) => {
+    setAlimentosSeleccionados(listaInicial);
+    setLoading(true);  // Empezamos a cargar
+    try {
+      const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         }
-    };
+      });
+
+      if (!response.ok) {
+        throw new Error("Error en la respuesta: " + response.statusText);
+      }
+
+      const data = await response.json();
+      setAlimentosSeleccionados(data);
+    } catch (error) {
+      setErrorAlimento(error.message);
+    } finally {
+      setLoading(false);  // Terminamos la carga
+    }
+  };
+
 
 
   /*****************************************************************/
@@ -244,12 +247,12 @@ const AlimentosContexto = ({ children }) => {
     getAlimentos();
   }, []);
 
-   /* Para establecer el estado de errores a 0, al navegar por el sitio web. */
-   useEffect(() => {
-    if (errorAlimento.length) { 
-        setErrorAlimento(cadenaVacia);
+  /* Para establecer el estado de errores a 0, al navegar por el sitio web. */
+  useEffect(() => {
+    if (errorAlimento.length) {
+      setErrorAlimento(cadenaVacia);
     }
-}, [cambioDeRuta.pathname])
+  }, [cambioDeRuta.pathname])
 
   // Definición del objeto que se proveerá en el contexto
   const datosContexto = {
@@ -271,7 +274,7 @@ const AlimentosContexto = ({ children }) => {
     eliminarAlimento,
     listaAlimentosDieta,
     obtenerAlimentosDieta,
-
+    loading,
     errorAlimento,
 
   };

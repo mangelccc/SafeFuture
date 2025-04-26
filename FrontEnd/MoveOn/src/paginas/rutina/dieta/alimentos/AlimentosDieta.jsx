@@ -28,7 +28,8 @@ const AlimentosDieta = () => {
     buscarAlimento,
     alimentosFiltrados,
     actualizarFiltro,
-    obtenerAlimentosDieta
+    obtenerAlimentosDieta,
+    loading
   } = alimentos;
   const { usuario } = auth;
   const { dietasUsuario } = dietas;
@@ -59,10 +60,16 @@ const AlimentosDieta = () => {
     grasas: compararConObjetivos(macrosAcumulados.grasas, macronutrientesObjetivos.grasas)
   };
 
+
+
   // Cargamos alimentos de la dieta al montar/comparir id
   useEffect(() => {
-    if (id) obtenerAlimentosDieta(id);
-  }, [id]);
+    if (id && !loading) {
+      obtenerAlimentosDieta(id);
+    }
+  }, [id, loading]);
+
+
 
   return (
     <div className="seleccionar-alimentos">
