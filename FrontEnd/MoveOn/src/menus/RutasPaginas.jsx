@@ -5,9 +5,7 @@ import QueSomos from "../paginas/biografia/QueSomos.jsx";
 import Servicios from "../paginas/servicios/Servicios.jsx";
 import Rutina from "../paginas/rutina/Rutina.jsx";
 import Contactanos from "../paginas/contactanos/Contactanos.jsx";
-
 import Ejercicio from "../paginas/rutina/ejercicio/MiniAppEjercicios.jsx";
-
 import GestorEjercicios from "../paginas/rutina/ejercicio/GestorEjercicios.jsx";
 import Entrenamientos from "../paginas/rutina/ejercicio/Entrenamientos.jsx";
 import Plantillas from "../paginas/rutina/ejercicio/Plantillas.jsx";
@@ -26,9 +24,7 @@ import DietasCrear from "../paginas/rutina/dieta/crear_dietas/DietasCrear.jsx"
 import AlimentosDieta from "../paginas/rutina/dieta/alimentos/AlimentosDieta.jsx";
 import DietasDetalles from "../paginas/rutina/dieta/DietasDetalles.jsx";
 
-
 import Error from "../paginas/error/Error.jsx";
-
 
 const RutasPaginas = () => {
   return (
@@ -40,6 +36,7 @@ const RutasPaginas = () => {
 
 
         <Route path="/rutina" element={<Rutina />} />
+        
         <Route path="/rutina/dietas" element={<Dietas />} />
         <Route path="/rutina/dietas/:id" element={<AlimentosDieta />} />
         <Route path="/rutina/dietas/:id/detalles" element={<DietasDetalles/>} />

@@ -19,7 +19,7 @@ const Cabecera = () => {
     <>
       <header className="min-h-24 w-full flex justify-around items-center bg-white dark:bg-black border-b-2 dark:border-white border-black ">
 
-        <FontAwesomeIcon className="sm:hidden hsm:block text-4xl bg-gold dark:bg-black dark:text-gold border border-2 border-black dark:border-white p-2 rounded-lg cursor-pointer"
+        <FontAwesomeIcon className="sm:hidden hsm:block text-4xl bg-gold dark:bg-black dark:text-gold border-2 border-black dark:border-white p-2 rounded-lg cursor-pointer"
           onClick={alternarMenu}
           icon={menu ? faXmarkSquare : faBars} />
 

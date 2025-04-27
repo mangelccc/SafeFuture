@@ -243,9 +243,8 @@ const DietasContexto = ({ children }) => {
     useEffect(() => {
         if (sesionIniciada === true && usuario && usuario.id_usuario) {
             cargarDietasDelUsuario();
-        }
+        } 
     }, [sesionIniciada, usuario]);
-
 
     const eliminarDieta = async (evento) => {
         try {

@@ -10,7 +10,7 @@ const DietasUsuario = ({ dieta }) => {
 
   return (
     <section className="max-w-lg flex flex-col text-center border-2 border-black dark:border-white rounded-[9px]" id={dieta.id_dieta} data-dieta={dieta.pivot.id_dieta}>
-      <div className="flex flex-col grow rounded-t-lg bg-gradient-to-t from-[#FFBA49] to-[#5001ed] text-shadow-xl">
+      <div className="flex flex-col grow rounded-t-lg bg-gradient-to-t from-[#d8d4cc] to-[#5001ed] text-shadow-xl">
         <section className="border-b-2 border-black dark:border-white p-2">
           <h3 className='text-white text-shadow font-bold tracking-wide'>{dieta.nombre}</h3>
         </section>

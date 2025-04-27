@@ -25,6 +25,7 @@ const AuthContexto = ({ children }) => {
   const [datosSesion, setDatosSesion] = useState(datosSesionInicial);
   const [usuario, setUsuario] = useState(usuarioInicial);
   const [errorUsuario, setErrorUsuario] = useState(usuarioInicial);
+  const [campoEditable, setCampoEditable] = useState(usuarioInicial);
   const [errorCampo, setErrorCampo] = useState(cadenaVacia);
   const [sesionIniciada, setSesionIniciada] = useState(falseBool);
   const [olvidoContrasena, setOlvidoContrasena] = useState(falseBool);
@@ -148,7 +149,7 @@ const AuthContexto = ({ children }) => {
     }
   };
 
-  const [campoEditable, setCampoEditable] = useState(usuarioInicial);
+
   const editarDatoUsuario = async (evento) => {
     const clic = evento.target.tagName;
     if (clic === "path" || clic === "svg") {
@@ -227,9 +228,7 @@ const guardarDato = () => {
     if (!error) {
         guardarDatoParcialUsuario();
     } else{
-      console.log(error);
         setErrorCampo(error);
-        
     }
     
 };
@@ -240,7 +239,6 @@ const limpiarErrorCampo = () => {
 
 const cancelarDato = () => {
     setCampoEditable(null);
-    
   };
 
   const volverInicioSesionClick = (booleano) => {

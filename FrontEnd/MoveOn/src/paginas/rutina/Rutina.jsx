@@ -4,6 +4,7 @@ import rutinas from "../../objetos/rutinas.js";
 import ItemRutina from "./ItemRutina.jsx";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
+
 const Rutina = () => {
   return (
     <div id="crear-rutina" className="text-center p-5">

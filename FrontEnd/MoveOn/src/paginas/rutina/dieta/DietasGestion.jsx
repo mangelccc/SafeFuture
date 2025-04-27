@@ -1,11 +1,18 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import DietasUsuario from './DietasUsuario.jsx';
 import useAppContext from '../../../hooks/useAppContext.jsx'; 
 
 const DietasGestion = () => {
-    const { dietas } = useAppContext();
+    const { dietas, auth } = useAppContext();
     const { dietasUsuario, eliminarDieta } = dietas;
+    const { sesionIniciada } = auth;
+    const navegar = useNavigate();
+    useEffect(() => {
+        if (!sesionIniciada) {
+          navegar("/usuario");
+        }
+      }, []);
 
     return (
         <>
