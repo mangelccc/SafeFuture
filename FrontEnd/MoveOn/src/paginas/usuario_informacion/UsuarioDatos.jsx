@@ -1,37 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { contextoAuth } from "../../contextos/AuthContexto.jsx";
 import UsuarioDato from './UsuarioDato.jsx';
-import { validarCampoUsuario } from '../../bibliotecas/biblioteca.js';
+import { camposUsuario } from '../../bibliotecas/biblioteca.js';
+import Swal from 'sweetalert2';
 
 const UsuarioDatos = ({ usuario }) => {
-    const { setCampoEditable, guardarDatoParcialUsuario, campoEditable } = useContext(contextoAuth);
+    const { cambiarDato, guardarDato, cancelarDato, campoEditable, errorCampo, limpiarErrorCampo } = useContext(contextoAuth);
 
-    const camposUsuario = [
-        { campo: "nombre", label: "Nombre de usuario", sublabel: "Usuario" },
-        { campo: "correo", label: "Correo electrónico", sublabel: "Correo" },
-        { campo: "contrasena", label: "Contraseña", sublabel: "Contraseña" },
-        { campo: "edad", label: "Edad", sublabel: "Edad" },
-        { campo: "sexo", label: "Sexo", sublabel: "Sexo" }
-    ];
+    useEffect(() => {
+        cancelarDato();
+    }, []);
 
-    const handleChange = (event) => {
-        setCampoEditable(prev => ({
-            ...prev,
-            valor: event.target.value
-        }));
-    };
-
-    const handleGuardar = () => {
-        const error = validarCampoUsuario(campoEditable.campo, campoEditable.valor);
-
-        if (error) {
-            console.error(error);
-            return; // No sigue si hay error //! Crear un estado y mostrar un mensaje de error.
-        }
-
-        guardarDatoParcialUsuario(); // Si no hay error, sigue normal
-    };
-
+    if (errorCampo) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "error",
+            title: errorCampo,
+            color: "tomato",
+        });
+        limpiarErrorCampo();
+    }
 
     return (
         <>
@@ -43,10 +41,10 @@ const UsuarioDatos = ({ usuario }) => {
                     sublabel={sublabel}
                     usuario={usuario}
                     campoEditable={campoEditable}
-                    handleChange={handleChange}
-                    handleGuardar={handleGuardar}
+                    cambiarDato={cambiarDato}
+                    guardarDato={guardarDato}
+                    cancelarDato={cancelarDato}
 
-                    
                 />
             ))}
         </>

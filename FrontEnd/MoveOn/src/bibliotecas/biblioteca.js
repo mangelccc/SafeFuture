@@ -197,10 +197,6 @@ const validarCampoUsuario = (campo, valor) => {
   return error;
 };
 
-
-
-//!DIETAS DEBAJO
-
 const validarCamposDieta = (elemento) => {
   // Elemento target desestructurado.
   const { name, value } = elemento;
@@ -402,8 +398,16 @@ const compararConObjetivos = (valor, objetivo) => {
   return "red";
 };
 
+const camposUsuario = [
+  { campo: "nombre", label: "Nombre personal", sublabel: "Nombre" },
+  { campo: "correo", label: "Correo electrónico", sublabel: "Correo" },
+  { campo: "contrasena", label: "Contraseña", sublabel: "Contraseña" },
+  { campo: "edad", label: "Edad", sublabel: "Edad" },
+  { campo: "sexo", label: "Sexo", sublabel: "Sexo" }
+];
 
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
-  validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos, validarCampoUsuario
+  validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos, validarCampoUsuario,
+  camposUsuario
 };

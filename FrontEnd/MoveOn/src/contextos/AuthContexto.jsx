@@ -1,7 +1,7 @@
 // src/contextos/AuthContexto.jsx
 import React, { useState, useEffect, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { validarRegistro } from "../bibliotecas/biblioteca.js";
+import { validarRegistro, validarCampoUsuario } from "../bibliotecas/biblioteca.js";
 import { API_URL } from "../bibliotecas/config.js";
 import Swal from 'sweetalert2';
 
@@ -20,10 +20,12 @@ const AuthContexto = ({ children }) => {
 
   const usuarioInicial = {};
   const falseBool = false;
+  const cadenaVacia = "";
 
   const [datosSesion, setDatosSesion] = useState(datosSesionInicial);
   const [usuario, setUsuario] = useState(usuarioInicial);
   const [errorUsuario, setErrorUsuario] = useState(usuarioInicial);
+  const [errorCampo, setErrorCampo] = useState(cadenaVacia);
   const [sesionIniciada, setSesionIniciada] = useState(falseBool);
   const [olvidoContrasena, setOlvidoContrasena] = useState(falseBool);
   const [panelDerechoActivo, setPanelDerechoActivo] = useState(falseBool);
@@ -58,7 +60,6 @@ const AuthContexto = ({ children }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(nuevoUsuario),
-
         });
 
         const data = await response.json();
@@ -97,7 +98,6 @@ const AuthContexto = ({ children }) => {
 
   const iniciarSesion = async () => {
     setErrorUsuario(usuarioInicial);
-    console.log(API_URL)
     const errores = validarRegistro(datosSesion, "login");
 
     if (Object.keys(errores).length > 0) {
@@ -119,9 +119,8 @@ const AuthContexto = ({ children }) => {
 
         const data = await response.json();
 
-        if (!response.ok) {
-
-          setErrorUsuario(data.message || "Error al iniciar sesión.");
+        if (response.status === 401) {
+          throw new Error("Email o contraseña incorrectos.");
         } else {
 
           Swal.fire({
@@ -141,7 +140,8 @@ const AuthContexto = ({ children }) => {
           navegar("/");
         }
       } catch (error) {
-        setErrorUsuario(error.message);
+        
+        setErrorUsuario({unauthorized: "Email o contraseña incorrectos."});
       } finally {
         setCargando(falseBool);
       }
@@ -191,7 +191,6 @@ const AuthContexto = ({ children }) => {
   useEffect(() => {
     const usuarioGuardado = localStorage.getItem("usuario");
     const sesionGuardada = localStorage.getItem("sesionIniciada");
-
     if (usuarioGuardado && sesionGuardada === "true") {
       setUsuario(JSON.parse(usuarioGuardado));
       setSesionIniciada(true);
@@ -216,8 +215,37 @@ const AuthContexto = ({ children }) => {
     });
   };
 
+  const cambiarDato = (event) => {
+    setCampoEditable(prev => ({
+        ...prev,
+        valor: event.target.value
+    }));
+};
+
+const guardarDato = () => {
+    const error = validarCampoUsuario(campoEditable.campo, campoEditable.valor);
+    if (!error) {
+        guardarDatoParcialUsuario();
+    } else{
+      console.log(error);
+        setErrorCampo(error);
+        
+    }
+    
+};
+
+const limpiarErrorCampo = () => {
+    setErrorCampo(cadenaVacia);
+  }
+
+const cancelarDato = () => {
+    setCampoEditable(null);
+    
+  };
+
   const volverInicioSesionClick = (booleano) => {
     setOlvidoContrasena(booleano);
+    setDatosSesion(datosSesionInicial);
     setErrorUsuario(usuarioInicial);
   };
 
@@ -228,6 +256,7 @@ const AuthContexto = ({ children }) => {
 
   const muestraRegistroClick = (booleano) => {
     setPanelDerechoActivo(booleano);
+    setDatosSesion(datosSesionInicial);
     setErrorUsuario(usuarioInicial);
   };
 
@@ -250,6 +279,11 @@ const AuthContexto = ({ children }) => {
 
     campoEditable,
     setCampoEditable,
+    cambiarDato,
+    guardarDato,
+    cancelarDato,
+    errorCampo,
+    limpiarErrorCampo,
     guardarDatoParcialUsuario
   };
 

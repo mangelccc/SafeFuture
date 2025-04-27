@@ -329,11 +329,13 @@
   .contenedor-superpuesto {
     /* Desactivamos los eventos en este contenedor para que no bloquee los clics */
     pointer-events: none;
+    
   }
   
   /* Si tienes botones dentro del panel superpuesto (como los con clase "escondido") que deban seguir siendo clicables, les activamos los eventos */
   .panel-superpuesto button.escondido {
     pointer-events: auto;
+    
   }
 }
 

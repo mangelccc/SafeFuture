@@ -26,7 +26,7 @@ const IniciarSesion = () => {
           value={datosSesion.password || ""}
         />
         {errorUsuario.password && <small className="text-red-500">{errorUsuario.password}</small>}
-
+        {errorUsuario?.unauthorized && <small className="text-red-500">{errorUsuario.unauthorized}</small>}
       </form>
       <a onClick={() => volverInicioSesionClick(true)}>
         ¿Has olvidado la contraseña?
