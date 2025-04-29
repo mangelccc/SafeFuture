@@ -9,12 +9,21 @@ const VistaRutina = () => {
   const { ejercicios } = ejerciciosContex;
 
   const [items, setItems] = useState([]);
+  const [rutinaNombre, setRutinaNombre] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchPivots = async () => {
+    const fetchData = async () => {
       try {
+        // 1) Obtener el nombre de la rutina
+        const resRut = await fetch(`http://localhost:8089/api/rutinas/${id}`);
+        if (!resRut.ok) throw new Error(`Status ${resRut.status}`);
+        const rawRut = await resRut.json();
+        const rut = rawRut.rutina || rawRut;
+        setRutinaNombre(rut.nombre || `Rutina ${id}`);
+
+        // 2) Obtener pivots de rutina-ejercicio
         const res = await fetch('http://localhost:8089/api/rutina-ejercicio');
         if (!res.ok) throw new Error(`Status ${res.status}`);
         const raw = await res.json();
@@ -23,7 +32,7 @@ const VistaRutina = () => {
         // Filtrar por la rutina actual
         const filtrados = pivots.filter(p => p.id_rutina.toString() === id);
 
-        // Mapear cada pivot con los datos ya cargados de ejercicios
+        // Mapear cada pivot con datos de ejercicios ya cargados
         const detalles = filtrados.map(pivot => {
           const ej = ejercicios.find(e => e.id_ejercicio === pivot.id_ejercicio) || {};
           return {
@@ -40,27 +49,28 @@ const VistaRutina = () => {
 
         setItems(detalles);
       } catch (err) {
-        console.error('Error cargando rutina:', err);
-        setError('No se pudieron cargar los ejercicios de esta rutina.');
+        console.error('Error cargando datos de la rutina:', err);
+        setError('No se pudieron cargar los datos de esta rutina.');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchPivots();
+    fetchData();
   }, [id, ejercicios]);
 
   if (loading) return <p>Cargando ejercicios...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Titulo: {id}</h1>
+    <div className="max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold mb-6">Titulo: {rutinaNombre}</h1>
+      
       {items.length === 0 ? (
         <p>No hay ejercicios ligados a esta rutina.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {items.map(item => (
+        <div className="flex flex-wrap gap-4 h-[500px] w-full overflow-y-scroll">          
+        {items.map(item => (
             <Ejercicio
               key={item.id_rutina_ejercicio}
               nombre={item.nombre}
@@ -75,7 +85,7 @@ const VistaRutina = () => {
           ))}
         </div>
       )}
-    </div>
+      </div>
   );
 };
 
