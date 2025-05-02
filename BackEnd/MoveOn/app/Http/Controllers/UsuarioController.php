@@ -189,4 +189,22 @@ class UsuarioController extends Controller
     }
 
 
+     // Comprueba si un correo ya está en uso.
+
+    public function emailExists(Request $request)
+    {
+        // Validamos formato de correo para no sobrecargar la BD con cosas raras
+        $request->validate([
+            'correo' => 'required|email|max:100'
+        ]);
+
+        $exists = Usuario::where('correo', $request->correo)->exists();
+
+        return response()->json([
+            'exists' => $exists
+        ], 200);
+    }
+
+
+
 }

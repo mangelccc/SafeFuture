@@ -223,15 +223,35 @@ const AuthContexto = ({ children }) => {
     }));
 };
 
-const guardarDato = () => {
-    const error = validarCampoUsuario(campoEditable.campo, campoEditable.valor);
-    if (!error) {
-        guardarDatoParcialUsuario();
-    } else{
-        setErrorCampo(error);
+const guardarDato = async () => {
+  const error = validarCampoUsuario(campoEditable.campo, campoEditable.valor);
+
+  if (error) {
+    setErrorCampo(error);
+    return;
+  }
+
+  // Si estamos editando el correo, comprobamos primero en la API
+  if (campoEditable.campo === 'correo') {
+    try {
+      const res = await fetch(
+        `${API_URL}/usuarios/email-exists?correo=${encodeURIComponent(campoEditable.valor)}`
+      );
+      const { exists } = await res.json();
+      if (exists) {
+        setErrorCampo('Este correo ya está registrado.');
+        return;
+      }
+    } catch (e) {
+      setErrorCampo('No se pudo validar el correo. Inténtalo de nuevo.');
+      return;
     }
-    
+  }
+
+  // Si todo OK, seguimos con el guardado parcial
+  guardarDatoParcialUsuario();
 };
+
 
 const limpiarErrorCampo = () => {
     setErrorCampo(cadenaVacia);

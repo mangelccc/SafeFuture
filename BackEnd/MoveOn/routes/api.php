@@ -16,7 +16,11 @@ use App\Http\Controllers\RutinaEjercicioController;
 use App\Http\Controllers\UsuarioRutinaController;
 use App\Http\Controllers\AlimentoDietaController;
 
+
+
+
 // Rutas para Usuarios
+Route::get('usuarios/email-exists', [UsuarioController::class, 'emailExists']);
 Route::get('/usuarios', [UsuarioController::class, 'index']);
 Route::get('/usuarios/{id}', [UsuarioController::class, 'show']);
 Route::post('/usuarios', [UsuarioController::class, 'store']);
