@@ -35,65 +35,70 @@ const AuthContexto = ({ children }) => {
   const navegar = useNavigate();
 
   const crearCuenta = async () => {
-    
     setErrorUsuario(usuarioInicial);
-    const errores = validarRegistro(datosSesion, "registro");
 
-    if (Object.keys(errores).length > 0) {
-      setErrorUsuario(errores);
+    const erroresFront = validarRegistro(datosSesion, "registro");
+    if (Object.keys(erroresFront).length > 0) {
+      setErrorUsuario(erroresFront);
       return;
     }
 
-    if (!cargando) {
-      try {
-        setCargando(true);
-        const nuevoUsuario = {
-          id_usuario: crypto.randomUUID(),
-          nombre: datosSesion.nombre,
-          correo: datosSesion.email,
-          contrasena: datosSesion.password,
-          edad: Number(datosSesion.edad),
-          sexo: datosSesion.sexo,
-          rol: datosSesion.rol || "Usuario"
-        };
+    if (cargando) return;
+    setCargando(true);
 
-        const response = await fetch(`${API_URL}/usuarios`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(nuevoUsuario),
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          setErrorUsuario(data.message || "Error al crear la cuenta.");
-        } else {
-
-          const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: falseBool,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            }
-          });
-          Toast.fire({
-            icon: "success",
-            title: "Cuenta creada exitosamente."
-          });
-          setErrorUsuario(usuarioInicial);
-          setDatosSesion(datosSesionInicial);
-        }
-      } catch (error) {
-        setErrorUsuario({fetch: "Este email ya existe."});
-      } finally {
-        setCargando(falseBool);
+    try {
+      // 2. Pre-check email en la API
+      const checkRes = await fetch(
+        `${API_URL}/usuarios/email-exists?correo=${encodeURIComponent(datosSesion.email)}`
+      );
+      const checkData = await checkRes.json();
+      if (checkData.exists) {
+        setErrorUsuario({ email: "Este correo ya existe." });
+        return;
       }
+
+      const nuevoUsuario = {
+        id_usuario: crypto.randomUUID(),
+        nombre: datosSesion.nombre,
+        correo: datosSesion.email,
+        contrasena: datosSesion.password,
+        edad: Number(datosSesion.edad),
+        sexo: datosSesion.sexo,
+        rol: datosSesion.rol || "Usuario"
+      };
+
+      const response = await fetch(`${API_URL}/usuarios`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(nuevoUsuario),
+      });
+      const data = await response.json();
+
+      // posibles errores devueltos por el POST
+      if (!response.ok) {
+        const msg = data.errors?.correo?.[0] || data.message || "Error al crear la cuenta.";
+        setErrorUsuario({ fetch: msg });
+        return;
+      }
+
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: "Cuenta creada exitosamente.",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
+      });
+      setDatosSesion(datosSesionInicial);
+    } catch (e) {
+      // Error de red o API caída
+      setErrorUsuario({ fetch: "No se pudo conectar. Inténtalo de nuevo." });
+    } finally {
+      setCargando(false);
     }
   };
+
 
 
 
@@ -141,8 +146,8 @@ const AuthContexto = ({ children }) => {
           navegar("/");
         }
       } catch (error) {
-        
-        setErrorUsuario({unauthorized: "Email o contraseña incorrectos."});
+
+        setErrorUsuario({ unauthorized: "Email o contraseña incorrectos." });
       } finally {
         setCargando(falseBool);
       }
@@ -154,39 +159,44 @@ const AuthContexto = ({ children }) => {
     const clic = evento.target.tagName;
     if (clic === "path" || clic === "svg") {
       const clave = evento.target.closest("article").dataset.key;
-      const valor = usuario[clave]; 
+      const valor = usuario[clave];
 
-      setCampoEditable({ campo: clave, valor: valor }); //Cuando se le da clic al icono del nombre = {nombre: 'Gloria Pepe'} 
-      
+ setCampoEditable({
+    campo: clave,
+    valor: clave === 'contrasena' ? '' : valor
+  });
     }
   }
 
 
   const guardarDatoParcialUsuario = async () => {
     try {
-       const response = await fetch(`${API_URL}/usuarios/${usuario.id_usuario}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ [campoEditable.campo]: campoEditable.valor }),
-       });
-       if (response.ok) {
-          Swal.fire("Actualizado", "El campo fue actualizado con éxito", "success");
-          // Aquí actualizas el estado del usuario con los nuevos valores
-       }
+      const response = await fetch(`${API_URL}/usuarios/${usuario.id_usuario}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [campoEditable.campo]: campoEditable.valor }),
+      });
+      if (response.ok) {
+        Swal.fire("Actualizado", "El campo fue actualizado con éxito", "success");
+        // Aquí actualizas el estado del usuario con los nuevos valores
+      }
     } catch (error) {
-       Swal.fire("Error", "No se pudo actualizar el campo", "error");
+      Swal.fire("Error", "No se pudo actualizar el campo", "error");
     }
     setCampoEditable(usuarioInicial);
-    setUsuario((campos) => {
-   const nuevosCampos = {
-     ...campos,
-     [campoEditable.campo]: campoEditable.valor
-   };
-   localStorage.setItem('usuario', JSON.stringify(nuevosCampos));
-   return nuevosCampos;
-});
-    
- };
+    setUsuario((camposPrevios) => {
+      if (campoEditable.campo === "contrasena") {
+      return camposPrevios;
+    }
+      const nuevosCampos = {
+        ...camposPrevios,
+        [campoEditable.campo]: campoEditable.valor
+      };
+      localStorage.setItem('usuario', JSON.stringify(nuevosCampos));
+      return nuevosCampos;
+    });
+
+  };
 
 
   useEffect(() => {
@@ -218,46 +228,46 @@ const AuthContexto = ({ children }) => {
 
   const cambiarDato = (event) => {
     setCampoEditable(prev => ({
-        ...prev,
-        valor: event.target.value
+      ...prev,
+      valor: event.target.value
     }));
-};
+  };
 
-const guardarDato = async () => {
-  const error = validarCampoUsuario(campoEditable.campo, campoEditable.valor);
+  const guardarDato = async () => {
+    const error = validarCampoUsuario(campoEditable.campo, campoEditable.valor);
 
-  if (error) {
-    setErrorCampo(error);
-    return;
-  }
-
-  // Si estamos editando el correo, comprobamos primero en la API
-  if (campoEditable.campo === 'correo') {
-    try {
-      const res = await fetch(
-        `${API_URL}/usuarios/email-exists?correo=${encodeURIComponent(campoEditable.valor)}`
-      );
-      const { exists } = await res.json();
-      if (exists) {
-        setErrorCampo('Este correo ya está registrado.');
-        return;
-      }
-    } catch (e) {
-      setErrorCampo('No se pudo validar el correo. Inténtalo de nuevo.');
+    if (error) {
+      setErrorCampo(error);
       return;
     }
-  }
 
-  // Si todo OK, seguimos con el guardado parcial
-  guardarDatoParcialUsuario();
-};
+    // Si estamos editando el correo, comprobamos primero en la API
+    if (campoEditable.campo === 'correo') {
+      try {
+        const res = await fetch(
+          `${API_URL}/usuarios/email-exists?correo=${encodeURIComponent(campoEditable.valor)}`
+        );
+        const { exists } = await res.json();
+        if (exists) {
+          setErrorCampo('Este correo ya está registrado.');
+          return;
+        }
+      } catch (e) {
+        setErrorCampo('No se pudo validar el correo. Inténtalo de nuevo.');
+        return;
+      }
+    }
+
+    // Si todo OK, seguimos con el guardado parcial
+    guardarDatoParcialUsuario();
+  };
 
 
-const limpiarErrorCampo = () => {
+  const limpiarErrorCampo = () => {
     setErrorCampo(cadenaVacia);
   }
 
-const cancelarDato = () => {
+  const cancelarDato = () => {
     setCampoEditable(null);
   };
 

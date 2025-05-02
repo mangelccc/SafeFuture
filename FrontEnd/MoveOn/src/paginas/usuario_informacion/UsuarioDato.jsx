@@ -33,6 +33,15 @@ const DatoUsuario = ({ label, sublabel, campo, usuario, campoEditable, cambiarDa
                   <option value="hombre">Hombre</option>
                   <option value="mujer">Mujer</option>
                 </select>
+              ) : campo === "contrasena" ? (
+                <input
+                  type="password"
+                  name={campo}
+                  placeholder="Nueva contraseña"
+                  value={campoEditable.valor}
+                  onChange={cambiarDato}
+                  className="ml-4 hsm:ml-0 text-black px-2 py-1 rounded"
+                />
               ) : (
                 <input
                   type="text"
@@ -57,7 +66,7 @@ const DatoUsuario = ({ label, sublabel, campo, usuario, campoEditable, cambiarDa
             </>
           ) : (
             campo === "contrasena"
-              ? (usuario[campo] ? "••••••••••••" : "Contraseña no encontrada")
+              ? (usuario[campo] = "••••••••••••")
               : (usuario[campo] ?? `${sublabel} no encontrado`)
           )}
         </span>
@@ -65,6 +74,5 @@ const DatoUsuario = ({ label, sublabel, campo, usuario, campoEditable, cambiarDa
     </article>
   );
 };
-
 
 export default DatoUsuario;
