@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 const UsuarioDatos = ({ usuario }) => {
     const { cambiarDato, guardarDato, cancelarDato, campoEditable, errorCampo, limpiarErrorCampo } = useContext(contextoAuth);
+    console.log(usuario);
 
     useEffect(() => {
         cancelarDato();
