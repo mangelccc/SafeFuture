@@ -12,6 +12,7 @@ const Servicios = () => {
             key={index} 
             icono={servicio.icono}
             texto={servicio.texto}
+            link={servicio.link}
           />
         ))}
       </section>
