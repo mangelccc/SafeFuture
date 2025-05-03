@@ -56,6 +56,7 @@ const Footer = () => {
               key={index}
               icono={redSocial.icono}
               nombre={redSocial.nombre}
+              link={redSocial.link}
             />
           ))}
         </ul>
