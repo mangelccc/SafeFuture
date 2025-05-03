@@ -21,7 +21,7 @@ const DietasGuardar = () => {
     return (
         <section className="flex flex-col items-center justify-center gap-5 p-5 bg-[#1e1e1e] border-2 border-purple rounded-lg shadow-lg max-w-xl mx-auto my-12">
     <div>
-        <h2 className="text-gold text-3xl text-center px-4">Crear una nueva lista</h2>
+        <h2 className="text-gold text-3xl text-center px-4">Crear una nueva dieta</h2>
         <form id="crear-lista" className="flex flex-col gap-4 w-full pt-4">
             <label htmlFor="nombre" className="text-lg text-[#d4d4d4] font-bold text-center">
                 Elige el nombre de tu dieta:

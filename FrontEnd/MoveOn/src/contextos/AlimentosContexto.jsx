@@ -1,6 +1,7 @@
 // src/contextos/AlimentosContexto.jsx
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import useAppContext from '../hooks/useAppContext.jsx';
 import { validarCreacionAlimento } from "../bibliotecas/biblioteca.js";
 import { API_URL } from "../bibliotecas/config.js";
 import Swal from "sweetalert2";
@@ -8,6 +9,10 @@ import Swal from "sweetalert2";
 const contextoAlimentos = createContext();
 
 const AlimentosContexto = ({ children }) => {
+  // Contexto de autenticación
+  const { auth } = useAppContext();
+  const { sesionIniciada } = auth;
+
   /*** VALORES INICIALES ***/
   const cadenaVacia = "";
   const listaInicial = [];
@@ -26,25 +31,15 @@ const AlimentosContexto = ({ children }) => {
     precio_euros: 0,
     codigo_barras: "",
   };
-  // Estado del buscador
+
+  /*** HOOKS DE ESTADO ***/
   const [busqueda, setBusqueda] = useState('');
   const [isSaving, setIsSaving] = useState(falso);
   const [loading, setLoading] = useState(true);
-
-  const navegar = useNavigate();
-  const cambioDeRuta = useLocation();
-
-  const buscarAlimento = (busqueda) => {
-    setBusqueda(busqueda);
-  }
-
-  // Estados generales
   const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
   const [errorAlimento, setErrorAlimento] = useState(cadenaVacia);
   const [alimentosSeleccionados, setAlimentosSeleccionados] = useState(listaInicial);
-  const [listaAlimentosDieta, setlistaAlimentosDieta] = useState(listaInicial); //! No hace nada
-
-  // Estados para los filtros
+  const [listaAlimentosDieta, setlistaAlimentosDieta] = useState(listaInicial); // No usado actualmente
   const [filtros, setFiltros] = useState({
     categoria: '',
     minCarbohidratos: 0,
@@ -57,166 +52,133 @@ const AlimentosContexto = ({ children }) => {
     maxGrasas: 100,
   });
 
-  // Función para obtener los alimentos desde la API
-  const getAlimentos = async () => {
+  /*** HOOKS DE NAVEGACIÓN ***/
+  const navegar = useNavigate();
+  const cambioDeRuta = useLocation();
+
+  /*** FUNCIONES MEMOIZADAS ***/
+  const buscarAlimento = useCallback((termino) => {
+    setBusqueda(termino);
+  }, []);
+
+  const getAlimentos = useCallback(async () => {
     try {
       setErrorAlimento(cadenaVacia);
-
       const response = await fetch(`${API_URL}/alimentos`, {
         method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // Otros headers si es necesario, como tokens de autenticación
-        }
+        headers: { "Content-Type": "application/json" }
       });
-
       if (!response.ok) {
         throw new Error("Error en la respuesta de la API: " + response.statusText);
       }
-
       const data = await response.json();
-      setListadoAlimentos(data.alimentos); // Establecemos los alimentos obtenidos en el estado
-
+      setListadoAlimentos(data.alimentos);
     } catch (error) {
-      setErrorAlimento("Error al leer los alimentos: " + error.message); // Manejo de errores
+      setErrorAlimento("Error al leer los alimentos: " + error.message);
     }
-  };
+  }, []);
 
-
-  /***********************************/
-  /***        FUNCIONES CRUD       ***/
-  /***********************************/
-
-  const guardarAlimentosEnDietaPersonalizada = async (id) => {
-    if (!isSaving) {
-      try {
-        setIsSaving(true);
-        console.log("Guardando dieta");
-        const payload = {
-          id_dieta: id, // El id de la dieta (extraído de useParams)
-          alimentos: alimentosSeleccionados.map(({ id_alimento, cantidad }) => ({
-            id_alimento,
-            cantidad,
-          })),
-        };
-
-        const response = await fetch(`${API_URL}/alimento-dieta/multiples`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || "Error al guardar cambios.");
-        }
-
-        const data = await response.json();
-        Swal.fire({
-          title: "¡Cambios guardados correctamente!",
-          icon: "success",
-          timer: 1500,
-          showConfirmButton: false
-        });
-        console.log(data);
-        navegar(`/rutina/dietas/${id}/detalles`);
-
-      } catch (error) {
-        setErrorAlimento("Error al guardar los alimentos en la dieta: " + error.message);
-      } finally {
-        setIsSaving(falso);
-      }
-    }
-  };
-
-  // Función para obtener los productos de la lista de compra. ListaActual es el ID de la lista. 
-  const obtenerAlimentosDieta = async (idDieta) => {
-    setAlimentosSeleccionados(listaInicial);
-    setLoading(true);  // Empezamos a cargar
+  const guardarAlimentosEnDietaPersonalizada = useCallback(async (id) => {
+    if (isSaving) return;
     try {
-      const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        }
+      setIsSaving(true);
+      const payload = {
+        id_dieta: id,
+        alimentos: alimentosSeleccionados.map(({ id_alimento, cantidad }) => ({ id_alimento, cantidad })),
+      };
+      const response = await fetch(`${API_URL}/alimento-dieta/multiples`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
-
       if (!response.ok) {
-        throw new Error("Error en la respuesta: " + response.statusText);
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error al guardar cambios.");
       }
+      await response.json();
+      Swal.fire({
+        title: "¡Cambios guardados correctamente!",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false
+      });
+      navegar(`/rutina/dietas/${id}/detalles`);
+    } catch (error) {
+      setErrorAlimento("Error al guardar los alimentos en la dieta: " + error.message);
+    } finally {
+      setIsSaving(falso);
+    }
+  }, [alimentosSeleccionados, isSaving, navegar]);
 
+  const obtenerAlimentosDieta = useCallback(async (idDieta) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`);
+      if (response.status === 404) {
+        setAlimentosSeleccionados(listaInicial);
+        return;
+      }
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
       const data = await response.json();
       setAlimentosSeleccionados(data);
     } catch (error) {
       setErrorAlimento(error.message);
     } finally {
-      setLoading(false);  // Terminamos la carga
+      setLoading(false);
     }
-  };
+  }, []);
 
-
-
-  /*****************************************************************/
-  /***       FUNCIONES DE EDICIÓN (iniciar, cancelar, guardar)    ***/
-  /*****************************************************************/
-
-
-  /*****************************************************************/
-  /***             FILTRO Y ORDEN DE LOS ALIMENTOS                ***/
-  /*****************************************************************/
-
-  const seleccionarAlimento = (alimento, idDiet) => {
-
-    setAlimentosSeleccionados((prevSeleccionados) => {
-      const existe = prevSeleccionados.find(item => item.id_alimento === alimento.id_alimento);
+  const seleccionarAlimento = useCallback((alimento, idDiet) => {
+    setAlimentosSeleccionados(prev => {
+      const existe = prev.find(item => item.id_alimento === alimento.id_alimento);
       if (existe) {
-        // Si ya existe, se actualiza la cantidad
-        return prevSeleccionados.map(item =>
+        return prev.map(item =>
           item.id_alimento === alimento.id_alimento
             ? { ...item, cantidad: item.cantidad + 1 }
             : item
         );
-      } else {
-        // Si no existe, se agrega como nuevo
-        return [...prevSeleccionados, { ...alimento, cantidad: 1, id_dieta: idDiet }];
       }
+      return [...prev, { ...alimento, cantidad: 1, id_dieta: idDiet }];
     });
-  };
+  }, []);
 
-  const aumentarCantidad = (idAlimento) => {
-    setAlimentosSeleccionados((prev) =>
-      prev.map((item) =>
+  const aumentarCantidad = useCallback((idAlimento) => {
+    setAlimentosSeleccionados(prev =>
+      prev.map(item =>
         item.id_alimento === idAlimento
           ? { ...item, cantidad: item.cantidad + 1 }
           : item
       )
     );
-  };
+  }, []);
 
-  const disminuirCantidad = (idAlimento) => {
-    setAlimentosSeleccionados((prev) =>
+  const disminuirCantidad = useCallback((idAlimento) => {
+    setAlimentosSeleccionados(prev =>
       prev
-        .map((item) => {
+        .map(item => {
           if (item.id_alimento === idAlimento) {
-            if (item.cantidad === 1) {
-              return null; // marcar para eliminar
-            }
+            if (item.cantidad === 1) return null;
             return { ...item, cantidad: item.cantidad - 1 };
           }
           return item;
         })
-        .filter((item) => item !== null) // eliminar los null
+        .filter(item => item !== null)
     );
-  };
+  }, []);
 
-  const actualizarFiltro = (campo, valor) => {
-    setFiltros((prev) => ({ ...prev, [campo]: valor, }));
-  };
+  const actualizarFiltro = useCallback((campo, valor) => {
+    setFiltros(prev => ({ ...prev, [campo]: valor }));
+  }, []);
 
-  const alimentosFiltrados = listadoAlimentos.filter((alimento) => {
-    return (
+  const eliminarAlimento = useCallback((idAlimento) => {
+    setAlimentosSeleccionados(prev => prev.filter(item => item.id_alimento !== idAlimento));
+  }, []);
+
+  /*** MEMO: lista filtrada ***/
+  const alimentosFiltrados = useMemo(() => {
+    return listadoAlimentos.filter(alimento =>
       alimento.nombre.toLowerCase().includes(busqueda.toLowerCase()) &&
       (filtros.categoria ? alimento.categoria === filtros.categoria : true) &&
       alimento.carbohidratos >= filtros.minCarbohidratos &&
@@ -228,36 +190,19 @@ const AlimentosContexto = ({ children }) => {
       alimento.grasas >= filtros.minGrasas &&
       alimento.grasas <= filtros.maxGrasas
     );
-  });
+  }, [listadoAlimentos, busqueda, filtros]);
 
-  const eliminarAlimento = (idAlimento) => {
-    setAlimentosSeleccionados((prev) =>
-      prev.filter((item) => item.id_alimento !== idAlimento)
-    );
-  };
-
-
-  /*****************************************************************/
-  /***         MANEJO DEL FORMULARIO (CREACIÓN / EDICIÓN) SOLO ADMINS  ***/
-  /*****************************************************************/
-
-  //!----------------------------------------------------------------
+  /*** EFECTOS ***/
+  useEffect(() => {
+    if (sesionIniciada) getAlimentos();
+  }, [sesionIniciada, getAlimentos]);
 
   useEffect(() => {
-    getAlimentos();
-  }, []);
+    if (errorAlimento.length) setErrorAlimento(cadenaVacia);
+  }, [cambioDeRuta.pathname]);
 
-  /* Para establecer el estado de errores a 0, al navegar por el sitio web. */
-  useEffect(() => {
-    if (errorAlimento.length) {
-      setErrorAlimento(cadenaVacia);
-    }
-  }, [cambioDeRuta.pathname])
-
-  // Definición del objeto que se proveerá en el contexto
+  /*** CONTEXTO ***/
   const datosContexto = {
-    // CRUD
-
     getAlimentos,
     listadoAlimentos,
     guardarAlimentosEnDietaPersonalizada,
@@ -266,7 +211,6 @@ const AlimentosContexto = ({ children }) => {
     buscarAlimento,
     alimentosFiltrados,
     actualizarFiltro,
-    // Estados alimento
     seleccionarAlimento,
     alimentosSeleccionados,
     aumentarCantidad,
@@ -276,7 +220,6 @@ const AlimentosContexto = ({ children }) => {
     obtenerAlimentosDieta,
     loading,
     errorAlimento,
-
   };
 
   return (

@@ -65,9 +65,10 @@ const AlimentosDieta = () => {
   // Cargamos alimentos de la dieta al montar/comparir id
   useEffect(() => {
     if (id && !loading) {
+      console.log("Cargando alimentos de la dieta...");
       obtenerAlimentosDieta(id);
     }
-  }, [id, loading]);
+  }, [id]);
 
 
 
@@ -107,16 +108,25 @@ const AlimentosDieta = () => {
         eliminarAlimento={eliminarAlimento}
       />
 
-      <div className="flex hsm:flex-col justify-center items-center hsm:mb-10 gap-6">
+      <div className="flex hsm:flex-col justify-between items-center hsm:mb-10 gap-6 hsm:mx-4">
+        
+        <Link
+          to={`/rutina/dietas`}
+          className="hsm:w-full"
+        >
+          <button className="bg-purple text-white text-lg font-bold py-2 px-4 hsm:w-full rounded-lg cursor-pointer transition-all duration-300 hover:text-black dark:hover:text-black active:hover:text-black hover:bg-white2 active:bg-white2 hover:shadow-lg">
+            Volver a tus dietas
+          </button>
+        </Link>
         <button
-          className="bg-gold dark:text-black text-lg font-bold py-2 px-4 hsm:w-full sm:w-1/3 sm:m-auto rounded-lg cursor-pointer transition-all duration-300 hover:text-white dark:hover:text-white hover:bg-purple hover:shadow-lg"
+          className="bg-gold dark:text-black text-lg font-bold py-2 px-4 hsm:w-full sm:w-1/2  rounded-lg cursor-pointer transition-all duration-300 hover:text-white dark:hover:text-white hover:bg-purple hover:shadow-lg hsm:-order-1"
           onClick={() => guardarAlimentosEnDietaPersonalizada(id)}
         >
           Guardar cambios
         </button>
         <Link
           to={`/rutina/dietas/${id}/detalles`}
-          className="hsm:w-full sm:w-1/3 sm:m-auto"
+          className="hsm:w-full"
         >
           <button className="bg-purple text-white text-lg font-bold py-2 px-4 hsm:w-full rounded-lg cursor-pointer transition-all duration-300 hover:text-black dark:hover:text-black active:hover:text-black hover:bg-white2 active:bg-white2 hover:shadow-lg">
             Ver los detalles de la dieta

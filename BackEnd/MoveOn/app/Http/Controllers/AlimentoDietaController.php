@@ -223,13 +223,6 @@ class AlimentoDietaController extends Controller
                         ->where('id_dieta', $id_dieta)
                         ->get();
 
-        if ($registros->isEmpty()) {
-            return response()->json([
-                'message' => 'No se encontraron registros para esta dieta',
-                'status'  => 404
-            ], 404);
-        }
-
         // Recorremos cada registro y extraemos los datos del alimento + cantidad + id_dieta
         $alimentos = $registros->map(function ($reg) {
             $a = $reg->alimento;
@@ -251,8 +244,8 @@ class AlimentoDietaController extends Controller
             ];
         });
 
-        // Devolver solo el array plano (como tu “Objeto1”)
-        return response()->json($alimentos, 200);
+    // Siempre devolvemos 200 OK, con array (vacío o no)
+    return response()->json($alimentos, 200);
     }
 
 
