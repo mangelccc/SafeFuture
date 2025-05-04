@@ -15,12 +15,23 @@ const FormularioEntrenamiento = () => {
   const [selectedEjercicios, setSelectedEjercicios] = useState([])
   const [guardando, setGuardando] = useState(false)
 
+  // Función para actualizar series/repeticiones en estado
+  const handleUpdate = (id, field, value) => {
+    setSelectedEjercicios(prev =>
+      prev.map(ej =>
+        ej.id_ejercicio === id
+          ? { ...ej, [field]: value }
+          : ej
+      )
+    )
+  }
+
   // Selección de ejercicios sin duplicados
   const handleSelect = (ejercicio) => {
     setSelectedEjercicios(prev =>
       prev.some(e => e.id_ejercicio === ejercicio.id_ejercicio)
         ? prev
-        : [...prev, ejercicio]
+        : [...prev, { ...ejercicio, num_series: ejercicio.num_series ?? 3, num_repeticiones: ejercicio.num_repeticiones ?? 10 }]
     )
   }
 
@@ -45,7 +56,7 @@ const FormularioEntrenamiento = () => {
       const dataRutina = await resRutina.json()
       const nuevaRutina = dataRutina.rutina || dataRutina
 
-      // 2) Ligado de ejercicios
+      // 2) Ligado de ejercicios con valores actualizados
       await Promise.all(
         selectedEjercicios.map(ej =>
           fetch('http://localhost:8089/api/rutina-ejercicio', {
@@ -54,8 +65,8 @@ const FormularioEntrenamiento = () => {
             body: JSON.stringify({
               id_rutina: nuevaRutina.id_rutina,
               id_ejercicio: ej.id_ejercicio,
-              num_series: ej.num_series ?? 3,
-              num_repeticiones: ej.num_repeticiones ?? 10
+              num_series: ej.num_series,
+              num_repeticiones: ej.num_repeticiones
             })
           })
         )
@@ -126,6 +137,11 @@ const FormularioEntrenamiento = () => {
                 grupoMuscular={ej.grupo_muscular}
                 imagen={ej.imagen_url}
                 video={ej.video_url}
+                series={ej.num_series}
+                repeticiones={ej.num_repeticiones}
+                showSeriesEdit={true}
+                onChangeSeries={val => handleUpdate(ej.id_ejercicio, 'num_series', val)}
+                onChangeRepeticiones={val => handleUpdate(ej.id_ejercicio, 'num_repeticiones', val)}
               />
             ))}
           </div>
