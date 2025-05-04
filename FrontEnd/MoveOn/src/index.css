@@ -10,3 +10,51 @@
 .text-shadow {
     text-shadow: 1px 1px 4px rgb(28, 28, 28);
 }
+
+
+/*Calendario */
+
+.rbc-toolbar {
+    color: #101010;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.rbc-toolbar button {
+    color: #101010;
+}
+
+.rbc-current button {
+    color: #101010;
+}
+
+.dark .rbc-toolbar {
+    color: #F5F5F5;
+}
+
+.dark .rbc-toolbar button {
+    color: #F5F5F5;
+}
+
+.dark .rbc-current button {
+    color: #101010;
+}
+
+.dark .rbc-toolbar button.rbc-active {
+    color: #101010;
+}
+
+.rbc-toolbar .rbc-btn-group:nth-of-type(1) {
+    display: flex;
+}
+
+.rbc-toolbar:first-child .rbc-btn-group button:nth-child(2){
+    order: -1;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.rbc-toolbar > .rbc-btn-group:first-of-type > button:first-child {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}

@@ -1,4 +1,4 @@
-// temaContexto.js
+
 import { createContext, useContext, useEffect, useState } from "react";
 
 const temaContexto = createContext();

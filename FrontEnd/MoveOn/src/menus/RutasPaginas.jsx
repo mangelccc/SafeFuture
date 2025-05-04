@@ -25,6 +25,7 @@ import AlimentosDieta from "../paginas/rutina/dieta/alimentos/AlimentosDieta.jsx
 import DietasDetalles from "../paginas/rutina/dieta/DietasDetalles.jsx";
 
 import Error from "../paginas/error/Error.jsx";
+import Calendario from "../paginas/calendario/Calendario.jsx";
 
 const RutasPaginas = () => {
   return (
@@ -41,8 +42,8 @@ const RutasPaginas = () => {
         <Route path="/rutina/dietas/:id" element={<AlimentosDieta />} />
         <Route path="/rutina/dietas/:id/detalles" element={<DietasDetalles/>} />
         <Route path="/rutina/dietas-crear" element={<DietasCrear />} />
-
-
+        
+        <Route path="/calendario" element={<Calendario />} />
 
         <Route path="/rutina/ejercicio" element={<Ejercicio />}>
           <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
