@@ -40,12 +40,10 @@ const Ejercicio = ({
   };
 
   return (
-    <div
-      className={
-        `ejercicio border-2 rounded-lg m-5 border-black dark:border-gold w-[300px] p-3 flex flex-col bg-white dark:bg-purple dark:text-gold transition-all duration-300 transform hover:scale-105 ` +
-        (showSeries || showSeriesEdit ? 'h-[340px]' : 'h-[300px]')
-      }
-    >      
+    <div className={`ejercicio border-2 rounded-lg m-5 border-black dark:border-gold w-[300px] p-3 flex flex-col bg-white dark:bg-purple dark:text-gold transition-all duration-300 transform hover:scale-105 ${
+      showSeriesEdit ? "h-[420px]" : showSeries ? "h-[340px]" : "h-[300px]"
+    }`}>
+       
       <p><strong>Nombre:</strong> {nombre}</p>
       {/*<p><strong>Descripción:</strong> {descripcion}</p>*/}
       <p><strong>Grupo Muscular:</strong> {grupoMuscular}</p>
