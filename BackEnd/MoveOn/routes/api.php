@@ -15,6 +15,7 @@ use App\Http\Controllers\UsuarioDietaController;
 use App\Http\Controllers\RutinaEjercicioController;
 use App\Http\Controllers\UsuarioRutinaController;
 use App\Http\Controllers\AlimentoDietaController;
+use App\Http\Controllers\NoFumarController;
 
 
 
@@ -27,9 +28,17 @@ Route::post('/usuarios', [UsuarioController::class, 'store']);
 Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
 Route::patch('/usuarios/{id}', [UsuarioController::class, 'updatePartial']);
 Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
-
-
 Route::post('/login', [UsuarioController::class, 'login']);
+
+// Rutas para el historial NoFumar
+Route::get('/no-fumar', [NoFumarController::class, 'index']);
+Route::get('/no-fumar/{id}', [NoFumarController::class, 'show']);
+Route::post('/no-fumar', [NoFumarController::class, 'store']);
+Route::put('/no-fumar/{id}', [NoFumarController::class, 'update']);
+Route::patch('/no-fumar/{id}', [NoFumarController::class, 'update']);
+Route::delete('/no-fumar/{id}', [NoFumarController::class, 'destroy']);
+Route::get('/usuario/{id_usuario}/no-fumar', [NoFumarController::class, 'getByUsuario']);
+
 
 // Rutas para Alimentos
 Route::get('/alimentos', [AlimentoController::class, 'index']);

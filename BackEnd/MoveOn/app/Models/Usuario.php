@@ -44,4 +44,9 @@ class Usuario extends Model
             ->withPivot('fecha_inicio', 'fecha_fin')
             ->withTimestamps();
     }
+
+    public function noFumars()
+    {
+        return $this->hasMany(NoFumar::class, 'id_usuario', 'id_usuario');
+    }
 }
