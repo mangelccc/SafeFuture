@@ -121,7 +121,7 @@ class UsuarioDietaController extends Controller
         ], 200);
     }
 
-    //Funciones definidas por el programador (MiguelH).
+    //Funciones definidas por el programador.
 
     public function createDieta(Request $request, $id_usuario)
     {

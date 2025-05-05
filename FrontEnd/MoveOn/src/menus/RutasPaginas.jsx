@@ -26,6 +26,7 @@ import DietasDetalles from "../paginas/rutina/dieta/DietasDetalles.jsx";
 
 import Error from "../paginas/error/Error.jsx";
 import Calendario from "../paginas/calendario/Calendario.jsx";
+import DejarDeFumar from "../paginas/rutina/DejarDeFumar.jsx";
 
 const RutasPaginas = () => {
   return (
@@ -43,7 +44,8 @@ const RutasPaginas = () => {
         <Route path="/rutina/dietas/:id/detalles" element={<DietasDetalles/>} />
         <Route path="/rutina/dietas-crear" element={<DietasCrear />} />
         
-        <Route path="/calendario" element={<Calendario />} />
+        <Route path="/rutina/calendario" element={<Calendario />} />
+        <Route path="/rutina/no-fumar" element={<DejarDeFumar/>}/>
 
         <Route path="/rutina/ejercicio" element={<Ejercicio />}>
           <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
