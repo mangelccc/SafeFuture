@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Inicio = () => {
   return (
@@ -19,11 +20,13 @@ const Inicio = () => {
             futuro más prometedor. Aquí puedes ver un video que explica nuestra
             misión y cómo funcionamos.
           </p>
+          <Link to={"/descubre"}>
           <button
             className="relative bg-black1 border-0 text-white rounded-xl text-2xl py-3 px-6 font-semibold transition ease-in-out duration-200 cursor-pointer hover:bg-gold hover:text-black1 hover:-translate-y-1.5 active:translate-y-1 active:bg-gold hsm:center"
           >
             Descubre más
           </button>
+          </Link>
         </article>
         <div>
           <video
