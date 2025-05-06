@@ -23,6 +23,7 @@ const CrearCuenta = () => {
               type="email"
               name="email"
               placeholder="Email"
+              autoComplete="username"
               onChange={actualizarDato}
               value={datosSesion.email || ""}
             />
@@ -33,6 +34,7 @@ const CrearCuenta = () => {
               type="password"
               name="password"
               placeholder="Password"
+              autoComplete="current-password"
               onChange={actualizarDato}
               value={datosSesion.password || ""}
             />
@@ -57,16 +59,11 @@ const CrearCuenta = () => {
 
           <button onClick={crearCuenta}>{cargando ? `Creando cuenta . . .` : `Registrarse`}</button>
 
-          <p style={{ marginTop: "20px" }}>
-            ¿Ya tienes cuenta?{" "}
+          <p className="mt-5">
+            ¿Ya tienes cuenta?
             <span
               onClick={() => muestraRegistroClick(false)}
-              style={{
-                cursor: "pointer",
-                color: "#6320EE",
-                textDecoration: "underline"
-              }}
-            >
+              className="cursor-pointer underline text-purple pl-2">
               Inicia Sesión
             </span>
           </p>

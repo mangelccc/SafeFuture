@@ -1,9 +1,10 @@
 // IniciarSesion.jsx
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { contextoAuth } from "../../../contextos/AuthContexto.jsx";
 
 const IniciarSesion = () => {
-  const { actualizarDato, iniciarSesion, muestraRegistroClick, volverInicioSesionClick, errorUsuario, datosSesion, cargando } = useContext(contextoAuth);
+  const { actualizarDato, iniciarSesion, muestraRegistroClick, errorUsuario, datosSesion, cargando } = useContext(contextoAuth);
 
   return (
     <>
@@ -13,6 +14,7 @@ const IniciarSesion = () => {
           type="email"
           name="email"
           placeholder="Email"
+          autoComplete="username"
           onChange={actualizarDato}
           value={datosSesion.email || ""}
         />
@@ -22,28 +24,24 @@ const IniciarSesion = () => {
           type="password"
           name="password"
           placeholder="Password"
+          autoComplete="current-password"
           onChange={actualizarDato}
           value={datosSesion.password || ""}
         />
         {errorUsuario.password && <small className="text-red-500">{errorUsuario.password}</small>}
         {errorUsuario?.unauthorized && <small className="text-red-500">{errorUsuario.unauthorized}</small>}
       </form>
-      <a onClick={() => volverInicioSesionClick(true)}>
+      <Link to={"/recuperar-passwd"}>
         ¿Has olvidado la contraseña?
-      </a>
+      </Link>
 
       <button onClick={(e) => iniciarSesion(e)}>{cargando ? `Iniciando sesión . . .` : `Entrar`}</button>
       {/* Agregamos el enlace para cambiar a registro */}
-      <p style={{ marginTop: "20px" }}>
-        ¿No tienes cuenta?{" "}
+      <p className="mt-5">
+        ¿No tienes cuenta?
         <span
           onClick={() => muestraRegistroClick(true)}
-          style={{
-            cursor: "pointer",
-            color: "#6320EE",
-            textDecoration: "underline"
-          }}
-        >
+          className="cursor-pointer underline text-purple pl-2">
           Regístrate
         </span>
       </p>

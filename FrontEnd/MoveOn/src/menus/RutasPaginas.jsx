@@ -12,6 +12,7 @@ import Plantillas from "../paginas/rutina/ejercicio/Plantillas.jsx";
 import AgenteEntrenadorIA from "../paginas/rutina/ejercicio/AgenteEntrenadorIA.jsx";
 import CrearEntrenamiento from "../paginas/rutina/ejercicio/CrearEntrenamiento.jsx";
 import FormularioEjercicio from "../paginas/rutina/ejercicio/FormularioEjercicio.jsx";
+import VistaRutina from '../paginas/rutina/ejercicio/VistaRutina.jsx';
 
 /* Para verificar que la sesión esta iniciada */
 import RouterAuth from "./RouterAuth.jsx";
@@ -19,7 +20,7 @@ import RouterAuth from "./RouterAuth.jsx";
 /* Perfil e info del usuario */
 import Usuario from "../paginas/sesion/Usuario.jsx";
 import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacion.jsx";
-import VistaRutina from '../paginas/rutina/ejercicio/VistaRutina.jsx';
+import UsuarioChangePasswd from "../paginas/usuario_informacion/UsuarioChangePasswd.jsx";
 
 /* Para dietas */
 import Dietas from "../paginas/rutina/dieta/DietasGestion.jsx"
@@ -41,7 +42,7 @@ const RutasPaginas = () => {
         <Route path='/rutina' element={<Rutina />} />
         <Route path='/contactanos' element={<Contactanos />} />
         <Route path='/usuario' element={<Usuario />} />
-
+        <Route path='/recuperar-passwd' element={<UsuarioChangePasswd />} />
 
 
         {/* Lo que esté aqui, se necesitará iniciar sesión. */}
