@@ -31,12 +31,14 @@ import DietasDetalles from "../paginas/rutina/dieta/DietasDetalles.jsx";
 import Error from "../paginas/error/Error.jsx";
 import Calendario from "../paginas/calendario/Calendario.jsx";
 import DejarDeFumar from "../paginas/rutina/no-fumar/DejarDeFumar.jsx";
+import DescubreMas from "../paginas/inicio/DescubreMas.jsx";
 
 const RutasPaginas = () => {
   return (
     <>
       <Routes>
         <Route path='/' element={<Inicio />} />
+        <Route path='/descubre' element={<DescubreMas/>} />
         <Route path='/que-somos' element={<QueSomos />} />
         <Route path='/servicios' element={<Servicios />} />
         <Route path='/rutina' element={<Rutina />} />
