@@ -5,7 +5,7 @@ import UsuarioDatos from "./UsuarioDatos.jsx";
 const Usuario = () => {
   // Se extrae el usuario autenticado y la función para cerrar sesión
   const { usuario, cerrarSesion, editarDatoUsuario } = useContext(contextoAuth);
-  console.log(usuario);
+
   return (
     <section id="usuario-informacion" className="flex justify-center flex-col" onClick={(event) => { editarDatoUsuario(event) }}>
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import Inicio from "../paginas/inicio/Inicio.jsx";
 import QueSomos from "../paginas/biografia/QueSomos.jsx";
 import Servicios from "../paginas/servicios/Servicios.jsx";
@@ -12,6 +12,9 @@ import Plantillas from "../paginas/rutina/ejercicio/Plantillas.jsx";
 import AgenteEntrenadorIA from "../paginas/rutina/ejercicio/AgenteEntrenadorIA.jsx";
 import CrearEntrenamiento from "../paginas/rutina/ejercicio/CrearEntrenamiento.jsx";
 import FormularioEjercicio from "../paginas/rutina/ejercicio/FormularioEjercicio.jsx";
+
+/* Para verificar que la sesión esta iniciada */
+import RouterAuth from "./RouterAuth.jsx";
 
 /* Perfil e info del usuario */
 import Usuario from "../paginas/sesion/Usuario.jsx";
@@ -26,7 +29,7 @@ import DietasDetalles from "../paginas/rutina/dieta/DietasDetalles.jsx";
 
 import Error from "../paginas/error/Error.jsx";
 import Calendario from "../paginas/calendario/Calendario.jsx";
-import DejarDeFumar from "../paginas/rutina/DejarDeFumar.jsx";
+import DejarDeFumar from "../paginas/rutina/no-fumar/DejarDeFumar.jsx";
 
 const RutasPaginas = () => {
   return (
@@ -35,32 +38,35 @@ const RutasPaginas = () => {
         <Route path='/' element={<Inicio />} />
         <Route path='/que-somos' element={<QueSomos />} />
         <Route path='/servicios' element={<Servicios />} />
+        <Route path='/rutina' element={<Rutina />} />
+        <Route path='/contactanos' element={<Contactanos />} />
+        <Route path='/usuario' element={<Usuario />} />
 
 
-        <Route path="/rutina" element={<Rutina />} />
-        
-        <Route path="/rutina/dietas" element={<Dietas />} />
-        <Route path="/rutina/dietas/:id" element={<AlimentosDieta />} />
-        <Route path="/rutina/dietas/:id/detalles" element={<DietasDetalles/>} />
-        <Route path="/rutina/dietas-crear" element={<DietasCrear />} />
-        
-        <Route path="/rutina/calendario" element={<Calendario />} />
-        <Route path="/rutina/no-fumar" element={<DejarDeFumar/>}/>
 
-        <Route path="/rutina/ejercicio" element={<Ejercicio />}>
-          <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
-          <Route path='ejercicios' element={<GestorEjercicios />} />
-          <Route path='crear-ejercicio' element={<FormularioEjercicio />} />
-          <Route path='entrenamientos' element={<Entrenamientos />} />
-          <Route path='plantillas' element={<Plantillas />} />
-          <Route path='entrenador-personal' element={<AgenteEntrenadorIA />} />
-          <Route path="ver-rutina/:id" element={<VistaRutina />} />
+        {/* Lo que esté aqui, se necesitará iniciar sesión. */}
+        <Route element={<RouterAuth><Outlet /></RouterAuth>}>
+
+          <Route path="/rutina/dietas" element={<Dietas />} />
+          <Route path="/rutina/dietas/:id" element={<AlimentosDieta />} />
+          <Route path="/rutina/dietas/:id/detalles" element={<DietasDetalles />} />
+          <Route path="/rutina/dietas-crear" element={<DietasCrear />} />
+          <Route path="/rutina/calendario" element={<Calendario />} />
+          <Route path="/rutina/no-fumar" element={<DejarDeFumar />} />
+
+          <Route path="/rutina/ejercicio" element={<Ejercicio />}>
+            <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
+            <Route path='ejercicios' element={<GestorEjercicios />} />
+            <Route path='crear-ejercicio' element={<FormularioEjercicio />} />
+            <Route path='entrenamientos' element={<Entrenamientos />} />
+            <Route path='plantillas' element={<Plantillas />} />
+            <Route path='entrenador-personal' element={<AgenteEntrenadorIA />} />
+            <Route path="ver-rutina/:id" element={<VistaRutina />} />
+          </Route>
+          <Route path='/usuario-informacion' element={<UsuarioInformacion />} />
         </Route>
 
-        <Route path='/contactanos' element={<Contactanos />} />
 
-        <Route path='/usuario' element={<Usuario />} />
-        <Route path='/usuario-informacion' element={<UsuarioInformacion />} />
 
         <Route path='*' element={<Error />} />
       </Routes>
