@@ -9,6 +9,6 @@ class RutinaEjercicioSeeder extends Seeder
 {
     public function run()
     {
-        RutinaEjercicio::factory()->count(10)->create();
+        RutinaEjercicio::factory()->count(1)->create();
     }
 }
