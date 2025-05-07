@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { contextoAuth } from "./AuthContexto.jsx";
-import Swal from "sweetalert2";
+import { API_URL } from "../bibliotecas/config.js";
 import useHistorialNoFumar from "../hooks/useHistorialNoFumar.jsx";
+import Swal from "sweetalert2";
 
 const contextoNoFumar = createContext();
 export const useNoFumar = () => useContext(contextoNoFumar);
@@ -54,9 +55,10 @@ export const NoFumarContexto = ({ children }) => {
         });
 
         if (!confirmado.isConfirmed) return;
+        
 
         try {
-            const res = await fetch("/api/no-fumar", {
+            const res = await fetch(`${API_URL}/no-fumar`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -80,7 +82,6 @@ export const NoFumarContexto = ({ children }) => {
                 timer: 2000,
             });
 
-            window.location.reload();
         } catch (err) {
             Swal.fire("Error", err.message, "error");
         }
