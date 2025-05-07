@@ -10,7 +10,7 @@ class NoFumar extends Model
     use HasFactory;
 
     protected $table = 'no_fumar';
-    protected \$fillable = [
+    protected $fillable = [
         'id_usuario',
         'quit_date',
         'status',
@@ -18,6 +18,6 @@ class NoFumar extends Model
 
     public function usuario()
     {
-        return \$this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
+        return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
     }
 }

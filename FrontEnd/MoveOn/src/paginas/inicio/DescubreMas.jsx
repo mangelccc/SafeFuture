@@ -8,7 +8,7 @@ import NoFumar from "../../galeria/imagenes/no-fumar.png"
 
 const DescubreMas = () => {
     return (
-        <main className="bg-purple dark:bg-purpleOp p-8 sm:p-12 mb-4 rounded-2xl space-y-16 opacity-0 translate-y-6 animate-fadeInUp">
+        <div className="bg-purple dark:bg-purpleOp p-8 sm:p-12 mb-4 rounded-2xl space-y-16 opacity-0 translate-y-6 animate-fadeInUp">
 
             <section className="flex hsm:flex-col hsm:items-center sm:gap-20 hsm:gap-10">
                 <div>
@@ -60,7 +60,7 @@ const DescubreMas = () => {
                     ¡Crea tu cuenta ahora!
                 </Link>
             </div>
-        </main>
+        </div>
     );
 };
 

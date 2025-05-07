@@ -9,6 +9,7 @@ import AlimentosContexto from "./contextos/AlimentosContexto.jsx";
 import "./App.css";
 import Footer from "./estructura/footer/Footer.jsx";
 import DietasContexto from "./contextos/DietasContexto.jsx";
+import NoFumarContexto from "./contextos/NoFumarContexto.jsx";
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
     
         <DietasContexto>
           <AlimentosContexto>
+            <NoFumarContexto>
 
             <Cuerpo>
 
@@ -27,6 +29,7 @@ const App = () => {
 
             </Cuerpo>
             
+            </NoFumarContexto>
           </AlimentosContexto>
         </DietasContexto>
 

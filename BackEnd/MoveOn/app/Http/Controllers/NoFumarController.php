@@ -15,45 +15,65 @@ class NoFumarController extends Controller
         return response()->json(['no_fumar' => $records, 'status' => 200], 200);
     }
 
-    public function show(\$id)
+    public function show($id)
     {
-        \$record = NoFumar::find(\$id);
-        if (!\$record) {
+        $record = NoFumar::find($id);
+        if (!$record) {
             return response()->json(['message' => 'Registro no encontrado', 'status' => 404], 404);
         }
-        return response()->json(['no_fumar' => \$record, 'status' => 200], 200);
+        return response()->json(['no_fumar' => $record, 'status' => 200], 200);
     }
 
-    public function store(StoreNoFumarRequest \$request)
+    public function store(StoreNoFumarRequest $request)
     {
-        \$data = \$request->validated();
-        \$record = NoFumar::create(\$data);
-        return response()->json(['message' => 'Registro creado', 'no_fumar' => \$record, 'status' => 201], 201);
+        $data = $request->validated();
+
+        // 🚫 Prevenir múltiples intentos activos
+        $existeActivo = NoFumar::where('id_usuario', $data['id_usuario'])
+            ->where('status', 'activo')
+            ->exists();
+
+        if ($existeActivo) {
+            return response()->json([
+                'message' => 'Ya tienes un intento activo en curso',
+                'status' => 409
+            ], 409);
+        }
+
+        // ✅ Crear nuevo intento
+        $record = NoFumar::create($data);
+
+        return response()->json([
+            'message' => 'Intento registrado con éxito',
+            'no_fumar' => $record,
+            'status' => 201
+        ], 201);
     }
 
-    public function update(UpdateNoFumarRequest \$request, \$id)
+
+    public function update(UpdateNoFumarRequest $request, $id)
     {
-        \$record = NoFumar::find(\$id);
-        if (!\$record) {
+        $record = NoFumar::find($id);
+        if (!$record) {
             return response()->json(['message' => 'Registro no encontrado', 'status' => 404], 404);
         }
-        \$record->update(\$request->validated());
-        return response()->json(['message' => 'Registro actualizado', 'no_fumar' => \$record, 'status' => 200], 200);
+        $record->update($request->validated());
+        return response()->json(['message' => 'Registro actualizado', 'no_fumar' => $record, 'status' => 200], 200);
     }
 
-    public function destroy(\$id)
+    public function destroy($id)
     {
-        \$record = NoFumar::find(\$id);
-        if (!\$record) {
+        $record = NoFumar::find($id);
+        if (!$record) {
             return response()->json(['message' => 'Registro no encontrado', 'status' => 404], 404);
         }
-        \$record->delete();
+        $record->delete();
         return response()->json(['message' => 'Registro eliminado', 'status' => 200], 200);
     }
 
     public function getByUsuario($id_usuario)
-        {
-            $records = NoFumar::where('id_usuario', $id_usuario)->get();
-            return response()->json(['no_fumar' => $records, 'status' => 200], 200);
-        }
+    {
+        $records = NoFumar::where('id_usuario', $id_usuario)->get();
+        return response()->json(['no_fumar' => $records, 'status' => 200], 200);
+    }
 }

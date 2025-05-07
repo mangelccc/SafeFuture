@@ -1,6 +1,10 @@
 import React from 'react';
+import { Link, Element } from 'react-scroll';
+import { useNoFumar } from "../../../contextos/NoFumarContexto.jsx";
 
 export default function DejarDeFumar() {
+    const { records, activeRecord, elapsed, handleComenzarAhora } = useNoFumar();
+
     const benefits = [
         { title: '20 minutos', description: 'Tu ritmo cardíaco vuelve a la normalidad.' },
         { title: '24 horas', description: 'Mejora la función pulmonar y la presión arterial.' },
@@ -24,9 +28,11 @@ export default function DejarDeFumar() {
                 <p className="text-lg mb-6 text-black2 dark:text-white2">
                     Descubre los beneficios inmediatos, estrategias efectivas y recursos para liberarte del tabaco.
                 </p>
-                <button className="mt-6 px-6 py-3 text-lg rounded-2xl bg-purple dark:bg-turq text-white hover:scale-102 transform transition">
-                    Comienza Ahora
-                </button>
+                <Link to="listo" smooth={true} duration={500}>
+                    <button className="mt-6 px-6 py-3 text-lg rounded-2xl bg-purple dark:bg-turq text-white hover:scale-102 transform transition">
+                        Comienza Ahora
+                    </button>
+                </Link>
             </section>
 
             {/* Benefits Timeline */}
@@ -69,12 +75,52 @@ export default function DejarDeFumar() {
                 </div>
             </section>
 
-            {/* Call To Action */}
-            <section className="text-center py-8">
-                <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">¿Listo para dejarlo?</h2>
-                <button className="px-8 py-3 text-lg rounded-2xl bg-gold dark:bg-purple text-black hover:scale-102 transform transition">
-                    ¡Empieza tu plan hoy!
-                </button>
+            {/* Aquí va el contador */}
+            <Element name="listo">
+                <section className="text-center py-8">
+                    <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">
+                        Tiempo desde tu último intento
+                    </h2>
+                    {activeRecord ? (
+                        <div className="text-3xl font-mono">
+                            {elapsed.days}d {elapsed.hours}h {elapsed.minutes}m {elapsed.seconds}s
+                        </div>
+                    ) : (
+                        <p className="text-lg">
+                            No tienes ningún intento activo. Pulsa en “Comienza Ahora” para fijar tu fecha.
+                        </p>
+                    )}
+                    <button
+                        onClick={handleComenzarAhora}
+                        className="mt-4 px-6 py-3 text-lg rounded-2xl bg-gold dark:bg-purple text-black hover:scale-102 transform transition"
+                    >
+                        Iniciar Intento
+                    </button>
+
+                </section>
+            </Element>
+
+            {/* Listado de todos los intentos */}
+            <section>
+                <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">
+                    Historial de Intentos
+                </h2>
+                <ul className="space-y-4">
+                    {records.map((r) => (
+                        <li
+                            key={r.id}
+                            className="rounded-2xl shadow-lg p-4 bg-white2 dark:bg-black2"
+                        >
+                            <div>
+                                <strong>Fecha:</strong>{" "}
+                                {new Date(r.quit_date).toLocaleDateString()}
+                            </div>
+                            <div>
+                                <strong>Estado:</strong> {r.status}
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </section>
         </div>
     );
