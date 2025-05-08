@@ -10,7 +10,7 @@ const VistaRutina = () => {
   const { fetchData,cargando,errorVistaEntrenamiento,rutinaNombre,ejerciciosVista } = entrenamientoContexto;
 
   useEffect(() => {
-    fetchData();
+    fetchData(id,ejercicios);
   }, [id, ejercicios]);
 
   if (cargando) return <p>Cargando ejercicios...</p>;

@@ -165,7 +165,7 @@ const EntrenamientoContexto = ({ children }) => {
     const [cargando, setCargando] = useState(true);
     const [errorVistaEntrenamiento, setErrorVistaEntrenamiento] = useState(null);
 
-  const fetchData = async () => {
+  const fetchData = async (id,ejercicios) => {
     try {
       // 1) Obtener el nombre de la rutina
       const resRut = await fetch(`http://localhost:8089/api/rutinas/${id}`);
