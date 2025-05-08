@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('no_fumar', function (Blueprint $table) {
             $table->id();
             $table->uuid('id_usuario');
-            $table->date('quit_date');
+            $table->dateTime('quit_date');
             $table->enum('status', ['activo', 'recaida'])->default('activo');
-            $table->timestamps();
 
             $table->foreign('id_usuario')
                   ->references('id_usuario')
