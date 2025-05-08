@@ -12,6 +12,7 @@ class RutinaFactory extends Factory
     public function definition()
     {
         return [
+            'uuid'        => $this->faker->uuid,
             'nombre'      => $this->faker->word,
             'descripcion' => $this->faker->sentence,
         ];

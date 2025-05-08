@@ -54,7 +54,26 @@ class RutinaController extends Controller
             'status' => 200
         ], 200);
     }
+    // Método para obtener una rutina por su uuid
+    public function getRutinaPorUuid($uuid)
+    {
+        // Buscar la rutina por su uuid
+        $rutina = Rutina::where('uuid', $uuid)->first();
 
+        // Si no se encuentra la rutina, se retorna un error
+        if (!$rutina) {
+            return response()->json([
+                'message' => 'Rutina no encontrada',
+                'status'  => 404
+            ], 404);
+        }
+
+        // Si se encuentra, se retorna la rutina
+        return response()->json([
+            'rutina' => $rutina,
+            'status' => 200
+        ], 200);
+    }
     public function update(UpdateRutinaRequest $request, $id)
     {
         $rutina = Rutina::find($id);

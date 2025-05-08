@@ -14,9 +14,11 @@ class Rutina extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = [
+        'uuid',
         'nombre',
         'descripcion'
     ];
+
 
     // Relaciones
     public function ejercicios()
