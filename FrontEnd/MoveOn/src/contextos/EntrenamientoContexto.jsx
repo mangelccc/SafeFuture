@@ -26,8 +26,8 @@ const EntrenamientoContexto = ({ children }) => {
     return await fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
-        setEntrenamientos(data.rutinas);
         setEntrenamientosFiltrados(data.rutinas)
+        console.log(data.rutinas);
       })
       .catch(error => {
         console.error(`Se ha producido un error: ${error.message}`);
@@ -103,11 +103,14 @@ const EntrenamientoContexto = ({ children }) => {
     setGuardando(true)
     try {
       // 1) Crear rutina
+      let uuid = crypto.randomUUID();
+
       const resRutina = await fetch('http://localhost:8089/api/rutinas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, descripcion })
-      })
+        body: JSON.stringify({ uuid, nombre, descripcion })
+      });
+
       const dataRutina = await resRutina.json()
       const nuevaRutina = dataRutina.rutina || dataRutina
 
@@ -160,12 +163,12 @@ const EntrenamientoContexto = ({ children }) => {
     )
   }
 
-    const [ejerciciosVista, setEjerciciosVista] = useState([]);
-    const [rutinaNombre, setRutinaNombre] = useState('');
-    const [cargando, setCargando] = useState(true);
-    const [errorVistaEntrenamiento, setErrorVistaEntrenamiento] = useState(null);
+  const [ejerciciosVista, setEjerciciosVista] = useState([]);
+  const [rutinaNombre, setRutinaNombre] = useState('');
+  const [cargando, setCargando] = useState(true);
+  const [errorVistaEntrenamiento, setErrorVistaEntrenamiento] = useState(null);
 
-  const fetchData = async (id,ejercicios) => {
+  const fetchData = async (id, ejercicios) => {
     try {
       // 1) Obtener el nombre de la rutina
       const resRut = await fetch(`http://localhost:8089/api/rutinas/${id}`);
