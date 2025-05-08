@@ -160,6 +160,53 @@ const EntrenamientoContexto = ({ children }) => {
     )
   }
 
+    const [ejerciciosVista, setEjerciciosVista] = useState([]);
+    const [rutinaNombre, setRutinaNombre] = useState('');
+    const [cargando, setCargando] = useState(true);
+    const [errorVistaEntrenamiento, setErrorVistaEntrenamiento] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      // 1) Obtener el nombre de la rutina
+      const resRut = await fetch(`http://localhost:8089/api/rutinas/${id}`);
+      if (!resRut.ok) throw new Error(`Status ${resRut.status}`);
+      const rawRut = await resRut.json();
+      const rut = rawRut.rutina || rawRut;
+      setRutinaNombre(rut.nombre || `Rutina ${id}`);
+
+      // 2) Obtener pivots de rutina-ejercicio
+      const res = await fetch('http://localhost:8089/api/rutina-ejercicio');
+      if (!res.ok) throw new Error(`Status ${res.status}`);
+      const raw = await res.json();
+      const pivots = Array.isArray(raw.rutina_ejercicios) ? raw.rutina_ejercicios : [];
+
+      // Filtrar por la rutina actual
+      const filtrados = pivots.filter(p => p.id_rutina.toString() === id);
+
+      // Mapear cada pivot con datos de ejercicios ya cargados
+      const detalles = filtrados.map(pivot => {
+        const ej = ejercicios.find(e => e.id_ejercicio === pivot.id_ejercicio) || {};
+        return {
+          id_rutina_ejercicio: pivot.id_rutina_ejercicio,
+          num_series: pivot.num_series,
+          num_repeticiones: pivot.num_repeticiones,
+          nombre: ej.nombre,
+          descripcion: ej.descripcion,
+          grupo_muscular: ej.grupo_muscular,
+          imagen_url: ej.imagen_url,
+          video_url: ej.video_url
+        };
+      });
+
+      setEjerciciosVista(detalles);
+    } catch (err) {
+      console.error('Error cargando datos de la rutina:', err);
+      setErrorVistaEntrenamiento('No se pudieron cargar los datos de esta rutina.');
+    } finally {
+      setCargando(false);
+    }
+  };
+
   const datosContexto = {
     entrenamiento,
     entrenamientos,
@@ -178,7 +225,12 @@ const EntrenamientoContexto = ({ children }) => {
     nombre,
     descripcion,
     ejerciciosSeleccionados,
-    guardando
+    guardando,
+    fetchData,
+    errorVistaEntrenamiento,
+    cargando,
+    rutinaNombre,
+    ejerciciosVista
   };
 
 
