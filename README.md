@@ -9,7 +9,7 @@ Este proyecto está organizado en diferentes ramas para mantener un flujo de tra
 ## Enlaces
 
 - **Google Drive**: https://bit.ly/42dvDNs
-- **Entidad Relación**: https://bit.ly/406Iq1e
+- **Entidad Relación**: https://drive.google.com/file/d/1eROIDxRMSHq7qBE7C3h-8iS6AOMxR2Mu/view?usp=sharing
 
 ## Ejemplo de Ejecución para Subir Cambios a Develop
 
