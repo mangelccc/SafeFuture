@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rutina', function (Blueprint $table) {
             $table->id('id_rutina');
+            $table->string('uuid', 36)->unique();
             $table->string('nombre', 100);
             $table->text('descripcion')->nullable();
             $table->timestamps();

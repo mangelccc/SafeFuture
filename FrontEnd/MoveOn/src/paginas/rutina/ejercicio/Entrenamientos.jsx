@@ -1,21 +1,36 @@
-import React from 'react';
-import useAppContext from '../../../hooks/useAppContext.jsx';
+import React, { useEffect, useState } from 'react';
 import Entrenamiento from './Entrenamiento.jsx';
+import { API_URL } from '../../../bibliotecas/config.js';
 
 const Entrenamientos = () => {
-    const { entrenamientoContexto } = useAppContext();
-    const { entrenamientos } = entrenamientoContexto;
+  const [items, setItems] = useState(null);
+  const [error, setError] = useState(null);
+  const apiUrl = `${API_URL}/rutinas`;
+
+  useEffect(() => {
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => {
+        console.log('fetch directo:', data.rutinas);
+        setItems(data.rutinas);
+      })
+      .catch(err => {
+        console.error(err);
+        setError(err.message);
+      });
+  }, [apiUrl]);
+
+  if (error) return <p>Error: {error}</p>;
+  if (items === null) return <p>Cargando…</p>;
+  if (!Array.isArray(items) || items.length === 0) return <p>No hay entrenamientos.</p>;
 
   return (
-    <div key={1}>
-      {entrenamientos.map((e) => (
-        <Entrenamiento 
-          key={e.id_ejercicio}
-          entrenamiento={e}
-        />
+    <div>
+      {items.map(e => (
+        <Entrenamiento key={e.id_rutina} entrenamiento={e} />
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default Entrenamientos;

@@ -67,6 +67,7 @@ Route::delete('/ciudades/{id}', [CiudadController::class, 'destroy']);
 // Rutas para Rutinas
 Route::get('/rutinas', [RutinaController::class, 'index']);
 Route::get('/rutinas/{id}', [RutinaController::class, 'show']);
+Route::get('/rutinas/uuid/{uuid}', [RutinaController::class, 'getRutinaPorUuid']);
 Route::post('/rutinas', [RutinaController::class, 'store']);
 Route::put('/rutinas/{id}', [RutinaController::class, 'update']);
 Route::patch('/rutinas/{id}', [RutinaController::class, 'updatePartial']);
