@@ -1,8 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import rutinas from "../../objetos/rutinas.js";
 import ItemRutina from "./ItemRutina.jsx";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 
 const Rutina = () => {

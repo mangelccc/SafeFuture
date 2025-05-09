@@ -3,7 +3,7 @@ import { Link, Element } from 'react-scroll';
 import { useNoFumar } from "../../../contextos/NoFumarContexto.jsx";
 
 export default function DejarDeFumar() {
-    const { records, activeRecord, elapsed, handleComenzarAhora } = useNoFumar();
+    const { records, activeRecord, contador, comenzarIntento, loading, terminarIntento } = useNoFumar();
 
     const benefits = [
         { title: '20 minutos', description: 'Tu ritmo cardíaco vuelve a la normalidad.' },
@@ -21,7 +21,7 @@ export default function DejarDeFumar() {
     ];
 
     return (
-        <div className="max-w-5xl mx-auto py-12 px-6 space-y-12 bg-white dark:bg-black1 text-black dark:text-white">
+        <div className="max-w-5xl mx-auto py-12 px-6 space-y-12 bg-white dark:bg-black1 text-black dark:text-white rounded-xl">
             {/* Hero Section */}
             <section className="text-center">
                 <h1 className="text-4xl font-bold mb-4 text-purple dark:text-gold">Dejar de Fumar: Tu Guía de Cambio de Vida</h1>
@@ -66,7 +66,7 @@ export default function DejarDeFumar() {
                 <h2 className="text-2xl font-semibold mb-6 text-black dark:text-white">Recursos y Apoyo</h2>
                 <div className="rounded-2xl shadow-md p-6 bg-white2 dark:bg-black2">
                     <p className="text-black1 dark:text-white2">
-                        <strong className="text-purple dark:text-gold">Línea de ayuda 24/7:</strong> 800-xxxx-xxx<br />
+                        <strong className="text-purple dark:text-gold">Línea de ayuda 24/7:</strong> +34 123 456 789<br />
                         <strong className="text-purple dark:text-gold">Web:</strong>{' '}
                         <a href="https://www.dejardefumar.org" className="underline text-turq dark:text-turq">
                             dejardefumar.org
@@ -83,7 +83,7 @@ export default function DejarDeFumar() {
                     </h2>
                     {activeRecord ? (
                         <div className="text-3xl font-mono">
-                            {elapsed.days}d {elapsed.hours}h {elapsed.minutes}m {elapsed.seconds}s
+                            {contador.days}d {contador.hours}h {contador.minutes}m {contador.seconds}s
                         </div>
                     ) : (
                         <p className="text-lg">
@@ -91,29 +91,28 @@ export default function DejarDeFumar() {
                         </p>
                     )}
                     <button
-                        onClick={handleComenzarAhora}
+                        onClick={activeRecord ? terminarIntento : comenzarIntento}
                         className="mt-4 px-6 py-3 text-lg rounded-2xl bg-gold dark:bg-purple text-black hover:scale-102 transform transition"
                     >
-                        Iniciar Intento
+                        {activeRecord
+                            ? "Terminar Intento"
+                            : loading
+                                ? "Cargando..."
+                                : "Iniciar Intento"}
                     </button>
-
                 </section>
             </Element>
 
-            {/* Listado de todos los intentos */}
+            {/* Historial */}
             <section>
                 <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">
                     Historial de Intentos
                 </h2>
                 <ul className="space-y-4">
                     {records.map((r) => (
-                        <li
-                            key={r.id}
-                            className="rounded-2xl shadow-lg p-4 bg-white2 dark:bg-black2"
-                        >
+                        <li key={r.id} className="rounded-2xl shadow-lg p-4 bg-white2 dark:bg-black2">
                             <div>
-                                <strong>Fecha:</strong>{" "}
-                                {new Date(r.quit_date).toLocaleDateString()}
+                                <strong>Fecha:</strong> {new Date(r.quit_date).toLocaleDateString()}
                             </div>
                             <div>
                                 <strong>Estado:</strong> {r.status}

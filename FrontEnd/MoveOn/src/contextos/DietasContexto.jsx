@@ -323,8 +323,6 @@ const DietasContexto = ({ children }) => {
         terminarFormulario,
 
         dietasUsuario,
-
-        //? V V LOS MACROS DEL DANDY
         cambiarFormulario,
         formularioData,
     };

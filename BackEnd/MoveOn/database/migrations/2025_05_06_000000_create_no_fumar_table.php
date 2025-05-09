@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('id_usuario');
             $table->dateTime('quit_date');
             $table->enum('status', ['activo', 'recaida'])->default('activo');
+            $table->timestamps();
 
             $table->foreign('id_usuario')
                   ->references('id_usuario')
