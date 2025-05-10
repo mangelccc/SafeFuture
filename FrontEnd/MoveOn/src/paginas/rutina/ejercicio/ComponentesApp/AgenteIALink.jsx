@@ -1,11 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const AgenteIALink = () => {
   return (
-    <Link to='/rutina/ejercicio/entrenador-personal' className="p-2 placeholder:block w-full text-left border-b dark:border-white border-black">
-              Entrenador Personal "beta"
-            </Link>
+    <NavLink
+      to="/rutina/ejercicio/entrenador-personal"
+      className={({ isActive }) =>
+        `p-2 block w-full text-left border-b dark:border-white border-black rounded transition-all
+        ${isActive ? "bg-purple text-white" : "hover:bg-purpleOp"}`
+      }
+    >
+      Entrenador Personal "beta"
+    </NavLink>
   );
 };
 

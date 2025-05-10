@@ -4,7 +4,7 @@ import CrearEntrenamiento from "./CrearEntrenamientoLink.jsx";
 import EjerciciosUsuario from "./EjerciciosUsuarioLink.jsx";
 import EntrenamientosUsuario from "./EntrenamientosUsuario.jsx";
 import Plantillas from "./PlantillasLink.jsx";
-import EntrenadorPersonal from "./AgenteIALink.jsx";
+import AgenteAI from "./AgenteIALink.jsx";
 
 const MenuAppEjercicio = () => {
   return (
@@ -13,7 +13,7 @@ const MenuAppEjercicio = () => {
         <EjerciciosUsuario />
         <EntrenamientosUsuario />
         <Plantillas />
-        <EntrenadorPersonal />
+        <AgenteAI />
       </ContenedorMenu>
   );
 };
