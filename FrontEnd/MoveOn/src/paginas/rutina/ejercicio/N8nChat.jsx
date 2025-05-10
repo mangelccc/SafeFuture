@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 
 // Asegúrate de que apunte a tu Webhook manual
-const WEBHOOK_URL = 'http://localhost:5678/webhook/7403bf55-fd1f-4941-9d2a-581ed26f5936/chat';
+const WEBHOOK_URL = 'http://localhost:5678/webhook/9cae8464-9088-483f-b1d8-cf2a17435931/chat';
 
 export default function N8NChat() {
+  const [sessionId] = useState(() => crypto.randomUUID());
   const [messages, setMessages] = useState([
     { from: 'bot', text: '¡Hola! ¿En qué puedo ayudarte hoy?' }
   ]);
@@ -12,66 +13,56 @@ export default function N8NChat() {
 
   const sendMessage = async () => {
     if (!input.trim()) return;
-    const text = input.trim();
+    const chatInput = input.trim();
 
-    // Añade el mensaje del usuario
-    setMessages(msgs => [...msgs, { from: 'user', text }]);
+    setMessages(msgs => [...msgs, { from: 'user', text: chatInput }]);
     setInput('');
     setSending(true);
 
+    const payload = [
+      { sessionId, action: 'sendMessage', chatInput }
+    ];
+
     try {
-      console.log('👉 Enviando a n8n:', text);
       const res = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text }),
+        body: JSON.stringify(payload),
       });
-      console.log('👈 Status:', res.status);
-
       const data = await res.json();
-      console.log('🧐 JSON completo recibido:', data);
-
-      // Ahora extraemos directamente data.output
       const replyText = data.output || '<sin output>';
-      console.log('✅ Texto extraído (output):', replyText);
-
       setMessages(msgs => [...msgs, { from: 'bot', text: replyText }]);
-    } catch (err) {
-      console.error('❌ Error en sendMessage():', err);
-      setMessages(msgs => [
-        ...msgs,
-        { from: 'bot', text: 'Error al conectar con el agente.' },
-      ]);
+    } catch {
+      setMessages(msgs => [...msgs, { from: 'bot', text: 'Error al conectar con el agente.' }]);
     } finally {
       setSending(false);
     }
   };
 
   const handleKeyDown = e => {
-    if (e.key === 'Enter' && !sending) {
-      sendMessage();
-    }
+    if (e.key === 'Enter' && !sending) sendMessage();
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.messages}>
+    <div className="flex flex-col w-full h-full border border-white3 dark:border-black2 rounded-2xl overflow-hidden font-sans bg-white dark:bg-black1">
+      <div className="flex-1 p-4 flex flex-col gap-2 overflow-y-auto">
         {messages.map((m, i) => (
           <div
             key={i}
-            style={{
-              ...styles.message,
-              alignSelf: m.from === 'user' ? 'flex-end' : 'flex-start',
-              backgroundColor: m.from === 'user' ? '#07BEB8' : '#FFBA49',
-            }}
+            className={
+              `max-w-4/5 p-2 rounded-xl animate-fadeInUp whitespace-pre-wrap ` +
+              (m.from === 'user'
+                ? 'self-end bg-turq text-white'
+                : 'self-start bg-gold text-black1')
+            }
           >
             {m.text}
           </div>
         ))}
       </div>
-      <div style={styles.inputRow}>
+      <div className="flex border-t border-white3 dark:border-black2">
         <input
-          style={styles.input}
+          className="flex-1 p-3 text-base bg-white2 dark:bg-black2 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
           type="text"
           value={input}
           onChange={e => setInput(e.target.value)}
@@ -80,7 +71,7 @@ export default function N8NChat() {
           disabled={sending}
         />
         <button
-          style={styles.button}
+          className="px-4 bg-purple hover:scale-102 transition-transform disabled:opacity-50 disabled:cursor-not-allowed dark:bg-purple text-white"
           onClick={sendMessage}
           disabled={sending}
         >
@@ -90,47 +81,3 @@ export default function N8NChat() {
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    height: '100%',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    fontFamily: 'sans-serif',
-  },
-  messages: {
-    flex: 1,
-    padding: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '0.5rem',
-    overflowY: 'auto',
-    backgroundColor: '#F5F5F5',
-  },
-  message: {
-    padding: '0.5rem 0.75rem',
-    borderRadius: '12px',
-    maxWidth: '80%',
-  },
-  inputRow: {
-    display: 'flex',
-    borderTop: '1px solid #ddd',
-  },
-  input: {
-    flex: 1,
-    border: 'none',
-    padding: '0.75rem',
-    fontSize: '1rem',
-  },
-  button: {
-    border: 'none',
-    backgroundColor: '#6320EE',
-    color: '#fff',
-    padding: '0 1rem',
-    cursor: 'pointer',
-  },
-};
