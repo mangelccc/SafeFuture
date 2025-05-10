@@ -10,7 +10,8 @@ import "./App.css";
 import Footer from "./estructura/footer/Footer.jsx";
 import DietasContexto from "./contextos/DietasContexto.jsx";
 import NoFumarContexto from "./contextos/NoFumarContexto.jsx";
-
+import ProvedorEjercicios from "./contextos/EjerciciosContexto.jsx";
+import ProvedorEntrenamiento from "./contextos/EntrenamientoContexto.jsx";
 
 const App = () => {
   /* //! METER TODOS LOS CONTEXTOS EN UNO SOLO, Y DENTRO DE ESTE contexto, TODOS LOS QUE HEMOS DEFINIDO PARA QUE SE QUEDE CLEAN */
@@ -18,18 +19,20 @@ const App = () => {
     <>
       <AuthContexto>
         <Cabecera />
-    
+
         <DietasContexto>
           <AlimentosContexto>
-            <NoFumarContexto>
+            <ProvedorEjercicios>
+              <ProvedorEntrenamiento>
+                <NoFumarContexto>
 
-            <Cuerpo>
+                  <Cuerpo>
+                    <RutasPaginas />
+                  </Cuerpo>
 
-                <RutasPaginas />
-
-            </Cuerpo>
-            
-            </NoFumarContexto>
+                </NoFumarContexto>
+              </ProvedorEntrenamiento>
+            </ProvedorEjercicios>
           </AlimentosContexto>
         </DietasContexto>
 
@@ -41,3 +44,7 @@ const App = () => {
 }
 
 export default App;
+
+
+
+
