@@ -6,7 +6,7 @@ const WEBHOOK_URL = 'http://localhost:5678/webhook/9cae8464-9088-483f-b1d8-cf2a1
 export default function N8NChat() {
   const [sessionId] = useState(() => crypto.randomUUID());
   const [messages, setMessages] = useState([
-    { from: 'bot', text: '¡Hola! ¿En qué puedo ayudarte hoy?' }
+    { from: 'bot', text: 'Hola, soy tu asistente virtual para ayudarte a crear tus rutinas personalizadas.' }
   ]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
