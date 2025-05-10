@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { API_URL } from "../bibliotecas/config.js";
+import Swal from 'sweetalert2';
 
 const ContextoEntrenamiento = createContext();
 
@@ -57,19 +58,76 @@ const EntrenamientoContexto = ({ children }) => {
   }
 
   const deleteEntrenamiento = async (id) => {
-    await fetch(`${apiUrl}/${id}`, {
-      method: "DELETE"
-    })
-      .then(response => response.json())
-      .then(data => {
-        setEntrenamientos(entrenamientos.filter(e => e.id_rutina !== id));
-        setEntrenamientosFiltrados(entrenamientos.filter(e => e.id_rutina !== id));
-        console.log(`Se ha eliminado el entrenamiento con id: ${id}`);
-      })
-      .catch(error => {
-        setErrorEntrenamiento(`Se ha producido un error: ${error.message}`);
+    // 1. Pregunta de confirmación
+    const { isConfirmed } = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "¡No podrás revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+      background: '#1A1A1A',     // black1
+      color: '#F5F5F5',          // white
+      iconColor: '#6320EE',      // purple
+      customClass: {
+        popup: 'my-swal-popup'
+      },
+      didOpen: () => {
+        const popup = Swal.getPopup();
+        popup.style.border = '2px solid #6320EE';      // purple
+        popup.style.boxShadow = '0 0 20px #6520ee70';  // purpleOp
+      }
+    });
+  
+    if (!isConfirmed) {
+      return; // el usuario canceló
+    }
+  
+    // 2. Mostrar loading
+    Swal.fire({
+      title: 'Eliminando...',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+      background: '#1A1A1A',
+      color: '#F5F5F5'
+    });
+  
+    // 3. Ejecutar DELETE
+    try {
+      const response = await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+      const data = await response.json();
+  
+      // Actualizar estado
+      setEntrenamientos(prev => prev.filter(e => e.id_rutina !== id));
+      setEntrenamientosFiltrados(prev => prev.filter(e => e.id_rutina !== id));
+      console.log(`Se ha eliminado el entrenamiento con id: ${id}`);
+  
+      // 4. Mostrar éxito
+      Swal.fire({
+        title: "Se ha eliminado correctamente.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+        background: '#1A1A1A',
+        color: '#F5F5F5'
       });
-  }
+    } catch (error) {
+      // 5. Mostrar error
+      Swal.fire({
+        title: "Error al eliminar",
+        text: error.message,
+        icon: "error",
+        confirmButtonText: "Cerrar",
+        background: '#1A1A1A',
+        color: '#F5F5F5'
+      });
+  
+      setErrorEntrenamiento(`Se ha producido un error: ${error.message}`);
+    }
+  };
+  
   const actualizarDatoEntrenamiento = (evento) => {
     const { name, value } = evento.target;
     setEntrenamiento({ ...entrenamiento, [name]: value });
@@ -136,7 +194,25 @@ const EntrenamientoContexto = ({ children }) => {
       setDescripcion('')
       setEjerciciosSeleccionados([])
       setResultados([])
-      console.log('Rutina creada y ejercicios ligados correctamente')
+      Swal.fire({
+        title: "Rutina guardada correctamente.",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+        background: '#1A1A1A', // black1
+        color: '#F5F5F5', // white
+        iconColor: '#6320EE', // turq
+        customClass: {
+          popup: 'my-swal-popup'
+        },
+        didOpen: () => {
+          const popup = Swal.getPopup();
+          popup.style.border = '2px solid #6320EE'; // purple
+          popup.style.boxShadow = '0 0 20px #6520ee70'; // purpleOp
+        }
+      });
+      
+      
 
     } catch (error) {
       console.error('Error creando rutina o ligando ejercicios:', error)
