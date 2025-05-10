@@ -19,9 +19,12 @@ export default function N8NChat() {
     setInput('');
     setSending(true);
 
-    const payload = [
-      { sessionId, action: 'sendMessage', chatInput }
-    ];
+    const payload = {
+      sessionId,
+      action: 'sendMessage',
+      chatInput
+    };
+    
 
     try {
       const res = await fetch(WEBHOOK_URL, {
