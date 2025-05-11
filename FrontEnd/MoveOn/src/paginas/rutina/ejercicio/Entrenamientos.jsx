@@ -26,6 +26,9 @@ const Entrenamientos = () => {
 
   return (
     <div>
+       <h2 className='pb-4'>
+                <strong>Entrenamientos</strong>
+            </h2>
       {items.map(e => (
         <Entrenamiento key={e.id_rutina} entrenamiento={e} />
       ))}
