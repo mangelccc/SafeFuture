@@ -15,7 +15,7 @@ class StoreRutinaRequest extends FormRequest
     {
         return [
             'uuid' => 'required|string|size:36|unique:rutina,uuid',
-            'uuid_usuario' => 'required|string|size:36|unique:rutina,uuid_usuario',
+            'uuid_usuario' => 'required|string|size:36',
             'nombre' => 'required|string|max:100',
             'descripcion' => 'nullable|string'
         ];
