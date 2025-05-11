@@ -13,6 +13,7 @@ class RutinaFactory extends Factory
     {
         return [
             'uuid'        => $this->faker->uuid,
+            'uuid_usuario'=> $this->faker->uuid,
             'nombre'      => $this->faker->word,
             'descripcion' => $this->faker->sentence,
         ];

@@ -6,7 +6,7 @@ import useAppContext from "../../../hooks/useAppContext.jsx"
 
 const FormularioEntrenamiento = () => {
   // Contexto de entrenamiento
-  const { entrenamientoContexto } = useAppContext();
+  const { entrenamientoContexto,auth } = useAppContext();
   const { 
           readEntrenamientos, 
           createEntrentamientoConEjercicios, 

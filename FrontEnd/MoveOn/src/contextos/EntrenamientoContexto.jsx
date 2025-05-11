@@ -1,10 +1,14 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { API_URL } from "../bibliotecas/config.js";
+import useAppContext from "../hooks/useAppContext.jsx";
 import Swal from 'sweetalert2';
 
 const ContextoEntrenamiento = createContext();
 
 const EntrenamientoContexto = ({ children }) => {
+
+  const { entrenamientoContexto, auth } = useAppContext();
+  const { usuario } = auth;
 
   // Variables iniciales
   const entrenamientosIniciales = [];
@@ -20,6 +24,7 @@ const EntrenamientoContexto = ({ children }) => {
   const [entrenamientos, setEntrenamientos] = useState(entrenamientosIniciales);
   const [entrenamientosFiltrados, setEntrenamientosFiltrados] = useState(entrenamientosIniciales);
   const [errorEntrenamiento, setErrorEntrenamiento] = useState(errorEntrenamientoInicial);
+  
 
   //crud
 
@@ -36,7 +41,7 @@ const EntrenamientoContexto = ({ children }) => {
       });
   }
   useEffect(() => {
-    readEntrenamientos(apiUrl);
+    readEntrenamientos();
   }
     , [apiUrl]);
 
@@ -162,11 +167,12 @@ const EntrenamientoContexto = ({ children }) => {
     try {
       // 1) Crear rutina
       let uuid = crypto.randomUUID();
+      let uuid_usuario = usuario.id_usuario;
 
       const resRutina = await fetch('http://localhost:8089/api/rutinas', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ uuid, nombre, descripcion })
+        body: JSON.stringify({ uuid, uuid_usuario, nombre, descripcion })
       });
 
       const dataRutina = await resRutina.json()
