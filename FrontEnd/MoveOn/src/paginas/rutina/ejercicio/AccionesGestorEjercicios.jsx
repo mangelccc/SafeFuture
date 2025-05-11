@@ -9,7 +9,7 @@ const AccionesGestorEjercicios = () => {
     const { filtrarEjercicios } = ejerciciosContex;
     return (
         <div className='flex flex-col items-center justify-center'>
-            <h2 className='pb-4'>
+            <h2 className='pb-4 dark:text-white'>
                 <strong>Ejercicios</strong>
             </h2>
 

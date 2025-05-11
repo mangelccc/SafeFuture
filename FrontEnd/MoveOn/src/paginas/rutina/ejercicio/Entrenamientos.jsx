@@ -24,7 +24,7 @@ const Entrenamientos = () => {
 
   return (
     <div>
-      <h2 className='pb-4'>
+      <h2 className='pb-4 dark:text-white'>
         <strong>Entrenamientos</strong>
       </h2>
 
