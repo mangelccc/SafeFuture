@@ -13,12 +13,8 @@ use App\Http\Controllers\EjercicioController;
 use App\Http\Controllers\TrasladoController;
 use App\Http\Controllers\UsuarioDietaController;
 use App\Http\Controllers\RutinaEjercicioController;
-use App\Http\Controllers\UsuarioRutinaController;
 use App\Http\Controllers\AlimentoDietaController;
 use App\Http\Controllers\NoFumarController;
-
-
-
 
 // Rutas para Usuarios
 Route::get('usuarios/email-exists', [UsuarioController::class, 'emailExists']);
@@ -116,13 +112,6 @@ Route::put('/rutina-ejercicio/{id}', [RutinaEjercicioController::class, 'update'
 Route::patch('/rutina-ejercicio/{id}', [RutinaEjercicioController::class, 'updatePartial']);
 Route::delete('/rutina-ejercicio/{id}', [RutinaEjercicioController::class, 'destroy']);
 
-/** Rutas para la tabla pivote usuario_rutina **/
-Route::get('/usuario-rutina', [UsuarioRutinaController::class, 'index']);
-Route::get('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'show']);
-Route::post('/usuario-rutina', [UsuarioRutinaController::class, 'store']);
-Route::put('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'update']);
-Route::patch('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'updatePartial']);
-Route::delete('/usuario-rutina/{id}', [UsuarioRutinaController::class, 'destroy']);
 
 /** Rutas para la tabla intermedia dieta_alimento **/
 Route::prefix('alimento-dieta')->group(function () {

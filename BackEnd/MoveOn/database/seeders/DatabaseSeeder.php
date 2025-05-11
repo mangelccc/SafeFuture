@@ -23,7 +23,6 @@ class DatabaseSeeder extends Seeder
 
             UsuarioDietaSeeder::class,
             RutinaEjercicioSeeder::class,
-            UsuarioRutinaSeeder::class,
         ]);
     }
 }
