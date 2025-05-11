@@ -173,8 +173,6 @@ const validarCampoUsuario = (campo, valor) => {
         error = "La contraseña es obligatoria.";
       } else if (valor.length < 8) {
         error = "La contraseña debe tener al menos 8 caracteres.";
-      } else if (!/[A-Z]/.test(valor)) {
-        error = "La contraseña debe contener al menos una letra mayúscula.";
       }
       break;
 
@@ -398,6 +396,20 @@ const compararConObjetivos = (valor, objetivo) => {
   return "red";
 };
 
+const calcularDuracion = (createdAt, updatedAt) => {
+  const inicio = new Date(createdAt);
+  const fin    = new Date(updatedAt);
+  const diffMs = fin - inicio; 
+
+  const dias     = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const horas    = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutos  = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+  return `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+};
+
+
 const camposUsuario = [
   { campo: "nombre", label: "Nombre personal", sublabel: "Nombre" },
   { campo: "correo", label: "Correo electrónico", sublabel: "Correo" },
@@ -406,8 +418,23 @@ const camposUsuario = [
   { campo: "sexo", label: "Sexo", sublabel: "Sexo" }
 ];
 
+const benefits = [
+  { title: '20 minutos', description: 'Tu ritmo cardíaco vuelve a la normalidad.' },
+  { title: '24 horas', description: 'Mejora la función pulmonar y la presión arterial.' },
+  { title: '1 año', description: 'El riesgo de enfermedad cardíaca se reduce a la mitad.' },
+  { title: '5 años', description: 'El riesgo de accidente cerebrovascular es similar al de un no fumador.' },
+];
+
+const tips = [
+  'Establece una fecha para dejarlo y cúmplela.',
+  'Busca apoyo: familiares, amigos o grupos de ayuda.',
+  'Identifica y evita los desencadenantes.',
+  'Utiliza técnicas de distracción (ejercicio, hobbies).',
+  'Considera reemplazos de nicotina o asesoramiento profesional.',
+];
+
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
   validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos, validarCampoUsuario,
-  camposUsuario
+  camposUsuario, benefits, tips, calcularDuracion
 };
