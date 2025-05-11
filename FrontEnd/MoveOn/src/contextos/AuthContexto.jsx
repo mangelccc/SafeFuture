@@ -18,19 +18,35 @@ const AuthContexto = ({ children }) => {
     rol: ""
   };
 
+  const datosResetPasswdInicial = {
+    email: "",
+    newPwd: "",
+    confirmPwd: ""
+  }
+
   const usuarioInicial = {};
   const falseBool = false;
   const cadenaVacia = "";
 
   const [datosSesion, setDatosSesion] = useState(datosSesionInicial);
-  const [usuario, setUsuario] = useState(usuarioInicial);
   const [errorUsuario, setErrorUsuario] = useState(usuarioInicial);
   const [campoEditable, setCampoEditable] = useState(usuarioInicial);
   const [errorCampo, setErrorCampo] = useState(cadenaVacia);
-  const [sesionIniciada, setSesionIniciada] = useState(falseBool);
+  const [formResetPasswd, setFormResetPasswd] = useState(datosResetPasswdInicial);
   const [olvidoContrasena, setOlvidoContrasena] = useState(falseBool);
+  const [idUsuarioTemp, setIdUsuarioTemp] = useState(null);
+  const [emailValido, setEmailValido] = useState(false);
+  const [errorCampoResetPasswd, SetErrorCampoResetPasswd] = useState("");
   const [panelDerechoActivo, setPanelDerechoActivo] = useState(falseBool);
   const [cargando, setCargando] = useState(falseBool);
+  /* Hecho para que si se actualiza accidentalmente la página se recuperé la sesión evitando redirecciones innecesarias. */
+  const [sesionIniciada, setSesionIniciada] = useState(() => {
+    return localStorage.getItem("sesionIniciada") === "true";
+  });
+  const [usuario, setUsuario] = useState(() => {
+    const u = localStorage.getItem("usuario");
+    return u ? JSON.parse(u) : {};
+  });
 
   const navegar = useNavigate();
 
@@ -277,18 +293,6 @@ const AuthContexto = ({ children }) => {
     setErrorUsuario(usuarioInicial);
   };
 
-  /* ------------------------------------------------------------------------------------ */
-
-  const [formResetPasswd, setFormResetPasswd] = useState({
-    email: "",
-    newPwd: "",
-    confirmPwd: ""
-  });
-
-  const [idUsuario, setIdUsuario] = useState(null);
-  const [emailValido, setEmailValido] = useState(false);
-  const [errorCampoResetPasswd, SetErrorCampoResetPasswd] = useState("");
-
   const actualizarFormResetPasswd = (e) => {
     const { name, value } = e.target;
     setFormResetPasswd(prev => ({
@@ -296,6 +300,12 @@ const AuthContexto = ({ children }) => {
       [name]: value
     }));
   };
+
+  const reiniciarResetPasswd = () => {
+    setFormResetPasswd(datosResetPasswdInicial);
+    setEmailValido(false);
+    setIdUsuarioTemp(null);
+  }
 
   const recuperarContrasena = async (e) => {
     e.preventDefault();
@@ -308,7 +318,7 @@ const AuthContexto = ({ children }) => {
       const data = await res.json();
 
       if (data.exists) {
-        setIdUsuario(data.id_usuario);
+        setIdUsuarioTemp(data.id_usuario);
         setEmailValido(true);
       } else {
         SetErrorCampoResetPasswd("El email no existe en nuestra base de datos.");
@@ -330,20 +340,19 @@ const AuthContexto = ({ children }) => {
 
     try {
       const response = await fetch(
-        `${API_URL}/usuarios/${idUsuario}`,
+        `${API_URL}/usuarios/${idUsuarioTemp}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ password: formResetPasswd.newPwd })
+          body: JSON.stringify({ contrasena: formResetPasswd.newPwd })
         }
       );
 
       if (response.ok) {
-        Swal.fire("Actualizado", "Contraseña cambiada con éxito", "success");
-        // Reiniciar estado
-        setFormResetPasswd({ email: "", newPwd: "", confirmPwd: "" });
-        setEmailValido(false);
-        setIdUsuario(null);
+        Swal.fire("Contraseña cambiada con éxito", "Ya puedes iniciar sesión con tu nueva contraseña", "success");
+        reiniciarResetPasswd();
+        navegar("/usuario");
+
       } else {
         throw new Error();
       }
@@ -394,7 +403,8 @@ const AuthContexto = ({ children }) => {
     emailValido,
     actualizarFormResetPasswd,
     recuperarContrasena,
-    guardarCambioDePasswd
+    guardarCambioDePasswd,
+    reiniciarResetPasswd
   };
 
   return (

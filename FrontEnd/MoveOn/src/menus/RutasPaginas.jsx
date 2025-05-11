@@ -44,8 +44,8 @@ const RutasPaginas = () => {
         <Route path='/servicios' element={<Servicios />} />
         <Route path='/rutina' element={<Rutina />} />
         <Route path='/contactanos' element={<Contactanos />} />
-        <Route path='/usuario' element={<Usuario />} />
         <Route path='/recuperar-passwd' element={<UsuarioCheckEmail />} />
+        <Route path='/usuario' element={<Usuario />} />
 
 
         {/* Lo que esté aqui, se necesitará iniciar sesión. */}

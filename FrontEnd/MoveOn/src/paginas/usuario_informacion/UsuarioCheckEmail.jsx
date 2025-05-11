@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { contextoAuth } from '../../contextos/AuthContexto.jsx';
 import UsuarioChangePasswd from './UsuarioChangePasswd.jsx';
 
@@ -8,8 +8,13 @@ const UsuarioCheckEmail = () => {
         errorCampoResetPasswd,
         emailValido,
         actualizarFormResetPasswd,
-        recuperarContrasena
+        recuperarContrasena,
+        reiniciarResetPasswd
     } = useContext(contextoAuth);
+
+    useEffect(()=>{
+        reiniciarResetPasswd();
+    },[])
 
     return (
         <div className="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-lg flex flex-col gap-4">

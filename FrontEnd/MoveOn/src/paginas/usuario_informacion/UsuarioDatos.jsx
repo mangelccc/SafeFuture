@@ -11,6 +11,7 @@ const UsuarioDatos = ({ usuario }) => {
         cancelarDato();
     }, []);
 
+
     if (errorCampo) {
         const Toast = Swal.mixin({
             toast: true,

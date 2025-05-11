@@ -33,7 +33,6 @@ const EntrenamientoContexto = ({ children }) => {
       .then(response => response.json())
       .then(data => {
         setEntrenamientosFiltrados(data.rutinas)
-        console.log(data.rutinas);
       })
       .catch(error => {
         console.error(`Se ha producido un error: ${error.message}`);
