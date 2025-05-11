@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import Entrenamiento from './Entrenamiento.jsx';
 import useAppContext from "../../../hooks/useAppContext.jsx";
 
@@ -6,21 +6,15 @@ const Entrenamientos = () => {
   const { entrenamientoContexto, auth } = useAppContext();
   const { usuario } = auth;
 
-  // Array crudo del contexto (asegurándonos que sea un array)
   const rawEntrenamientos = Array.isArray(entrenamientoContexto?.entrenamientosFiltrados)
     ? entrenamientoContexto.entrenamientosFiltrados
     : [];
 
-  // 1) Estado para los entrenamientos filtrados por uuid
-  const [misEntrenamientos, setMisEntrenamientos] = useState([]);
-
-  // 2) Cada vez que cambie el raw o el usuario, recalculamos
-  useEffect(() => {
-    const filtrados = rawEntrenamientos.filter(
-      e => e.uuid_usuario === usuario.id_usuario
-    );
-    setMisEntrenamientos(filtrados);
-  }, [rawEntrenamientos, usuario.id_usuario]);
+  // 1) Filtrado memoizado: solo se recalcula si cambian rawEntrenamientos o el id de usuario
+  const misEntrenamientos = useMemo(
+    () => rawEntrenamientos.filter(e => e.uuid_usuario === usuario.id_usuario),
+    [rawEntrenamientos, usuario.id_usuario]
+  );
 
   return (
     <div>

@@ -13,7 +13,7 @@ const AccionesGestorEjercicios = () => {
                 <strong>Ejercicios</strong>
             </h2>
 
-            <div className='flex flex-row space-x-4 justify-between items-center'>
+            <div className='flex flex-row w-full space-x-4 justify-between items-center mb-4'>
                 <input
                     type="text"
                     placeholder="Filtrar por nombre"
