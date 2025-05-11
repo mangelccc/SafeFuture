@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import useAppContext from "../../../hooks/useAppContext.jsx";
 
 // Asegúrate de que apunte a tu Webhook manual
 const WEBHOOK_URL = 'http://localhost:5678/webhook/9cae8464-9088-483f-b1d8-cf2a17435931/chat';
 
 export default function N8NChat() {
-  const [sessionId] = useState(() => crypto.randomUUID());
+  const { auth } = useAppContext();
+  const { usuario } = auth;
+  const [sessionId] = useState(() => usuario.id_usuario);
   const [messages, setMessages] = useState([
     { from: 'bot', text: 'Hola, soy tu asistente virtual para ayudarte a crear tus rutinas personalizadas.' }
   ]);
