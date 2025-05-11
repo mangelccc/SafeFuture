@@ -193,15 +193,27 @@ class UsuarioController extends Controller
 
     public function emailExists(Request $request)
     {
-        // Validamos formato de correo para no sobrecargar la BD con cosas raras
+        // Validamos formato de correo
         $request->validate([
             'correo' => 'required|email|max:100'
         ]);
 
-        $exists = Usuario::where('correo', $request->correo)->exists();
+        // Intentamos obtener directamente el id del usuario
+        $id = Usuario::where('correo', $request->correo)
+                     ->value('id_usuario');
 
+        // Si $id no es null, existe el usuario
+        if ($id !== null) {
+            return response()->json([
+                'exists'     => true,
+                'id_usuario' => $id,
+            ], 200);
+        }
+
+        // Si aquí, no existe
         return response()->json([
-            'exists' => $exists
+            'exists'     => false,
+            'id_usuario' => null,
         ], 200);
     }
 

@@ -20,7 +20,8 @@ import RouterAuth from "./RouterAuth.jsx";
 /* Perfil e info del usuario */
 import Usuario from "../paginas/sesion/Usuario.jsx";
 import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacion.jsx";
-import UsuarioChangePasswd from "../paginas/usuario_informacion/UsuarioChangePasswd.jsx";
+import UsuarioCheckEmail from "../paginas/usuario_informacion/UsuarioCheckEmail.jsx";
+
 
 /* Para dietas */
 import Dietas from "../paginas/rutina/dieta/DietasGestion.jsx"
@@ -38,13 +39,13 @@ const RutasPaginas = () => {
     <>
       <Routes>
         <Route path='/' element={<Inicio />} />
-        <Route path='/descubre' element={<DescubreMas/>} />
+        <Route path='/descubre' element={<DescubreMas />} />
         <Route path='/que-somos' element={<QueSomos />} />
         <Route path='/servicios' element={<Servicios />} />
         <Route path='/rutina' element={<Rutina />} />
         <Route path='/contactanos' element={<Contactanos />} />
         <Route path='/usuario' element={<Usuario />} />
-        <Route path='/recuperar-passwd' element={<UsuarioChangePasswd />} />
+        <Route path='/recuperar-passwd' element={<UsuarioCheckEmail />} />
 
 
         {/* Lo que esté aqui, se necesitará iniciar sesión. */}
@@ -58,6 +59,7 @@ const RutasPaginas = () => {
           <Route path="/rutina/no-fumar" element={<DejarDeFumar />} />
 
           <Route path="/rutina/ejercicio" element={<Ejercicio />}>
+            <Route index element={<CrearEntrenamiento />} />
             <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
             <Route path='ejercicios' element={<GestorEjercicios />} />
             <Route path='crear-ejercicio' element={<FormularioEjercicio />} />

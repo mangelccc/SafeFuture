@@ -161,10 +161,10 @@ const AuthContexto = ({ children }) => {
       const clave = evento.target.closest("article").dataset.key;
       const valor = usuario[clave];
 
- setCampoEditable({
-    campo: clave,
-    valor: clave === 'contrasena' ? '' : valor
-  });
+      setCampoEditable({
+        campo: clave,
+        valor: clave === 'contrasena' ? '' : valor
+      });
     }
   }
 
@@ -186,8 +186,8 @@ const AuthContexto = ({ children }) => {
     setCampoEditable(usuarioInicial);
     setUsuario((camposPrevios) => {
       if (campoEditable.campo === "contrasena") {
-      return camposPrevios;
-    }
+        return camposPrevios;
+      }
       const nuevosCampos = {
         ...camposPrevios,
         [campoEditable.campo]: campoEditable.valor
@@ -277,10 +277,84 @@ const AuthContexto = ({ children }) => {
     setErrorUsuario(usuarioInicial);
   };
 
-  //! Función no implementada
-  const recuperarContrasena = async () => {
-    setErrorUsuario("Funcionalidad no implementada.");
+  /* ------------------------------------------------------------------------------------ */
+
+  const [formResetPasswd, setFormResetPasswd] = useState({
+    email: "",
+    newPwd: "",
+    confirmPwd: ""
+  });
+
+  const [idUsuario, setIdUsuario] = useState(null);
+  const [emailValido, setEmailValido] = useState(false);
+  const [errorCampoResetPasswd, SetErrorCampoResetPasswd] = useState("");
+
+  const actualizarFormResetPasswd = (e) => {
+    const { name, value } = e.target;
+    setFormResetPasswd(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
+
+  const recuperarContrasena = async (e) => {
+    e.preventDefault();
+    SetErrorCampoResetPasswd("");
+
+    try {
+      const res = await fetch(
+        `${API_URL}/usuarios/email-exists?correo=${encodeURIComponent(formResetPasswd.email)}`
+      );
+      const data = await res.json();
+
+      if (data.exists) {
+        setIdUsuario(data.id_usuario);
+        setEmailValido(true);
+      } else {
+        SetErrorCampoResetPasswd("El email no existe en nuestra base de datos.");
+      }
+    } catch (err) {
+      console.error(err);
+      SetErrorCampoResetPasswd("Error al verificar el email.");
+    }
+  };
+
+  const guardarCambioDePasswd = async (e) => {
+    e.preventDefault();
+    SetErrorCampoResetPasswd("");
+
+    if (formResetPasswd.newPwd !== formResetPasswd.confirmPwd) {
+      SetErrorCampoResetPasswd("Las contraseñas no coinciden.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${API_URL}/usuarios/${idUsuario}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password: formResetPasswd.newPwd })
+        }
+      );
+
+      if (response.ok) {
+        Swal.fire("Actualizado", "Contraseña cambiada con éxito", "success");
+        // Reiniciar estado
+        setFormResetPasswd({ email: "", newPwd: "", confirmPwd: "" });
+        setEmailValido(false);
+        setIdUsuario(null);
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", "No se pudo actualizar la contraseña", "error");
+    }
+  };
+
+
+
 
   const muestraRegistroClick = (booleano) => {
     setPanelDerechoActivo(booleano);
@@ -312,7 +386,15 @@ const AuthContexto = ({ children }) => {
     cancelarDato,
     errorCampo,
     limpiarErrorCampo,
-    guardarDatoParcialUsuario
+    guardarDatoParcialUsuario,
+
+
+    formResetPasswd,
+    errorCampoResetPasswd,
+    emailValido,
+    actualizarFormResetPasswd,
+    recuperarContrasena,
+    guardarCambioDePasswd
   };
 
   return (
