@@ -203,26 +203,7 @@ const EntrenamientoContexto = ({ children }) => {
       setNombre('')
       setDescripcion('')
       setEjerciciosSeleccionados([])
-      setResultados([])
-      Swal.fire({
-        title: "Rutina guardada correctamente.",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-        background: '#1A1A1A', // black1
-        color: '#F5F5F5', // white
-        iconColor: '#6320EE', // turq
-        customClass: {
-          popup: 'my-swal-popup'
-        },
-        didOpen: () => {
-          const popup = Swal.getPopup();
-          popup.style.border = '2px solid #6320EE'; // purple
-          popup.style.boxShadow = '0 0 20px #6520ee70'; // purpleOp
-        }
-      });
-      
-      
+      setResultados([])    
 
     } catch (error) {
       console.error('Error creando rutina o ligando ejercicios:', error)

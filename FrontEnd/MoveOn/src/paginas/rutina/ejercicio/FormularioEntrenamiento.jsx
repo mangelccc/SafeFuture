@@ -1,8 +1,9 @@
-import React from 'react'
+import { useEffect } from 'react'
 import Ejercicio from './Ejercicio'
 import { SearchBar } from './buscador/SearchBar'
 import { SearchResultsList } from './buscador/SearchResultsList'
 import useAppContext from "../../../hooks/useAppContext.jsx"
+import Swal from 'sweetalert2';
 
 const FormularioEntrenamiento = () => {
   // Contexto de entrenamiento
@@ -22,6 +23,27 @@ const FormularioEntrenamiento = () => {
           guardando
         } = entrenamientoContexto
 
+        useEffect(() => {
+          if (guardando) {
+            Swal.fire({
+              title: 'Guardando rutina...',
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading();
+                const spinner = document.querySelector('.swal2-loader');
+                if (spinner) {
+                  spinner.style.borderColor = '#6320EE';
+                  spinner.style.borderTopColor = 'transparent';
+                }
+              },
+              background: '#1A1A1A',
+              color: '#F5F5F5'
+            });
+          } else {
+            Swal.close();
+          }
+        }, [guardando]);
+        
   return (
     <div className="p-6">
       <form onSubmit={e => e.preventDefault()} className="space-y-6">
