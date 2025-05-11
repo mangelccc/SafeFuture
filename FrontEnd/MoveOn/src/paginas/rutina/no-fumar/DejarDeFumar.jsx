@@ -1,24 +1,10 @@
 import React from 'react';
 import { Link, Element } from 'react-scroll';
 import { useNoFumar } from "../../../contextos/NoFumarContexto.jsx";
+import { benefits, tips, calcularDuracion } from "../../../bibliotecas/biblioteca.js"
 
 export default function DejarDeFumar() {
     const { records, activeRecord, contador, comenzarIntento, loading, terminarIntento } = useNoFumar();
-
-    const benefits = [
-        { title: '20 minutos', description: 'Tu ritmo cardíaco vuelve a la normalidad.' },
-        { title: '24 horas', description: 'Mejora la función pulmonar y la presión arterial.' },
-        { title: '1 año', description: 'El riesgo de enfermedad cardíaca se reduce a la mitad.' },
-        { title: '5 años', description: 'El riesgo de accidente cerebrovascular es similar al de un no fumador.' },
-    ];
-
-    const tips = [
-        'Establece una fecha para dejarlo y cúmplela.',
-        'Busca apoyo: familiares, amigos o grupos de ayuda.',
-        'Identifica y evita los desencadenantes.',
-        'Utiliza técnicas de distracción (ejercicio, hobbies).',
-        'Considera reemplazos de nicotina o asesoramiento profesional.',
-    ];
 
     return (
         <div className="max-w-5xl mx-auto py-12 px-6 space-y-12 bg-white dark:bg-black1 text-black dark:text-white rounded-xl">
@@ -109,14 +95,19 @@ export default function DejarDeFumar() {
                     Historial de Intentos
                 </h2>
                 <ul className="space-y-4">
-                    {records.map((r) => (
-                        <li key={r.id} className="rounded-2xl shadow-lg p-4 bg-white2 dark:bg-black2">
+                    {records.map((record) => (
+                        <li key={record.id} className="rounded-2xl shadow-lg p-4 bg-white2 dark:bg-black2">
                             <div>
-                                <strong>Fecha:</strong> {new Date(r.quit_date).toLocaleDateString()}
+                                <strong>Fecha inicio:</strong> {new Date(record.quit_date).toLocaleDateString()}
                             </div>
                             <div>
-                                <strong>Estado:</strong> {r.status}
+                                <strong>Estado:</strong> {record.status}
                             </div>
+                            {record.status !== "activo" &&
+                                <div>
+                                    <strong>Duración:</strong> {calcularDuracion(record.created_at, record.updated_at)}
+                                </div>
+                            }
                         </li>
                     ))}
                 </ul>

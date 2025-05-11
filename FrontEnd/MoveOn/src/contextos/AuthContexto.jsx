@@ -36,7 +36,7 @@ const AuthContexto = ({ children }) => {
   const [olvidoContrasena, setOlvidoContrasena] = useState(falseBool);
   const [idUsuarioTemp, setIdUsuarioTemp] = useState(null);
   const [emailValido, setEmailValido] = useState(false);
-  const [errorCampoResetPasswd, SetErrorCampoResetPasswd] = useState("");
+  const [errorCampoResetPasswd, SetErrorCampoResetPasswd] = useState(cadenaVacia);
   const [panelDerechoActivo, setPanelDerechoActivo] = useState(falseBool);
   const [cargando, setCargando] = useState(falseBool);
   /* Hecho para que si se actualiza accidentalmente la página se recuperé la sesión evitando redirecciones innecesarias. */
@@ -305,11 +305,12 @@ const AuthContexto = ({ children }) => {
     setFormResetPasswd(datosResetPasswdInicial);
     setEmailValido(false);
     setIdUsuarioTemp(null);
+    SetErrorCampoResetPasswd(cadenaVacia)
   }
 
   const recuperarContrasena = async (e) => {
     e.preventDefault();
-    SetErrorCampoResetPasswd("");
+    SetErrorCampoResetPasswd(cadenaVacia);
 
     try {
       const res = await fetch(
@@ -331,10 +332,13 @@ const AuthContexto = ({ children }) => {
 
   const guardarCambioDePasswd = async (e) => {
     e.preventDefault();
-    SetErrorCampoResetPasswd("");
+    SetErrorCampoResetPasswd(cadenaVacia);
 
     if (formResetPasswd.newPwd !== formResetPasswd.confirmPwd) {
       SetErrorCampoResetPasswd("Las contraseñas no coinciden.");
+      return;
+    } else if (formResetPasswd.newPwd.length < 8) {
+      SetErrorCampoResetPasswd("La contraseña debe tener 8 caracteres mínimo.");
       return;
     }
 
@@ -357,8 +361,7 @@ const AuthContexto = ({ children }) => {
         throw new Error();
       }
     } catch (error) {
-      console.error(error);
-      Swal.fire("Error", "No se pudo actualizar la contraseña", "error");
+      SetErrorCampoResetPasswd("Error", "No se pudo actualizar la contraseña", "error");
     }
   };
 
