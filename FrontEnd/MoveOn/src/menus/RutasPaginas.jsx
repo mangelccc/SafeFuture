@@ -7,7 +7,7 @@ import Rutina from "../paginas/rutina/Rutina.jsx";
 import Contactanos from "../paginas/contactanos/Contactanos.jsx";
 import Ejercicio from "../paginas/rutina/ejercicio/MiniAppEjercicios.jsx";
 import GestorEjercicios from "../paginas/rutina/ejercicio/GestorEjercicios.jsx";
-import Entrenamientos from "../paginas/rutina/ejercicio/Entrenamientos.jsx";
+import GestorEntrenamientos from "../paginas/rutina/ejercicio/GestorEntrenamientos.jsx";
 import Plantillas from "../paginas/rutina/ejercicio/Plantillas.jsx";
 import AgenteEntrenadorIA from "../paginas/rutina/ejercicio/AgenteEntrenadorIA.jsx";
 import CrearEntrenamiento from "../paginas/rutina/ejercicio/CrearEntrenamiento.jsx";
@@ -63,7 +63,7 @@ const RutasPaginas = () => {
             <Route path='crear-entrenamiento' element={<CrearEntrenamiento />} />
             <Route path='ejercicios' element={<GestorEjercicios />} />
             <Route path='crear-ejercicio' element={<FormularioEjercicio />} />
-            <Route path='entrenamientos' element={<Entrenamientos />} />
+            <Route path='entrenamientos' element={<GestorEntrenamientos />} />
             <Route path='plantillas' element={<Plantillas />} />
             <Route path='entrenador-personal' element={<AgenteEntrenadorIA />} />
             <Route path="ver-rutina/:id" element={<VistaRutina />} />

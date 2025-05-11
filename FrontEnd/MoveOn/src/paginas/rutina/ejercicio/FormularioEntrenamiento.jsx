@@ -23,7 +23,7 @@ const FormularioEntrenamiento = () => {
         } = entrenamientoContexto
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-black rounded-lg shadow-md">
+    <div className="p-6">
       <form onSubmit={e => e.preventDefault()} className="space-y-6">
         {/* Nombre de la Rutina */}
         <div>
@@ -55,15 +55,14 @@ const FormularioEntrenamiento = () => {
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-purple dark:focus:ring-gold transition"
           />
         </div>
-
+        <h2 className='text-black dark:text-white'><b>Elige Ejercicios:</b></h2>
         {/* Buscador y Ejercicios Seleccionados */}
-        <div className="flex gap-4">
-          <div className="w-2/5">
+        <div className="flex hsm:flex-row sm:flex-col gap-4">
+          <div className="hsm:w-1/5 sm:w-full">
             <SearchBar setResults={setResultados} />
             {resultados.length > 0 && <SearchResultsList results={resultados} onSelect={seleccionEjercicios} />}
           </div>
-          <div className="w-3/5 border border-gray-300 rounded-lg p-4 max-h-[360px] overflow-auto">
-            <h2 className="font-semibold mb-2">Ejercicios Seleccionados:</h2>
+          <div className="flex flex-wrap w-full border border-gray-300 rounded-lg p-4 max-h-[360px] overflow-auto">
             {ejerciciosSeleccionados.map(ej => (
               <Ejercicio
                 key={ej.id_ejercicio}
@@ -89,7 +88,7 @@ const FormularioEntrenamiento = () => {
           disabled={guardando}
           className={`w-full py-2 font-bold rounded transition-transform duration-300 ${guardando ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-purple text-white hover:scale-105 dark:bg-gold dark:text-black'}`}
         >
-          {guardando ? 'Guardando...' : 'Crear Rutina y Ligar Ejercicios'}
+          {guardando ? 'Guardando...' : 'Crear Rutina Ejercicios'}
         </button>
       </form>
     </div>

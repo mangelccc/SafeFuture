@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 
 // Asegúrate de que apunte a tu Webhook manual
 const WEBHOOK_URL = 'http://localhost:5678/webhook/9cae8464-9088-483f-b1d8-cf2a17435931/chat';
@@ -47,7 +47,7 @@ export default function N8NChat() {
   };
 
   return (
-    <div className="flex flex-col w-full h-full border border-white3 dark:border-black2 overflow-hidden font-sans bg-white dark:bg-black1">
+    <div className="flex flex-col w-full h-full border border-white3 dark:border-black2 rounded-2xl overflow-hidden font-sans bg-white dark:bg-black1">
       <div className="flex-1 p-4 flex flex-col gap-2 overflow-y-auto">
         {messages.map((m, i) => (
           <div
@@ -84,3 +84,4 @@ export default function N8NChat() {
     </div>
   );
 }
+*/

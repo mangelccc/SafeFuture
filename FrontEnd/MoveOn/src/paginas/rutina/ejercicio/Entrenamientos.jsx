@@ -18,10 +18,7 @@ const Entrenamientos = () => {
 
   return (
     <div>
-      <h2 className='pb-4 dark:text-white'>
-        <strong>Entrenamientos</strong>
-      </h2>
-
+      <div className='gap-4 h-[600px] overflow-y-scroll border-2 border-black dark:border-white rounded'>
       {misEntrenamientos.length > 0 ? (
         misEntrenamientos.map(ent => (
           <Entrenamiento
@@ -34,6 +31,7 @@ const Entrenamientos = () => {
           No hay entrenamientos.
         </p>
       )}
+      </div>
     </div>
   );
 };

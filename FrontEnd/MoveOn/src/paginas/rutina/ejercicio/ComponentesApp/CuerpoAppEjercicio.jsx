@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const CuerpoAppEjercicio = () => {
   return (
-    <div className="flex-1 bg-white dark:bg-black3 p-6 overflow-auto flex flex-col">
+    <div className="flex-1 bg-white dark:bg-black1 overflow-auto flex flex-col">
       <Outlet />
     </div>
   );

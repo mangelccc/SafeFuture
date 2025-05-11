@@ -7,7 +7,7 @@ const Ejercicios = () => {
   const { ejerciciosFiltrados } = ejerciciosContex;
 
   return (
-    <div className="flex flex-wrap justify-center items-center gap-4 h-[500px] overflow-y-scroll border-3 border-black dark:border-white3 rounded">
+    <div className="flex flex-wrap justify-center items-center gap-4 h-[600px] overflow-y-scroll border-2 border-black dark:border-white rounded">
       {ejerciciosFiltrados.length > 0 ? (
         ejerciciosFiltrados.map((ejercicio) => (
           <Ejercicio

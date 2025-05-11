@@ -17,13 +17,13 @@ const VistaRutina = () => {
   if (errorVistaEntrenamiento) return <p className="text-red-500">{errorVistaEntrenamiento}</p>;
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Titulo: {rutinaNombre}</h1>
+    <div className="p-6">
+      <h2 className="text-4xl font-bold mb-6 dark:text-white">{rutinaNombre}</h2>
       
       {ejerciciosVista.length === 0 ? (
         <p>No hay ejercicios ligados a esta rutina.</p>
       ) : (
-        <div className="flex flex-wrap gap-4 h-[500px] w-full overflow-y-scroll">          
+        <div className="flex flex-wrap gap-4 h-[600px] w-full overflow-y-scroll border-2 border-black dark:border-white rounded">          
         {ejerciciosVista.map(ejercicioVista => (
             <Ejercicio
               key={ejercicioVista.id_rutina_ejercicio}

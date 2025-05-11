@@ -8,7 +8,9 @@ const MiniAppEjercicios = () => {
   return (
 
     <Contenedor>
-      <Menu />
+      <div className="hsm:hidden sm:block">
+        <Menu />
+      </div>
       <Cuerpo />
     </Contenedor>
 
