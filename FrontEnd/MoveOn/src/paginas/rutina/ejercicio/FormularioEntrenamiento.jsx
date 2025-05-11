@@ -37,7 +37,8 @@ const FormularioEntrenamiento = () => {
             placeholder="Nombre de la rutina"
             value={nombre}
             onChange={e => almacenarNombre(e)}
-            className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-purple dark:focus:ring-gold transition"
+            className="rounded bg-white dark:bg-black px-2 border-2
+                    border-black p-2 outline-none focus:border-purple transition duration-300"
           />
         </div>
 
@@ -52,7 +53,8 @@ const FormularioEntrenamiento = () => {
             placeholder="Descripción de la rutina"
             value={descripcion}
             onChange={e => almacenarDescripcion(e)}
-            className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-purple dark:focus:ring-gold transition"
+            className=" w-1/2 h-[100px] rounded bg-white dark:bg-black px-2 border-2
+                    border-black p-2 outline-none focus:border-purple transition duration-300"
           />
         </div>
         <h2 className='text-black dark:text-white'><b>Elige Ejercicios:</b></h2>
@@ -86,7 +88,7 @@ const FormularioEntrenamiento = () => {
           type="button"
           onClick={createEntrentamientoConEjercicios}
           disabled={guardando}
-          className={`w-full py-2 font-bold rounded transition-transform duration-300 ${guardando ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-purple text-white hover:scale-105 dark:bg-gold dark:text-black'}`}
+          className={` p-3 font-bold rounded transition-transform duration-300 ${guardando ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-purple text-white hover:scale-105 dark:bg-gold dark:text-black'}`}
         >
           {guardando ? 'Guardando...' : 'Crear Rutina Ejercicios'}
         </button>

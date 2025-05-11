@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useAppContext from '../../../hooks/useAppContext.jsx';
 import Ejercicio from './Ejercicio.jsx';
+import Swal from 'sweetalert2';
 
 const VistaRutina = () => {
   const { id } = useParams();
@@ -13,7 +14,26 @@ const VistaRutina = () => {
     fetchData(id,ejercicios);
   }, [id, ejercicios]);
 
-  if (cargando) return <p>Cargando ejercicios...</p>;
+  useEffect(() => {
+    if (cargando) {
+      Swal.fire({
+        title: 'Cargando ejercicios...',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+          const spinner = document.querySelector('.swal2-loader');
+          if (spinner) {
+            spinner.style.borderColor = '#6320EE';
+            spinner.style.borderTopColor = 'transparent';
+          }
+        },
+        background: '#1A1A1A',
+        color: '#F5F5F5'
+      });
+    } else {
+      Swal.close();
+    }
+  }, [cargando]);
   if (errorVistaEntrenamiento) return <p className="text-red-500">{errorVistaEntrenamiento}</p>;
 
   return (

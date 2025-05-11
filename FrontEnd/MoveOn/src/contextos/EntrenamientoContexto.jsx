@@ -92,8 +92,13 @@ const EntrenamientoContexto = ({ children }) => {
       title: 'Eliminando...',
       allowOutsideClick: false,
       didOpen: () => {
-        Swal.showLoading();
-      },
+                Swal.showLoading();
+                const spinner = document.querySelector('.swal2-loader');
+                if (spinner) {
+                  spinner.style.borderColor = '#6320EE';
+                  spinner.style.borderTopColor = 'transparent';
+                }
+              },
       background: '#1A1A1A',
       color: '#F5F5F5'
     });
