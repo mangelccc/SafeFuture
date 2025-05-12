@@ -35,7 +35,7 @@ const Navegacion = ({ menu, alternar }) => {
                 </li>
 
                 <li>
-                    <Link to="/contactanos" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
+                    <Link to="/contacto" className="dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple active:bg-purple hover:text-white active:text-white">
                         Contacto
                     </Link>
                 </li>
