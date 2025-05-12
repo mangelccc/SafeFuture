@@ -230,6 +230,35 @@ const EntrenamientoContexto = ({ children }) => {
     )
   }
 
+  const eliminarEjercicioSeleccionado = async (id_ejercicio) => {
+    const { isConfirmed } = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Este ejercicio será eliminado de la rutina.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+      background: '#1A1A1A',
+      color: '#F5F5F5',
+      iconColor: '#6320EE',
+      customClass: {
+        popup: 'my-swal-popup'
+      },
+      didOpen: () => {
+        const popup = Swal.getPopup();
+        popup.style.border = '2px solid #6320EE';
+        popup.style.boxShadow = '0 0 20px #6520ee70';
+      }
+    });
+  
+    if (!isConfirmed) return;
+  
+    setEjerciciosSeleccionados(prev =>
+      prev.filter(ej => ej.id_ejercicio !== id_ejercicio)
+    );
+  };
+  
+
   const [ejerciciosVista, setEjerciciosVista] = useState([]);
   const [rutinaNombre, setRutinaNombre] = useState('');
   const [cargando, setCargando] = useState(true);
@@ -297,6 +326,7 @@ const EntrenamientoContexto = ({ children }) => {
     ejerciciosSeleccionados,
     guardando,
     fetchData,
+    eliminarEjercicioSeleccionado,
     errorVistaEntrenamiento,
     cargando,
     rutinaNombre,

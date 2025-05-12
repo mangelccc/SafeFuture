@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 const Ejercicio = ({
   nombre,
@@ -11,7 +14,8 @@ const Ejercicio = ({
   showSeries = false,
   showSeriesEdit = false,
   onChangeSeries,
-  onChangeRepeticiones
+  onChangeRepeticiones,
+  onClick
 }) => {
   // Local state for editable inputs
   const [series, setSeries] = useState(initialSeries ?? 3);
@@ -66,7 +70,7 @@ const Ejercicio = ({
           )}
 
           {showSeriesEdit && (
-            <>
+            <div className="flex flex-row items-start justify-between">
               <div>
                 <label className="block font-medium">Series:</label>
                 <input
@@ -76,6 +80,12 @@ const Ejercicio = ({
                   className="w-20 rounded px-2 py-1 border border-gray-300 focus:ring-2 focus:ring-purple dark:focus:ring-gold transition"
                 />
               </div>
+              <div
+               className="w-full h-full cursor-pointer text-purple hover:text-red-800 dark:text-gold transition"
+               onClick={onClick}
+             >
+               <FontAwesomeIcon icon={faTrash} size="x5" />
+             </div>
               <div>
                 <label className="block font-medium">Repeticiones:</label>
                 <input
@@ -85,7 +95,7 @@ const Ejercicio = ({
                   className="w-20 rounded px-2 py-1 border border-gray-300 focus:ring-2 focus:ring-purple dark:focus:ring-gold transition"
                 />
               </div>
-            </>
+            </div>
           )}
         </div>
       )}

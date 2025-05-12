@@ -20,7 +20,8 @@ const FormularioEntrenamiento = () => {
           resultados,
           setResultados,
           ejerciciosSeleccionados,
-          guardando
+          guardando,
+          eliminarEjercicioSeleccionado
         } = entrenamientoContexto
 
         useEffect(() => {
@@ -89,18 +90,20 @@ const FormularioEntrenamiento = () => {
           <div className="flex flex-wrap w-full border border-gray-300 rounded-lg p-4 max-h-[360px] overflow-auto">
             {ejerciciosSeleccionados.map(ej => (
               <Ejercicio
-                key={ej.id_ejercicio}
-                nombre={ej.nombre}
-                descripcion={ej.descripcion}
-                grupoMuscular={ej.grupo_muscular}
-                imagen={ej.imagen_url}
-                video={ej.video_url}
-                series={ej.num_series}
-                repeticiones={ej.num_repeticiones}
-                showSeriesEdit={true}
-                onChangeSeries={val => actualizarSeriesRepeticionesEstado(ej.id_ejercicio, 'num_series', val)}
-                onChangeRepeticiones={val => actualizarSeriesRepeticionesEstado(ej.id_ejercicio, 'num_repeticiones', val)}
-              />
+              key={ej.id_ejercicio}
+              nombre={ej.nombre}
+              descripcion={ej.descripcion}
+              grupoMuscular={ej.grupo_muscular}
+              imagen={ej.imagen_url}
+              video={ej.video_url}
+              series={ej.num_series}
+              repeticiones={ej.num_repeticiones}
+              showSeriesEdit={true}
+              onChangeSeries={val => actualizarSeriesRepeticionesEstado(ej.id_ejercicio, 'num_series', val)}
+              onChangeRepeticiones={val => actualizarSeriesRepeticionesEstado(ej.id_ejercicio, 'num_repeticiones', val)}
+              onClick={() => eliminarEjercicioSeleccionado(ej.id_ejercicio)} // <-- Aquí
+            />
+            
             ))}
           </div>
         </div>
