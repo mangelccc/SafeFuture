@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import Inicio from "../paginas/inicio/Inicio.jsx";
+import DescubreMas from "../paginas/inicio/DescubreMas.jsx";
 import QueSomos from "../paginas/biografia/QueSomos.jsx";
 import Servicios from "../paginas/servicios/Servicios.jsx";
 import Rutina from "../paginas/rutina/Rutina.jsx";
@@ -13,6 +14,9 @@ import AgenteEntrenadorIA from "../paginas/rutina/ejercicio/AgenteEntrenadorIA.j
 import CrearEntrenamiento from "../paginas/rutina/ejercicio/CrearEntrenamiento.jsx";
 import FormularioEjercicio from "../paginas/rutina/ejercicio/FormularioEjercicio.jsx";
 import VistaRutina from '../paginas/rutina/ejercicio/VistaRutina.jsx';
+import Calendario from "../paginas/calendario/Calendario.jsx";
+import DejarDeFumar from "../paginas/rutina/no-fumar/DejarDeFumar.jsx";
+import Error from "../paginas/error/Error.jsx";
 
 /* Para verificar que la sesión esta iniciada */
 import RouterAuth from "./RouterAuth.jsx";
@@ -28,11 +32,11 @@ import Dietas from "../paginas/rutina/dieta/DietasGestion.jsx"
 import DietasCrear from "../paginas/rutina/dieta/crear_dietas/DietasCrear.jsx"
 import AlimentosDieta from "../paginas/rutina/dieta/alimentos/AlimentosDieta.jsx";
 import DietasDetalles from "../paginas/rutina/dieta/DietasDetalles.jsx";
+import PoliticaCookies from "../paginas/informacion/PoliticaCookies.jsx";
+import PoliticaPrivacidad from "../paginas/informacion/PoliticaPrivacidad.jsx";
+import PreguntasFrecuentes from "../paginas/informacion/PreguntasFrecuentes.jsx";
+import SitiosRecomendados from "../paginas/informacion/SitiosRecomendados.jsx";
 
-import Error from "../paginas/error/Error.jsx";
-import Calendario from "../paginas/calendario/Calendario.jsx";
-import DejarDeFumar from "../paginas/rutina/no-fumar/DejarDeFumar.jsx";
-import DescubreMas from "../paginas/inicio/DescubreMas.jsx";
 
 const RutasPaginas = () => {
   return (
@@ -43,7 +47,7 @@ const RutasPaginas = () => {
         <Route path='/que-somos' element={<QueSomos />} />
         <Route path='/servicios' element={<Servicios />} />
         <Route path='/rutina' element={<Rutina />} />
-        <Route path='/contactanos' element={<Contactanos />} />
+        <Route path='/contacto' element={<Contactanos />} />
         <Route path='/recuperar-passwd' element={<UsuarioCheckEmail />} />
         <Route path='/usuario' element={<Usuario />} />
 
@@ -71,7 +75,10 @@ const RutasPaginas = () => {
           <Route path='/usuario-informacion' element={<UsuarioInformacion />} />
         </Route>
 
-
+      <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
+      <Route path="/politica-de-cookies" element={<PoliticaCookies />} />
+      <Route path="/preguntas-frecuentes" element={<PreguntasFrecuentes />} />
+      <Route path="/sitios" element={<SitiosRecomendados />} />
 
         <Route path='*' element={<Error />} />
       </Routes>
