@@ -82,8 +82,8 @@ const FormularioEntrenamiento = () => {
         </div>
         <h2 className='text-black dark:text-white'><b>Elige Ejercicios:</b></h2>
         {/* Buscador y Ejercicios Seleccionados */}
-        <div className="flex hsm:flex-row sm:flex-col gap-4">
-          <div className="hsm:w-1/5 sm:w-full">
+        <div className="flex sm:flex-row hsm:flex-col gap-4 ">
+          <div className="w-full">
             <SearchBar setResults={setResultados} />
             {resultados.length > 0 && <SearchResultsList results={resultados} onSelect={seleccionEjercicios} />}
           </div>

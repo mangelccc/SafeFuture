@@ -81,10 +81,10 @@ const Ejercicio = ({
                 />
               </div>
               <div
-               className="w-full h-full cursor-pointer text-purple hover:text-red-800 dark:text-gold transition"
+               className="w-full h-full self-center cursor-pointer text-purple hover:text-red-800 dark:text-gold transition"
                onClick={onClick}
              >
-               <FontAwesomeIcon icon={faTrash} size="x5" />
+               <FontAwesomeIcon icon={faTrash} size="2x" />
              </div>
               <div>
                 <label className="block font-medium">Repeticiones:</label>
