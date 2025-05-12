@@ -432,9 +432,22 @@ const tips = [
   'Utiliza técnicas de distracción (ejercicio, hobbies).',
   'Considera reemplazos de nicotina o asesoramiento profesional.',
 ];
+// Valida un campo individual
+const validarDatoRutina = ({ name, value }) => {
+  const errores = [];
+  if (name === 'nombre') {
+    if (!value.trim()) errores.push('El nombre de la rutina es obligatorio.');
+    if (value.length > 100) errores.push('El nombre no puede exceder 100 caracteres.');
+  }
+  if (name === 'descripcion') {
+    if (!value.trim()) errores.push('La descripción es obligatoria.');
+    if (value.length > 65535) errores.push('La descripción es demasiado larga.');
+  }
+  return errores;
+};
 
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
   validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos, validarCampoUsuario,
-  camposUsuario, benefits, tips, calcularDuracion
+  camposUsuario, benefits, tips, calcularDuracion,validarDatoRutina
 };

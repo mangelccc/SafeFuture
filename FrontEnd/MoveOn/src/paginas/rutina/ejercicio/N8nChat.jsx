@@ -51,7 +51,7 @@ export default function N8NChat() {
 
   return (
     <div className="flex flex-col w-full h-full border border-white3 dark:border-black2 overflow-hidden font-sans bg-white dark:bg-black1">
-      <div className="flex-1 p-4 flex flex-col gap-2 overflow-y-auto">
+      <div className="flex-1 p-4 flex flex-col gap-2 overflow-y-auto border-b-2 border-black1">
         {messages.map((m, i) => (
           <div
             key={i}
@@ -68,7 +68,7 @@ export default function N8NChat() {
       </div>
       <div className="flex border-t border-white3 dark:border-black2">
         <input
-          className="flex-1 p-3 text-base bg-white2 dark:text-white dark:bg-black2 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
+          className="flex-1 p-3 text-base bg-white2 dark:text-white dark:bg-black3 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none"
           type="text"
           value={input}
           onChange={e => setInput(e.target.value)}

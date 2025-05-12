@@ -1,13 +1,61 @@
-import React from 'react'
-import useAppContext from "../../../hooks/useAppContext.jsx";
+
+
+//
+import React, { useState } from 'react';
+import useAppContext from '../../../hooks/useAppContext.jsx';
+import { X } from 'lucide-react';
 
 const FormularioEjercicio = () => {
   const { ejerciciosContex } = useAppContext();
-  const { actualizarDato, ejercicio, validarFormularioEjercicio, errorEjercicio, createEjercicio } = ejerciciosContex;
+  const {
+    actualizarDato,
+    ejercicio,
+    validarFormularioEjercicio,
+    errorEjercicio,
+    createEjercicio
+  } = ejerciciosContex;
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();                   // cancelar el submit nativo
+    if (!validarFormularioEjercicio(e)) { // le pasamos el event
+      return;
+    }
+    try {
+      await createEjercicio(ejercicio);
+      setIsOpen(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
 
   return (
-    <div className="max-w-3xl w-full mx-auto p-6 bg-white dark:bg-black rounded-lg shadow-md">
-      <form className="space-y-4">
+    <>
+      <button
+        onClick={() => setIsOpen(true)}
+        className="bg-purple dark:bg-gold text-white2 dark:text-black font-bold px-3 
+                    py-1 rounded hover:outline dark:hover:outline-3 outline-gold dark:outline-purple">
+        +
+      </button>
+
+      {isOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white dark:bg-black rounded-2xl shadow-xl w-full max-w-3xl p-6 relative">
+            {/* Cerrar */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+              <X size={20} />
+            </button>
+
+            <h2 className="text-2xl font-semibold mb-4 text-black dark:text-white">
+              Crear Nuevo Ejercicio
+            </h2>
+
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+        {/* Nombre */}
         <div>
           <label htmlFor="nombre" className="block mb-1 font-medium text-black dark:text-white">
             Nombre:
@@ -20,11 +68,12 @@ const FormularioEjercicio = () => {
             onChange={actualizarDato}
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-black outline-none focus:ring-2 focus:ring-purple dark:focus:ring-gold transition duration-300"
           />
-          {errorEjercicio.nombre && errorEjercicio.nombre.map((err, idx) => (
-            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
-          ))}
+          {errorEjercicio.nombre && (
+            <p className="text-sm text-red-500 mt-1">{errorEjercicio.nombre}</p>
+          )}
         </div>
 
+        {/* Descripción */}
         <div>
           <label htmlFor="descripcion" className="block mb-1 font-medium text-black dark:text-white">
             Descripción:
@@ -37,11 +86,12 @@ const FormularioEjercicio = () => {
             onChange={actualizarDato}
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-black outline-none focus:ring-2 focus:ring-purple dark:focus:ring-gold transition duration-300"
           />
-          {errorEjercicio.descripcion && errorEjercicio.descripcion.map((err, idx) => (
-            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
-          ))}
+          {errorEjercicio.descripcion && (
+            <p className="text-sm text-red-500 mt-1">{errorEjercicio.descripcion}</p>
+          )}
         </div>
 
+        {/* Imagen URL */}
         <div>
           <label htmlFor="imagen_url" className="block mb-1 font-medium text-black dark:text-white">
             Imagen URL:
@@ -54,11 +104,12 @@ const FormularioEjercicio = () => {
             onChange={actualizarDato}
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-black outline-none focus:ring-2 focus:ring-purple dark:focus:ring-gold transition duration-300"
           />
-          {errorEjercicio.imagen_url && errorEjercicio.imagen_url.map((err, idx) => (
-            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
-          ))}
+          {errorEjercicio.imagen_url && (
+            <p className="text-sm text-red-500 mt-1">{errorEjercicio.imagen_url}</p>
+          )}
         </div>
 
+        {/* Video URL */}
         <div>
           <label htmlFor="video_url" className="block mb-1 font-medium text-black dark:text-white">
             Video URL:
@@ -71,11 +122,12 @@ const FormularioEjercicio = () => {
             onChange={actualizarDato}
             className="w-full rounded px-3 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-black outline-none focus:ring-2 focus:ring-purple dark:focus:ring-gold transition duration-300"
           />
-          {errorEjercicio.video_url && errorEjercicio.video_url.map((err, idx) => (
-            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
-          ))}
+          {errorEjercicio.video_url && (
+            <p className="text-sm text-red-500 mt-1">{errorEjercicio.video_url}</p>
+          )}
         </div>
 
+        {/* Grupo Muscular */}
         <div>
           <label htmlFor="grupo_muscular" className="block mb-1 font-medium text-black dark:text-white">
             Grupo Muscular:
@@ -98,26 +150,25 @@ const FormularioEjercicio = () => {
             <option value="cardio">Cardio</option>
             <option value="movilidad">Movilidad / Flexibilidad</option>
           </select>
-          {errorEjercicio.grupo_muscular && errorEjercicio.grupo_muscular.map((err, idx) => (
-            <p key={idx} className="text-sm text-red-500 mt-1">{err}</p>
-          ))}
+          {errorEjercicio.grupo_muscular && (
+            <p className="text-sm text-red-500 mt-1">{errorEjercicio.grupo_muscular}</p>
+          )}
         </div>
 
+        {/* Botón de envío */}
         <div>
           <input
             type="button"
             value="Enviar datos"
-            onClick={(evento) => {
-              if (validarFormularioEjercicio(evento)) {
-                console.log(ejercicio);
-                createEjercicio(ejercicio);
-              }
-            }}
+            onClick={handleSubmit}
             className="w-full bg-purple dark:bg-gold text-white dark:text-black font-bold py-2 rounded hover:scale-105 transition-transform duration-300"
           />
         </div>
       </form>
-    </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { API_URL } from "../bibliotecas/config.js";
 import useAppContext from "../hooks/useAppContext.jsx";
+import { validarDatoRutina } from '../bibliotecas/biblioteca.js';
 import Swal from 'sweetalert2';
 
 const ContextoEntrenamiento = createContext();
@@ -9,7 +11,7 @@ const EntrenamientoContexto = ({ children }) => {
 
   const { entrenamientoContexto, auth } = useAppContext();
   const { usuario } = auth;
-
+  const navigate = useNavigate();
   // Variables iniciales
   const entrenamientosIniciales = [];
   const entrenamientoInicial = {
@@ -303,7 +305,32 @@ const EntrenamientoContexto = ({ children }) => {
       setErrorVistaEntrenamiento('No se pudieron cargar los datos de esta rutina.');
     } finally {
       setCargando(false);
+      navigate('/rutina/ejercicio/entrenamientos');
     }
+  };
+
+  const validarFormularioEntrenamiento = (evento) => {
+    const formulario = evento.target.form;
+    const erroresPorCampo = {};
+    console.log("Elementos del formulario:", formulario.elements); // Log para ver todos los elementos
+  
+    for (let i = 0; i < formulario.elements.length; i++) {
+      const elemento = formulario.elements[i];
+      if (elemento.name) {
+        // Log para ver qué elemento se está intentando validar
+        console.log(`Intentando validar elemento con name: ${elemento.name}`);
+        let erroresElemento = validarDatoRutina(elemento);
+        if (erroresElemento.length !== 0) {
+          elemento.classList.add("error");
+          erroresPorCampo[elemento.name] = erroresElemento;
+        } else {
+          elemento.classList.remove("error");
+        }
+      }
+    }
+    console.log("Errores encontrados:", erroresPorCampo); // Log para ver el resultado final
+    setErrorEntrenamiento(erroresPorCampo);
+    return Object.keys(erroresPorCampo).length === 0;
   };
 
   const datosContexto = {
@@ -330,7 +357,8 @@ const EntrenamientoContexto = ({ children }) => {
     errorVistaEntrenamiento,
     cargando,
     rutinaNombre,
-    ejerciciosVista
+    ejerciciosVista,
+    validarFormularioEntrenamiento
   };
 
 
