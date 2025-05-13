@@ -14,7 +14,7 @@ const MiniAppEjercicios = () => {
       {/* Botón hamburguesa solo en móvil */}
       <div
         onClick={toggleDrawer}
-        className="sm:hidden relative flex items-center bg-purple text-white text-xl font-bold px-6 py-3 transition ease-in-out duration-200 hover:bg-gold hover:text-black1 hover:scale-105 active:bg-gold cursor-pointer"
+        className="hidden sm:block relative flex items-center bg-purple text-white text-xl font-bold px-6 py-3 transition ease-in-out duration-200 hover:bg-gold hover:text-black1 hover:scale-105 active:bg-gold cursor-pointer"
         aria-label="Toggle menu"
       >
         {/* Icono posicionado a la izquierda */}
