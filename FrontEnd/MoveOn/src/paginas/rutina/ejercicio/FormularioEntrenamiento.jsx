@@ -22,9 +22,53 @@ const FormularioEntrenamiento = () => {
     ejerciciosSeleccionados,
     guardando,
     eliminarEjercicioSeleccionado,
-    errorRutina,
-    validarFormularioEntrenamiento,
   } = entrenamientoContexto
+
+  // Dentro de entrenamientoContexto (antes de return)
+
+const validarFormularioEntrenamiento = () => {
+  const errores = [];
+  if (!nombre.trim()) errores.push('El nombre de la rutina es obligatorio.');
+  if (!descripcion.trim()) errores.push('La descripción es obligatoria.');
+  if (ejerciciosSeleccionados.length === 0) errores.push('Debes seleccionar al menos un ejercicio.');
+  return errores;
+};
+// Nuevo handler que valida antes de crear
+ const handleCreate = () => {
+     const errores = validarFormularioEntrenamiento();
+     if (errores.length > 0) {
+       // Muestro todos los errores en un solo alert
+       Swal.fire({
+        icon: 'error',
+        title: 'Errores en el formulario',
+        html: `
+          <div style="text-align: left; padding-left: 55px; line-height: 1.5;">
+            ${errores.map(e => `❌ ${e}`).join('<br/>')}
+          </div>
+        `,
+        background: '#1A1A1A',
+        color: '#F5F5F5',
+      
+        // Aquí van las claves para mostrar solo la X de cierre:
+        showConfirmButton: false,    // oculta el botón OK
+        showCloseButton: true,       // muestra la X arriba a la derecha
+        closeButtonAriaLabel: 'Cerrar',  // accesibilidad
+        // si quieres personalizar aún más la X, puedes usar:
+        // closeButtonHtml: '<span style="font-size:1.25em;">✖️</span>',
+      
+        // opcional: ajusta la posición de la X vía clases CSS
+        customClass: {
+          closeButton: 'swal2-close--custom'
+        }
+      });
+      
+      
+      
+       return;
+     }
+
+   createEntrentamientoConEjercicios();
+  };
 
 
   useEffect(() => {
@@ -122,7 +166,7 @@ const FormularioEntrenamiento = () => {
         {/* Botón crear sin recarga, deshabilitado si está guardando */}
         <button
           type="button"
-          onClick={createEntrentamientoConEjercicios}
+          onClick={handleCreate}
           disabled={guardando}
           className={`hsm:w-full p-3 font-bold rounded transition-transform duration-300 ${guardando ? 'bg-gray-400 text-gray-700 cursor-not-allowed' : 'bg-purple text-white hover:scale-105 dark:bg-gold dark:text-black'}`}
         >

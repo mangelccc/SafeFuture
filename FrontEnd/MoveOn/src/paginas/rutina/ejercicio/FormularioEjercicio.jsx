@@ -4,6 +4,8 @@
 import React, { useState } from 'react';
 import useAppContext from '../../../hooks/useAppContext.jsx';
 import { X } from 'lucide-react';
+import Swal from 'sweetalert2';
+
 
 const FormularioEjercicio = () => {
   const { ejerciciosContex } = useAppContext();
@@ -12,23 +14,63 @@ const FormularioEjercicio = () => {
     ejercicio,
     validarFormularioEjercicio,
     errorEjercicio,
-    createEjercicio
+    createEjercicio,
+    readEjercicios
   } = ejerciciosContex;
 
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();                   // cancelar el submit nativo
-    if (!validarFormularioEjercicio(e)) { // le pasamos el event
+    e.preventDefault();
+  
+    if (!validarFormularioEjercicio(e)) {
       return;
     }
+    Swal.close();
+    // 1) Muestro el loading
+    Swal.fire({
+      title: 'Guardando ejercicio...',
+      allowOutsideClick: false,
+      background: '#1A1A1A',
+      color: '#F5F5F5',
+      didOpen: () => {
+        Swal.showLoading();
+        const spinner = document.querySelector('.swal2-loader');
+        if (spinner) {
+          spinner.style.borderColor = '#6320EE';
+          spinner.style.borderTopColor = 'transparent';
+        }
+      }
+    });
+  
     try {
+      // 2) Espero a que se cree el ejercicio
       await createEjercicio(ejercicio);
+      await readEjercicios();
+      // 3) Cierro el loading y muestro éxito
+      Swal.fire({
+        icon: 'success',
+        title: '¡Ejercicio guardado!',
+        timer: 1500,
+        showConfirmButton: false,
+        background: '#1A1A1A',
+        color: '#F5F5F5'
+      });
+  
       setIsOpen(false);
     } catch (err) {
-      console.error(err);
+      // 4) Cierro el loading y muestro error
+      Swal.close();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err.message || 'No se pudo guardar el ejercicio.',
+        background: '#1A1A1A',
+        color: '#F5F5F5'
+      });
     }
   };
+  
   
 
   return (
@@ -159,7 +201,7 @@ const FormularioEjercicio = () => {
         <div>
           <input
             type="button"
-            value="Enviar datos"
+            value="Crear Ejercicio"
             onClick={handleSubmit}
             className="w-full bg-purple dark:bg-gold text-white dark:text-black font-bold py-2 rounded hover:scale-105 transition-transform duration-300"
           />

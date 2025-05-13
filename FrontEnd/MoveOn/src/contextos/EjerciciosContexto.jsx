@@ -43,7 +43,7 @@ const EjerciciosContexto = ({ children }) => {
 
   // Función para crear un nuevo ejercicio (POST)
   const createEjercicio = (nuevoEjercicio) => {
-    fetch(API_URL, {
+    fetch(`${API_URL}/ejercicios`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
