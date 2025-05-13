@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState,useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from "../bibliotecas/config.js";
 import useAppContext from "../hooks/useAppContext.jsx";
@@ -168,7 +168,6 @@ const EntrenamientoContexto = ({ children }) => {
     if (guardando) {
       return // Previene dobles envíos
     }
-
     setGuardando(true)
     try {
       // 1) Crear rutina
@@ -206,11 +205,12 @@ const EntrenamientoContexto = ({ children }) => {
       setDescripcion('')
       setEjerciciosSeleccionados([])
       setResultados([])    
-
+      navigate('/rutina/ejercicio/entrenamientos');
     } catch (error) {
       console.error('Error creando rutina o ligando ejercicios:', error)
     } finally {
       setGuardando(false)
+      
     }
   }
   // Selección de ejercicios sin duplicados
@@ -267,6 +267,9 @@ const EntrenamientoContexto = ({ children }) => {
   const [errorVistaEntrenamiento, setErrorVistaEntrenamiento] = useState(null);
 
   const fetchData = async (id, ejercicios) => {
+    setRutinaNombre('');
+    setEjerciciosVista([]);
+    setCargando(true);
     try {
       // 1) Obtener el nombre de la rutina
       const resRut = await fetch(`http://localhost:8089/api/rutinas/${id}`);
@@ -305,7 +308,6 @@ const EntrenamientoContexto = ({ children }) => {
       setErrorVistaEntrenamiento('No se pudieron cargar los datos de esta rutina.');
     } finally {
       setCargando(false);
-      navigate('/rutina/ejercicio/entrenamientos');
     }
   };
 
@@ -333,6 +335,32 @@ const EntrenamientoContexto = ({ children }) => {
     return Object.keys(erroresPorCampo).length === 0;
   };
 
+  // Función para filtrar los ejercicios por buscador actual.
+  const filtrarEntrenamientos = (filtro) => {
+    setEntrenamientosFiltrados(entrenamientos);
+    const ejerciciosFiltradosReturn =
+      misEntrenamientos
+        .filter(e =>
+          e.nombre
+            .toLowerCase()
+            .startsWith(filtro.toLowerCase())
+        );
+
+    filtro === "" ?
+    setEntrenamientosFiltrados(misEntrenamientos) :
+    setEntrenamientosFiltrados(ejerciciosFiltradosReturn);
+  }
+
+   const rawEntrenamientos = Array.isArray(entrenamientosFiltrados)
+      ? entrenamientosFiltrados
+      : [];
+  
+    // 1) Filtrado memoizado: solo se recalcula si cambian rawEntrenamientos o el id de usuario
+    const misEntrenamientos = useMemo(
+      () => rawEntrenamientos.filter(e => e.uuid_usuario === usuario.id_usuario),
+      [rawEntrenamientos, usuario.id_usuario]
+    );
+
   const datosContexto = {
     entrenamiento,
     entrenamientos,
@@ -358,7 +386,9 @@ const EntrenamientoContexto = ({ children }) => {
     cargando,
     rutinaNombre,
     ejerciciosVista,
-    validarFormularioEntrenamiento
+    validarFormularioEntrenamiento,
+    filtrarEntrenamientos,
+    misEntrenamientos
   };
 
 

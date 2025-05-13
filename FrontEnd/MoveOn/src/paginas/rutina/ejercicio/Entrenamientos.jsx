@@ -3,18 +3,8 @@ import Entrenamiento from './Entrenamiento.jsx';
 import useAppContext from "../../../hooks/useAppContext.jsx";
 
 const Entrenamientos = () => {
-  const { entrenamientoContexto, auth } = useAppContext();
-  const { usuario } = auth;
-
-  const rawEntrenamientos = Array.isArray(entrenamientoContexto?.entrenamientosFiltrados)
-    ? entrenamientoContexto.entrenamientosFiltrados
-    : [];
-
-  // 1) Filtrado memoizado: solo se recalcula si cambian rawEntrenamientos o el id de usuario
-  const misEntrenamientos = useMemo(
-    () => rawEntrenamientos.filter(e => e.uuid_usuario === usuario.id_usuario),
-    [rawEntrenamientos, usuario.id_usuario]
-  );
+  const { entrenamientoContexto, } = useAppContext();
+  const { misEntrenamientos,deleteEntrenamiento } = entrenamientoContexto;
 
   return (
     <div>
@@ -24,6 +14,7 @@ const Entrenamientos = () => {
           <Entrenamiento
             key={ent.id_rutina}
             entrenamiento={ent}
+            deleteEntrenamiento={deleteEntrenamiento}
           />
         ))
       ) : (

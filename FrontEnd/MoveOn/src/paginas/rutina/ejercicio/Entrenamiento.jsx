@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPenToSquare, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-const Entrenamiento = ({ entrenamiento }) => {
-  const { entrenamientoContexto } = useAppContext();
-  const { deleteEntrenamiento } = entrenamientoContexto;
+const Entrenamiento = ({ entrenamiento,deleteEntrenamiento }) => {
+
   const navigate = useNavigate();
 
   return (

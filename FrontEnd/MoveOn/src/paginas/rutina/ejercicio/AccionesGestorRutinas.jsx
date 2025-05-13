@@ -4,6 +4,9 @@ import useAppContext from "../../../hooks/useAppContext.jsx";
 
 const AccionesGestorRutinas = () => {
 
+    const { entrenamientoContexto } = useAppContext();
+    const { filtrarEntrenamientos } = entrenamientoContexto;
+
     const navigate = useNavigate();
     return (
         <div className='flex flex-col items-start justify-start'>
@@ -17,7 +20,7 @@ const AccionesGestorRutinas = () => {
                     placeholder="Filtrar por nombre"
                     className="rounded bg-white dark:bg-black px-2 border-2
                     border-black p-2 outline-none focus:border-purple transition duration-300"
-                    
+                    onChange={(e) => filtrarEntrenamientos(e.target.value)}
                 />
                 <button
                     className="bg-purple dark:bg-gold text-white2 dark:text-black font-bold px-3 

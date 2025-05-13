@@ -7,9 +7,8 @@ import Swal from 'sweetalert2';
 
 const FormularioEntrenamiento = () => {
   // Contexto de entrenamiento
-  const { entrenamientoContexto, auth } = useAppContext();
+  const { entrenamientoContexto } = useAppContext();
   const {
-    readEntrenamientos,
     createEntrentamientoConEjercicios,
     seleccionEjercicios,
     actualizarSeriesRepeticionesEstado,
