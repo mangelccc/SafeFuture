@@ -12,16 +12,16 @@ const MiniAppEjercicios = () => {
   return (
     <Contenedor>
       {/* Botón hamburguesa solo en móvil */}
-      <div className="sm:hidden p-4">
-        <button
-          onClick={toggleDrawer}
-          className="focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          <MenuIcon size={24} />
-        </button>
+      <div
+        onClick={toggleDrawer}
+        className="sm:hidden relative flex items-center bg-purple text-white text-xl font-bold px-6 py-3 transition ease-in-out duration-200 hover:bg-gold hover:text-black1 hover:scale-105 active:bg-gold cursor-pointer"
+        aria-label="Toggle menu"
+      >
+        {/* Icono posicionado a la izquierda */}
+        <MenuIcon size={24} className="absolute left-6" />
+        {/* Texto centrado horizontalmente */}
+        <span className="mx-auto">Rutinas Entrenamiento</span>
       </div>
-
       {/* Drawer lateral para móvil */}
       <div
         className={`fixed inset-y-0 left-0 w-64 bg-white shadow-lg transform transition-transform duration-300 z-50
