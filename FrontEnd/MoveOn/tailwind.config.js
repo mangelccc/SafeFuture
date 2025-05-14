@@ -14,6 +14,7 @@
         purpleOp: '#6520ee70',
         turq: '#07BEB8',
         white: '#F5F5F5',
+        whiteOp: '#F5F5F570',
         white2: '#DDDDDD',
         white3: '#CECECE',
         black: '#101010',

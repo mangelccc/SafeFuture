@@ -5,7 +5,7 @@ import { camposUsuario } from '../../bibliotecas/biblioteca.js';
 import Swal from 'sweetalert2';
 
 const UsuarioDatos = ({ usuario }) => {
-    const { cambiarDato, guardarDato, cancelarDato, campoEditable, errorCampo, limpiarErrorCampo } = useContext(contextoAuth);
+    const { cambiarDato, guardarDato, cancelarDato, campoEditable, errorCampo, limpiarErrorCampo, eliminarCuenta } = useContext(contextoAuth);
 
     useEffect(() => {
         cancelarDato();
@@ -48,6 +48,16 @@ const UsuarioDatos = ({ usuario }) => {
 
                 />
             ))}
+            <div className="flex mx-8 mb-4 hsm:mb-8">
+                <button
+                    type="button"
+                    className="bg-red-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hover:opacity-60 transition duration-300 hsm:w-full"
+                    onClick={eliminarCuenta}
+                >
+                    Eliminar cuenta
+                </button>
+            </div>
+            
         </>
     );
 };

@@ -157,7 +157,7 @@ const AuthContexto = ({ children }) => {
           setSesionIniciada(true);
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
           localStorage.setItem("sesionIniciada", "true");
-
+          console.log(data.usuario);
           setDatosSesion(datosSesionInicial);
           navegar("/");
         }
@@ -212,6 +212,44 @@ const AuthContexto = ({ children }) => {
       return nuevosCampos;
     });
 
+  };
+
+    const eliminarCuenta = async () => {
+      const html = `
+      <div className="text-center">
+        <p>Esta acción no se puede revertir.</p><br>
+        <p>Escribe: <u>estoy seguro de eliminarla</u></p>
+        </div>`;
+    const { value: confirmacion } = await Swal.fire({
+      title: '¿Estás seguro?',
+      html,
+      input: 'text',
+      inputPlaceholder: 'estoy seguro de eliminarla',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#d33',
+    });
+
+    if (confirmacion !== 'estoy seguro de eliminarla') {
+      Swal.fire('Cancelado', 'No se escribió la frase de confirmación correctamente, ¡vuelve pronto!', 'info');
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/usuarios/${usuario.id_usuario}`, {
+        method: "DELETE"
+      });
+
+      if (response.ok) {
+        Swal.fire('Cuenta eliminada', 'Tu cuenta ha sido eliminada correctamente.', 'success');
+        cerrarSesion();
+      } else {
+        Swal.fire('Error', 'No se pudo eliminar la cuenta.', 'error');
+      }
+    } catch (error) {
+      Swal.fire('Error', 'Error de red al intentar eliminar la cuenta.', 'error');
+    }
   };
 
 
@@ -380,6 +418,7 @@ const AuthContexto = ({ children }) => {
     iniciarSesion,
     cerrarSesion,
     actualizarDato,
+    eliminarCuenta,
     datosSesion,
     usuario,
     sesionIniciada,
