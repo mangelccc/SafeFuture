@@ -174,7 +174,7 @@ const EntrenamientoContexto = ({ children }) => {
       let uuid = crypto.randomUUID();
       let uuid_usuario = usuario.id_usuario;
 
-      const resRutina = await fetch('http://localhost:8089/api/rutinas', {
+      const resRutina = await fetch(`${API_URL}/rutinas`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ uuid, uuid_usuario, nombre, descripcion })
@@ -186,7 +186,7 @@ const EntrenamientoContexto = ({ children }) => {
       // 2) Ligado de ejercicios con valores actualizados
       await Promise.all(
         ejerciciosSeleccionados.map(ej =>
-          fetch('http://localhost:8089/api/rutina-ejercicio', {
+          fetch(`${API_URL}/rutina-ejercicio`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -272,14 +272,14 @@ const EntrenamientoContexto = ({ children }) => {
     setCargando(true);
     try {
       // 1) Obtener el nombre de la rutina
-      const resRut = await fetch(`http://localhost:8089/api/rutinas/${id}`);
+      const resRut = await fetch(`${API_URL}/rutinas/${id}`);
       if (!resRut.ok) throw new Error(`Status ${resRut.status}`);
       const rawRut = await resRut.json();
       const rut = rawRut.rutina || rawRut;
       setRutinaNombre(rut.nombre || `Rutina ${id}`);
 
       // 2) Obtener pivots de rutina-ejercicio
-      const res = await fetch('http://localhost:8089/api/rutina-ejercicio');
+      const res = await fetch(`${API_URL}/rutina-ejercicio`);
       if (!res.ok) throw new Error(`Status ${res.status}`);
       const raw = await res.json();
       const pivots = Array.isArray(raw.rutina_ejercicios) ? raw.rutina_ejercicios : [];
