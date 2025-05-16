@@ -64,7 +64,7 @@ const AlimentosContexto = ({ children }) => {
   const getAlimentos = useCallback(async () => {
     try {
       setErrorAlimento(cadenaVacia);
-      const response = await fetch(`http://localhost:8089/api/alimentos`, {
+      const response = await fetch(`${API_URL}/alimentos`, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
       });
@@ -86,7 +86,7 @@ const AlimentosContexto = ({ children }) => {
         id_dieta: id,
         alimentos: alimentosSeleccionados.map(({ id_alimento, cantidad }) => ({ id_alimento, cantidad })),
       };
-      const response = await fetch(`http://localhost:8089/api/alimento-dieta/multiples`, {
+      const response = await fetch(`${API_URL}/alimento-dieta/multiples`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -113,7 +113,7 @@ const AlimentosContexto = ({ children }) => {
   const obtenerAlimentosDieta = useCallback(async (idDieta) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8089/api/alimento-dieta/${idDieta}`);
+      const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`);
       if (response.status === 404) {
         setAlimentosSeleccionados(listaInicial);
         return;
@@ -195,7 +195,7 @@ const AlimentosContexto = ({ children }) => {
   /*** EFECTOS ***/
   useEffect(() => {
     if (sesionIniciada) getAlimentos();
-  }, [sesionIniciada, getAlimentos]);
+  }, [sesionIniciada]);
 
   useEffect(() => {
     if (errorAlimento.length) setErrorAlimento(cadenaVacia);

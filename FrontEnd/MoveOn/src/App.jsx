@@ -48,7 +48,7 @@ const App = () => {
         {/* Cabecera que aparece/oculta según scroll y al click hace scroll to top */}
         <div
           onClick={scrollToTop}
-          className={`sticky top-0 left-0 w-full z-50 transform transition-transform duration-300 cursor-pointer
+          className={`sticky top-0 left-0 w-full z-50 transform transition-transform duration-300
             ${showHeader ? "translate-y-0" : "-translate-y-full"}`}
         >
           <Cabecera />
