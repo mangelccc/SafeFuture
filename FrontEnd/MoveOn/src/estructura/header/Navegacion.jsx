@@ -11,6 +11,7 @@ const Navegacion = ({ menu, alternar }) => {
             onClick={(evento) => {
                 menu && evento.target.tagName === "A" && alternar()
             }}
+            
         >
             <ul className="list-none flex gap-5 hsm:gap-8 hsm:flex-col hsm:items-center">
                 <li>
