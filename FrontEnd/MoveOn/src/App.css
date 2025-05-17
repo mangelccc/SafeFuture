@@ -16,6 +16,12 @@ h2 {
   font-size: 2rem;
 }
 
-/* button {
-  cursor: pointer;
-} */
+.cookie-banner > div:last-child {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+button#rcc-decline-button, button#rcc-confirm-button {
+  margin-top: 0px !important;
+}
