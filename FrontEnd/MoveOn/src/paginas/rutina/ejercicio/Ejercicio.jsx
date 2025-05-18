@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -39,18 +40,12 @@ const Ejercicio = ({
     setRepeticiones(val);
     if (onChangeRepeticiones) onChangeRepeticiones(val);
   };
+   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log({
-      id_ejercicio,
-      nombre,
-      descripcion,
-      grupoMuscular,
-      imagen,
-      video,
-      series,
-      repeticiones
-    });
+    if (!showSeriesEdit) {
+      navigate(`/rutina/ejercicio/detalle/${id_ejercicio}`);
+    }
   };
 
   return (
