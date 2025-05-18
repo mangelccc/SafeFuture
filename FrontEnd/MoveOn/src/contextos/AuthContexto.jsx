@@ -157,7 +157,6 @@ const AuthContexto = ({ children }) => {
           setSesionIniciada(true);
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
           localStorage.setItem("sesionIniciada", "true");
-          console.log(data.usuario);
           setDatosSesion(datosSesionInicial);
           navegar("/");
         }
@@ -194,7 +193,6 @@ const AuthContexto = ({ children }) => {
       });
       if (response.ok) {
         Swal.fire("Actualizado", "El campo fue actualizado con éxito", "success");
-        // Aquí actualizas el estado del usuario con los nuevos valores
       }
     } catch (error) {
       Swal.fire("Error", "No se pudo actualizar el campo", "error");

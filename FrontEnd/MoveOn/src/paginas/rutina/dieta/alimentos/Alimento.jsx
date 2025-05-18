@@ -2,8 +2,6 @@ import React from 'react';
 
 const Alimento = ({ alimento, seleccionarAlimento, dietaId }) => {
 
-
-
   return (
     <li>
       <div className='border-1 border-black p-2 rounded-md dark:bg-white h-full flex flex-col'>
@@ -23,10 +21,20 @@ const Alimento = ({ alimento, seleccionarAlimento, dietaId }) => {
           <span className='font-bold'>Proteinas:</span><span>{alimento.proteinas}</span>
         </div>
         <button
-          className='bg-purple text-white rounded-md hover:bg-gold hover:text-black transition-all duration-200 block w-full mt-4 self-end p-1'
-          onClick={() => seleccionarAlimento(alimento, dietaId)}>
+          className="
+            relative overflow-hidden
+            bg-purple text-white rounded-md
+            hover:bg-gold hover:text-black
+            focus:outline-none focus:ring-2 focus:ring-gold
+            transition-all duration-200 transform
+            active:scale-95 active:shadow-inner
+            block w-full mt-4 self-end p-1
+          "
+          onClick={() => seleccionarAlimento(alimento, dietaId)}
+        >
           Seleccionar
         </button>
+
       </div>
     </li>
   )

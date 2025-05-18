@@ -131,18 +131,46 @@ const AlimentosContexto = ({ children }) => {
   }, []);
 
   const seleccionarAlimento = useCallback((alimento, idDiet) => {
-    setAlimentosSeleccionados(prev => {
-      const existe = prev.find(item => item.id_alimento === alimento.id_alimento);
-      if (existe) {
-        return prev.map(item =>
-          item.id_alimento === alimento.id_alimento
-            ? { ...item, cantidad: item.cantidad + 1 }
-            : item
-        );
-      }
-      return [...prev, { ...alimento, cantidad: 1, id_dieta: idDiet }];
+  setAlimentosSeleccionados(prev => {
+    const existe = prev.find(item => item.id_alimento === alimento.id_alimento);
+
+    if (existe) {
+      // Incrementamos cantidad existente
+      const nuevos = prev.map(item =>
+        item.id_alimento === alimento.id_alimento
+          ? { ...item, cantidad: item.cantidad + 1 }
+          : item
+      );
+
+      // Toast de confirmación
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: `Cantidad de "${alimento.nombre}" incrementada`,
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+      });
+
+      return nuevos;
+    }
+
+    const añadidos = [...prev, { ...alimento, cantidad: 1, id_dieta: idDiet }];
+
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      icon: 'success',
+      title: `"${alimento.nombre}" añadido`,
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
     });
-  }, []);
+
+    return añadidos;
+  });
+}, [setAlimentosSeleccionados]);
 
   const aumentarCantidad = useCallback((idAlimento) => {
     setAlimentosSeleccionados(prev =>

@@ -6,7 +6,6 @@ export default function useHistorialNoFumar(userId) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Función para (re)fetch del historial
   const fetchHistorial = useCallback(async () => {
     if (!userId) return;
     setLoading(true);
