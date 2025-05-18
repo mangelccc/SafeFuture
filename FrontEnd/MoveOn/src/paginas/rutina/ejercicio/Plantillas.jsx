@@ -16,6 +16,7 @@ const Plantillas = () => {
           <Entrenamiento
             key={ent.id_rutina}
             entrenamiento={ent}
+            esPlantilla={true}
           />
         ))
       ) : (

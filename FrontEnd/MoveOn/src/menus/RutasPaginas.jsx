@@ -37,6 +37,7 @@ import PoliticaCookies from "../paginas/informacion/PoliticaCookies.jsx";
 import PoliticaPrivacidad from "../paginas/informacion/PoliticaPrivacidad.jsx";
 import PreguntasFrecuentes from "../paginas/informacion/PreguntasFrecuentes.jsx";
 import SitiosRecomendados from "../paginas/informacion/SitiosRecomendados.jsx";
+import DetalleEjercicio from "../paginas/rutina/ejercicio/DetalleEjercicio.jsx";
 
 
 const RutasPaginas = () => {
@@ -71,6 +72,8 @@ const RutasPaginas = () => {
             <Route path='entrenamientos' element={<GestorEntrenamientos />} />
             <Route path='plantillas' element={<Plantillas />} />
             <Route path='entrenador-personal' element={<AgenteEntrenadorIA />} />
+            <Route path="/rutina/ejercicio/detalle/:id" element={<DetalleEjercicio />} />
+
             <Route path="ver-rutina/:id" element={<VistaRutina />} />
           </Route>
           <Route path='/usuario-informacion' element={<UsuarioInformacion />} />

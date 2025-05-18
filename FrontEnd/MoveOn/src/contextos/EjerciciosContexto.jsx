@@ -8,6 +8,7 @@ const EjerciciosContexto = ({ children }) => {
   // Variables iniciales
   const ejerciciosIniciales = [];
   const ejercicioInicial = {
+    id_ejercicio: '',
     nombre: '',
     descripcion: '',
     imagen_url: '',

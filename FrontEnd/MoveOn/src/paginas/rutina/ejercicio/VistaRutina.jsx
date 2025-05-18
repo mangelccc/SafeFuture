@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import useAppContext from '../../../hooks/useAppContext.jsx';
 import Ejercicio from './Ejercicio.jsx';
@@ -13,6 +14,7 @@ const VistaRutina = () => {
   useEffect(() => {
     fetchData(id,ejercicios);
   }, [id, ejercicios]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (cargando) {
@@ -59,6 +61,14 @@ const VistaRutina = () => {
           ))}
         </div>
       )}
+      <div className="p-6">
+      <button
+        onClick={() => navigate(-1)}
+        className="inline-block bg-black3 text-white text-xl font-bold px-6 py-3 rounded-xl transition ease-in-out duration-200 hover:bg-gold hover:text-black1 hover:-translate-y-1.5 active:translate-y-1 active:bg-gold"
+      >
+        Volver
+      </button>
+      </div>
       </div>
   );
 };
