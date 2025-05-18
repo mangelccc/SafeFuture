@@ -401,9 +401,6 @@ const AuthContexto = ({ children }) => {
     }
   };
 
-
-
-
   const muestraRegistroClick = (booleano) => {
     setPanelDerechoActivo(booleano);
     setDatosSesion(datosSesionInicial);

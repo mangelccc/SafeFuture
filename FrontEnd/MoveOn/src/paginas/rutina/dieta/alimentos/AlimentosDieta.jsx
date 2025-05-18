@@ -60,6 +60,8 @@ const AlimentosDieta = () => {
     grasas: compararConObjetivos(macrosAcumulados.grasas, macronutrientesObjetivos.grasas)
   };
 
+  
+
 
 
   // Cargamos alimentos de la dieta al montar/comparir id

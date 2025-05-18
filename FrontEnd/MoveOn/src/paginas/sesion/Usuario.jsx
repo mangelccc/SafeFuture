@@ -12,12 +12,14 @@ const Usuario = () => {
   const {
     panelDerechoActivo,
     olvidoContrasena,
-    sesionIniciada
+    sesionIniciada,
+    volverInicioSesionClick
   } = useContext(contextoAuth);
 
   const navegar = useNavigate()
 
   useEffect(()=>{
+    volverInicioSesionClick()
     sesionIniciada && navegar("/usuario-informacion")
   },[])
 
