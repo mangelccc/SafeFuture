@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import useAppContext from "../../../hooks/useAppContext.jsx";
 
 // Asegúrate de que apunte a tu Webhook manual
-const WEBHOOK_URL = 'http://localhost:5678/webhook/9cae8464-9088-483f-b1d8-cf2a17435931/chat';
+const WEBHOOK_URL = 'https://grmmyyrm.app.n8n.cloud/webhook/9cae8464-9088-483f-b1d8-cf2a17435931/chat';
 
 export default function N8NChat() {
   const { auth } = useAppContext();
   const { usuario } = auth;
   const [sessionId] = useState(() => usuario.id_usuario);
+
+  // Estado de mensajes con memoria
   const [messages, setMessages] = useState([
     { from: 'bot', text: 'Hola, soy tu asistente virtual para ayudarte a crear tus rutinas personalizadas.' }
   ]);
@@ -18,16 +20,26 @@ export default function N8NChat() {
     if (!input.trim()) return;
     const chatInput = input.trim();
 
-    setMessages(msgs => [...msgs, { from: 'user', text: chatInput }]);
+    // Construye el nuevo mensaje de usuario y la historia de usuario
+    const newUserMessage = { from: 'user', text: chatInput };
+    const newMessages = [...messages, newUserMessage];
+
+    // Actualiza la UI inmediatamente
+    setMessages(newMessages);
     setInput('');
     setSending(true);
+
+    // Extrae solo los textos de los mensajes enviados por el usuario
+    const userHistory = newMessages
+      .filter(m => m.from === 'user')
+      .map(m => m.text);
 
     const payload = {
       sessionId,
       action: 'sendMessage',
-      chatInput
+      chatInput,
+      history: userHistory // Aquí enviamos la memoria básica de mensajes anteriores
     };
-    
 
     try {
       const res = await fetch(WEBHOOK_URL, {
@@ -38,7 +50,8 @@ export default function N8NChat() {
       const data = await res.json();
       const replyText = data.output || '<sin output>';
       setMessages(msgs => [...msgs, { from: 'bot', text: replyText }]);
-    } catch {
+    } catch (err) {
+      console.error('Error al conectar con el agente:', err);
       setMessages(msgs => [...msgs, { from: 'bot', text: 'Error al conectar con el agente.' }]);
     } finally {
       setSending(false);
