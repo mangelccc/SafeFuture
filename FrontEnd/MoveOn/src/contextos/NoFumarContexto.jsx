@@ -69,17 +69,15 @@ export const NoFumarContexto = ({ children }) => {
 
         if (!confirmado.isConfirmed) return;
 
-
         try {
             const nowISO = getLocalISOString();
             const res = await fetch(`${API_URL}/no-fumar`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    id_usuario: userId,
-                    quit_date: nowISO,
-                    status: "activo",
-                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({ id_usuario: userId, quit_date: nowISO, status: "activo" }),
             });
 
             if (!res.ok) {

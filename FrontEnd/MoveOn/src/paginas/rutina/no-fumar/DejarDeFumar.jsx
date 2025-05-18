@@ -73,7 +73,7 @@ export default function DejarDeFumar() {
                         </div>
                     ) : (
                         <p className="text-lg">
-                            No tienes ningún intento activo. Pulsa en “Comienza Ahora” para fijar tu fecha.
+                            No tienes ningún intento activo. Pulsa en “Iniciar intento” para fijar tu fecha.
                         </p>
                     )}
                     <button
