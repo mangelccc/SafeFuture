@@ -11,17 +11,34 @@ class AlimentoSeeder extends Seeder
 {
     public function run()
     {
-        // ⚡ Desactivamos las claves foráneas
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        $driver = DB::getDriverName();
 
-        // ⚡ Truncamos la tabla
+        // Desactivar claves foráneas según driver
+        if ($driver === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        } elseif ($driver === 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = OFF;');
+        }
+
         Alimento::truncate();
 
-        // ⚡ Reactivamos las claves foráneas
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // Reactivar claves foráneas
+        if ($driver === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        } elseif ($driver === 'sqlite') {
+            DB::statement('PRAGMA foreign_keys = ON;');
+        }
 
-        // ⚡ Ahora podemos insertar datos normalmente
+        // Leemos el SQL
         $sql = File::get(database_path('sql/alimentos.sql'));
+
+        // Si es SQLite, reemplazamos NOW() por CURRENT_TIMESTAMP
+        if ($driver === 'sqlite') {
+            $search  = ['NOW()', 'CURRENT_TIMESTAMP()'];
+            $replace = ['CURRENT_TIMESTAMP', 'CURRENT_TIMESTAMP'];
+            $sql = str_replace($search, $replace, $sql);
+        }
+
         DB::unprepared($sql);
     }
 }

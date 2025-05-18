@@ -232,7 +232,7 @@ const AuthContexto = ({ children }) => {
     });
 
     if (confirmacion !== 'estoy seguro de eliminarla') {
-      Swal.fire('Cancelado', 'No se escribió la frase de confirmación correctamente, ¡vuelve pronto!', 'info');
+      Swal.fire('Cancelado', 'No se escribió la frase de confirmación', 'info');
       return;
     }
 
@@ -437,7 +437,6 @@ const AuthContexto = ({ children }) => {
     errorCampo,
     limpiarErrorCampo,
     guardarDatoParcialUsuario,
-
 
     formResetPasswd,
     errorCampoResetPasswd,
