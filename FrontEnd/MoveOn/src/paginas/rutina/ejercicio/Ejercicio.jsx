@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-
 const Ejercicio = ({
+  id_ejercicio,
   nombre,
   descripcion,
   grupoMuscular,
@@ -17,11 +17,9 @@ const Ejercicio = ({
   onChangeRepeticiones,
   onClick
 }) => {
-  // Local state for editable inputs
   const [series, setSeries] = useState(initialSeries ?? 3);
   const [repeticiones, setRepeticiones] = useState(initialRepeticiones ?? 10);
 
-  // Sync incoming props when they change
   useEffect(() => {
     if (initialSeries != null) setSeries(initialSeries);
   }, [initialSeries]);
@@ -30,7 +28,6 @@ const Ejercicio = ({
     if (initialRepeticiones != null) setRepeticiones(initialRepeticiones);
   }, [initialRepeticiones]);
 
-  // Handlers for edit mode
   const handleSeriesChange = e => {
     const val = parseInt(e.target.value, 10) || 0;
     setSeries(val);
@@ -43,13 +40,27 @@ const Ejercicio = ({
     if (onChangeRepeticiones) onChangeRepeticiones(val);
   };
 
+  const handleClick = () => {
+    console.log({
+      id_ejercicio,
+      nombre,
+      descripcion,
+      grupoMuscular,
+      imagen,
+      video,
+      series,
+      repeticiones
+    });
+  };
+
   return (
-    <div className={`ejercicio border-2 rounded-lg m-5 border-black dark:border-gold w-[300px] p-3 flex flex-col bg-white dark:bg-purple dark:text-gold transition-all duration-300 transform hover:scale-105 ${
-      showSeriesEdit ? "h-[360px]" : showSeries ? "h-[360px]" : "h-[300px]"
-    }`}>
-       
+    <div
+      onClick={handleClick}
+      className={`ejercicio border-2 rounded-lg m-5 border-black dark:border-gold w-[300px] p-3 flex flex-col bg-white dark:bg-purple dark:text-gold transition-all duration-300 transform hover:scale-105 ${
+        showSeriesEdit ? "h-[360px]" : showSeries ? "h-[360px]" : "h-[300px]"
+      }`}
+    >
       <p><strong>Nombre:</strong> {nombre}</p>
-      {/*<p><strong>Descripción:</strong> {descripcion}</p>*/}
       <p><strong>Grupo Muscular:</strong> {grupoMuscular}</p>
 
       <div className="flex justify-center mt-2">
@@ -72,11 +83,14 @@ const Ejercicio = ({
           {showSeriesEdit && (
             <div className="flex flex-row items-start justify-between">
               <div
-               className="flex-1 w-full h-full self-end cursor-pointer text-purple hover:text-red-800 dark:text-gold transition"
-               onClick={onClick}
+                className="flex-1 w-full h-full self-end cursor-pointer text-purple hover:text-red-800 dark:text-gold transition"
+                onClick={(e) => {
+                  e.stopPropagation(); // Previene el clic del contenedor
+                  if (onClick) onClick();
+                }}
               >
-               <FontAwesomeIcon icon={faTrash} size="2x" />
-             </div>
+                <FontAwesomeIcon icon={faTrash} size="2x" />
+              </div>
               <div className="flex-1">
                 <label className="block font-medium">Series</label>
                 <input
@@ -86,7 +100,7 @@ const Ejercicio = ({
                   className="w-10 rounded p-[1px] border border-gray-300 focus:ring-2 focus:ring-purple dark:focus:ring-gold transition text-center dark:text-black"
                 />
               </div>
-             <div className="flex-1">
+              <div className="flex-1">
                 <label className="block font-medium">Repeticiones</label>
                 <input
                   type="number"

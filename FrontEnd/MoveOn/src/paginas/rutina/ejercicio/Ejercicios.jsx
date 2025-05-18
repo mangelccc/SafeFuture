@@ -33,6 +33,7 @@ const Ejercicios = () => {
           ejerciciosPaginados.map((ejercicio) => (
             <Ejercicio
               key={ejercicio.id_ejercicio}
+              id_ejercicio={ejercicio.id_ejercicio}
               nombre={ejercicio.nombre}
               descripcion={ejercicio.descripcion}
               imagen={ejercicio.imagen_url}
