@@ -45,7 +45,7 @@ const Ejercicio = ({
 
   return (
     <div className={`ejercicio border-2 rounded-lg m-5 border-black dark:border-gold w-[300px] p-3 flex flex-col bg-white dark:bg-purple dark:text-gold transition-all duration-300 transform hover:scale-105 ${
-      showSeriesEdit ? "h-[350px]" : showSeries ? "h-[340px]" : "h-[300px]"
+      showSeriesEdit ? "h-[360px]" : showSeries ? "h-[360px]" : "h-[300px]"
     }`}>
        
       <p><strong>Nombre:</strong> {nombre}</p>

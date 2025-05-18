@@ -108,7 +108,7 @@ const validarFormularioEntrenamiento = () => {
               value={nombre}
               onChange={e => almacenarNombre(e)}
               className="hsm:w-full rounded bg-white dark:bg-black px-2 border-2
-                    border-black p-2 outline-none focus:border-purple transition duration-300"
+                    border-black p-2 outline-none focus:border-purple transition duration-300 dark:text-white"
             />
           </div>
 
@@ -124,7 +124,7 @@ const validarFormularioEntrenamiento = () => {
               value={descripcion}
               onChange={e => almacenarDescripcion(e)}
               className="w-full rounded bg-white dark:bg-black px-2 border-2
-                    border-black p-2 outline-none focus:border-purple transition duration-300"
+                    border-black p-2 outline-none focus:border-purple transition duration-300 dark:text-white"
             />
           </div>
         </div>

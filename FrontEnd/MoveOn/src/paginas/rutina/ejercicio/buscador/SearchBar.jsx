@@ -25,7 +25,7 @@ export const SearchBar = ({ setResults }) => {
       <FaSearch className="text-purple dark:text-gold" />
       <input
         type="text"
-        placeholder="Type to search..."
+        placeholder="Busca un ejercicio..."
         value={input}
         onChange={(e) => handleChange(e.target.value)}
         className="bg-transparent border-none h-full w-full p-2 text-xl dark:text-white focus:outline-none"
