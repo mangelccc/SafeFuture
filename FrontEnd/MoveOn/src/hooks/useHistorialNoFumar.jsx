@@ -1,4 +1,3 @@
-// src/hooks/useHistorialNoFumar.js
 import { useState, useEffect, useCallback } from "react";
 import { API_URL } from "../bibliotecas/config.js";
 
