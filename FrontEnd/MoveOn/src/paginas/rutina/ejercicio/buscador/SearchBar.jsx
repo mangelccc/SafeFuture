@@ -2,21 +2,18 @@ import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import useAppContext from "../../../../hooks/useAppContext.jsx";
 
-import "./SearchBar.css";
-
 export const SearchBar = ({ setResults }) => {
   const { ejerciciosContex } = useAppContext();
-  const { ejercicios,readEjercicios } = ejerciciosContex;
+  const { ejercicios, readEjercicios } = ejerciciosContex;
   const [input, setInput] = useState("");
+
   useEffect(() => {
     readEjercicios();
   }, []);
 
-  // 2. Filtrar localmente cuando cambie el input
   const handleChange = (value) => {
     setInput(value);
-
-    const filtered = ejercicios.filter(ej =>
+    const filtered = ejercicios.filter((ej) =>
       ej.nombre?.toLowerCase().includes(value.toLowerCase())
     );
     setResults(filtered);
@@ -24,12 +21,14 @@ export const SearchBar = ({ setResults }) => {
   };
 
   return (
-    <div className="input-wrapper">
-      <FaSearch id="search-icon" />
+    <div className="w-full h-10 rounded-lg px-4 shadow-md bg-white dark:bg-black3 flex items-center">
+      <FaSearch className="text-purple dark:text-gold" />
       <input
+        type="text"
         placeholder="Type to search..."
         value={input}
-        onChange={e => handleChange(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
+        className="bg-transparent border-none h-full w-full p-2 text-xl dark:text-white focus:outline-none"
       />
     </div>
   );

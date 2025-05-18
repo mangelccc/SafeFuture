@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ListaContacto from './listas/listaContacto.jsx';
 import ListaInformacion from './listas/ListaInformacion.jsx';
 import ListaRedes from './listas/ListaRedes.jsx';

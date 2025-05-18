@@ -18,6 +18,7 @@ import Calendario from "../paginas/calendario/Calendario.jsx";
 import DejarDeFumar from "../paginas/rutina/no-fumar/DejarDeFumar.jsx";
 import Error from "../paginas/error/Error.jsx";
 
+
 /* Para verificar que la sesión esta iniciada */
 import RouterAuth from "./RouterAuth.jsx";
 

@@ -422,7 +422,6 @@ const AuthContexto = ({ children }) => {
     datosSesion,
     usuario,
     sesionIniciada,
-    recuperarContrasena,
     olvidoContrasena,
     editarDatoUsuario,
     volverInicioSesionClick,
