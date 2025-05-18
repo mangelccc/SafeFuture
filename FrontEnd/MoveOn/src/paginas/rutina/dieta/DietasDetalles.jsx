@@ -7,8 +7,6 @@ const DietasDetalles = () => {
   const { alimentos } = useAppContext();
   const { obtenerAlimentosDieta, alimentosSeleccionados } = alimentos;
 
-  console.log(alimentosSeleccionados)
-
   /* Cuando se monte el componente, obtengo obtengo los datos de la dieta con dicho id.  */
   useEffect(() => {
     if (id) {
