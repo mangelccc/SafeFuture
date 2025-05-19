@@ -19,11 +19,11 @@ const DietasGuardar = () => {
     },[])
 
     return (
-        <section className="flex flex-col items-center justify-center gap-5 p-5 bg-[#1e1e1e] border-2 border-purple rounded-lg shadow-lg max-w-xl mx-auto my-12">
+        <section className="flex flex-col items-center justify-center gap-5 py-5 px-10 hsm:px-4 bg-white3 dark:bg-black1 border-y-2 border-purple sm:rounded-lg shadow-lg max-w-xl mx-auto my-12">
     <div>
-        <h2 className="text-gold text-3xl text-center px-4">Crear una nueva dieta</h2>
-        <form id="crear-lista" className="flex flex-col gap-4 w-full pt-4">
-            <label htmlFor="nombre" className="text-lg text-[#d4d4d4] font-bold text-center">
+        <h2 className="dark:text-gold text-3xl text-center px-4">Crear una nueva dieta</h2>
+        <form id="crear-lista" className="flex flex-col gap-5 w-full pt-4">
+            <label htmlFor="nombre" className="text-lg dark:text-white font-bold text-center">
                 Elige el nombre de tu dieta:
             </label>
             <input
@@ -35,7 +35,7 @@ const DietasGuardar = () => {
                     actualizarFormDieta(e);
                 }}
             />
-            <label htmlFor="descripcion" className="text-lg text-[#d4d4d4] font-bold text-center">
+            <label htmlFor="descripcion" className="text-lg dark:text-white font-bold text-center">
                 Descripción de la dieta:
             </label>
             <input

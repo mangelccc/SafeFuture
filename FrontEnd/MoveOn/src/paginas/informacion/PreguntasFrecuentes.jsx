@@ -1,48 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { faqs } from "../../bibliotecas/biblioteca.js"
 
 const PreguntasFrecuentes = () => {
   const [openIndex, setOpenIndex] = useState(null);
-  const faqs = [
-    {
-      question: '¿Cómo puedo registrarme?',
-      answer: 'Para registrarte, haz clic en el icono del usuario y después dale al botón de "Registrate" en el panel de la derecha e introduce tus datos.',
-      link: '/usuario',
-      textLink: 'Registrate aquí',
-    },
-    {
-      question: '¿Es gratuito el uso de la plataforma?',
-      answer: 'Sí, el acceso básico es gratuito. Ofreceremos planes premium con funciones avanzadas más tarde.',
-    },
-    {
-      question: '¿Cómo puedo contactar con soporte?',
-      answer: `Puedes escribirnos a moveon@gmail.com o llamar al teléfono +34 697 631 285.`,
-      link: 'mailto:moveon@gmail.com',
-      textLink: 'moveon@gmail.com',
-    },
-    {
-      question: '¿Cómo puedo recuperar mi contraseña?',
-      answer: 'Puedes restablecer tu contraseña desde la pantalla de inicio de sesión haciendo clic en “¿Olvidaste tu contraseña?”. Te enviaremos un enlace al correo con instrucciones.',
-      link: '/recuperar-passwd',
-      textLink: 'Recupérala aquí',
-    },
-    {
-      question: '¿Puedo cambiar mi correo electrónico una vez registrado?',
-      answer: 'Sí, puedes cambiar tu correo electrónico desde tu perfil en la sección correo electrónico dándole al botón de editar.',
-      link: '/usuario-informacion',
-      textLink: 'Ir a mi perfil',
-    },
-    {
-      question: '¿Cómo elimino mi cuenta?',
-      answer: 'Puedes solicitar la eliminación de tu cuenta desde la configuración del perfil. Recuerda que esta acción es irreversible.',
-      link: '/usuario-informacion',
-      textLink: 'Eliminar cuenta',
-    },
-    {
-      question: '¿Puedo usar la aplicación desde el móvil?',
-      answer: 'Sí, la plataforma está completamente adaptada para dispositivos móviles. Puedes acceder desde cualquier navegador móvil.',
-    }
-  ];
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);

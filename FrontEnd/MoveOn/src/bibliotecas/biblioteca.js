@@ -432,6 +432,7 @@ const tips = [
   'Utiliza técnicas de distracción (ejercicio, hobbies).',
   'Considera reemplazos de nicotina o asesoramiento profesional.',
 ];
+
 // Valida un campo individual
 const validarDatoRutina = ({ name, value }) => {
   const errores = [];
@@ -446,8 +447,88 @@ const validarDatoRutina = ({ name, value }) => {
   return errores;
 };
 
+const faqs = [
+    {
+      question: '¿Cómo puedo registrarme?',
+      answer: 'Para registrarte, haz clic en el icono del usuario y después dale al botón de "Registrate" en el panel de la derecha e introduce tus datos.',
+      link: '/usuario',
+      textLink: 'Registrate aquí',
+    },
+    {
+      question: '¿Es gratuito el uso de la plataforma?',
+      answer: 'Sí, el acceso básico es gratuito. Ofreceremos planes premium con funciones avanzadas más tarde.',
+    },
+    {
+      question: '¿Cómo puedo contactar con soporte?',
+      answer: `Puedes escribirnos a moveon@gmail.com o llamar al teléfono +34 697 631 285.`,
+      link: 'mailto:moveon@gmail.com',
+      textLink: 'moveon@gmail.com',
+    },
+    {
+      question: '¿Cómo puedo recuperar mi contraseña?',
+      answer: 'Puedes restablecer tu contraseña desde la pantalla de inicio de sesión haciendo clic en “¿Olvidaste tu contraseña?”. Te enviaremos un enlace al correo con instrucciones.',
+      link: '/recuperar-passwd',
+      textLink: 'Recupérala aquí',
+    },
+    {
+      question: '¿Puedo cambiar mi correo electrónico una vez registrado?',
+      answer: 'Sí, puedes cambiar tu correo electrónico desde tu perfil en la sección correo electrónico dándole al botón de editar.',
+      link: '/usuario-informacion',
+      textLink: 'Ir a mi perfil',
+    },
+    {
+      question: '¿Cómo elimino mi cuenta?',
+      answer: 'Puedes solicitar la eliminación de tu cuenta desde la configuración del perfil. Recuerda que esta acción es irreversible.',
+      link: '/usuario-informacion',
+      textLink: 'Eliminar cuenta',
+    },
+    {
+      question: '¿Puedo usar la aplicación desde el móvil?',
+      answer: 'Sí, la plataforma está completamente adaptada para dispositivos móviles. Puedes acceder desde cualquier navegador móvil.',
+    }
+  ];
+
+// Ejemplo de datos. En producción, podríamos cargar esto desde una API.
+const recommendedSites = [
+  {
+    category: 'Nutrición',
+    sites: [
+      { name: 'MyFitnessPal', url: 'https://www.myfitnesspal.com', description: 'Calcula calorías y lleva tu diario nutricional.' },
+      { name: 'Yuka', url: 'https://yuka.io', description: 'Analiza los productos alimentarios y cosméticos.' }
+    ]
+  },
+  {
+    category: 'Ejercicio',
+    sites: [
+      { name: 'Nike Training Club', url: 'https://www.nike.com/ntc-app', description: 'Rutinas guiadas por entrenadores.' },
+      { name: 'Strava', url: 'https://www.strava.com', description: 'Registra y comparte tus actividades deportivas.' }
+    ]
+  },
+  {
+    category: 'Salud Mental',
+    sites: [
+      { name: 'Headspace', url: 'https://www.headspace.com', description: 'Meditaciones y ejercicios de mindfulness.' },
+      { name: 'Calm', url: 'https://www.calm.com', description: 'Historias para dormir y música relajante.' }
+    ]
+  },
+  {
+    category: 'Dejar de Fumar',
+    sites: [
+      { name: 'Smoke Free', url: 'https://smokefreeapp.com', description: 'App para dejar de fumar con seguimiento de progresos.' },
+      { name: 'QuitNow!', url: 'https://quitnow.app', description: 'Comunidad y estadísticas para mantener la motivación.' }
+    ]
+  },
+  {
+    category: 'Viajes y Alojamiento',
+    sites: [
+      { name: 'Booking.com', url: 'https://www.booking.com', description: 'Reserva hoteles y alojamientos en todo el mundo.' },
+      { name: 'Skyscanner', url: 'https://www.skyscanner.es', description: 'Busca vuelos baratos y compara precios.' }
+    ]
+  }
+];
+
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
   validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos, validarCampoUsuario,
-  camposUsuario, benefits, tips, calcularDuracion,validarDatoRutina
+  camposUsuario, benefits, tips, calcularDuracion,validarDatoRutina, faqs, recommendedSites
 };
