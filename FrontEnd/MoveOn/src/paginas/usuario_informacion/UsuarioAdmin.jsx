@@ -48,7 +48,7 @@ const UsuarioAdmin = () => {
                         <div
                             key={usuario.id_usuario}
                             onClick={() => setUsuarioSeleccionado(usuario)}
-                            className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded">
+                            className="cursor-pointer hover:bg-gold dark:hover:bg-purpleOp p-2 rounded">
                             <UsuarioAdminUsers datos={usuario} />
                         </div>
                     ))}

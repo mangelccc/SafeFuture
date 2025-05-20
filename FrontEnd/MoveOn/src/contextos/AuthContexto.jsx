@@ -154,7 +154,7 @@ const AuthContexto = ({ children }) => {
             showConfirmButton: falseBool,
             timer: 1500
           })
-          console.log(data.usuario);
+
           setUsuario(data.usuario);
           setSesionIniciada(true);
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
