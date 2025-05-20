@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 const UsuarioAdmin = () => {
     const { auth } = useAppContext();
-    const { eliminarCuenta } = auth;
+    const { eliminarCuenta, usuario } = auth;
 
     const [listaUsuarios, setListaUsuarios] = useState([]);
     const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
@@ -69,15 +69,17 @@ const UsuarioAdmin = () => {
             <h2 className="text-2xl font-bold mb-4">Lista de usuarios registrados</h2>
 
             <div className="space-y-2">
-                {listaUsuarios.map((usuario) => (
-                    <div
-                        key={usuario.id_usuario}
-                        onClick={() => setUsuarioSeleccionado(usuario)}
-                        className="cursor-pointer hover:bg-gold dark:hover:bg-purpleOp p-2 rounded"
-                    >
-                        <UsuarioAdminUsers datos={usuario} />
-                    </div>
-                ))}
+                {listaUsuarios
+                    .filter(u => u.id_usuario !== usuario?.id_usuario)
+                    .map((usuario) => (
+                        <div
+                            key={usuario.id_usuario}
+                            onClick={() => setUsuarioSeleccionado(usuario)}
+                            className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded"
+                        >
+                            <UsuarioAdminUsers datos={usuario} />
+                        </div>
+                    ))}
             </div>
 
             {usuarioSeleccionado && (

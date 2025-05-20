@@ -316,6 +316,12 @@ const AuthContexto = ({ children }) => {
     guardarDatoParcialUsuario();
   };
 
+  const muestraRegistroClick = (booleano) => {
+    setPanelDerechoActivo(booleano);
+    setDatosSesion(datosSesionInicial);
+    setErrorUsuario(usuarioInicial);
+  };
+
 
   const limpiarErrorCampo = () => {
     setErrorCampo(cadenaVacia);
@@ -403,11 +409,7 @@ const AuthContexto = ({ children }) => {
     }
   };
 
-  const muestraRegistroClick = (booleano) => {
-    setPanelDerechoActivo(booleano);
-    setDatosSesion(datosSesionInicial);
-    setErrorUsuario(usuarioInicial);
-  };
+  
 
   const datosContexto = {
     errorUsuario,
