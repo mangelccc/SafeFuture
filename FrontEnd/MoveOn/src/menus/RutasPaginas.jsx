@@ -26,7 +26,7 @@ import RouterAuth from "./RouterAuth.jsx";
 import Usuario from "../paginas/sesion/Usuario.jsx";
 import UsuarioInformacion from "../paginas/usuario_informacion/UsuarioInformacion.jsx";
 import UsuarioCheckEmail from "../paginas/usuario_informacion/UsuarioCheckEmail.jsx";
-
+import useAppContext from '../hooks/useAppContext.jsx';
 
 /* Para dietas */
 import Dietas from "../paginas/rutina/dieta/DietasGestion.jsx"
@@ -38,9 +38,14 @@ import PoliticaPrivacidad from "../paginas/informacion/PoliticaPrivacidad.jsx";
 import PreguntasFrecuentes from "../paginas/informacion/PreguntasFrecuentes.jsx";
 import SitiosRecomendados from "../paginas/informacion/SitiosRecomendados.jsx";
 import DetalleEjercicio from "../paginas/rutina/ejercicio/DetalleEjercicio.jsx";
+import DietasAdmin from "../paginas/rutina/dieta/DietasAdmin.jsx";
+import UsuarioAdmin from "../paginas/usuario_informacion/UsuarioAdmin.jsx";
 
 
 const RutasPaginas = () => {
+    const { auth } = useAppContext();
+    const { usuario } = auth;
+
   return (
     <>
       <Routes>
@@ -61,6 +66,12 @@ const RutasPaginas = () => {
           <Route path="/rutina/dietas/:id" element={<AlimentosDieta />} />
           <Route path="/rutina/dietas/:id/detalles" element={<DietasDetalles />} />
           <Route path="/rutina/dietas-crear" element={<DietasCrear />} />
+          {usuario?.rol === 'Administrador' && 
+          <>
+            <Route path="/rutina/dietas/admin" element={<DietasAdmin />} />
+            <Route path="/usuario-informacion/admin" element={<UsuarioAdmin />} />
+          </>
+          }
           <Route path="/rutina/calendario" element={<Calendario />} />
           <Route path="/rutina/no-fumar" element={<DejarDeFumar />} />
 

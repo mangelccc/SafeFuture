@@ -2,15 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import { contextoAuth } from "../../contextos/AuthContexto.jsx";
 import UsuarioDato from './UsuarioDato.jsx';
 import { camposUsuario } from '../../bibliotecas/biblioteca.js';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const UsuarioDatos = ({ usuario }) => {
-    const { cambiarDato, guardarDato, cancelarDato, campoEditable, errorCampo, limpiarErrorCampo, eliminarCuenta } = useContext(contextoAuth);
+    const { cambiarDato, guardarDato, cancelarDato, campoEditable, errorCampo, limpiarErrorCampo, eliminarCuenta, cerrarSesion } = useContext(contextoAuth);
 
     useEffect(() => {
         cancelarDato();
     }, []);
-
 
     if (errorCampo) {
         const Toast = Swal.mixin({
@@ -48,16 +48,29 @@ const UsuarioDatos = ({ usuario }) => {
 
                 />
             ))}
-            <div className="flex mx-8 mb-4 hsm:mb-8">
+            <div className="flex justify-between hsm:flex-col mx-8 mb-4 hsm:mb-8">
                 <button
                     type="button"
                     className="bg-red-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hover:opacity-60 transition duration-300 hsm:w-full"
-                    onClick={eliminarCuenta}
+                    onClick={async () => {
+                        const exito = await eliminarCuenta(usuario?.id_usuario);
+                        if (exito) cerrarSesion();
+                    }}
                 >
                     Eliminar cuenta
                 </button>
+                {usuario?.rol === "Administrador" &&
+                    <Link to="/usuario-informacion/admin">
+                        <button
+                            type="button"
+                            className="bg-gold font-bold py-2 px-4 rounded-lg mt-4 hover:opacity-60 transition duration-300 hsm:w-full"
+                        >
+                            Gestionar usuarios
+                        </button>
+                    </Link>
+                }
             </div>
-            
+
         </>
     );
 };

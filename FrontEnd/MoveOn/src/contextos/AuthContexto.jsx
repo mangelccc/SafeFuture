@@ -152,7 +152,7 @@ const AuthContexto = ({ children }) => {
             showConfirmButton: falseBool,
             timer: 1500
           })
-
+          console.log(data.usuario);
           setUsuario(data.usuario);
           setSesionIniciada(true);
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
@@ -212,41 +212,43 @@ const AuthContexto = ({ children }) => {
 
   };
 
-    const eliminarCuenta = async () => {
-      const html = `
-      <div className="text-center">
-        <p>Esta acción no se puede revertir.</p><br>
-        <p>Escribe: <u>estoy seguro de eliminarla</u></p>
-        </div>`;
+  const eliminarCuenta = async (idUsuario) => {
+    const html = `
+  <div class="text-center">
+    <p>Esta acción no se puede revertir.</p><br>
+    <p>Si estas seguro escribe: <u>Eliminar cuenta</u></p>
+  </div>`;
+
     const { value: confirmacion } = await Swal.fire({
       title: '¿Estás seguro?',
       html,
       input: 'text',
-      inputPlaceholder: 'estoy seguro de eliminarla',
       showCancelButton: true,
       confirmButtonText: 'Eliminar',
       cancelButtonText: 'Cancelar',
       confirmButtonColor: '#d33',
     });
 
-    if (confirmacion !== 'estoy seguro de eliminarla') {
+    if (confirmacion !== 'Eliminar cuenta') {
       Swal.fire('Cancelado', 'No se escribió la frase de confirmación', 'info');
-      return;
+      return false;
     }
 
     try {
-      const response = await fetch(`${API_URL}/usuarios/${usuario.id_usuario}`, {
+      const response = await fetch(`${API_URL}/usuarios/${idUsuario}`, {
         method: "DELETE"
       });
 
       if (response.ok) {
-        Swal.fire('Cuenta eliminada', 'Tu cuenta ha sido eliminada correctamente.', 'success');
-        cerrarSesion();
+        Swal.fire('Cuenta eliminada', 'La cuenta ha sido eliminada correctamente.', 'success');
+        return true;
       } else {
         Swal.fire('Error', 'No se pudo eliminar la cuenta.', 'error');
+        return false;
       }
     } catch (error) {
       Swal.fire('Error', 'Error de red al intentar eliminar la cuenta.', 'error');
+      return false;
     }
   };
 

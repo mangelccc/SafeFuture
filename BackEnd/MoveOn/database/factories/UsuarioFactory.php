@@ -15,7 +15,7 @@ class UsuarioFactory extends Factory
             'id_usuario' => $this->faker->uuid(),
             'nombre'     => $this->faker->name,
             'correo'     => $this->faker->unique()->safeEmail,
-            'contrasena' => bcrypt('password'), // Contraseña fija para pruebas
+            'contrasena' => bcrypt('Dedede123'), // Contraseña fija para pruebas
             'edad'       => $this->faker->numberBetween(18, 80),
             'sexo'       => $this->faker->randomElement(['hombre', 'mujer']),
             'rol'        => $this->faker->randomElement(['Usuario', 'Moderador', 'Administrador']),
