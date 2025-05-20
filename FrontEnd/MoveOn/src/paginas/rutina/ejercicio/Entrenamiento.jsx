@@ -45,7 +45,7 @@ const Entrenamiento = ({ entrenamiento, deleteEntrenamiento, esPlantilla = false
               icon={faPenToSquare}
               size="2x"
               className="cursor-pointer"
-              onClick={() => {/* futura edición */}}
+              onClick={() => navigate(`/rutina/ejercicio/editar-rutina/${entrenamiento.id_rutina}`)}
             />
             <FontAwesomeIcon
               icon={faAngleRight}

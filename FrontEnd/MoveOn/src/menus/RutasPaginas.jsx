@@ -40,6 +40,7 @@ import SitiosRecomendados from "../paginas/informacion/SitiosRecomendados.jsx";
 import DetalleEjercicio from "../paginas/rutina/ejercicio/DetalleEjercicio.jsx";
 import DietasAdmin from "../paginas/rutina/dieta/DietasAdmin.jsx";
 import UsuarioAdmin from "../paginas/usuario_informacion/UsuarioAdmin.jsx";
+import EditarRutina from "../paginas/rutina/ejercicio/EditarRutina.jsx";
 
 
 const RutasPaginas = () => {
@@ -86,6 +87,7 @@ const RutasPaginas = () => {
             <Route path="/rutina/ejercicio/detalle/:id" element={<DetalleEjercicio />} />
 
             <Route path="ver-rutina/:id" element={<VistaRutina />} />
+            <Route path="editar-rutina/:id" element={<EditarRutina />} />
           </Route>
           <Route path='/usuario-informacion' element={<UsuarioInformacion />} />
         </Route>
