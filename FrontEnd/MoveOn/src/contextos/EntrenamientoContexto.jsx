@@ -213,14 +213,44 @@ const EntrenamientoContexto = ({ children }) => {
       
     }
   }
-  // Selección de ejercicios sin duplicados
-  const seleccionEjercicios = (ejercicio) => {
-    setEjerciciosSeleccionados(prev =>
-      prev.some(e => e.id_ejercicio === ejercicio.id_ejercicio)
-        ? prev
-        : [...prev, { ...ejercicio, num_series: ejercicio.num_series ?? 3, num_repeticiones: ejercicio.num_repeticiones ?? 10 }]
-    )
-  }
+
+// ...
+
+const seleccionEjercicios = (ejercicio) => {
+  setEjerciciosSeleccionados(prev => {
+    if (prev.some(e => e.id_ejercicio === ejercicio.id_ejercicio)) {
+      // Ya existe: toast de error
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'error',
+        title: `No puedes añadir "${ejercicio.nombre}", ya está seleccionado.`,
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+      });
+      return prev;
+    } else {
+      // Nuevo: lo añado y muestro éxito
+      const nuevo = {
+        ...ejercicio,
+        num_series: ejercicio.num_series ?? 3,
+        num_repeticiones: ejercicio.num_repeticiones ?? 12
+      };
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: `Ejercicio "${ejercicio.nombre}" añadido`,
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+      });
+      return [...prev, nuevo];
+    }
+  });
+}
+
   // Función para actualizar series/repeticiones en estado
   const actualizarSeriesRepeticionesEstado = (id, field, value) => {
     setEjerciciosSeleccionados(prev =>
