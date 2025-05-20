@@ -35,17 +35,19 @@ const AuthContexto = ({ children }) => {
   const [formResetPasswd, setFormResetPasswd] = useState(datosResetPasswdInicial);
   const [olvidoContrasena, setOlvidoContrasena] = useState(falseBool);
   const [idUsuarioTemp, setIdUsuarioTemp] = useState(null);
-  const [emailValido, setEmailValido] = useState(false);
+  const [emailValido, setEmailValido] = useState(falseBool);
   const [errorCampoResetPasswd, SetErrorCampoResetPasswd] = useState(cadenaVacia);
   const [panelDerechoActivo, setPanelDerechoActivo] = useState(falseBool);
   const [cargando, setCargando] = useState(falseBool);
+  const [listaUsuarios, setListaUsuarios] = useState([]);
+  const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
   /* Hecho para que si se actualiza accidentalmente la página se recuperé la sesión evitando redirecciones innecesarias. */
   const [sesionIniciada, setSesionIniciada] = useState(() => {
     return localStorage.getItem("sesionIniciada") === "true";
   });
   const [usuario, setUsuario] = useState(() => {
-    const u = localStorage.getItem("usuario");
-    return u ? JSON.parse(u) : {};
+    const usuario = localStorage.getItem("usuario");
+    return usuario ? JSON.parse(usuario) : {};
   });
 
   const navegar = useNavigate();
@@ -409,7 +411,51 @@ const AuthContexto = ({ children }) => {
     }
   };
 
-  
+  // Obtener todos los usuarios
+const obtenerUsuarios = async () => {
+  try {
+    const res = await fetch(`${API_URL}/usuarios`);
+    const data = await res.json();
+    setListaUsuarios(data.usuarios);
+  } catch (err) {
+    console.error("Error al obtener los usuarios:", err);
+  }
+};
+
+// Cambiar rol de un usuario
+const cambiarRolUsuario = async (idUsuario, nuevoRol) => {
+  try {
+    const response = await fetch(`${API_URL}/usuarios/${idUsuario}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ rol: nuevoRol }),
+    });
+
+    if (response.ok) {
+      const actualizado = listaUsuarios.find(usuario => usuario.id_usuario === idUsuario);
+      if (actualizado) {
+        Swal.fire('Éxito', `El rol de ${actualizado.nombre} ha sido actualizado.`, 'success');
+      }
+
+      // Actualizar lista local
+      setListaUsuarios(prev =>
+        prev.map(usuario =>
+          usuario.id_usuario === idUsuario ? { ...usuario, rol: nuevoRol } : usuario
+        )
+      );
+
+      if (usuarioSeleccionado?.id_usuario === idUsuario) {
+        setUsuarioSeleccionado(prev => ({ ...prev, rol: nuevoRol }));
+      }
+
+    } else {
+      Swal.fire('Error', 'No se pudo actualizar el rol.', 'error');
+    }
+  } catch (err) {
+    Swal.fire('Error', 'Error de red al actualizar el rol.', 'error');
+  }
+};
+
 
   const datosContexto = {
     errorUsuario,
@@ -443,7 +489,14 @@ const AuthContexto = ({ children }) => {
     actualizarFormResetPasswd,
     recuperarContrasena,
     guardarCambioDePasswd,
-    reiniciarResetPasswd
+    reiniciarResetPasswd,
+
+    listaUsuarios,
+    setListaUsuarios,
+    usuarioSeleccionado,
+    setUsuarioSeleccionado,
+    obtenerUsuarios,
+    cambiarRolUsuario,
   };
 
   return (
