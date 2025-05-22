@@ -14,25 +14,11 @@ class Traslado extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = [
-        'id_usuario',
-        'cod_ciudad_origen',
-        'cod_ciudad_destino',
-        'fecha_solicitud'
+        'uuid',
+        'aeropuerto_salida',
+        'aeropuerto_llegada',
+        'fecha_salida',
+        'estado',
+        'codigo'
     ];
-
-    // Relaciones
-    public function usuario()
-    {
-        return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
-    }
-
-    public function ciudadOrigen()
-    {
-        return $this->belongsTo(Ciudad::class, 'cod_ciudad_origen', 'cod_ciudad');
-    }
-
-    public function ciudadDestino()
-    {
-        return $this->belongsTo(Ciudad::class, 'cod_ciudad_destino', 'cod_ciudad');
-    }
 }

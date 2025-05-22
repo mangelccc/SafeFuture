@@ -12,7 +12,7 @@ class EjercicioSeeder extends Seeder
     public function run()
     {
         // Clave de API hardcodeada (no usa .env)
-        $apiKey = '297fec09b1msh94028e65c4e9cfbp12c1b0jsn1db340470ca0';
+       /* $apiKey = '297fec09b1msh94028e65c4e9cfbp12c1b0jsn1db340470ca0';
 
         // Configuración de la API externa
         $url = 'https://exercisedb.p.rapidapi.com/exercises?limit=1300&offset=0';
@@ -54,6 +54,6 @@ class EjercicioSeeder extends Seeder
                 $response->status(),
                 substr($response->body(), 0, 200)
             ));
-        }
+        }*/
     }
 }

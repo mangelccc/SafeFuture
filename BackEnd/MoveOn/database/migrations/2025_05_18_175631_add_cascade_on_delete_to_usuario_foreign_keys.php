@@ -28,14 +28,6 @@ class AddCascadeOnDeleteToUsuarioForeignKeys extends Migration
                   ->onDelete('cascade');
         });
 
-        // Tabla traslado
-        Schema::table('traslado', function (Blueprint $table) {
-            $table->dropForeign(['id_usuario']);
-            $table->foreign('id_usuario')
-                  ->references('id_usuario')
-                  ->on('usuario')
-                  ->onDelete('cascade');
-        });
 
         // Tabla intentos no fumar
         Schema::table('no_fumar', function (Blueprint $table) {
