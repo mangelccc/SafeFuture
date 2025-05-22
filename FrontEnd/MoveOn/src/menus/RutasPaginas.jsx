@@ -64,6 +64,7 @@ const RutasPaginas = () => {
 
         <Route path='/servicios' element={<Servicios />} />
         <Route path='/servicios/vuelos' element={<Vuelos />} />
+        <Route path='/servicios/mapa' element={<MapaMundi />} />
 
 
         {/* Lo que esté aqui, se necesitará iniciar sesión. */}
