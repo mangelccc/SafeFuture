@@ -42,6 +42,9 @@ import DietasAdmin from "../paginas/rutina/dieta/DietasAdmin.jsx";
 import UsuarioAdmin from "../paginas/usuario_informacion/UsuarioAdmin.jsx";
 import EditarRutina from "../paginas/rutina/ejercicio/EditarRutina.jsx";
 
+import Vuelos from "../paginas/servicios/vuelos/vuelos.jsx";
+import MapaMundi from "../paginas/servicios/mapa/MapaMundi.jsx";
+
 
 const RutasPaginas = () => {
     const { auth } = useAppContext();
@@ -53,11 +56,14 @@ const RutasPaginas = () => {
         <Route path='/' element={<Inicio />} />
         <Route path='/descubre' element={<DescubreMas />} />
         <Route path='/que-somos' element={<QueSomos />} />
-        <Route path='/servicios' element={<Servicios />} />
         <Route path='/rutina' element={<Rutina />} />
         <Route path='/contacto' element={<Contactanos />} />
         <Route path='/recuperar-passwd' element={<UsuarioCheckEmail />} />
         <Route path='/usuario' element={<Usuario />} />
+
+
+        <Route path='/servicios' element={<Servicios />} />
+        <Route path='/servicios/vuelos' element={<Vuelos />} />
 
 
         {/* Lo que esté aqui, se necesitará iniciar sesión. */}
