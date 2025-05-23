@@ -15,6 +15,7 @@ use App\Http\Controllers\UsuarioDietaController;
 use App\Http\Controllers\RutinaEjercicioController;
 use App\Http\Controllers\AlimentoDietaController;
 use App\Http\Controllers\NoFumarController;
+use App\Http\Controllers\CoordenadaController;
 
 // Rutas para Usuarios
 Route::get('usuarios/email-exists', [UsuarioController::class, 'emailExists']);
@@ -131,4 +132,5 @@ Route::prefix('alimento-dieta')->group(function () {
 Route::post('/usuario/{id_usuario}/dieta', [UsuarioDietaController::class, 'createDieta']);
 Route::get('/usuario/{id_usuario}/dietas', [UsuarioController::class, 'getDietasPorUsuario']);
 
+Route::apiResource('/coordenadas', CoordenadaController::class);
 
