@@ -132,5 +132,11 @@ Route::prefix('alimento-dieta')->group(function () {
 Route::post('/usuario/{id_usuario}/dieta', [UsuarioDietaController::class, 'createDieta']);
 Route::get('/usuario/{id_usuario}/dietas', [UsuarioController::class, 'getDietasPorUsuario']);
 
-Route::apiResource('/coordenadas', CoordenadaController::class);
+// Rutas para Coordenadas
+Route::get   ('/coordenadas',          [CoordenadaController::class, 'index']);
+Route::get   ('/coordenadas/{id}',     [CoordenadaController::class, 'show']);
+Route::post  ('/coordenadas',          [CoordenadaController::class, 'store']);
+Route::put   ('/coordenadas/{id}',     [CoordenadaController::class, 'update']);
+Route::patch ('/coordenadas/{id}',     [CoordenadaController::class, 'update']);
+Route::delete('/coordenadas/{id}',     [CoordenadaController::class, 'destroy']);
 

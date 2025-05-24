@@ -10,16 +10,14 @@ class Pais extends Model
     use HasFactory;
 
     protected $table = 'pais';
-    protected $primaryKey = 'cod_pais';
+    protected $primaryKey = 'id_pais';
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = [
-        'nombre'
+        'usuario_uuid',
+        'latitud',
+        'longitud',
+        'nombre',
+        'descripcion'
     ];
-
-    // Relaciones
-    public function ciudades()
-    {
-        return $this->hasMany(Ciudad::class, 'cod_pais', 'cod_pais');
-    }
 }

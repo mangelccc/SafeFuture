@@ -44,6 +44,7 @@ import EditarRutina from "../paginas/rutina/ejercicio/EditarRutina.jsx";
 
 import Vuelos from "../paginas/servicios/vuelos/vuelos.jsx";
 import MapaMundi from "../paginas/servicios/mapa/MapaMundi.jsx";
+import Videos from "../paginas/servicios/videos/Videos.jsx";
 
 
 const RutasPaginas = () => {
@@ -65,6 +66,7 @@ const RutasPaginas = () => {
         <Route path='/servicios' element={<Servicios />} />
         <Route path='/servicios/vuelos' element={<Vuelos />} />
         <Route path='/servicios/mapa' element={<MapaMundi />} />
+        <Route path='/servicios/videos' element={<Videos />} />
 
 
         {/* Lo que esté aqui, se necesitará iniciar sesión. */}

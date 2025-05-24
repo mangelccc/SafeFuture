@@ -2,7 +2,7 @@ import { faRobot, faPlane, faVideo, faGlobe, faBed, faRandom, faUtensils, faPers
 
 const servicios = [
   { icono: faRobot, texto: "Ramón AI (Especialista en ayudarte)" },
-  { icono: faVideo, texto: "Videos Interesantes" },
+  { icono: faVideo,link:"/servicios/videos" , texto: "Videos Interesantes" },
   { icono: faPlane, texto: "Información Emigrar Países" },
   { icono: faGlobe,link:"/servicios/mapa" , texto: "Mapamundi Ubicaciones Destacadas" },
   { icono: faBed,link: "/servicios/vuelos" , texto: "Vuelos y Alojamientos Baratos" },

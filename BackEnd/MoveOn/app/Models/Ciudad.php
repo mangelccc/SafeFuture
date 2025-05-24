@@ -18,21 +18,5 @@ class Ciudad extends Model
         'cod_pais'
     ];
 
-    // Relaciones
-    public function pais()
-    {
-        // El primer 'cod_pais' es el campo foráneo en la tabla "ciudad",
-        // y el segundo 'cod_pais' es el campo de la tabla "pais"
-        return $this->belongsTo(Pais::class, 'cod_pais', 'cod_pais');
-    }
 
-    public function trasladosOrigen()
-    {
-        return $this->hasMany(Traslado::class, 'cod_ciudad_origen', 'cod_ciudad');
-    }
-
-    public function trasladosDestino()
-    {
-        return $this->hasMany(Traslado::class, 'cod_ciudad_destino', 'cod_ciudad');
-    }
 }
