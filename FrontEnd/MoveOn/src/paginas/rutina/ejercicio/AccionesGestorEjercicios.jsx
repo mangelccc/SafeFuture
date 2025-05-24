@@ -19,7 +19,7 @@ const AccionesGestorEjercicios = () => {
                     type="text"
                     placeholder="Filtrar por nombre"
                     className="rounded bg-white dark:bg-black px-2 border-2
-                    border-black p-2 outline-none focus:border-purple transition duration-300"
+                    border-black p-2 outline-none focus:border-purple transition duration-300 dark:text-white"
                     onChange={(e) => filtrarEjercicios(e.target.value)}
                 />
                 <FormularioEjercicio />

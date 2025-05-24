@@ -120,7 +120,7 @@ const EditarRutina = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Editar Rutina</h2>
+      <h2 className="text-2xl font-bold mb-4 dark:text-gold">Editar Rutina</h2>
       <div className="space-y-4">
         <div>
           <label className="w-full rounded bg-white dark:bg-black px-2 border-2
@@ -133,7 +133,7 @@ const EditarRutina = () => {
           <textarea value={descripcion} onChange={e => setDescripcion(e.target.value)} className="w-full px-2 py-1 border rounded" />
         </div>
         <div>
-          <h3 className="font-medium mb-2">Buscar Ejercicios:</h3>
+          <h3 className="font-medium mb-2 dark:text-white">Buscar Ejercicios:</h3>
           <SearchBar setResults={setResultadoBusqueda} />
           {resultadoBusqueda.length > 0 && <SearchResultsList results={resultadoBusqueda} onSelect={handleAdd} />}
         </div>

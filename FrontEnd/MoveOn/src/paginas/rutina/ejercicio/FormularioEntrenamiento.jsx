@@ -127,7 +127,7 @@ const FormularioEntrenamiento = () => {
               placeholder="Nombre de la rutina"
               value={nombre}
               onChange={almacenarNombre}
-              className="w-full rounded bg-white dark:bg-black border-2 border-black p-2 focus:border-purple outline-none transition"
+              className="w-full rounded bg-white dark:bg-black border-2 border-black p-2 focus:border-purple outline-none transition dark:text-white"
             />
           </div>
           {/* Descripción */}
@@ -140,7 +140,7 @@ const FormularioEntrenamiento = () => {
               placeholder="Descripción de la rutina"
               value={descripcion}
               onChange={almacenarDescripcion}
-              className="w-full rounded bg-white dark:bg-black border-2 border-black p-2 focus:border-purple outline-none transition"
+              className="w-full rounded bg-white dark:bg-black border-2 border-black p-2 focus:border-purple outline-none transition dark:text-white"
             />
           </div>
         </div>
