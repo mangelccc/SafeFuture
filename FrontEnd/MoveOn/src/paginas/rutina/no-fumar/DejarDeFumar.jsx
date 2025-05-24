@@ -3,7 +3,7 @@ import { Link, Element } from 'react-scroll';
 import { useNoFumar } from "../../../contextos/NoFumarContexto.jsx";
 import { benefits, tips, calcularDuracion } from "../../../bibliotecas/biblioteca.js"
 
-export default function DejarDeFumar() {
+const DejarDeFumar = () => {
     const { records, activeRecord, contador, comenzarIntento, loading, terminarIntento } = useNoFumar();
 
     return (
@@ -78,7 +78,7 @@ export default function DejarDeFumar() {
                     )}
                     <button
                         onClick={activeRecord ? terminarIntento : comenzarIntento}
-                        className="mt-4 px-6 py-3 text-lg rounded-2xl bg-gold dark:bg-purple text-black hover:scale-102 transform transition"
+                        className="mt-4 px-6 py-3 text-lg rounded-2xl bg-gold dark:bg-purple dark:text-white text-black hover:scale-102 transform transition"
                     >
                         {activeRecord
                             ? "Terminar Intento"
@@ -115,3 +115,4 @@ export default function DejarDeFumar() {
         </div>
     );
 }
+export default DejarDeFumar;

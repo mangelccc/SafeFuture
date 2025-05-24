@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const contextoNoFumar = createContext();
 
 
-export const NoFumarContexto = ({ children }) => {
+const NoFumarContexto = ({ children }) => {
     const { usuario } = useContext(contextoAuth);
     const userId = usuario?.id_usuario;
 
@@ -157,4 +157,4 @@ export const NoFumarContexto = ({ children }) => {
 };
 
 export default NoFumarContexto;
-export const useNoFumar = () => useContext(contextoNoFumar);
+export const useNoFumar = () => useContext(contextoNoFumar); 
