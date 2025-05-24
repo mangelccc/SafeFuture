@@ -41,6 +41,8 @@ const AuthContexto = ({ children }) => {
   const [cargando, setCargando] = useState(falseBool);
   const [listaUsuarios, setListaUsuarios] = useState([]);
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+    const [usuarios, setUsuarios] = useState([]);
+
   /* Hecho para que si se actualiza accidentalmente la página se recuperé la sesión evitando redirecciones innecesarias. */
   const [sesionIniciada, setSesionIniciada] = useState(() => {
     return localStorage.getItem("sesionIniciada") === "true";
@@ -253,7 +255,15 @@ const AuthContexto = ({ children }) => {
       return false;
     }
   };
-
+const readUsuarios = async () => {
+    try {
+      const res = await fetch(`${API_URL}/usuarios`);
+      const data = await res.json();
+      setUsuarios(data.usuarios || []);
+    } catch (err) {
+      console.error("Error al leer usuarios:", err);
+    }
+  };
 
   useEffect(() => {
     const usuarioGuardado = localStorage.getItem("usuario");
@@ -497,6 +507,9 @@ const cambiarRolUsuario = async (idUsuario, nuevoRol) => {
     setUsuarioSeleccionado,
     obtenerUsuarios,
     cambiarRolUsuario,
+    usuarios,
+    readUsuarios
+
   };
 
   return (
