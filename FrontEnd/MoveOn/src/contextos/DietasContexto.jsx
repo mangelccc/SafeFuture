@@ -49,6 +49,7 @@ const DietasContexto = ({ children }) => {
         setGuardarDieta(semaforoRojo);
         setNuevaDieta(dietaVacia);
         setFormularioData(iniciaFormulario);
+        setErroresFormDietas(objetoVacio);
         setPaso(pasosArray[0]);
     }
 
