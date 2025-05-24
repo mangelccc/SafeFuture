@@ -17,7 +17,7 @@ export const SearchBar = ({ setResults }) => {
       ej.nombre?.toLowerCase().includes(value.toLowerCase())
     );
     setResults(filtered);
-    console.log(filtered);
+
   };
 
   return (

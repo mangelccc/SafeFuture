@@ -63,8 +63,7 @@ export const NoFumarContexto = ({ children }) => {
         if (!confirmado.isConfirmed) return;
 
         try {
-            //const nowISO = getLocalISOString();
-            const nowUTC = new Date().toISOString(); // esto genera el ISOString en UTC
+            const nowISO = getLocalISOString();
 
             const res = await fetch(`${API_URL}/no-fumar`, {
                 method: "POST",
@@ -72,7 +71,7 @@ export const NoFumarContexto = ({ children }) => {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify({ id_usuario: userId, quit_date: nowUTC, status: "activo" }),
+                body: JSON.stringify({ id_usuario: userId, quit_date: nowISO, status: "activo" }),
             });
 
             if (!res.ok) {
