@@ -7,9 +7,9 @@ const Videos = () => {
   const filteredVideos = filter === 'Todos' ? videos : videos.filter(v => v.country === filter);
 
   return (
-    <div className="p-4">
-      <div className="mb-4">
-        <label htmlFor="country-select" className="block mb-2 text-sm font-medium text-black dark:text-white">
+    <div className="flex flex-col justify-center items-center">
+      <div className="mb-4 flex justify-center items-center gap-2">
+        <label htmlFor="country-select" className="leading-4 self-center block text-sm font-medium text-black dark:text-white">
           Filtrar por país:
         </label>
         <select
