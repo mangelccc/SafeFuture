@@ -88,13 +88,13 @@ const Videos = () => {
           const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
           return (
-            <div key={idx} className="w-1/4 sm:w-1/2 lg:w-1/3 p-2">
+            <div key={idx} className="sm:w-1/4 p-2">
               <div className="rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-black3 transition transform hover:scale-102">
                 <a href={video.url} target="_blank" rel="noopener noreferrer">
                   <img
                     src={thumbnailUrl}
                     alt={`Miniatura de ${video.country}`}
-                    className="w-full h-[275px] object-cover rounded-lg"
+                    className="w-[350px] h-[180px] object-cover rounded-lg"
                   />
                 </a>
                 <p className="mt-2 text-center font-medium text-black dark:text-white">
