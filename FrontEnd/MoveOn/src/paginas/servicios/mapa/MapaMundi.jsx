@@ -7,13 +7,14 @@ import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 import useAppContext from "../../../hooks/useAppContext.jsx";
+import { API_URL } from "../../../bibliotecas/config.js";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
 
-const API_URL = 'https://sfmoveon.es/api/paises';
+const URL_API = `${API_URL}/paises`;
 
-function ManejadorClickMapa({ userId, alAgregar }) {
+const ManejadorClickMapa = ({ userId, alAgregar }) => {
   useMapEvents({
     click: async (e) => {
       const { lat, lng } = e.latlng;
@@ -57,7 +58,7 @@ async function pedirDatosUbicacion(lat, lng) {
 
 async function agregarUbicacion(userId, lat, lng, valores, alAgregar) {
   try {
-    const respuesta = await fetch(API_URL, {
+    const respuesta = await fetch(URL_API, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -92,7 +93,7 @@ async function agregarUbicacion(userId, lat, lng, valores, alAgregar) {
 async function obtenerUbicaciones(setLocations, setCargando) {
   setCargando(true);
   try {
-    const respuesta = await fetch(API_URL);
+    const respuesta = await fetch(URL_API);
     if (!respuesta.ok) throw new Error(`${respuesta.status} ${respuesta.statusText}`);
     const datosBrutos = await respuesta.json();
     const arreglo = Array.isArray(datosBrutos)
@@ -134,7 +135,7 @@ async function eliminarUbicacion(id, setLocations) {
 
   if (isConfirmed) {
     try {
-      const res = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${URL_API}/${id}`, { method: 'DELETE' });
       if (!res.ok) throw new Error(`Fallo al eliminar: ${res.status}`);
       setLocations(prev => prev.filter(loc => loc.id !== id));
       Swal.fire('Eliminado', 'Ubicación eliminada correctamente', 'success');
@@ -149,10 +150,13 @@ export default function MapaMundi({ userId }) {
   const [cargando, setCargando] = useState(true);
   const { auth } = useAppContext();
   const { usuario, usuarios, readUsuarios } = auth;
+   const cargarUbicaciones = async () => {
+    await readUsuarios(); 
+    await obtenerUbicaciones(setUbicaciones, setCargando);
+  };
 
   useEffect(() => {
-    readUsuarios();
-    obtenerUbicaciones(setUbicaciones, setCargando);
+    cargarUbicaciones();
     
   }, []);
 

@@ -66,15 +66,14 @@ const RutasPaginas = () => {
 
         <Route path='/servicios' element={<Servicios />} />
         <Route path='/servicios/vuelos' element={<Vuelos />} />
-        <Route path='/servicios/mapa' element={<MapaMundi />} />
         <Route path='/servicios/videos' element={<Videos />} />
-        <Route path='/servicios/ramonia' element={<RamonIA />} />
 
 
 
         {/* Lo que esté aqui, se necesitará iniciar sesión. */}
         <Route element={<RouterAuth><Outlet /></RouterAuth>}>
-
+          <Route path='/servicios/mapa' element={<MapaMundi />} />
+          <Route path='/servicios/ramonia' element={<RamonIA />} />
           <Route path="/rutina/dietas" element={<Dietas />} />
           <Route path="/rutina/dietas/:id" element={<AlimentosDieta />} />
           <Route path="/rutina/dietas/:id/detalles" element={<DietasDetalles />} />
