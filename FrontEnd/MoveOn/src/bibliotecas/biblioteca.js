@@ -527,8 +527,65 @@ const recommendedSites = [
   }
 ];
 
+const videos = [
+  // Suiza
+  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=cBQumoWA2TA' },
+  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=nO_nL3Po3rg' },
+  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=3cm44c360C0' },
+
+  // Irlanda
+  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=Hem4PTwgzMs' },
+  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=7bQRRFDK4-A' },
+  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=Sg9d0GKwrHM' },
+
+  // Australia
+  { country: 'Australia', url: 'https://www.youtube.com/watch?v=vW1ei0CyACk' },
+  { country: 'Australia', url: 'https://www.youtube.com/watch?v=lY08CI30qcU' },
+  { country: 'Australia', url: 'https://www.youtube.com/watch?v=M-914uAcwy8' },
+
+  // Alemania
+  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=6cTrb1Uml3w' },
+  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=PttnGf4QDwc' },
+  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=2PuqN-xnw64' },
+
+  // Canadá
+  { country: 'Canada', url: 'https://www.youtube.com/watch?v=vM54IDn4RCI' },
+  { country: 'Canada', url: 'https://www.youtube.com/watch?v=3lj-Qf-ghIo' },
+  { country: 'Canada', url: 'https://www.youtube.com/watch?v=PsuUufHaCuI' },
+
+  // Reino Unido
+  { country: 'UK', url: 'https://www.youtube.com/watch?v=5fyagkd97LQ' },
+  { country: 'UK', url: 'https://www.youtube.com/watch?v=5fyagkd97LQ' },
+  { country: 'UK', url: 'https://www.youtube.com/watch?v=5fyagkd97LQ' },
+
+  // Países Bajos
+  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=hQPyzh0U0QE' },
+  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=WpovIMt9WL8' },
+  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=TZiuX-nXtuI' },
+
+  // Noruega
+  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=C5zORsjab5Q' },
+  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=KLuTLF3x9sA' },
+  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=fT2bqB0f_4w' },
+
+  // Estados Unidos
+  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=EZLV7d1L7JY' },
+  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=hn7naNNk0_M' },
+  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=vjNR1c6u_Jc' },
+
+  // Islandia
+  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=whjeMdOvXC8' },
+  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=5r10WosT5is' },
+  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=QhtrKwcYo5Q' },
+];
+
+const getVideoId = (url) => {
+  const match = url.match(/(?:v=|\/)([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : '';
+};
+
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
   validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos, validarCampoUsuario,
-  camposUsuario, benefits, tips, calcularDuracion,validarDatoRutina, faqs, recommendedSites
+  camposUsuario, benefits, tips, calcularDuracion,validarDatoRutina, faqs, recommendedSites, videos, getVideoId
 };
