@@ -38,8 +38,24 @@ const EntrenamientoContexto = ({ children }) => {
       const res = await fetch(apiUrl);
       const data = await res.json();
       const all = data.rutinas || [];
-      setEntrenamientosConstantes(all); // Guardar rutinas en el contexto
-      setEntrenamientos(all);
+        // 🔹 1) Deduplicar por nombre+descripción
+    const normalizar = str =>
+      str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9 ]/g, "");
+    const vistos = new Set();
+    const únicos = all.filter(e => {
+      const clave = `${normalizar(e.nombre)}|${normalizar(e.descripcion)}`;
+      if (vistos.has(clave)) return false;
+      vistos.add(clave);
+      return true;
+    });
+
+    // 🔹 2) Guardar constantes con únicos
+    setEntrenamientosConstantes(únicos);
+    setEntrenamientos(únicos);
       const soloUsuario = all.filter(e => e.uuid_usuario === usuario.id_usuario);
       setMisEntrenamientos(soloUsuario);
       setEntrenamientosFiltrados(soloUsuario);
@@ -88,6 +104,7 @@ useEffect(() => {
       setMisEntrenamientos(prev => prev.filter(e => e.id_rutina !== id));
       setEntrenamientosFiltrados(prev => prev.filter(e => e.id_rutina !== id));
       Swal.fire({ title: "Eliminado", icon: "success", timer: 1500, showConfirmButton: false });
+      readEntrenamientos(); // Refrescar lista
     } catch (err) {
       Swal.fire("Error", err.message, "error");
       setErrorEntrenamiento(`Error eliminando: ${err.message}`);
@@ -357,23 +374,30 @@ const filtrarEntrenamientosGlobal = (filtro) => {
       .normalize("NFD")                // descompone acentos
       .replace(/[\u0300-\u036f]/g, "") // elimina marcas diacríticas
       .toLowerCase()                   // todo en minúscula
-      .replace(/[^a-z0-9 ]/g, "");     // opcional: quita símbolos
+      .replace(/[^a-z0-9 ]/g, "");     // quita símbolos
 
   const texto = normalizar(filtro.trim());
 
-  // 1) Si el campo está vacío, recargo todas las rutinas
-  if (texto === "") {
-    setEntrenamientos(entrenamientosConstantes);
-    return;
-  }
+  // 1) Si el campo está vacío, uso todas las constantes sin startsWith
+  // 2) Si hay texto, filtro por startsWith sobre el array dinámico
+  const base = texto === ""
+    ? entrenamientosConstantes
+    : entrenamientos.filter(e =>
+        normalizar(e.nombre).startsWith(texto)
+      );
 
-  // 2) Si hay texto, filtro sobre TODAS las rutinas
-  const resultado = entrenamientos.filter(e =>
-    normalizar(e.nombre).startsWith(texto)
-  );
+  // Elimino duplicados por nombre+descripción en la lista base
+  const vistos = new Set();
+  const únicos = base.filter(e => {
+    const clave = `${normalizar(e.nombre)}|${normalizar(e.descripcion)}`;
+    if (vistos.has(clave)) return false;
+    vistos.add(clave);
+    return true;
+  });
 
-  setEntrenamientos(resultado);
+  setEntrenamientos(únicos);
 };
+
 
 
   const datosContexto = {
