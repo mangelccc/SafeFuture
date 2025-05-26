@@ -45,7 +45,8 @@ import EditarRutina from "../paginas/rutina/ejercicio/EditarRutina.jsx";
 import Vuelos from "../paginas/servicios/vuelos/vuelos.jsx";
 import MapaMundi from "../paginas/servicios/mapa/MapaMundi.jsx";
 import Videos from "../paginas/servicios/videos/Videos.jsx";
-import RamonIA from "../paginas/servicios/ramonIA/RamonIA.jsx";
+import RamonIA from "../paginas/servicios/RamonIA/RamonIA.jsx";
+//import Informacion from "../paginas/servicios/informacion/Informacion.jsx";
 
 
 const RutasPaginas = () => {
