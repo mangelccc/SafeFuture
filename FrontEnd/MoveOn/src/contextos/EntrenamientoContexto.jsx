@@ -328,7 +328,8 @@ const seleccionEjercicios = (ejercicio) => {
           descripcion: ej.descripcion,
           grupo_muscular: ej.grupo_muscular,
           imagen_url: ej.imagen_url,
-          video_url: ej.video_url
+          video_url: ej.video_url,
+          id_ejercicio: ej.id_ejercicio
         };
       });
 
@@ -366,20 +367,25 @@ const seleccionEjercicios = (ejercicio) => {
   };
 
   // Función para filtrar los ejercicios por buscador actual.
-  const filtrarEntrenamientos = (filtro) => {
-    setEntrenamientosFiltrados(entrenamientos);
-    const ejerciciosFiltradosReturn =
-      misEntrenamientos
-        .filter(e =>
-          e.nombre
-            .toLowerCase()
-            .startsWith(filtro.toLowerCase())
-        );
+ const filtrarEntrenamientos = (filtro) => {
+  const texto = filtro.trim().toLowerCase();
 
-    filtro === "" ?
-    setEntrenamientosFiltrados(misEntrenamientos) :
-    setEntrenamientosFiltrados(ejerciciosFiltradosReturn);
-  }
+  // 1) Parto de las rutinas del usuario actual
+  const rutinasUsuario = entrenamientos.filter(e =>
+    e.uuid_usuario === usuario.id_usuario
+  );
+
+  // 2) Si no hay texto, muestro todas; si no, sólo las que empiecen por el filtro
+  const resultado = texto === ""
+    ? rutinasUsuario
+    : rutinasUsuario.filter(e =>
+        e.nombre.toLowerCase().startsWith(texto)
+      );
+
+  // 3) Actualizo de una vez el estado
+  setEntrenamientosFiltrados(resultado);
+};
+
 
    const rawEntrenamientos = Array.isArray(entrenamientosFiltrados)
       ? entrenamientosFiltrados

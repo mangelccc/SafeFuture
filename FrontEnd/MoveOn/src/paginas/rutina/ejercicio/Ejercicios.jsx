@@ -38,7 +38,7 @@ const Ejercicios = () => {
               descripcion={ejercicio.descripcion}
               imagen={ejercicio.imagen_url}
               video={ejercicio.video_url}
-              grupoMuscular={ejercicio.grupo_muscular}
+              grupo_muscular={ejercicio.grupo_muscular}
             />
           ))
         ) : (

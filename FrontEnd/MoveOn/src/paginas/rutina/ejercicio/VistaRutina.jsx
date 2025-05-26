@@ -49,6 +49,7 @@ const VistaRutina = () => {
         {ejerciciosVista.map(ejercicioVista => (
             <Ejercicio
               key={ejercicioVista.id_rutina_ejercicio}
+              id_ejercicio={ejercicioVista.id_ejercicio}
               nombre={ejercicioVista.nombre}
               descripcion={ejercicioVista.descripcion}
               grupoMuscular={ejercicioVista.grupo_muscular}

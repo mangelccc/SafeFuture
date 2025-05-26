@@ -7,7 +7,7 @@ const Ejercicio = ({
   id_ejercicio,
   nombre,
   descripcion,
-  grupo_muscular: grupoMuscular,
+  grupo_muscular,
   imagen_url: imagen,
   video_url: video,
   series: initialSeries,
@@ -56,7 +56,7 @@ const Ejercicio = ({
       }`}
     >
       <p><strong>Nombre:</strong> {nombre}</p>
-      <p><strong>Grupo Muscular:</strong> {grupoMuscular}</p>
+      <p><strong>Grupo Muscular:</strong> {grupo_muscular}</p>
 
       <div className="flex justify-center mt-2">
         <video
