@@ -27,6 +27,7 @@ const EntrenamientoContexto = ({ children }) => {
   const [entrenamientosFiltrados, setEntrenamientosFiltrados] = useState(entrenamientosIniciales);
   const [errorEntrenamiento, setErrorEntrenamiento] = useState(errorEntrenamientoInicial);
   const [misEntrenamientos, setMisEntrenamientos] = useState([]);
+  const [entrenamientosConstantes, setEntrenamientosConstantes] = useState(entrenamientosIniciales);
 
   
 
@@ -37,6 +38,7 @@ const EntrenamientoContexto = ({ children }) => {
       const res = await fetch(apiUrl);
       const data = await res.json();
       const all = data.rutinas || [];
+      setEntrenamientosConstantes(all); // Guardar rutinas en el contexto
       setEntrenamientos(all);
       const soloUsuario = all.filter(e => e.uuid_usuario === usuario.id_usuario);
       setMisEntrenamientos(soloUsuario);
@@ -361,7 +363,7 @@ const filtrarEntrenamientosGlobal = (filtro) => {
 
   // 1) Si el campo está vacío, recargo todas las rutinas
   if (texto === "") {
-    setEntrenamientosFiltrados(entrenamientos);
+    setEntrenamientos(entrenamientosConstantes);
     return;
   }
 
@@ -370,7 +372,7 @@ const filtrarEntrenamientosGlobal = (filtro) => {
     normalizar(e.nombre).startsWith(texto)
   );
 
-  setEntrenamientosFiltrados(resultado);
+  setEntrenamientos(resultado);
 };
 
 

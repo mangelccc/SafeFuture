@@ -4,7 +4,7 @@ import useAppContext from "../../../hooks/useAppContext.jsx";
 
 const Plantillas = () => {
   const { entrenamientoContexto } = useAppContext();
-  const { entrenamientosFiltrados,filtrarEntrenamientosGlobal } = entrenamientoContexto;
+  const { entrenamientos,filtrarEntrenamientosGlobal } = entrenamientoContexto;
   return (
     <div className='p-6'>
       <h2 className='dark:text-white mb-2'>
@@ -20,8 +20,8 @@ const Plantillas = () => {
                 />
             </div>
       <div className='w-full gap-4 h-[600px] overflow-y-scroll border-2 border-black dark:border-white rounded'>
-      {entrenamientosFiltrados.length > 0 ? (
-        entrenamientosFiltrados.map(ent => (
+      {entrenamientos.length > 0 ? (
+        entrenamientos.map(ent => (
           <Entrenamiento
             key={ent.id_rutina}
             entrenamiento={ent}
