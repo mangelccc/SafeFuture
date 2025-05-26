@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import useAppContext from "../../../hooks/useAppContext.jsx";
 
 // Asegúrate de que apunte a tu Webhook manual
@@ -7,7 +7,11 @@ const WEBHOOK_URL = 'https://grmmyyrm.app.n8n.cloud/webhook/9cae8464-9088-483f-b
 export default function N8NChat() {
   const { auth } = useAppContext();
   const { usuario } = auth;
-  const [sessionId] = useState(() => usuario.id_usuario);
+  const [sessionId, setSessionID] = useState(() => crypto.randomUUID());
+  useEffect(() => {
+      // Genera un nuevo sessionId al cargar el componente    
+      setSessionID(crypto.randomUUID());
+    }, []);
 
   // Estado de mensajes con memoria
   const [messages, setMessages] = useState([

@@ -10,7 +10,7 @@ const AgenteIALink = () => {
         ${isActive ? "bg-purple text-white" : "hover:bg-purpleOp"}`
       }
     >
-      Entrenador Personal "beta"
+      Entrenador Personal 
     </NavLink>
   );
 };
