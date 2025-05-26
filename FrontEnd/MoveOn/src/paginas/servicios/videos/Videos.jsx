@@ -82,13 +82,13 @@ const Videos = () => {
         </select>
       </div>
 
-      <div className="flex flex-wrap -m-2">
+      <div className="flex flex-wrap justify-around -m-2">
         {filteredVideos.map((video, idx) => {
           const videoId = getVideoId(video.url);
           const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
           return (
-            <div key={idx} className="sm:w-1/4 p-2">
+            <div key={idx} className="sm:w-[350px] p-2">
               <div className="rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-black3 transition transform hover:scale-102">
                 <a href={video.url} target="_blank" rel="noopener noreferrer">
                   <img
