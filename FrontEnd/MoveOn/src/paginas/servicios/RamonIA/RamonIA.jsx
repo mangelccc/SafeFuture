@@ -6,7 +6,7 @@ const WEBHOOK_URL = 'https://grmmyyrm.app.n8n.cloud/webhook/5d6e4b1f-22f0-4635-8
 export default function RamonIA() {
   const [sessionId, setSessionID] = useState(() => crypto.randomUUID());
   const [messages, setMessages] = useState([
-    { from: 'bot', text: 'Hola, soy Ramon tu asistente personal, ahora mismo solo te puedo ayudar con informacion sobre emigrar a otro pais.' }
+    { from: 'bot', text: 'Hola, soy Ramón tu asistente personal, ¿En que puedo ayudarte?' }
   ]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
