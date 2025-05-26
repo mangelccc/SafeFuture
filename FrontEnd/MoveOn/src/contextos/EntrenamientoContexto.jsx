@@ -26,26 +26,29 @@ const EntrenamientoContexto = ({ children }) => {
   const [entrenamientos, setEntrenamientos] = useState(entrenamientosIniciales);
   const [entrenamientosFiltrados, setEntrenamientosFiltrados] = useState(entrenamientosIniciales);
   const [errorEntrenamiento, setErrorEntrenamiento] = useState(errorEntrenamientoInicial);
+  const [misEntrenamientos, setMisEntrenamientos] = useState([]);
+
   
 
   //crud
 
   const readEntrenamientos = async () => {
-    return await fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        setEntrenamientosFiltrados(data.rutinas)
-      })
-      .catch(error => {
-        console.error(`Se ha producido un error: ${error.message}`);
-        setErrorEntrenamiento(`Se ha producido un error: ${error.message}`);
-      });
-  }
-  useEffect(() => {
+    try {
+      const res = await fetch(apiUrl);
+      const data = await res.json();
+      const all = data.rutinas || [];
+      setEntrenamientos(all);
+      const soloUsuario = all.filter(e => e.uuid_usuario === usuario.id_usuario);
+      setMisEntrenamientos(soloUsuario);
+      setEntrenamientosFiltrados(soloUsuario);
+    } catch (err) {
+      console.error(err);
+      setErrorEntrenamiento(`Error al cargar rutinas: ${err.message}`);
+    }
+  };
+useEffect(() => {
     readEntrenamientos();
-  }
-    , [apiUrl]);
-
+  }, [apiUrl]);
   const createEntrenamiento = async (nuevoEntrenamiento) => {
     await fetch(apiUrl, {
       headers: { "Content-Type": "application/json" },
@@ -63,8 +66,7 @@ const EntrenamientoContexto = ({ children }) => {
       });
   }
 
-  const deleteEntrenamiento = async (id) => {
-    // 1. Pregunta de confirmación
+   const deleteEntrenamiento = async (id) => {
     const { isConfirmed } = await Swal.fire({
       title: "¿Estás seguro?",
       text: "¡No podrás revertir esto!",
@@ -72,70 +74,21 @@ const EntrenamientoContexto = ({ children }) => {
       showCancelButton: true,
       confirmButtonText: "Sí, eliminar",
       cancelButtonText: "Cancelar",
-      background: '#1A1A1A',     // black1
-      color: '#F5F5F5',          // white
-      iconColor: '#6320EE',      // purple
-      customClass: {
-        popup: 'my-swal-popup'
-      },
-      didOpen: () => {
-        const popup = Swal.getPopup();
-        popup.style.border = '2px solid #6320EE';      // purple
-        popup.style.boxShadow = '0 0 20px #6520ee70';  // purpleOp
-      }
-    });
-  
-    if (!isConfirmed) {
-      return; // el usuario canceló
-    }
-  
-    // 2. Mostrar loading
-    Swal.fire({
-      title: 'Eliminando...',
-      allowOutsideClick: false,
-      didOpen: () => {
-                Swal.showLoading();
-                const spinner = document.querySelector('.swal2-loader');
-                if (spinner) {
-                  spinner.style.borderColor = '#6320EE';
-                  spinner.style.borderTopColor = 'transparent';
-                }
-              },
       background: '#1A1A1A',
       color: '#F5F5F5'
     });
-  
-    // 3. Ejecutar DELETE
+    if (!isConfirmed) return;
+
+    Swal.fire({ title: 'Eliminando...', allowOutsideClick: false, didOpen: Swal.showLoading });
     try {
-      const response = await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
-      const data = await response.json();
-  
-      // Actualizar estado
+      await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
       setEntrenamientos(prev => prev.filter(e => e.id_rutina !== id));
+      setMisEntrenamientos(prev => prev.filter(e => e.id_rutina !== id));
       setEntrenamientosFiltrados(prev => prev.filter(e => e.id_rutina !== id));
-      console.log(`Se ha eliminado el entrenamiento con id: ${id}`);
-  
-      // 4. Mostrar éxito
-      Swal.fire({
-        title: "Se ha eliminado correctamente.",
-        icon: "success",
-        timer: 1500,
-        showConfirmButton: false,
-        background: '#1A1A1A',
-        color: '#F5F5F5'
-      });
-    } catch (error) {
-      // 5. Mostrar error
-      Swal.fire({
-        title: "Error al eliminar",
-        text: error.message,
-        icon: "error",
-        confirmButtonText: "Cerrar",
-        background: '#1A1A1A',
-        color: '#F5F5F5'
-      });
-  
-      setErrorEntrenamiento(`Se ha producido un error: ${error.message}`);
+      Swal.fire({ title: "Eliminado", icon: "success", timer: 1500, showConfirmButton: false });
+    } catch (err) {
+      Swal.fire("Error", err.message, "error");
+      setErrorEntrenamiento(`Error eliminando: ${err.message}`);
     }
   };
   
@@ -366,36 +319,60 @@ const seleccionEjercicios = (ejercicio) => {
     return Object.keys(erroresPorCampo).length === 0;
   };
 
-  // Función para filtrar los ejercicios por buscador actual.
  const filtrarEntrenamientos = (filtro) => {
-  const texto = filtro.trim().toLowerCase();
+  // función de normalización inline
+  const normalizar = (str) =>
+    str
+      .normalize("NFD")                // descompone acentos
+      .replace(/[\u0300-\u036f]/g, "") // elimina marcas diacríticas
+      .toLowerCase()                   // todo en minúscula
+      .replace(/[^a-z0-9 ]/g, "");     // opcional: quita símbolos
 
-  // 1) Parto de las rutinas del usuario actual
-  const rutinasUsuario = entrenamientos.filter(e =>
-    e.uuid_usuario === usuario.id_usuario
+  const texto = normalizar(filtro.trim());
+
+  // 1) Si el campo está vacío, recargo todas las rutinas del usuario
+  if (texto === "") {
+    const todas = entrenamientos.filter(e => e.uuid_usuario === usuario.id_usuario);
+    setMisEntrenamientos(todas);
+    setEntrenamientosFiltrados(todas);
+    return;
+  }
+
+  // 2) Si hay texto, filtro sobre la lista completa del usuario
+  const baseCompleta = entrenamientos.filter(e => e.uuid_usuario === usuario.id_usuario);
+  const resultado = baseCompleta.filter(e =>
+    normalizar(e.nombre).startsWith(texto)
   );
 
-  // 2) Si no hay texto, muestro todas; si no, sólo las que empiecen por el filtro
-  const resultado = texto === ""
-    ? rutinasUsuario
-    : rutinasUsuario.filter(e =>
-        e.nombre.toLowerCase().startsWith(texto)
-      );
-
-  // 3) Actualizo de una vez el estado
+  setMisEntrenamientos(resultado);
   setEntrenamientosFiltrados(resultado);
 };
 
+const filtrarEntrenamientosGlobal = (filtro) => {
+  // función de normalización inline
+  const normalizar = (str) =>
+    str
+      .normalize("NFD")                // descompone acentos
+      .replace(/[\u0300-\u036f]/g, "") // elimina marcas diacríticas
+      .toLowerCase()                   // todo en minúscula
+      .replace(/[^a-z0-9 ]/g, "");     // opcional: quita símbolos
 
-   const rawEntrenamientos = Array.isArray(entrenamientosFiltrados)
-      ? entrenamientosFiltrados
-      : [];
-  
-    // 1) Filtrado memoizado: solo se recalcula si cambian rawEntrenamientos o el id de usuario
-    const misEntrenamientos = useMemo(
-      () => rawEntrenamientos.filter(e => e.uuid_usuario === usuario.id_usuario),
-      [rawEntrenamientos, usuario.id_usuario]
-    );
+  const texto = normalizar(filtro.trim());
+
+  // 1) Si el campo está vacío, recargo todas las rutinas
+  if (texto === "") {
+    setEntrenamientosFiltrados(entrenamientos);
+    return;
+  }
+
+  // 2) Si hay texto, filtro sobre TODAS las rutinas
+  const resultado = entrenamientos.filter(e =>
+    normalizar(e.nombre).startsWith(texto)
+  );
+
+  setEntrenamientosFiltrados(resultado);
+};
+
 
   const datosContexto = {
     entrenamiento,
@@ -424,7 +401,8 @@ const seleccionEjercicios = (ejercicio) => {
     ejerciciosVista,
     validarFormularioEntrenamiento,
     filtrarEntrenamientos,
-    misEntrenamientos
+    misEntrenamientos,
+    filtrarEntrenamientosGlobal
   };
 
 
