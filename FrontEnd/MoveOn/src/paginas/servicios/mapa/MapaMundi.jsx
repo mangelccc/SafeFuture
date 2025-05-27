@@ -161,13 +161,15 @@ export default function MapaMundi({ userId }) {
   }, []);
 
   return (
+    <>
+    <h2 className="text-center font-bold dark:text-white mb-4">Mapa Ubicaciones Secretas</h2>
     <div className="h-screen w-full flex justify-center z-20">
       {cargando ? (
         <div className="flex items-center justify-center h-full w-full">
-          <p className="text-white text-xl">Cargando mapa y ubicaciones...</p>
+          <p className="dark:text-white text-black text-xl">Cargando mapa y ubicaciones...</p>
         </div>
       ) : (
-        <MapContainer center={[20, 0]} zoom={2} className="hsm:w-full hsm:h-full sm:h-4/5 sm:w-4/5 sm:rounded-2xl sm:shadow-lg">
+        <MapContainer center={[20, 0]} zoom={2} className="hsm:w-[95%] hsm:h-full sm:h-4/5 sm:w-4/5 sm:rounded-2xl sm:shadow-lg">
           <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <ManejadorClickMapa userId={usuario.id_usuario} alAgregar={nueva => setUbicaciones(prev => [...prev, nueva])} />
           {ubicaciones.map((loc, index) => (
@@ -191,5 +193,41 @@ export default function MapaMundi({ userId }) {
         </MapContainer>
       )}
     </div>
+     <div className="flex justify-center">
+   <div className="w-4/5 pb-10 pt-2 rounded-2xl space-y-16 opacity-0 translate-y-6 animate-fadeInUp text-left">
+     <header className="space-y-4">
+       <h1 className="dark:text-gold text-purple text-4xl font-bold w-full">Mapa Interactivo</h1>
+       <p className="dark:text-white text-black text-lg leading-relaxed">
+         Explora y contribuye a nuestra comunidad global con un <span className="font-semibold">mapa interactivo</span>. Aquí puedes marcar ubicaciones con un nombre y descripción para señalar puntos de encuentro, alojamientos u otros lugares útiles cuando viajas a otro país.
+       </p>
+     </header>
+
+     <section className="space-y-6">
+       <h2 className="dark:text-gold text-purple text-3xl font-bold">Cómo Funciona</h2>
+       <p className="dark:text-white text-black leading-relaxed">
+         Haz clic en cualquier parte del mapa para <span className="font-semibold">añadir una ubicación</span>. Completa el formulario con un título y una breve descripción. Tu marcador aparecerá de inmediato, junto a los de otros usuarios, creando una guía colaborativa en tiempo real.
+       </p>
+     </section>
+
+     <section className="space-y-6">
+       <h2 className="dark:text-gold text-purple text-3xl font-bold">Funciones Principales</h2>
+       <ul className="list-disc list-inside dark:text-white text-black leading-relaxed space-y-3">
+         <li><strong>Agregar Marcadores:</strong> Pincha para registrar lugares de interés, alojamientos o puntos de reunión.</li>
+         <li><strong>Ver Marcadores:</strong> Consulta las ubicaciones compartidas por otros viajeros para descubrir recomendaciones locales.</li>
+         <li><strong>Editar o Eliminar:</strong> Gestiona tus propias contribuciones y elimina marcadores cuando ya no sean relevantes.</li>
+         <li><strong>Detalles Personalizados:</strong> Añade fotos, enlaces o notas adicionales en cada marcador.</li>
+       </ul>
+     </section>
+
+     <section className="space-y-6">
+       <h2 className="dark:text-gold text-purple text-3xl font-bold">Objetivo Mapa</h2>
+       <p className="dark:text-white text-black leading-relaxed">
+         En <span className="font-semibold">MoveOn</span> buscamos crear una comunidad global de apoyo y colaboración. Este mapa es una herramienta para que los migrantes compartan sus experiencias y recomendaciones, ayudando a otros a encontrar los mejores lugares y recursos en cada país. Cada marcador es una contribución valiosa que enriquece nuestra red de migrantes.
+       </p>
+     </section>
+   </div>
+ </div>
+
+    </>
   );
 }
