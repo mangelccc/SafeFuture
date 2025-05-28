@@ -535,54 +535,54 @@ const recommendedSites = [
 
 const videos = [
   // Suiza
-  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=cBQumoWA2TA' },
-  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=nO_nL3Po3rg' },
-  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=3cm44c360C0' },
+  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=6jqFShnp2Ho' },
+  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=ez9a7ITtMEk' },
+  { country: 'Suiza', url: 'https://www.youtube.com/watch?v=CBTFnQTHg68' },
 
   // Irlanda
-  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=Hem4PTwgzMs' },
-  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=7bQRRFDK4-A' },
-  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=Sg9d0GKwrHM' },
+  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=X-GPBeVxTAk' },
+  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=JEDDKPxlgkk' },
+  { country: 'Irlanda', url: 'https://www.youtube.com/watch?v=rcOXKX0ubak' },
 
   // Australia
-  { country: 'Australia', url: 'https://www.youtube.com/watch?v=vW1ei0CyACk' },
-  { country: 'Australia', url: 'https://www.youtube.com/watch?v=lY08CI30qcU' },
-  { country: 'Australia', url: 'https://www.youtube.com/watch?v=M-914uAcwy8' },
+  { country: 'Australia', url: 'https://www.youtube.com/watch?v=q4uYbRE8rks' },
+  { country: 'Australia', url: 'https://www.youtube.com/watch?v=sqRt11Hl8Qs' },
+  { country: 'Australia', url: 'https://www.youtube.com/watch?v=8AdpTaZO9Ns' },
 
   // Alemania
-  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=6cTrb1Uml3w' },
-  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=PttnGf4QDwc' },
-  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=2PuqN-xnw64' },
+  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=vfJsEMuZqb0' },
+  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=m4XsK7qnGAQ' },
+  { country: 'Alemania', url: 'https://www.youtube.com/watch?v=qxST_Mr8zPM' },
 
   // Canadá
-  { country: 'Canada', url: 'https://www.youtube.com/watch?v=vM54IDn4RCI' },
-  { country: 'Canada', url: 'https://www.youtube.com/watch?v=3lj-Qf-ghIo' },
-  { country: 'Canada', url: 'https://www.youtube.com/watch?v=PsuUufHaCuI' },
+  { country: 'Canada', url: 'https://www.youtube.com/watch?v=2keVvJetlw0' },
+  { country: 'Canada', url: 'https://www.youtube.com/watch?v=dEZsY-u-nac' },
+  { country: 'Canada', url: 'https://www.youtube.com/watch?v=XAzifdoVuos' },
 
   // Reino Unido
-  { country: 'UK', url: 'https://www.youtube.com/watch?v=5fyagkd97LQ' },
-  { country: 'UK', url: 'https://www.youtube.com/watch?v=5fyagkd97LQ' },
-  { country: 'UK', url: 'https://www.youtube.com/watch?v=5fyagkd97LQ' },
+  { country: 'UK', url: 'https://www.youtube.com/watch?v=puhJ-gXgXwc' },
+  { country: 'UK', url: 'https://www.youtube.com/watch?v=02Rdks1kzWU' },
+  { country: 'UK', url: 'https://www.youtube.com/watch?v=AW4O4lyLJS8' },
 
   // Países Bajos
-  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=hQPyzh0U0QE' },
-  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=WpovIMt9WL8' },
-  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=TZiuX-nXtuI' },
+  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=bTiSb6tepwQ' },
+  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=N3gNpT5gNt0' },
+  { country: 'Paises Bajos', url: 'https://www.youtube.com/watch?v=HsU4METIWVQ' },
 
   // Noruega
-  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=C5zORsjab5Q' },
-  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=KLuTLF3x9sA' },
-  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=fT2bqB0f_4w' },
+  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=3xsce5P8qYY' },
+  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=Uw2hv4fhA6s' },
+  { country: 'Noruega', url: 'https://www.youtube.com/watch?v=zpyHc1QCHZw' },
 
   // Estados Unidos
-  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=EZLV7d1L7JY' },
-  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=hn7naNNk0_M' },
-  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=vjNR1c6u_Jc' },
+  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=wrYZyOIuink' },
+  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=QDjveFoyV0Q' },
+  { country: 'EEUU', url: 'https://www.youtube.com/watch?v=NhKIvBj65VI' },
 
   // Islandia
-  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=whjeMdOvXC8' },
-  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=5r10WosT5is' },
-  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=QhtrKwcYo5Q' },
+  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=ugCZETv0Ahc' },
+  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=SKyWpg7UsJ8' },
+  { country: 'Islandia', url: 'https://www.youtube.com/watch?v=PjVc6orrlvE' },
 ];
 
 const getVideoId = (url) => {
