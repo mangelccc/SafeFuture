@@ -8,16 +8,20 @@ import Footer from "./estructura/footer/Footer.jsx";
 import Proveedores from "./contextos/Proveedores.jsx";
 
 import "./App.css";
+import { Element } from "react-scroll";
+import BotonSubirArriba from "./menus/BotonSubirArriba.jsx";
 
 const App = () => {
   return (
     <Proveedores>
+      <Element name="topScrollAnchor" />
       <Cabecera />
       <Cuerpo>
         <RutasPaginas />
       </Cuerpo>
       <Footer />
       <SubFooter />
+      <BotonSubirArriba />
     </Proveedores>
   );
 };
