@@ -13,7 +13,8 @@ const CrearCuenta = () => {
             <input
               type="text"
               name="nombre"
-              placeholder="Nombre"
+              placeholder="Nombre completo"
+              autoComplete="name"
               onChange={actualizarDato}
               value={datosSesion.nombre || ""}
             />

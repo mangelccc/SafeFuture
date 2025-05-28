@@ -46,7 +46,7 @@ import Vuelos from "../paginas/servicios/vuelos/vuelos.jsx";
 import MapaMundi from "../paginas/servicios/mapa/MapaMundi.jsx";
 import Videos from "../paginas/servicios/videos/Videos.jsx";
 import RamonIA from "../paginas/servicios/RamonIA/RamonIA.jsx";
-//import Informacion from "../paginas/servicios/informacion/Informacion.jsx";
+import Informacion from "../paginas/servicios/informacion/Informacion.jsx";
 
 
 const RutasPaginas = () => {
@@ -68,7 +68,7 @@ const RutasPaginas = () => {
         <Route path='/servicios' element={<Servicios />} />
         <Route path='/servicios/vuelos' element={<Vuelos />} />
         <Route path='/servicios/videos' element={<Videos />} />
-
+        <Route path='/servicios/informacion' element={<Informacion />} />
 
 
         {/* Lo que esté aqui, se necesitará iniciar sesión. */}

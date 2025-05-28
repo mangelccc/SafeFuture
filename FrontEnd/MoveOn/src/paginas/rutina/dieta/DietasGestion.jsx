@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import DietasUsuario from './DietasUsuario.jsx';
-import useAppContext from '../../../hooks/useAppContext.jsx'; 
+import useAppContext from '../../../hooks/useAppContext.jsx';
 
 const DietasGestion = () => {
     const { dietas, auth } = useAppContext();
@@ -16,9 +16,9 @@ const DietasGestion = () => {
                     <h2 className='p-0 pb-4 dark:text-gold underline underline-offset-3 decoration-purple dark:decoration-turq '>Tus Dietas</h2>
                     <p className='dark:text-gold'>Añade los alimentos que te gusten ajustándote a los macros que te recomendamos.😊 </p>
                     {dietasUsuario.length !== 0 &&
-                    <>
-                        <p className='dark:text-gold pt-4'>Utiliza los iconos para editar, ver o borrar una dieta.</p>
-                    </>}
+                        <>
+                            <p className='dark:text-gold pt-4'>Utiliza los iconos para editar, ver o borrar una dieta.</p>
+                        </>}
                 </div>
                 <div className='hsm:w-full hsm:self-center sm:self-end'>
                     <Link to="/rutina/dietas-crear">
@@ -27,7 +27,7 @@ const DietasGestion = () => {
                 </div>
 
             </section>
-            <section className='dietas-listas m-10 text-center grid hsm:grid-cols-1 sm:grid-cols-2 gap-x-20 gap-y-10' onClick={eliminarDieta}>
+            <section className={`dietas-listas m-10 text-center grid hsm:grid-cols-1 gap-x-20 gap-y-10 ${dietasUsuario.length && 'sm:grid-cols-2'}`} onClick={eliminarDieta}>
 
                 {dietasUsuario.length && Array.isArray(dietasUsuario)
                     ? dietasUsuario.map((dieta) => {
@@ -35,7 +35,13 @@ const DietasGestion = () => {
                     })
                     : <Link to="/rutina/dietas-crear"><p className='border-2 border-gold dark:border-purple bg-purple dark:bg-black rounded-xl px-10 py-5 text-white'>Aún no tienes ninguna dieta, crea una dieta ahora</p></Link>}
             </section>
-            
+            <div className="flex justify-center mt-4">
+                <Link to="/rutina">
+                    <button className="bg-purple text-white px-6 py-2 rounded-xl shadow-lg dark:hover:bg-purpleOp hover:scale-102 transition-all duration-300 ease-in-out text-shadow-md">
+                        Volver a tus rutinas
+                    </button>
+                </Link>
+            </div>
         </>
     )
 }

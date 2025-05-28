@@ -8,6 +8,7 @@ import es from 'date-fns/locale/es'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { useTema } from '../../contextos/TemaContexto.jsx'
 import Swal from 'sweetalert2'
+import BotonDeRetroceso from '../../menus/BotonDeRetroceso.jsx'
 
 const locales = { es }
 const localizer = dateFnsLocalizer({
@@ -125,7 +126,11 @@ const MiCalendarioAvanzado = () => {
         dayPropGetter={dayPropGetter}
         className="font-sans"
       />
+      <div className="flex justify-center mt-6">
+                <BotonDeRetroceso textoBoton="Volver a tus rutinas" />
+      </div>
     </div>
+
   );
 };
 

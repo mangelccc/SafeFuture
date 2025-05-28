@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import BotonDeRetroceso from '../../../menus/BotonDeRetroceso';
 
 // Asegúrate de que apunte a tu Webhook manual
 const WEBHOOK_URL = 'https://grmmyyrm.app.n8n.cloud/webhook/5d6e4b1f-22f0-4635-8ef0-9a40eec65e4e/chat';
@@ -85,6 +86,9 @@ export default function RamonIA() {
         >
           {sending ? 'Pensando…' : 'Enviar'}
         </button>
+      </div>
+      <div className="flex justify-center mt-8 text-[24px]">
+          <BotonDeRetroceso textoBoton="Volver a los servicios"/>
       </div>
     </div>
     </div>

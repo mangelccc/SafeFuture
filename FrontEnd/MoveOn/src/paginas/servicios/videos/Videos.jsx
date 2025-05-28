@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { videos, getVideoId  } from "../../../bibliotecas/biblioteca.js"
+import BotonDeRetroceso from '../../../menus/BotonDeRetroceso.jsx';
 
 const Videos = () => {
   const [filter, setFilter] = useState('Todos');
@@ -49,6 +50,9 @@ const Videos = () => {
           );
         })}
       </div>
+          <div className="flex justify-center mt-4">
+      <BotonDeRetroceso textoBoton="Volver a los servicios"/>
+    </div>
     </div>
   );
 };

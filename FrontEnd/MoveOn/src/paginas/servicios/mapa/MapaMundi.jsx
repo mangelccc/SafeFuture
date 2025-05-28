@@ -7,6 +7,7 @@ import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 import useAppContext from "../../../hooks/useAppContext.jsx";
+import BotonDeRetroceso from "../../../menus/BotonDeRetroceso.jsx";
 import { API_URL } from "../../../bibliotecas/config.js";
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -161,13 +162,15 @@ export default function MapaMundi({ userId }) {
   }, []);
 
   return (
+    <>
+    <h2 className="font-bold mb-4 dark:text-gold hsm:text-center px-4">Mapamundi de ubicaciones destacadas</h2>
     <div className="h-screen w-full flex justify-center z-20">
       {cargando ? (
         <div className="flex items-center justify-center h-full w-full">
           <p className="text-white text-xl">Cargando mapa y ubicaciones...</p>
         </div>
       ) : (
-        <MapContainer center={[20, 0]} zoom={2} className="hsm:w-full hsm:h-full sm:h-4/5 sm:w-4/5 sm:rounded-2xl sm:shadow-lg">
+        <MapContainer center={[20, 0]} zoom={2} className="hsm:w-full sm:w-4/5 sm:rounded-2xl sm:shadow-lg">
           <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <ManejadorClickMapa userId={usuario.id_usuario} alAgregar={nueva => setUbicaciones(prev => [...prev, nueva])} />
           {ubicaciones.map((loc, index) => (
@@ -191,5 +194,9 @@ export default function MapaMundi({ userId }) {
         </MapContainer>
       )}
     </div>
+    <div className="flex justify-center mt-4">
+      <BotonDeRetroceso textoBoton="Volver a los servicios"/>
+    </div>
+    </>
   );
 }

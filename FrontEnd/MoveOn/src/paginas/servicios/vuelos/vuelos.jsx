@@ -1,5 +1,6 @@
 // Traslados.jsx
 import React, { useState, useEffect } from 'react';
+import BotonDeRetroceso from '../../../menus/BotonDeRetroceso';
 
 const PAIS_MAP = {
   ZRH: 'Suiza',
@@ -81,6 +82,9 @@ export default function Traslados() {
           )}
         </div>
       </div>
+          <div className="flex justify-center mt-4">
+      <BotonDeRetroceso textoBoton="Volver a los servicios"/>
+    </div>
     </div>
   );
 }

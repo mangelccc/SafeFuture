@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Element } from 'react-scroll';
 import { useNoFumar } from "../../../contextos/NoFumarContexto.jsx";
 import { benefits, tips, calcularDuracion } from "../../../bibliotecas/biblioteca.js"
+import BotonDeRetroceso from '../../../menus/BotonDeRetroceso.jsx';
 
 const DejarDeFumar = () => {
     const { records, activeRecord, contador, comenzarIntento, loading, terminarIntento } = useNoFumar();
@@ -112,6 +113,9 @@ const DejarDeFumar = () => {
                     ))}
                 </ul>
             </section>
+            <div className="flex justify-center mt-4">
+                <BotonDeRetroceso textoBoton="Volver a tus rutinas" />
+            </div>
         </div>
     );
 }
