@@ -409,6 +409,12 @@ const calcularDuracion = (createdAt, updatedAt) => {
   return `${dias}d ${horas}h ${minutos}m ${segundos}s`;
 };
 
+const getEnlaceClase = (pathname, ruta) => {
+  const base = "dark:text-white font-bold px-3 py-1 rounded-lg transition-colors duration-300 hover:bg-purple hover:text-white";
+  const activa = pathname === ruta ? "bg-purple text-white" : "";
+  return `${base} ${activa}`;
+};
+
 
 const camposUsuario = [
   { campo: "nombre", label: "Nombre personal", sublabel: "Nombre" },
@@ -584,8 +590,10 @@ const getVideoId = (url) => {
   return match ? match[1] : '';
 };
 
+
+
 export {
   validarRegistro, calcularMacronutrientes, precioPorKilo, validarCreacionAlimento, obtenerAlimentosVisibles, validarCrearLista,
   validarCamposDieta, validarDatoEjercicio, validarFormularioData, calcularMacrosAcumulados, compararConObjetivos, validarCampoUsuario,
-  camposUsuario, benefits, tips, calcularDuracion,validarDatoRutina, faqs, recommendedSites, videos, getVideoId
+  camposUsuario, getEnlaceClase, benefits, tips, calcularDuracion,validarDatoRutina, faqs, recommendedSites, videos, getVideoId
 };
