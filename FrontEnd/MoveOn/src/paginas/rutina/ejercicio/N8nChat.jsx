@@ -98,7 +98,7 @@ export default function N8NChat() {
           onClick={sendMessage}
           disabled={sending}
         >
-          {sending ? '…' : 'Enviar'}
+          {sending ? 'Pensando…' : 'Enviar'}
         </button>
       </div>
     </div>

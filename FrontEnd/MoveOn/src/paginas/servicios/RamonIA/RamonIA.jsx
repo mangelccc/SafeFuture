@@ -83,7 +83,7 @@ export default function RamonIA() {
           onClick={sendMessage}
           disabled={sending}
         >
-          {sending ? '…' : 'Enviar'}
+          {sending ? 'Pensando…' : 'Enviar'}
         </button>
       </div>
     </div>

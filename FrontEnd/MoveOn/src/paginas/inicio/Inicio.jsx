@@ -59,16 +59,13 @@ const Inicio = () => {
         <article className="hsm:order-last">
           <h1 className="m-0 text-gold">Cambio de Vida</h1>
           <h2 className="text-turq font-normal pl-0 pb-4">Introducción</h2>
-          <p className="text-white text-justify leading-normal mb-8">
-            Safe Future es una innovadora plataforma diseñada para brindar
-            soluciones prácticas a personas que desean transformar sus vidas, ya
-            sea encontrando empleo en toda Europa, trasladándose a nuevas
-            ubicaciones o adoptando hábitos saludables. Con un enfoque centrado
-            en la reintegración social, recompensamos a los usuarios por sus
-            logros a través de un sistema motivador de puntos. Además,
-            proporcionamos recursos y apoyo para facilitar el cambio hacia un
-            futuro más prometedor. Aquí puedes ver un video que explica nuestra
-            misión y cómo funcionamos.
+          <p className="text-white text-justify leading-6 mb-8">
+            <strong>Safe Future es una app pensada para acompañarte en el camino hacia una vida más sana y con nuevos horizontes. </strong>
+            Encontrarás rutinas de ejercicio con vídeos cortos que te muestran cómo hacerlo paso a paso, dietas personalizadas con recetas fáciles y una calculadora de macronutrientes para que sepas lo que necesitas.
+            Si estás dejando de fumar, te ayudamos con un contador de días, lo que llevas ahorrado y mensajes que te motivan en cada etapa.
+            También puedes descubrir lugares recomendados por otros usuarios en nuestro mapamundi, organizar tus días con el calendario (ya sea para anotar tus comidas, entrenamientos o simplemente para dejarte una nota positiva), y consultar vuelos disponibles si te apetece empezar de cero en otro sitio.
+            Además, tienes un par de ayudantes con inteligencia artificial: uno que hace de entrenador personal y otro que te echa una mano con cualquier duda sobre la app.
+            Todo lo que necesitas, en un solo lugar.
           </p>
           <Link to="/descubre">
             <button className="relative bg-black1 border-0 text-white rounded-xl text-2xl py-3 px-6 font-semibold transition ease-in-out duration-200 cursor-pointer hover:bg-gold hover:text-black1 hover:-translate-y-1.5 active:translate-y-1 active:bg-gold">
@@ -76,18 +73,12 @@ const Inicio = () => {
             </button>
           </Link>
         </article>
-        <div>
-          <video
-            className="max-w-full rounded-xl border border-gold"
-            controls
-            autoPlay
-            loop
-            muted
-          >
+ 
+          <video className="max-w-full rounded-xl border border-gold self-center" controls autoPlay loop muted>
             <source src="/videos/move-on.mp4" type="video/mp4" />
             Tu navegador no soporta la etiqueta de video.
           </video>
-        </div>
+     
       </div>
 
       <h2 className="text-gold p-6 text-center font-bold">Desarrolladores</h2>

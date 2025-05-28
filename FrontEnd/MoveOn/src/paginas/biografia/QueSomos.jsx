@@ -22,11 +22,13 @@ const SobreNosotros = () => {
       <section className="space-y-6">
         <h2 className="text-gold text-3xl font-bold">Lo Que Encontrarás en MoveOn</h2>
         <ul className="list-disc list-inside text-white leading-relaxed space-y-3">
-          <li><strong>Rutinas de Ejercicio:</strong> Diseñadas por expertos y adaptables a todos los niveles. Vídeos con explicaciones paso a paso y seguimiento de progreso.</li>
+          <li><strong>Rutinas de Ejercicio:</strong> Diseñadas por expertos y adaptables a todos los niveles con un video short de muestra del ejercicio.</li>
           <li><strong>Dietas Personalizadas:</strong> Planes de alimentación basados en tus objetivos, con calculadora de macronutrientes y recetas saludables.</li>
-          <li><strong>Dejar de Fumar:</strong> Contador de día sin tabaco, estadísticas de dinero ahorrado y consejos motivacionales para cada etapa del proceso.</li>
-          <li><strong>Búsqueda de Empleo Internacional:</strong> Guías prácticas para preparar tu currículum, consejos para entrevistas y adaptación a culturas laborales extranjeras.</li>
-          <li><strong>Calendario Integral:</strong> Agenda tus ejercicios, comidas y metas diarias con recordatorios y notas motivacionales.</li>
+          <li><strong>Dejar de Fumar:</strong> Contador de día sin tabaco, para que tengas en cuenta el dinero ahorrado y consejos motivacionales para cada etapa del proceso.</li>
+          <li><strong>Ubicaciones en el mapamundi:</strong> Sitios donde los usuarios postean y ayudan a otras personas mediante reseñas en lugares recomendados.</li>
+          <li><strong>Calendario Integral:</strong> Para apuntar tus ejercicios, comidas, metas diarias y o para ponerte notas motivacionales.</li>
+          <li><strong>Ayudante de IA:</strong> De momentos tenemos un entrenador personal de ejercicios y otra pensada para ayudarte en cualquier tema sobre la aplicación.</li>
+          <li><strong>Vuelos del dia: Tenemos a disposición de quien quiera irse a otro lugar los vuelos disponibles que hay los países que te recomendamos.</strong></li>
         </ul>
       </section>
 
