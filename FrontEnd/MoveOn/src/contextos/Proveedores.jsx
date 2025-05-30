@@ -9,8 +9,8 @@ import NoFumarContexto from "./NoFumarContexto.jsx";
 const Proveedores = ({ children }) => {
     return (
         <AuthContexto>
-            <DietasContexto>
-                <AlimentosContexto>
+            <AlimentosContexto>
+                <DietasContexto>
                     <ProvedorEjercicios>
                         <ProvedorEntrenamiento>
                             <NoFumarContexto>
@@ -18,8 +18,8 @@ const Proveedores = ({ children }) => {
                             </NoFumarContexto>
                         </ProvedorEntrenamiento>
                     </ProvedorEjercicios>
-                </AlimentosContexto>
-            </DietasContexto>
+                </DietasContexto>
+            </AlimentosContexto>
         </AuthContexto>
     );
 };

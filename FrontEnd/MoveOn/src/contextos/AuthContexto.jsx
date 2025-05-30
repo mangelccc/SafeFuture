@@ -156,9 +156,11 @@ const AuthContexto = ({ children }) => {
             showConfirmButton: falseBool,
             timer: 1500
           })
-
+          console.log("token", data.token);
+          // Guardar el token en localStorage
           setUsuario(data.usuario);
           setSesionIniciada(true);
+          localStorage.setItem("token", data.token);
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
           localStorage.setItem("sesionIniciada", "true");
           setDatosSesion(datosSesionInicial);
@@ -281,6 +283,7 @@ const readUsuarios = async () => {
     setSesionIniciada(falseBool);
     localStorage.removeItem("usuario");
     localStorage.removeItem("sesionIniciada");
+    localStorage.removeItem("token");
     navegar("/usuario");
   };
 

@@ -2,7 +2,6 @@
 import React, { createContext, useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAppContext from '../hooks/useAppContext.jsx';
-import { validarCreacionAlimento } from "../bibliotecas/biblioteca.js";
 import { API_URL } from "../bibliotecas/config.js";
 import Swal from "sweetalert2";
 
@@ -17,6 +16,7 @@ const AlimentosContexto = ({ children }) => {
   const cadenaVacia = "";
   const listaInicial = [];
   const falso = false;
+  const token = localStorage.getItem("token");
   const alimentoInicial = {
     id: null,
     nombre: "",
@@ -72,7 +72,12 @@ const AlimentosContexto = ({ children }) => {
         throw new Error("Error en la respuesta de la API: " + response.statusText);
       }
       const data = await response.json();
-      setListadoAlimentos(data.alimentos);
+      if (Array.isArray(data.alimentos)) {
+        setListadoAlimentos(data.alimentos);
+      } else {
+        setListadoAlimentos([]);
+        setErrorAlimento("Los datos recibidos no tienen una lista válida de alimentos.");
+      }
     } catch (error) {
       setErrorAlimento("Error al leer los alimentos: " + error.message);
     }
@@ -131,40 +136,40 @@ const AlimentosContexto = ({ children }) => {
   }, []);
 
   const seleccionarAlimento = useCallback((alimento, idDiet) => {
-  setAlimentosSeleccionados(prev => {
-    const existe = prev.find(item => item.id_alimento === alimento.id_alimento);
-    if (existe) {
-      // Incrementamos cantidad existente
-      const nuevos = prev.map(item =>
-        item.id_alimento === alimento.id_alimento
-          ? { ...item, cantidad: item.cantidad + 1 }
-          : item
-      );
-      // Toast de confirmación
+    setAlimentosSeleccionados(prev => {
+      const existe = prev.find(item => item.id_alimento === alimento.id_alimento);
+      if (existe) {
+        // Incrementamos cantidad existente
+        const nuevos = prev.map(item =>
+          item.id_alimento === alimento.id_alimento
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        );
+        // Toast de confirmación
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'success',
+          title: `Cantidad de "${alimento.nombre}" incrementada`,
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+        return nuevos;
+      }
+      const añadidos = [...prev, { ...alimento, cantidad: 1, id_dieta: idDiet }];
       Swal.fire({
         toast: true,
         position: 'top-end',
         icon: 'success',
-        title: `Cantidad de "${alimento.nombre}" incrementada`,
+        title: `"${alimento.nombre}" añadido`,
         showConfirmButton: false,
         timer: 1500,
         timerProgressBar: true,
       });
-      return nuevos;
-    }
-    const añadidos = [...prev, { ...alimento, cantidad: 1, id_dieta: idDiet }];
-    Swal.fire({
-      toast: true,
-      position: 'top-end',
-      icon: 'success',
-      title: `"${alimento.nombre}" añadido`,
-      showConfirmButton: false,
-      timer: 1500,
-      timerProgressBar: true,
+      return añadidos;
     });
-    return añadidos;
-  });
-}, [setAlimentosSeleccionados]);
+  }, [setAlimentosSeleccionados]);
 
 
   const aumentarCantidad = useCallback((idAlimento) => {
