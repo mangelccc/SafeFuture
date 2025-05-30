@@ -16,16 +16,26 @@ use App\Http\Controllers\RutinaEjercicioController;
 use App\Http\Controllers\AlimentoDietaController;
 use App\Http\Controllers\NoFumarController;
 use App\Http\Controllers\CoordenadaController;
+use App\Http\Controllers\AuthController;
 
-// Rutas para Usuarios
+
+// ----------  Rutas públicas  ----------
 Route::get('usuarios/email-exists', [UsuarioController::class, 'emailExists']);
-Route::get('/usuarios', [UsuarioController::class, 'index']);
-Route::get('/usuarios/{id}', [UsuarioController::class, 'show']);
-Route::post('/usuarios', [UsuarioController::class, 'store']);
-Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
-Route::patch('/usuarios/{id}', [UsuarioController::class, 'updatePartial']);
-Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
-Route::post('/login', [UsuarioController::class, 'login']);
+Route::post('/usuarios', [UsuarioController::class, 'store']);          // registro
+Route::post('/login',    [UsuarioController::class, 'login'])->name('login'); // <-- nombre
+
+// (opcional) si temes que alguna vez llegues vía navegador:
+Route::get('/login', fn () => response()->json(['message' => 'No autorizado'], 401))
+      ->name('login');
+
+// ----------  Rutas protegidas  ----------
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get   ('/usuarios',       [UsuarioController::class, 'index']);
+    Route::get   ('/usuarios/{id}',  [UsuarioController::class, 'show']);
+    Route::put   ('/usuarios/{id}',  [UsuarioController::class, 'update']);
+    Route::patch ('/usuarios/{id}',  [UsuarioController::class, 'updatePartial']);
+    Route::delete('/usuarios/{id}',  [UsuarioController::class, 'destroy']);
+});
 
 // Rutas para el historial NoFumar
 Route::get('/no-fumar', [NoFumarController::class, 'index']);

@@ -36,28 +36,25 @@ class UsuarioController extends Controller
         // Buscar al usuario por correo
         $usuario = Usuario::where('correo', $request->correo)->first();
 
-        if (!$usuario) {
+        if (!$usuario || !Hash::check($request->contrasena, $usuario->contrasena)) {
             return response()->json([
                 'message' => 'Credenciales incorrectas',
                 'status'  => 401
             ], 401);
         }
 
-        // Comparar la contraseña en texto plano con la contraseña cifrada almacenada
-        if (!Hash::check($request->contrasena, $usuario->contrasena)) {
-            return response()->json([
-                'message' => 'Credenciales incorrectas',
-                'status'  => 401
-            ], 401);
-        }
+        // Crear token con Sanctum
+        $token = $usuario->createToken('api-token')->plainTextToken;
 
-        // Si la autenticación es exitosa, se puede retornar información del usuario
+        // Retornar token junto con info del usuario
         return response()->json([
             'message' => 'Login exitoso',
             'usuario' => $usuario,
+            'token'   => $token,
             'status'  => 200
         ], 200);
     }
+
     public function store(StoreUsuarioRequest $request)
     {
         $data = $request->validated();

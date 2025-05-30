@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ciudad', function (Blueprint $table) {
             $table->id('cod_ciudad');
             $table->string('nombre', 100);
-            $table->unsignedBQigInteger('cod_pais'); // Debe coincidir con el tipo de dato de 'pais.cod_pais'
+            $table->unsignedBigInteger('cod_pais'); // Debe coincidir con el tipo de dato de 'pais.cod_pais'
             $table->timestamps();
         });
     }
