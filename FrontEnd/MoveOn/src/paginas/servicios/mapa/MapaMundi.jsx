@@ -14,6 +14,7 @@ delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
 
 const URL_API = `${API_URL}/paises`;
+const token = localStorage.getItem("token") || "";
 
 const ManejadorClickMapa = ({ userId, alAgregar }) => {
   useMapEvents({
@@ -61,7 +62,11 @@ async function agregarUbicacion(userId, lat, lng, valores, alAgregar) {
   try {
     const respuesta = await fetch(URL_API, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
       body: JSON.stringify({
         usuario_uuid: userId,
         latitud: lat,
@@ -94,9 +99,22 @@ async function agregarUbicacion(userId, lat, lng, valores, alAgregar) {
 async function obtenerUbicaciones(setLocations, setCargando) {
   setCargando(true);
   try {
-    const respuesta = await fetch(URL_API);
-    if (!respuesta.ok) throw new Error(`${respuesta.status} ${respuesta.statusText}`);
+    const respuesta = await fetch(URL_API, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
     const datosBrutos = await respuesta.json();
+
+    // Si viene un mensaje sin datos, mostramos alerta personalizada
+    if (!respuesta.ok || (datosBrutos.message && !Array.isArray(datosBrutos))) {
+      throw new Error(datosBrutos.message || `${respuesta.status} ${respuesta.statusText}`);
+    }
+
     const arreglo = Array.isArray(datosBrutos)
       ? datosBrutos
       : datosBrutos.paises ?? datosBrutos.data ?? datosBrutos.results;
@@ -112,12 +130,13 @@ async function obtenerUbicaciones(setLocations, setCargando) {
 
     setLocations(ubicaciones);
   } catch (error) {
-    Swal.fire('Error', `No se pudieron cargar las ubicaciones: ${error.message}`, 'error');
+    Swal.fire(error.message, "Todavía no hay ubicaciones", 'info');
     setLocations([]);
   } finally {
     setCargando(false);
   }
 }
+
 
 async function eliminarUbicacion(id, setLocations) {
   const { isConfirmed } = await Swal.fire({
@@ -136,7 +155,14 @@ async function eliminarUbicacion(id, setLocations) {
 
   if (isConfirmed) {
     try {
-      const res = await fetch(`${URL_API}/${id}`, { method: 'DELETE' });
+      const res = await fetch(`${URL_API}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
       if (!res.ok) throw new Error(`Fallo al eliminar: ${res.status}`);
       setLocations(prev => prev.filter(loc => loc.id !== id));
       Swal.fire('Eliminado', 'Ubicación eliminada correctamente', 'success');

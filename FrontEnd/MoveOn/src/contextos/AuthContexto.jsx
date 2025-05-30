@@ -270,7 +270,14 @@ const AuthContexto = ({ children }) => {
   };
   const readUsuarios = async () => {
     try {
-      const res = await fetch(`${API_URL}/usuarios`);
+      const res = await fetch(`${API_URL}/usuarios`, {
+        method: "GET",
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      });
       const data = await res.json();
       setUsuarios(data.usuarios || []);
     } catch (err) {
@@ -441,7 +448,14 @@ const AuthContexto = ({ children }) => {
   // Obtener todos los usuarios
   const obtenerUsuarios = async () => {
     try {
-      const res = await fetch(`${API_URL}/usuarios`);
+      const res = await fetch(`${API_URL}/usuarios`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      })
       const data = await res.json();
       setListaUsuarios(data.usuarios);
     } catch (err) {
@@ -454,7 +468,11 @@ const AuthContexto = ({ children }) => {
     try {
       const response = await fetch(`${API_URL}/usuarios/${idUsuario}`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
         body: JSON.stringify({ rol: nuevoRol }),
       });
 

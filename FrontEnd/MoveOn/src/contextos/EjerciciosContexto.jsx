@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { validarDatoEjercicio } from '../bibliotecas/biblioteca.js';
 import { API_URL } from "../bibliotecas/config.js";
+import { data } from 'react-router-dom';
 
 const ContextoEjercicios = createContext();
 
@@ -25,6 +26,7 @@ const EjerciciosContexto = ({ children }) => {
   const [errorEjercicio, setErrorEjercicio] = useState(errorEjercicioInicial);
 
   const readEjercicios = () => {
+    let prueba;
     return fetch(`${API_URL}/ejercicios`, {
       method: 'GET',
       headers: {
@@ -33,19 +35,19 @@ const EjerciciosContexto = ({ children }) => {
         "Authorization": `Bearer ${token}`
       },
     })
-
-
       .then(response => response.json())
       .then(data => {
         // Se asume que la respuesta tiene la propiedad "ejercicios"
-        setEjercicios(data.ejercicios);
-        setEjerciciosFiltrados(data.ejercicios)
+        prueba = data.ejercicios;
+        setEjercicios(data.ejercicios? data.ejercicios : []);
+        setEjerciciosFiltrados(data.ejercicios? data.ejercicios : [])
       })
       .catch(error => {
         console.error(`Se ha producido un error: ${error.message}`);
         setErrorEjercicio(`Se ha producido un error: ${error.message}`);
-      });
+      })
   }
+  
 
   // Obtención de datos al montar el componente
   useEffect(() => {
