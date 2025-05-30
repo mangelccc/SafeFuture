@@ -66,7 +66,12 @@ const AlimentosContexto = ({ children }) => {
       setErrorAlimento(cadenaVacia);
       const response = await fetch(`${API_URL}/alimentos`, {
         method: "GET",
-        headers: { "Content-Type": "application/json" }
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+
       });
       if (!response.ok) {
         throw new Error("Error en la respuesta de la API: " + response.statusText);
@@ -93,7 +98,11 @@ const AlimentosContexto = ({ children }) => {
       };
       const response = await fetch(`${API_URL}/alimento-dieta/multiples`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
@@ -118,7 +127,16 @@ const AlimentosContexto = ({ children }) => {
   const obtenerAlimentosDieta = useCallback(async (idDieta) => {
     setLoading(true);
     try {
-      const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`);
+      const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
+
+
       if (response.status === 404) {
         setAlimentosSeleccionados(listaInicial);
         return;

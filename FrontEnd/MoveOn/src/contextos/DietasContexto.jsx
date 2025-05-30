@@ -20,6 +20,7 @@ const DietasContexto = ({ children }) => {
         descripcion: cadenaVacia,
     }
 
+    const token = localStorage.getItem("token");
     const pasosArray = ["A", "B", "C", "D"];
     const iniciaFormulario = {
         peso: "",
@@ -139,13 +140,21 @@ const DietasContexto = ({ children }) => {
         try {
             const resp1 = await fetch(`${API_URL}/dietas`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
                 body: JSON.stringify(nuevaDieta),
             });
 
             const resp2 = await fetch(`${API_URL}/usuario-dieta`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
                 body: JSON.stringify(dietaPersonalizada),
             });
 
@@ -218,15 +227,16 @@ const DietasContexto = ({ children }) => {
     };
 
     const cargarDietasDelUsuario = async () => {
-        
+
         try {
             const respuesta = await fetch(`${API_URL}/usuario/${usuario.id_usuario}/dietas`, {
 
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    // Otros headers si es necesario, como tokens de autenticación
-                }
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
             });
             if (!respuesta) {
                 throw new Error("Ha habido un error al obtener las dietas del usuario.");
@@ -244,12 +254,12 @@ const DietasContexto = ({ children }) => {
     useEffect(() => {
         if (sesionIniciada === true && usuario && usuario.id_usuario) {
             cargarDietasDelUsuario();
-        } 
+        }
     }, [sesionIniciada, usuario]);
 
     const eliminarDieta = async (evento) => {
         try {
-            
+
             if (evento.target.classList[0] === "del") {
                 // Obtengo los ID de la dieta.
                 const id = evento.target.parentNode.parentNode.id;
@@ -271,12 +281,18 @@ const DietasContexto = ({ children }) => {
                             const respuesta1 = await fetch(`${API_URL}/usuario-dieta/${id}`, {
                                 method: 'DELETE',
                                 headers: {
-                                    'Content-Type': 'application/json'
-                                }
+                                    "Content-Type": "application/json",
+                                    "Accept": "application/json",
+                                    "Authorization": `Bearer ${token}`
+                                },
                             })
                             const respuesta2 = await fetch(`${API_URL}/dietas/${idDieta}`, {
                                 method: 'DELETE',
-                                headers: { 'Content-Type': 'application/json' }
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Accept": "application/json",
+                                    "Authorization": `Bearer ${token}`
+                                },
                             })
 
                             /* Con este filter obtengo todos los productos del listado, menos el seleccionado. */

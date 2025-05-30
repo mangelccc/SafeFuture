@@ -6,6 +6,7 @@ const ContextoEjercicios = createContext();
 
 const EjerciciosContexto = ({ children }) => {
   // Variables iniciales
+  const token = localStorage.getItem("token");
   const ejerciciosIniciales = [];
   const ejercicioInicial = {
     id_ejercicio: '',
@@ -24,7 +25,16 @@ const EjerciciosContexto = ({ children }) => {
   const [errorEjercicio, setErrorEjercicio] = useState(errorEjercicioInicial);
 
   const readEjercicios = () => {
-    return fetch(`${API_URL}/ejercicios`)
+    return fetch(`${API_URL}/ejercicios`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    })
+
+
       .then(response => response.json())
       .then(data => {
         // Se asume que la respuesta tiene la propiedad "ejercicios"
@@ -47,7 +57,9 @@ const EjerciciosContexto = ({ children }) => {
     fetch(`${API_URL}/ejercicios`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(nuevoEjercicio)
     })
@@ -69,7 +81,9 @@ const EjerciciosContexto = ({ children }) => {
     fetch(`${API_URL}/${id}`, {
       method: 'PUT', // o 'PATCH' según la implementación de la API.
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(updatedData)
     })
@@ -88,7 +102,14 @@ const EjerciciosContexto = ({ children }) => {
 
   // Función para eliminar un ejercicio (DELETE)
   const deleteEjercicio = (id) => {
-    fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+    fetch(`${API_URL}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+    })
       .then(response => {
         // Se actualiza el estado filtrando el ejercicio eliminado
         setEjercicios(ejercicios.filter(ejercicio => ejercicio.id_ejercicio !== id));
@@ -124,7 +145,7 @@ const EjerciciosContexto = ({ children }) => {
     const formulario = evento.target.form;
     const erroresPorCampo = {};
     console.log("Elementos del formulario:", formulario.elements); // Log para ver todos los elementos
-  
+
     for (let i = 0; i < formulario.elements.length; i++) {
       const elemento = formulario.elements[i];
       if (elemento.name) {

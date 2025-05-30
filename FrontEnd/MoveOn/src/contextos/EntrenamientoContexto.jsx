@@ -9,10 +9,11 @@ const ContextoEntrenamiento = createContext();
 
 const EntrenamientoContexto = ({ children }) => {
 
-  const { entrenamientoContexto, auth } = useAppContext();
+  const { auth } = useAppContext();
   const { usuario } = auth;
   const navigate = useNavigate();
   // Variables iniciales
+  const token = localStorage.getItem("token");
   const entrenamientosIniciales = [];
   const entrenamientoInicial = {
     nombre: '',
@@ -35,7 +36,14 @@ const EntrenamientoContexto = ({ children }) => {
 
   const readEntrenamientos = async () => {
     try {
-      const res = await fetch(apiUrl);
+      const res = await fetch(apiUrl, {
+        method: "GET",
+        headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+      });
       const data = await res.json();
       const all = data.rutinas || [];
         // 🔹 1) Deduplicar por nombre+descripción
@@ -64,13 +72,19 @@ const EntrenamientoContexto = ({ children }) => {
       setErrorEntrenamiento(`Error al cargar rutinas: ${err.message}`);
     }
   };
+
 useEffect(() => {
     readEntrenamientos();
   }, [apiUrl]);
+  
   const createEntrenamiento = async (nuevoEntrenamiento) => {
     await fetch(apiUrl, {
-      headers: { "Content-Type": "application/json" },
       method: "POST",
+      headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
       body: JSON.stringify(nuevoEntrenamiento),
     })
       .then(response => { return response.json() })
@@ -99,7 +113,14 @@ useEffect(() => {
 
     Swal.fire({ title: 'Eliminando...', allowOutsideClick: false, didOpen: Swal.showLoading });
     try {
-      await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+      await fetch(`${apiUrl}/${id}`, { 
+        method: "DELETE",
+        headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+      });
       setEntrenamientos(prev => prev.filter(e => e.id_rutina !== id));
       setMisEntrenamientos(prev => prev.filter(e => e.id_rutina !== id));
       setEntrenamientosFiltrados(prev => prev.filter(e => e.id_rutina !== id));
@@ -148,7 +169,11 @@ useEffect(() => {
 
       const resRutina = await fetch(`${API_URL}/rutinas`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify({ uuid, uuid_usuario, nombre, descripcion })
       });
 
@@ -160,7 +185,11 @@ useEffect(() => {
         ejerciciosSeleccionados.map(ej =>
           fetch(`${API_URL}/rutina-ejercicio`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
             body: JSON.stringify({
               id_rutina: nuevaRutina.id_rutina,
               id_ejercicio: ej.id_ejercicio,
@@ -274,14 +303,28 @@ const seleccionEjercicios = (ejercicio) => {
     setCargando(true);
     try {
       // 1) Obtener el nombre de la rutina
-      const resRut = await fetch(`${API_URL}/rutinas/${id}`);
+      const resRut = await fetch(`${API_URL}/rutinas/${id}`,{
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
       if (!resRut.ok) throw new Error(`Status ${resRut.status}`);
       const rawRut = await resRut.json();
       const rut = rawRut.rutina || rawRut;
       setRutinaNombre(rut.nombre || `Rutina ${id}`);
 
       // 2) Obtener pivots de rutina-ejercicio
-      const res = await fetch(`${API_URL}/rutina-ejercicio`);
+      const res = await fetch(`${API_URL}/rutina-ejercicio`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
       if (!res.ok) throw new Error(`Status ${res.status}`);
       const raw = await res.json();
       const pivots = Array.isArray(raw.rutina_ejercicios) ? raw.rutina_ejercicios : [];

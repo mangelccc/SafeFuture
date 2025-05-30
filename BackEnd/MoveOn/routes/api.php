@@ -19,23 +19,40 @@ use App\Http\Controllers\CoordenadaController;
 use App\Http\Controllers\AuthController;
 
 
-// ----------  Rutas públicas  ----------
+// ----------  Rutas públicas  ---------- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+//Rutas de usuarios
 Route::get('usuarios/email-exists', [UsuarioController::class, 'emailExists']);
 Route::post('/usuarios', [UsuarioController::class, 'store']);          // registro
 Route::post('/login',    [UsuarioController::class, 'login'])->name('login'); // <-- nombre
+Route::patch('/reset-password/{id}', [UsuarioController::class, 'resetPasswordWithToken']);
 
-// (opcional) si temes que alguna vez llegues vía navegador:
+// Rutas para Países
+Route::get('/paises', [PaisController::class, 'index']);
+Route::get('/paises/{id}', [PaisController::class, 'show']);
+Route::post('/paises', [PaisController::class, 'store']);
+
+
+// Rutas para Ciudades
+Route::get('/ciudades', [CiudadController::class, 'index']);
+Route::get('/ciudades/{id}', [CiudadController::class, 'show']);
+
+// Rutas para Traslados
+Route::get('/traslados', [TrasladoController::class, 'index']);
+Route::get('/traslados/{id}', [TrasladoController::class, 'show']);
+
+// Redirecciono si no tiene permisos:
 Route::get('/login', fn () => response()->json(['message' => 'No autorizado'], 401))
       ->name('login');
 
-// ----------  Rutas protegidas  ----------
+// ----------  Rutas protegidas  ---------- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Route::middleware('auth:sanctum')->group(function () {
     Route::get   ('/usuarios',       [UsuarioController::class, 'index']);
     Route::get   ('/usuarios/{id}',  [UsuarioController::class, 'show']);
     Route::put   ('/usuarios/{id}',  [UsuarioController::class, 'update']);
     Route::patch ('/usuarios/{id}',  [UsuarioController::class, 'updatePartial']);
     Route::delete('/usuarios/{id}',  [UsuarioController::class, 'destroy']);
-});
+
 
 // Rutas para el historial NoFumar
 Route::get('/no-fumar', [NoFumarController::class, 'index']);
@@ -46,7 +63,6 @@ Route::patch('/no-fumar/{id}', [NoFumarController::class, 'update']);
 Route::delete('/no-fumar/{id}', [NoFumarController::class, 'destroy']);
 Route::get('/usuario/{id_usuario}/no-fumar', [NoFumarController::class, 'getByUsuario']);
 
-
 // Rutas para Alimentos
 Route::get('/alimentos', [AlimentoController::class, 'index']);
 Route::get('/alimentos/{id}', [AlimentoController::class, 'show']);
@@ -54,22 +70,6 @@ Route::post('/alimentos', [AlimentoController::class, 'store']);
 Route::put('/alimentos/{id}', [AlimentoController::class, 'update']);
 Route::patch('/alimentos/{id}', [AlimentoController::class, 'updatePartial']);
 Route::delete('/alimentos/{id}', [AlimentoController::class, 'destroy']);
-
-// Rutas para Países
-Route::get('/paises', [PaisController::class, 'index']);
-Route::get('/paises/{id}', [PaisController::class, 'show']);
-Route::post('/paises', [PaisController::class, 'store']);
-Route::put('/paises/{id}', [PaisController::class, 'update']);
-Route::patch('/paises/{id}', [PaisController::class, 'updatePartial']);
-Route::delete('/paises/{id}', [PaisController::class, 'destroy']);
-
-// Rutas para Ciudades
-Route::get('/ciudades', [CiudadController::class, 'index']);
-Route::get('/ciudades/{id}', [CiudadController::class, 'show']);
-Route::post('/ciudades', [CiudadController::class, 'store']);
-Route::put('/ciudades/{id}', [CiudadController::class, 'update']);
-Route::patch('/ciudades/{id}', [CiudadController::class, 'updatePartial']);
-Route::delete('/ciudades/{id}', [CiudadController::class, 'destroy']);
 
 // Rutas para Rutinas
 Route::get('/rutinas', [RutinaController::class, 'index']);
@@ -89,7 +89,6 @@ Route::put('/dietas/{id}', [DietaController::class, 'update']);
 Route::patch('/dietas/{id}', [DietaController::class, 'updatePartial']);
 Route::delete('/dietas/{id}', [DietaController::class, 'destroy']);
 
-
 // Rutas para Ejercicios
 Route::get('/ejercicios', [EjercicioController::class, 'index']);
 Route::get('/ejercicios/{id}', [EjercicioController::class, 'show']);
@@ -97,14 +96,6 @@ Route::post('/ejercicios', [EjercicioController::class, 'store']);
 Route::put('/ejercicios/{id}', [EjercicioController::class, 'update']);
 Route::patch('/ejercicios/{id}', [EjercicioController::class, 'updatePartial']);
 Route::delete('/ejercicios/{id}', [EjercicioController::class, 'destroy']);
-
-// Rutas para Traslados
-Route::get('/traslados', [TrasladoController::class, 'index']);
-Route::get('/traslados/{id}', [TrasladoController::class, 'show']);
-Route::post('/traslados', [TrasladoController::class, 'store']);
-Route::put('/traslados/{id}', [TrasladoController::class, 'update']);
-Route::patch('/traslados/{id}', [TrasladoController::class, 'updatePartial']);
-Route::delete('/traslados/{id}', [TrasladoController::class, 'destroy']);
 
 /** Rutas para la tabla pivote usuario_dieta **/
 Route::get('/usuario-dieta', [UsuarioDietaController::class, 'index']);
@@ -149,4 +140,26 @@ Route::post  ('/coordenadas',          [CoordenadaController::class, 'store']);
 Route::put   ('/coordenadas/{id}',     [CoordenadaController::class, 'update']);
 Route::patch ('/coordenadas/{id}',     [CoordenadaController::class, 'update']);
 Route::delete('/coordenadas/{id}',     [CoordenadaController::class, 'destroy']);
+
+// Rutas para Países
+Route::put('/paises/{id}', [PaisController::class, 'update']);
+Route::patch('/paises/{id}', [PaisController::class, 'updatePartial']);
+Route::delete('/paises/{id}', [PaisController::class, 'destroy']);
+
+// Rutas para Ciudades
+Route::post('/ciudades', [CiudadController::class, 'store']);
+Route::put('/ciudades/{id}', [CiudadController::class, 'update']);
+Route::patch('/ciudades/{id}', [CiudadController::class, 'updatePartial']);
+Route::delete('/ciudades/{id}', [CiudadController::class, 'destroy']);
+
+// Rutas para Traslados
+Route::post('/traslados', [TrasladoController::class, 'store']);
+Route::put('/traslados/{id}', [TrasladoController::class, 'update']);
+Route::patch('/traslados/{id}', [TrasladoController::class, 'updatePartial']);
+Route::delete('/traslados/{id}', [TrasladoController::class, 'destroy']);
+
+});
+
+
+
 

@@ -1,16 +1,22 @@
 import { useState, useEffect, useCallback } from "react";
 import { API_URL } from "../bibliotecas/config.js";
 
-export default function useHistorialNoFumar(userId) {
+export default function useHistorialNoFumar(userId, token) {
   const [records, setRecords] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fetchHistorial = useCallback(async () => {
-    if (!userId) return;
+    if (!userId || !token) return;
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/usuario/${userId}/no-fumar`);
+      const res = await fetch(`${API_URL}/usuario/${userId}/no-fumar`, {
+        headers: {
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
+      });
+
       const contentType = res.headers.get("content-type");
 
       if (!res.ok) {
@@ -31,12 +37,12 @@ export default function useHistorialNoFumar(userId) {
     } finally {
       setLoading(false);
     }
-  }, [userId]);
+  }, [userId, token]);
 
-  // Lanza el primer fetch y cada vez que cambie userId
   useEffect(() => {
     fetchHistorial();
   }, [fetchHistorial]);
 
   return { records, error, loading, fetchRecords: fetchHistorial };
 }
+

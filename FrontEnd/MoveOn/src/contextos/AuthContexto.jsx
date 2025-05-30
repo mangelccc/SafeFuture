@@ -1,6 +1,6 @@
 // src/contextos/AuthContexto.jsx
 import React, { useState, useEffect, createContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import { validarRegistro, validarCampoUsuario } from "../bibliotecas/biblioteca.js";
 import { API_URL } from "../bibliotecas/config.js";
 import Swal from 'sweetalert2';
@@ -27,6 +27,7 @@ const AuthContexto = ({ children }) => {
   const usuarioInicial = {};
   const falseBool = false;
   const cadenaVacia = "";
+  const token = localStorage.getItem("token") || "";
 
   const [datosSesion, setDatosSesion] = useState(datosSesionInicial);
   const [errorUsuario, setErrorUsuario] = useState(usuarioInicial);
@@ -41,7 +42,8 @@ const AuthContexto = ({ children }) => {
   const [cargando, setCargando] = useState(falseBool);
   const [listaUsuarios, setListaUsuarios] = useState([]);
   const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
-    const [usuarios, setUsuarios] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
+  const [tokenTemp, setTokenTemp] = useState(cadenaVacia);
 
   /* Hecho para que si se actualiza accidentalmente la página se recuperé la sesión evitando redirecciones innecesarias. */
   const [sesionIniciada, setSesionIniciada] = useState(() => {
@@ -156,11 +158,12 @@ const AuthContexto = ({ children }) => {
             showConfirmButton: falseBool,
             timer: 1500
           })
-          console.log("token", data.token);
+          console.log("usuario inicia sesion", data);
           // Guardar el token en localStorage
           setUsuario(data.usuario);
           setSesionIniciada(true);
           localStorage.setItem("token", data.token);
+          console.log("token guardado", data.token);
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
           localStorage.setItem("sesionIniciada", "true");
           setDatosSesion(datosSesionInicial);
@@ -194,13 +197,17 @@ const AuthContexto = ({ children }) => {
     try {
       const response = await fetch(`${API_URL}/usuarios/${usuario.id_usuario}`, {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
         body: JSON.stringify({ [campoEditable.campo]: campoEditable.valor }),
       });
       if (response.ok) {
         Swal.fire("Actualizado", "El campo fue actualizado con éxito", "success");
       }
     } catch (error) {
+      console.error("Error al actualizar el campo:", error);
       Swal.fire("Error", "No se pudo actualizar el campo", "error");
     }
     setCampoEditable(usuarioInicial);
@@ -242,7 +249,11 @@ const AuthContexto = ({ children }) => {
 
     try {
       const response = await fetch(`${API_URL}/usuarios/${idUsuario}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
       });
 
       if (response.ok) {
@@ -257,7 +268,7 @@ const AuthContexto = ({ children }) => {
       return false;
     }
   };
-const readUsuarios = async () => {
+  const readUsuarios = async () => {
     try {
       const res = await fetch(`${API_URL}/usuarios`);
       const data = await res.json();
@@ -380,6 +391,7 @@ const readUsuarios = async () => {
       if (data.exists) {
         setIdUsuarioTemp(data.id_usuario);
         setEmailValido(true);
+        setTokenTemp(data.token);
       } else {
         SetErrorCampoResetPasswd("El email no existe en nuestra base de datos.");
       }
@@ -402,14 +414,16 @@ const readUsuarios = async () => {
     }
 
     try {
-      const response = await fetch(
-        `${API_URL}/usuarios/${idUsuarioTemp}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ contrasena: formResetPasswd.newPwd })
-        }
-      );
+
+      const response = await fetch(`${API_URL}/reset-password/${idUsuarioTemp}`, {
+        method: "PATCH",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${tokenTemp}`
+        },
+        body: JSON.stringify({ contrasena: formResetPasswd.newPwd })
+      });
 
       if (response.ok) {
         Swal.fire("Contraseña cambiada con éxito", "Ya puedes iniciar sesión con tu nueva contraseña", "success");
@@ -425,49 +439,49 @@ const readUsuarios = async () => {
   };
 
   // Obtener todos los usuarios
-const obtenerUsuarios = async () => {
-  try {
-    const res = await fetch(`${API_URL}/usuarios`);
-    const data = await res.json();
-    setListaUsuarios(data.usuarios);
-  } catch (err) {
-    console.error("Error al obtener los usuarios:", err);
-  }
-};
-
-// Cambiar rol de un usuario
-const cambiarRolUsuario = async (idUsuario, nuevoRol) => {
-  try {
-    const response = await fetch(`${API_URL}/usuarios/${idUsuario}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ rol: nuevoRol }),
-    });
-
-    if (response.ok) {
-      const actualizado = listaUsuarios.find(usuario => usuario.id_usuario === idUsuario);
-      if (actualizado) {
-        Swal.fire('Éxito', `El rol de ${actualizado.nombre} ha sido actualizado.`, 'success');
-      }
-
-      // Actualizar lista local
-      setListaUsuarios(prev =>
-        prev.map(usuario =>
-          usuario.id_usuario === idUsuario ? { ...usuario, rol: nuevoRol } : usuario
-        )
-      );
-
-      if (usuarioSeleccionado?.id_usuario === idUsuario) {
-        setUsuarioSeleccionado(prev => ({ ...prev, rol: nuevoRol }));
-      }
-
-    } else {
-      Swal.fire('Error', 'No se pudo actualizar el rol.', 'error');
+  const obtenerUsuarios = async () => {
+    try {
+      const res = await fetch(`${API_URL}/usuarios`);
+      const data = await res.json();
+      setListaUsuarios(data.usuarios);
+    } catch (err) {
+      console.error("Error al obtener los usuarios:", err);
     }
-  } catch (err) {
-    Swal.fire('Error', 'Error de red al actualizar el rol.', 'error');
-  }
-};
+  };
+
+  // Cambiar rol de un usuario
+  const cambiarRolUsuario = async (idUsuario, nuevoRol) => {
+    try {
+      const response = await fetch(`${API_URL}/usuarios/${idUsuario}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rol: nuevoRol }),
+      });
+
+      if (response.ok) {
+        const actualizado = listaUsuarios.find(usuario => usuario.id_usuario === idUsuario);
+        if (actualizado) {
+          Swal.fire('Éxito', `El rol de ${actualizado.nombre} ha sido actualizado.`, 'success');
+        }
+
+        // Actualizar lista local
+        setListaUsuarios(prev =>
+          prev.map(usuario =>
+            usuario.id_usuario === idUsuario ? { ...usuario, rol: nuevoRol } : usuario
+          )
+        );
+
+        if (usuarioSeleccionado?.id_usuario === idUsuario) {
+          setUsuarioSeleccionado(prev => ({ ...prev, rol: nuevoRol }));
+        }
+
+      } else {
+        Swal.fire('Error', 'No se pudo actualizar el rol.', 'error');
+      }
+    } catch (err) {
+      Swal.fire('Error', 'Error de red al actualizar el rol.', 'error');
+    }
+  };
 
 
   const datosContexto = {

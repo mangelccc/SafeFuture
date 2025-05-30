@@ -15,7 +15,7 @@ class StoreNoFumarRequest extends FormRequest
     {
         return [
             'id_usuario' => 'required|uuid|exists:usuario,id_usuario',
-            'quit_date'  => 'required|date|before_or_equal:now',
+            'quit_date'  => 'required|date',
             'status'     => 'sometimes|in:activo,recaida',
         ];
     }

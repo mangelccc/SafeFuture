@@ -10,8 +10,9 @@ const contextoNoFumar = createContext();
 const NoFumarContexto = ({ children }) => {
     const { usuario } = useContext(contextoAuth);
     const userId = usuario?.id_usuario;
+    const token = localStorage.getItem("token");
 
-    const { records, error, loading, fetchRecords } = useHistorialNoFumar(userId);
+    const { records, error, loading, fetchRecords } = useHistorialNoFumar(userId, token);
     const [activeRecord, setActiveRecord] = useState(null);
     const [contador, setContador] = useState({
         days: 0, hours: 0, minutes: 0, seconds: 0,
@@ -69,7 +70,8 @@ const NoFumarContexto = ({ children }) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    "Accept": "application/json",
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify({ id_usuario: userId, quit_date: nowISO, status: "activo" }),
             });
@@ -119,7 +121,11 @@ const NoFumarContexto = ({ children }) => {
                 try {
                     const res = await fetch(`${API_URL}/no-fumar/${activeRecord.id}`, {
                         method: "PATCH",
-                        headers: { "Content-Type": "application/json" },
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
                         body: JSON.stringify({ status: "recaida" }),
                     });
                     if (!res.ok) {

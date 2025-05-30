@@ -190,30 +190,69 @@ class UsuarioController extends Controller
 
     public function emailExists(Request $request)
     {
-        // Validamos formato de correo
         $request->validate([
             'correo' => 'required|email|max:100'
         ]);
 
-        // Intentamos obtener directamente el id del usuario
-        $id = Usuario::where('correo', $request->correo)
-                     ->value('id_usuario');
+        $usuario = Usuario::where('correo', $request->correo)->first();
 
-        // Si $id no es null, existe el usuario
-        if ($id !== null) {
+        if ($usuario) {
+            // Generar un token de acceso temporal
+            $token = $usuario->createToken('temp-token', ['*'], now()->addMinutes(5))->plainTextToken;
+
+
             return response()->json([
                 'exists'     => true,
-                'id_usuario' => $id,
+                'id_usuario' => $usuario->id_usuario,
+                'token'      => $token,
             ], 200);
         }
 
-        // Si aquí, no existe
         return response()->json([
             'exists'     => false,
             'id_usuario' => null,
+            'token'      => null,
         ], 200);
     }
 
+    public function resetPasswordWithToken(Request $request, $id)
+    {
+        // Validamos la nueva contraseña
+        $request->validate([
+            'contrasena' => 'required|string|min:8',
+        ]);
+
+        // Extraemos el token de la cabecera Authorization
+        $authHeader = $request->header('Authorization');
+
+        if (!$authHeader || !str_starts_with($authHeader, 'Bearer ')) {
+            return response()->json(['message' => 'Token no proporcionado.'], 401);
+        }
+
+        $plainToken = substr($authHeader, 7); // quitamos "Bearer "
+
+        // Verificamos si ese token existe en la base de datos
+        $tokenModel = \Laravel\Sanctum\PersonalAccessToken::findToken($plainToken);
+
+        if (!$tokenModel || $tokenModel->tokenable_id !== $id) {
+            return response()->json(['message' => 'Token inválido o no autorizado.'], 403);
+        }
+
+        // Buscamos al usuario
+        $usuario = Usuario::find($id);
+        if (!$usuario) {
+            return response()->json(['message' => 'Usuario no encontrado.'], 404);
+        }
+
+        // Guardamos la nueva contraseña
+        $usuario->contrasena = Hash::make($request->contrasena);
+        $usuario->save();
+
+        // Eliminamos el token para que no se reutilice
+        $tokenModel->delete();
+
+        return response()->json(['message' => 'Contraseña actualizada con éxito.']);
+    }
 
 
 }
