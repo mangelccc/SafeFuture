@@ -29,7 +29,7 @@ const ScrollToTopButton = () => {
     return (
         <button
             onClick={scrollToTop}
-            className="fixed bottom-6 right-6 border-black dark:border-white dark:border-2 bg-black2 dark:bg-white3 bg-opacity-80 text-gold p-4 rounded-xl shadow-lg hover:bg-opacity-90 transition-all z-60"
+            className="fixed bottom-6 right-6 border-black dark:border-white dark:border-2 bg-black2 dark:bg-whiteOp bg-opacity-80 text-gold p-4 rounded-xl shadow-lg hover:bg-opacity-90 transition-all z-60"
             aria-label="Volver arriba"
         >
             <FontAwesomeIcon icon={faArrowUp} className="text-xl" />
