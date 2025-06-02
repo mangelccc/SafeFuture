@@ -14,10 +14,12 @@ class StoreTrasladoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_usuario'         => 'required|exists:usuario,id_usuario',
-            'cod_ciudad_origen'  => 'required|exists:ciudad,cod_ciudad',
-            'cod_ciudad_destino' => 'required|exists:ciudad,cod_ciudad',
-            'fecha_solicitud'    => 'required|date',
+            'uuid'         => 'required|string|max:36',
+            'aeropuerto_salida'  => 'required|string|max:100',
+            'aeropuerto_llegada' => 'required|string|max:100',
+            'fecha_salida'    => 'required|string|max:100',
+            'estado'    => 'required|string|max:100',
+            'codigo'    => 'required|string|max:100',
         ];
     }
 }

@@ -1,36 +1,29 @@
+import React from "react";
 import Cabecera from "./estructura/header/Cabecera.jsx";
 import Cuerpo from "./estructura/body/Cuerpo.jsx";
 import RutasPaginas from "./menus/RutasPaginas.jsx";
 import SubFooter from "./estructura/footer/SubFooter.jsx";
-
-import AuthContexto from "./contextos/AuthContexto.jsx";
-import MacrosContexto from "./contextos/MacrosContexto.jsx";
-import AlimentosContexto from "./contextos/AlimentosContexto.jsx";
-import ListasContexto from "./contextos/ListasContexto.jsx";
-import "./App.css";
 import Footer from "./estructura/footer/Footer.jsx";
 
+import Proveedores from "./contextos/Proveedores.jsx";
+
+import "./App.css";
+import { Element } from "react-scroll";
+import BotonSubirArriba from "./menus/BotonSubirArriba.jsx";
 
 const App = () => {
-
   return (
-    <>
-      <AuthContexto>
-        <Cabecera />
-        <Cuerpo>
-          <AlimentosContexto>
-            <MacrosContexto>
-              <ListasContexto>
-              <RutasPaginas />
-              </ListasContexto>
-            </MacrosContexto>
-          </AlimentosContexto>
-        </Cuerpo>
-        <Footer/>
-        <SubFooter />
-      </AuthContexto>
-    </>
-  )
-}
+    <Proveedores>
+      <Element name="topScrollAnchor" />
+      <Cabecera />
+      <Cuerpo>
+        <RutasPaginas />
+      </Cuerpo>
+      <Footer />
+      <SubFooter />
+      <BotonSubirArriba />
+    </Proveedores>
+  );
+};
 
 export default App;

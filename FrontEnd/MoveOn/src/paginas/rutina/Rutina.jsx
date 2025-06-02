@@ -1,54 +1,20 @@
 import React from "react";
-import "./Rutina.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import rutinas from "../../objetos/rutinas.js";
+import ItemRutina from "./ItemRutina.jsx";
 
-import {
-  faDumbbell,
-  faEgg,
-  faCalendar,
-  faPiggyBank,
-  faSmokingBan,
-  faBriefcase,
-  faCirclePlus,
-} from "@fortawesome/free-solid-svg-icons";
 
 const Rutina = () => {
   return (
     <>
-      <div id="crear-rutina">
-        <div className="crear-rutina-general">
-          <FontAwesomeIcon icon={faCirclePlus} size="2x" />
-          <h2>Crear Rutina</h2>
-        </div>
-        <div className="contenedor-rutinas">
-
-          <Link to="/Rutina/Ejercicio" className="rutinas-item">
-            <FontAwesomeIcon icon={faDumbbell} size="5x" />
-          </Link>
-
-          <Link to="/Rutina/FormularioMacros" className="rutinas-item">
-            <FontAwesomeIcon icon={faEgg} size="5x" />
-          </Link>
-
-          <Link to="/Rutina/Calendario" className="rutinas-item">
-            <FontAwesomeIcon icon={faCalendar} size="5x" />
-          </Link>
-
-          <Link to="/Rutina/Finanzas" className="rutinas-item">
-            <FontAwesomeIcon icon={faPiggyBank} size="5x" />
-          </Link>
-
-          <Link to="/Rutina/NoFumar" className="rutinas-item">
-            <FontAwesomeIcon icon={faSmokingBan} size="5x" />
-          </Link>
-
-          <Link to="/Rutina/Trabajo" className="rutinas-item">
-            <FontAwesomeIcon icon={faBriefcase} size="5x" />
-          </Link>
-          
-        </div>
+      <h2 id="servicios" className="dark:text-gold pl-5">PLANEA TU RUTINA</h2>
+      <h3 className="dark:text-gold pl-5">Selecciona una rutina para empezar</h3>
+    <div id="crear-rutina" className="text-center p-5">
+      <div className="contenedor-rutinas flex flex-wrap sm:justify-between hsm:justify-center sm:gap-5 hsm:gap-10 hsm:py-5 mx-auto">
+        {rutinas.map((rutina, index) => (
+          <ItemRutina key={index} icono={rutina.icono} link={rutina.link} title={rutina.title} />
+        ))}
       </div>
+    </div>
     </>
   );
 };

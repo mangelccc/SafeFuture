@@ -1,92 +1,78 @@
-import React from 'react'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import "./UsuarioDatos.css";
+import React, { useContext, useEffect } from 'react';
+import { contextoAuth } from "../../contextos/AuthContexto.jsx";
+import UsuarioDato from './UsuarioDato.jsx';
+import { camposUsuario } from '../../bibliotecas/biblioteca.js';
+import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
-const UsuarioDatos = ({usuario}) => {
+const UsuarioDatos = ({ usuario }) => {
+    const { cambiarDato, guardarDato, cancelarDato, campoEditable, errorCampo, limpiarErrorCampo, eliminarCuenta, cerrarSesion } = useContext(contextoAuth);
+
+    useEffect(() => {
+        cancelarDato();
+    }, []);
+
+    if (errorCampo) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: "error",
+            title: errorCampo,
+            color: "tomato",
+        });
+        limpiarErrorCampo();
+    }
 
     return (
         <>
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
-                <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
-                    <p>Nombre de usuario</p>
-                    <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
-                </div>
-                <div className="bg-black2 py-4 px-8 grid grid-cols-3">
-                    <span className="col-start-1">Usuario
+            {camposUsuario.map(({ campo, label, sublabel }) => (
+                <UsuarioDato
+                    key={campo}
+                    campo={campo}
+                    label={label}
+                    sublabel={sublabel}
+                    usuario={usuario}
+                    campoEditable={campoEditable}
+                    cambiarDato={cambiarDato}
+                    guardarDato={guardarDato}
+                    cancelarDato={cancelarDato}
 
-                    </span>
-                    <span className="col-start-2 ">
-                        {usuario && usuario.nombre
-                            ? usuario.nombre
-                            : "No hay usuario activo"}
-                    </span>
-                </div>
-            </article>
+                />
+            ))}
+            <div className="flex justify-between hsm:flex-col mx-8 mb-4 hsm:mb-8">
+                <button
+                    type="button"
+                    className="bg-red-600 text-white font-bold py-2 px-4 rounded-lg mt-4 hover:opacity-60 transition duration-300 hsm:w-full"
+                    onClick={async () => {
+                        const exito = await eliminarCuenta(usuario?.id_usuario);
+                        if (exito) cerrarSesion();
+                    }}
+                >
+                    Eliminar cuenta
+                </button>
+                {usuario?.rol === "Administrador" &&
+                    <Link to="/usuario-informacion/admin">
+                        <button
+                            type="button"
+                            className="bg-gold font-bold py-2 px-4 rounded-lg mt-4 hover:opacity-60 transition duration-300 hsm:w-full"
+                        >
+                            Gestionar usuarios
+                        </button>
+                    </Link>
+                }
+            </div>
 
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
-                <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
-                    <p>Correo electrónico</p>
-                    <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
-                </div>
-                <div className="bg-black2 py-4 px-8 grid grid-cols-3">
-                    <span className="col-start-1">Correo
-
-                    </span>
-                    <span className="col-start-2">
-                        {usuario && usuario.correo
-                            ? usuario.correo
-                            : "Correo no encontrado"}
-                    </span>
-                </div>
-            </article>
-
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
-                <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
-                    <p>Contraseña</p>
-                    <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
-                </div>
-                <div className="bg-black2 py-4 px-8 grid grid-cols-3">
-                    <span className="col-start-1">Contraseña</span>
-                    <span className="col-start-2">
-                        {usuario && usuario.contrasena
-                            ? "* * * * * * * * * * *"
-                            : "Contraseña no encontrada"}
-                    </span>
-                </div>
-            </article>
-
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
-                <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
-                    <p>Edad</p>
-                    <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
-                </div>
-                <div className="bg-black2 py-4 px-8 grid grid-cols-3">
-                    <span className="col-start-1">Edad</span>
-                    <span className="col-start-2">
-                        {usuario && usuario.edad
-                            ? usuario.edad
-                            : "Edad no encontrada"}
-                    </span>
-                </div>
-            </article>
-
-            <article className="w-1/2 ml-8 mb-8 border border-gold text-wsmk">
-                <div className="bg-black3 py-4 px-8 font-bold text-xl flex justify-between">
-                    <p>Sexo</p>
-                    <FontAwesomeIcon className="icon-pencil hover:text-turq transition duration-300 ease-in-out cursor-pointer hover:scale-110" icon={faPenToSquare} />
-                </div>
-                <div className="bg-black2 py-4 px-8 grid grid-cols-3">
-                    <span className="col-start-1">Sexo</span>
-                    <span className="col-start-2">
-                        {usuario && usuario.sexo
-                            ? usuario.sexo
-                            : "Sexo no encontrado"}
-                    </span>
-                </div>
-            </article>
         </>
-    )
-}
+    );
+};
 
-export default UsuarioDatos
+export default UsuarioDatos;

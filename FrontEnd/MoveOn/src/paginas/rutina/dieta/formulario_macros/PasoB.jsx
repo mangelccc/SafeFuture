@@ -1,46 +1,44 @@
-import React, { useContext } from "react";
-import { contextoMacros } from "../../../../contextos/MacrosContexto.jsx";
+import React from "react";
+import useAppContext from '../../../../hooks/useAppContext.jsx';
 import "./Paso.css";
 
 const PasoB = () => {
+
+  const { dietas } = useAppContext(); 
 
   const {
     formularioData, 
     cambiarFormulario, 
     siguientePaso,
     anteriorPaso,
-  } = useContext(contextoMacros);
+    erroresFormDietas,
+  } = dietas;
+  
+
   return (
     <div className="pasoA-container">
-      <h2 className="pasoA-title">Paso B</h2>
-
+      <h2 className="pasoA-title">Segundo paso</h2>
+      <form>
       <div className="pasoA-fieldContainer">
-        <label className="pasoA-label">Edad</label>
+        <label className="pasoA-label py-2">Indica tu altura</label>
         <input
           type="number"
-          name="edad"
-          value={formularioData.edad}
+          name="altura"
+          value={formularioData.altura}
           onChange={(e) => cambiarFormulario(e)}
-          placeholder="Edad"
+          placeholder="1.70 (Metros y centímetros)"
           className="pasoA-input"
+          min="0.50"
+          max="2.50"
+          step="0.01"
         />
+        
+        {erroresFormDietas && erroresFormDietas.altura && 
+            <p className="text-red-600 py-2">{erroresFormDietas.altura}</p>
+          }
       </div>
-
-      <div className="pasoA-fieldContainer">
-        <label className="pasoA-label">Sexo</label>
-        <select
-          name="sexo"
-          value={formularioData.sexo}
-          onChange={(e) => cambiarFormulario(e)}
-          className="pasoA-input"
-        >
-          <option value="" disabled>Selecciona tu opción</option>
-          <option value="hombre">Hobre</option>
-          <option value="mujer">Mujer</option>
-        </select>
-      </div>
-
-      <div className="pasoB-buttonContainer">
+      </form>
+      <div className="pasoB-buttonContainer py-3">
         <button className="pasoA-button-anterior" onClick={anteriorPaso}>
           Anterior
         </button>

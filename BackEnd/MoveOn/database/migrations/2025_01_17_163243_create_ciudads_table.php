@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('cod_ciudad');
             $table->string('nombre', 100);
             $table->unsignedBigInteger('cod_pais'); // Debe coincidir con el tipo de dato de 'pais.cod_pais'
-            $table->foreign('cod_pais')->references('cod_pais')->on('pais')->onDelete('cascade');
             $table->timestamps();
         });
     }

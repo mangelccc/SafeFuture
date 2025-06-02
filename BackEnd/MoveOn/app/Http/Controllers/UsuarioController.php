@@ -36,28 +36,25 @@ class UsuarioController extends Controller
         // Buscar al usuario por correo
         $usuario = Usuario::where('correo', $request->correo)->first();
 
-        if (!$usuario) {
+        if (!$usuario || !Hash::check($request->contrasena, $usuario->contrasena)) {
             return response()->json([
                 'message' => 'Credenciales incorrectas',
                 'status'  => 401
             ], 401);
         }
 
-        // Comparar la contraseña en texto plano con la contraseña cifrada almacenada
-        if (!Hash::check($request->contrasena, $usuario->contrasena)) {
-            return response()->json([
-                'message' => 'Credenciales incorrectas',
-                'status'  => 401
-            ], 401);
-        }
+        // Crear token con Sanctum
+        $token = $usuario->createToken('api-token')->plainTextToken;
 
-        // Si la autenticación es exitosa, se puede retornar información del usuario
+        // Retornar token junto con info del usuario
         return response()->json([
             'message' => 'Login exitoso',
             'usuario' => $usuario,
+            'token'   => $token,
             'status'  => 200
         ], 200);
     }
+
     public function store(StoreUsuarioRequest $request)
     {
         $data = $request->validated();
@@ -161,4 +158,101 @@ class UsuarioController extends Controller
             'status'  => 200
         ], 200);
     }
+
+    //Funciones definidas por el programador.
+
+    public function getDietasPorUsuario($id_usuario)
+    {
+        $usuario = Usuario::find($id_usuario);
+        if (!$usuario) {
+            return response()->json([
+                'message' => 'Usuario no encontrado',
+                'status'  => 404
+            ], 404);
+        }
+
+        $dietas = $usuario->dietas()->withPivot('id_usuario_dieta', 'peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')->get();
+
+        $dietasTransformadas = $dietas->map(function ($dieta) {
+            $dieta->id_dieta = $dieta->pivot->id_usuario_dieta;
+            unset($dieta->pivot->id_usuario_dieta); // Oculta ese campo de la respuesta
+            return $dieta;
+        });
+
+        return response()->json([
+            'dietas' => $dietasTransformadas,
+            'status' => 200
+        ], 200);
+    }
+
+
+     // Comprueba si un correo ya está en uso.
+
+    public function emailExists(Request $request)
+    {
+        $request->validate([
+            'correo' => 'required|email|max:100'
+        ]);
+
+        $usuario = Usuario::where('correo', $request->correo)->first();
+
+        if ($usuario) {
+            // Generar un token de acceso temporal
+            $token = $usuario->createToken('temp-token', ['*'], now()->addMinutes(5))->plainTextToken;
+
+
+            return response()->json([
+                'exists'     => true,
+                'id_usuario' => $usuario->id_usuario,
+                'token'      => $token,
+            ], 200);
+        }
+
+        return response()->json([
+            'exists'     => false,
+            'id_usuario' => null,
+            'token'      => null,
+        ], 200);
+    }
+
+    public function resetPasswordWithToken(Request $request, $id)
+    {
+        // Validamos la nueva contraseña
+        $request->validate([
+            'contrasena' => 'required|string|min:8',
+        ]);
+
+        // Extraemos el token de la cabecera Authorization
+        $authHeader = $request->header('Authorization');
+
+        if (!$authHeader || !str_starts_with($authHeader, 'Bearer ')) {
+            return response()->json(['message' => 'Token no proporcionado.'], 401);
+        }
+
+        $plainToken = substr($authHeader, 7); // quitamos "Bearer "
+
+        // Verificamos si ese token existe en la base de datos
+        $tokenModel = \Laravel\Sanctum\PersonalAccessToken::findToken($plainToken);
+
+        if (!$tokenModel || $tokenModel->tokenable_id !== $id) {
+            return response()->json(['message' => 'Token inválido o no autorizado.'], 403);
+        }
+
+        // Buscamos al usuario
+        $usuario = Usuario::find($id);
+        if (!$usuario) {
+            return response()->json(['message' => 'Usuario no encontrado.'], 404);
+        }
+
+        // Guardamos la nueva contraseña
+        $usuario->contrasena = Hash::make($request->contrasena);
+        $usuario->save();
+
+        // Eliminamos el token para que no se reutilice
+        $tokenModel->delete();
+
+        return response()->json(['message' => 'Contraseña actualizada con éxito.']);
+    }
+
+
 }

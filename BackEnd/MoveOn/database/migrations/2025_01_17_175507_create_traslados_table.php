@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('traslado', function (Blueprint $table) {
             $table->id('id_traslado');
-            $table->unsignedBigInteger('id_usuario');
-            $table->unsignedBigInteger('cod_ciudad_origen');
-            $table->unsignedBigInteger('cod_ciudad_destino');
-            $table->date('fecha_solicitud');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
-            $table->foreign('cod_ciudad_origen')->references('cod_ciudad')->on('ciudad');
-            $table->foreign('cod_ciudad_destino')->references('cod_ciudad')->on('ciudad');
+            $table->uuid('uuid', 36)->unique();
+            $table->string('aeropuerto_salida', 3);
+            $table->string('aeropuerto_llegada', 3);
+            $table->string('fecha_salida', 100);
+            $table->string('estado', 100);
+            $table->string('codigo', 100);
             $table->timestamps();
         });
     }

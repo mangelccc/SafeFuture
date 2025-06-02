@@ -1,22 +1,25 @@
-import React, { useContext } from "react";
-import { contextoMacros } from "../../../../contextos/MacrosContexto.jsx";
+import React from "react";
+import useAppContext from '../../../../hooks/useAppContext.jsx';
 import "./Paso.css";
 
 const PasoD = () => {
 
+  const { dietas } = useAppContext(); 
+
   const {
     formularioData, 
     cambiarFormulario, 
-    terminarFormulario, 
-    anteriorPaso
-  } = useContext(contextoMacros);
+    terminarFormulario,
+    anteriorPaso,
+    erroresFormDietas
+  } = dietas;
 
   return (
     <div className="pasoA-container">
-      <h2 className="pasoA-title">Paso D</h2>
+      <h2 className="pasoA-title">Último paso</h2>
 
       <div className="pasoA-fieldContainer">
-        <label className="pasoA-label">Objetivo</label>
+        <label className="pasoA-label py-2">Objetivo</label>
         <select
           name="objetivo"
           value={formularioData.objetivo}
@@ -24,13 +27,17 @@ const PasoD = () => {
           className="pasoA-input"
         >
           <option value="" disabled>Selecciona tu opción</option>
-          <option value="perder">Perder peso</option>
-          <option value="mantener">Mantener peso</option>
-          <option value="ganar">Ganar masa muscular</option>
+          <option value="Perder">Perder peso</option>
+          <option value="Mantener">Mantener peso</option>
+          <option value="Ganar">Ganar masa muscular</option>
         </select>
+        {/* Mostrar el error si existe */}
+        {erroresFormDietas && erroresFormDietas.objetivo && (
+            <p className="text-red-600 py-2">{erroresFormDietas.objetivo}</p>
+          )}
       </div>
 
-      <div className="pasoB-buttonContainer">
+      <div className="pasoB-buttonContainer py-3">
         <button className="pasoA-button-anterior" onClick={anteriorPaso}>
           Anterior
         </button>

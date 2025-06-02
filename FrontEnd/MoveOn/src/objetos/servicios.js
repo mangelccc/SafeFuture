@@ -1,12 +1,12 @@
-import { faRobot, faPlane, faVideo, faGlobe, faBed, faRandom } from "@fortawesome/free-solid-svg-icons";
+import { faRobot, faPlane, faVideo, faGlobe, faFilePdf, faRandom, faUtensils, faPersonChalkboard } from "@fortawesome/free-solid-svg-icons";
 
 const servicios = [
-  { icono: faRobot, texto: "Ramón AI (Especialista en ayudarte)" },
-  { icono: faVideo, texto: "Videos Interesantes" },
-  { icono: faPlane, texto: "Información Emigrar Países" },
-  { icono: faGlobe, texto: "Mapamundi Ubicaciones Destacadas" },
-  { icono: faBed, texto: "Vuelos y Alojamientos Baratos" },
-  { icono: faRandom, texto: "Plan Aleatorio de Vida" },
+  { icono: faRobot, link:"/servicios/ramonia" , texto: "Ramón AI (Especialista en ayudarte)" },
+  { icono: faVideo, link:"/servicios/videos" , texto: "Videos Interesantes" },
+  { icono: faFilePdf, link:"/servicios/informacion", texto: "Información Emigrar Países" },
+  { icono: faGlobe, link:"/servicios/mapa" , texto: "Mapamundi Ubicaciones Destacadas" },
+  { icono: faPlane, link: "/servicios/vuelos" , texto: "Vuelos Hoy" },
+  { icono: faPersonChalkboard, texto: "Rutinas personalizadas", link: "/rutina" },
 ];
 
 export default servicios;

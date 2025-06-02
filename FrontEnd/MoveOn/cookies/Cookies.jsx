@@ -13,6 +13,7 @@ const CookieBanner = () => {
     return (
         <div>
             <CookieConsent
+                containerClasses="cookie-banner"
                 location="bottom"
                 buttonText="Aceptar"
                 declineButtonText="Rechazar"
@@ -32,7 +33,7 @@ const CookieBanner = () => {
                     borderRadius: "5px",
                     padding: "8px 20px",
                 }}
-                expires={150} // La cookie durará 150 días
+                expires={150} 
 
                 enableDeclineButton
                 onDecline={() => {

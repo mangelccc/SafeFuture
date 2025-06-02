@@ -1,14 +1,22 @@
 // src/contextos/AlimentosContexto.jsx
-import React, { createContext, useState, useEffect } from "react";
-import { supabaseConexion } from "../bibliotecas/config.js";
-import { validarCreacionAlimento, obtenerAlimentosVisibles } from "../bibliotecas/biblioteca.js";
+import React, { createContext, useState, useEffect, useCallback, useMemo } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAppContext from '../hooks/useAppContext.jsx';
+import { API_URL } from "../bibliotecas/config.js";
+import Swal from "sweetalert2";
 
 const contextoAlimentos = createContext();
 
 const AlimentosContexto = ({ children }) => {
+  // Contexto de autenticación
+  const { auth } = useAppContext();
+  const { sesionIniciada } = auth;
+
   /*** VALORES INICIALES ***/
-  const errorInicial = "";
+  const cadenaVacia = "";
   const listaInicial = [];
+  const falso = false;
+  const token = localStorage.getItem("token");
   const alimentoInicial = {
     id: null,
     nombre: "",
@@ -24,270 +32,240 @@ const AlimentosContexto = ({ children }) => {
     codigo_barras: "",
   };
 
-  const buscadorInicial = {
-    nombre: ""
-  };
-  const alimentoEdtandoInicial = null;
-  const adminInicial = false;
-
-  // Estados generales
+  /*** HOOKS DE ESTADO ***/
+  const [busqueda, setBusqueda] = useState('');
+  const [isSaving, setIsSaving] = useState(falso);
+  const [loading, setLoading] = useState(true);
   const [listadoAlimentos, setListadoAlimentos] = useState(listaInicial);
-  const [alimento, setAlimento] = useState(alimentoInicial);
-  const [errorAlimento, setErrorAlimento] = useState(errorInicial);
+  const [errorAlimento, setErrorAlimento] = useState(cadenaVacia);
+  const [alimentosSeleccionados, setAlimentosSeleccionados] = useState(listaInicial);
+  const [listaAlimentosDieta, setlistaAlimentosDieta] = useState(listaInicial); // No usado actualmente
+  const [filtros, setFiltros] = useState({
+    categoria: '',
+    minCarbohidratos: 0,
+    maxCarbohidratos: 100,
+    minProteinas: 0,
+    maxProteinas: 100,
+    minCalorias: 0,
+    maxCalorias: 1000,
+    minGrasas: 0,
+    maxGrasas: 100,
+  });
 
-  // Filtros de búsqueda y orden
-  const filtroInicial = "";
-  const ordenInicial = "";
-  const [filtro, setFiltro] = useState(filtroInicial);
-  const [orden, setOrden] = useState(ordenInicial);
+  /*** HOOKS DE NAVEGACIÓN ***/
+  const navegar = useNavigate();
+  const cambioDeRuta = useLocation();
 
-  // Buscador
-  const [buscadorDatos, setBuscadorDatos] = useState(buscadorInicial);
+  /*** FUNCIONES MEMOIZADAS ***/
+  const buscarAlimento = useCallback((termino) => {
+    setBusqueda(termino);
+  }, []);
 
-  // Edición
-  const [alimentoEditando, setAlimentoEditando] = useState(alimentoEdtandoInicial);
-  const [alimentoEditado, setAlimentoEditado] = useState(alimentoInicial);
-
-  // Creación
-  const [nuevoAlimento, setNuevoAlimento] = useState(alimentoInicial);
-
-  // Modo Administrador
-  const [admin, setAdmin] = useState(adminInicial);
-  const alternarAdmin = () => {
-    setAdmin((admin) => !admin);
-  };
-
-  /***********************************/
-  /***        FUNCIONES CRUD       ***/
-  /***********************************/
-  const createAlimento = async (producto) => {
+  const getAlimentos = useCallback(async () => {
     try {
-      setErrorAlimento("");
-      const nuevoAlimento = { ...producto, id: crypto.randomUUID() };
-      const { data, error } = await supabaseConexion
-        .from("alimentos")
-        .insert(nuevoAlimento);
-      if (error) throw error;
-      setListadoAlimentos((alimentosPrevios) => [...alimentosPrevios, nuevoAlimento]);
-      setErrorAlimento("Alimento creado con éxito.");
-    } catch (error) {
-      setErrorAlimento("Error al crear el alimento: " + error.message);
-      throw error;
-    }
-  };
+      setErrorAlimento(cadenaVacia);
+      const response = await fetch(`${API_URL}/alimentos`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        }
 
-  const readAlimentos = async () => {
-    try {
-      setErrorAlimento("");
-      const { data, error } = await supabaseConexion
-        .from("alimentos")
-        .select("*");
-      if (error) throw error;
-      setListadoAlimentos(data);
+      });
+      if (!response.ok) {
+        throw new Error("Error en la respuesta de la API: " + response.statusText);
+      }
+      const data = await response.json();
+      if (Array.isArray(data.alimentos)) {
+        setListadoAlimentos(data.alimentos);
+      } else {
+        setListadoAlimentos([]);
+        setErrorAlimento("Los datos recibidos no tienen una lista válida de alimentos.");
+      }
     } catch (error) {
       setErrorAlimento("Error al leer los alimentos: " + error.message);
     }
-  };
-
-  const updateAlimento = async (id, productoActualizado) => {
-    try {
-      setErrorAlimento("");
-      const { data, error } = await supabaseConexion
-        .from("alimentos")
-        .update(productoActualizado)
-        .eq("id", id);
-      if (error) throw error;
-      const actualizado = listadoAlimentos.map((alimentoAntiguo) =>
-        alimentoAntiguo.id === id ? productoActualizado : alimentoAntiguo
-      );
-      setListadoAlimentos(actualizado);
-      setAlimento(alimentoInicial);
-      setErrorAlimento("Alimento actualizado con éxito.");
-    } catch (error) {
-      setErrorAlimento("Error al actualizar el alimento: " + error.message);
-      throw error;
-    }
-  };
-
-  const deleteAlimento = async (id) => {
-    try {
-      setErrorAlimento("");
-      const { data, error } = await supabaseConexion
-        .from("alimentos")
-        .delete()
-        .eq("id", id);
-      if (error) throw error;
-      const borrado = listadoAlimentos.filter((alimento) => alimento.id !== id);
-      setListadoAlimentos(borrado);
-      setErrorAlimento("Alimento eliminado con éxito.");
-    } catch (error) {
-      setErrorAlimento("Error al eliminar el alimento: " + error.message);
-    }
-  };
-
-  const guardarCreacion = async () => {
-    setErrorAlimento("");
-    const errorValidacion = validarCreacionAlimento(nuevoAlimento);
-    if (errorValidacion) {
-      setErrorAlimento(errorValidacion);
-      return;
-    }
-    try {
-      await createAlimento(nuevoAlimento);
-      setNuevoAlimento(alimentoInicial);
-    } catch (error) {
-      setErrorAlimento(error);
-    }
-  };
-
-  /*****************************************************************/
-  /***       FUNCIONES DE EDICIÓN (iniciar, cancelar, guardar)    ***/
-  /*****************************************************************/
-  const iniciarEdicion = (producto) => {
-    setAlimentoEditando(producto.id);
-    setAlimentoEditado(producto);
-  };
-
-  const cancelarEdicion = () => {
-    setAlimentoEditando(null);
-  };
-
-  const guardarEdicion = async () => {
-    if (!alimentoEditando) return;
-    try {
-      await updateAlimento(alimentoEditando, alimentoEditado);
-      setAlimentoEditando(false);
-    } catch (error) {
-      // El error ya se maneja en setErrorAlimento
-    }
-  };
-
-  /*****************************************************************/
-  /***             FILTRO Y ORDEN DE LOS ALIMENTOS                ***/
-  /*****************************************************************/
-  const filtrarAlimentos = (textoFiltro) => {
-    setFiltro(textoFiltro);
-  };
-
-  const ordenarAlimentos = (campo) => {
-    setOrden(campo);
-  };
-
-  const alimentosVisibles = obtenerAlimentosVisibles(listadoAlimentos, filtro, orden);
-
-  /*****************************************************************/
-  /***         MANEJO DEL FORMULARIO (CREACIÓN / EDICIÓN)         ***/
-  /*****************************************************************/
-  const actualizarAlimentoEditado = (e) => {
-    const { name, value } = e.target;
-    setAlimentoEditado((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-  const actualizarNuevoAlimento = (e) => {
-    const { name, value } = e.target;
-    setNuevoAlimento((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  useEffect(() => {
-    readAlimentos();
   }, []);
 
-  // Estado y función para manejo de macros
-  const [mostrarMacrosMap, setMostrarMacrosMap] = useState({});
-  const alternarMostrarMacros = (id) => {
-    setMostrarMacrosMap((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const manejarClicAlimentos = (e, listaEnEdicion,manejarAgregarAlimento) => {
-    const target = e.target;
-    if (
-      target.classList.contains("macros") ||
-      target.classList.contains("anadir") ||
-      target.classList.contains("modificar") ||
-      target.classList.contains("eliminar")
-    ) {
-      const contenedorAlimento = target.closest(".alimento");
-      if (!contenedorAlimento) return;
-      const id = contenedorAlimento.getAttribute("data-id");
-      const alimento = alimentosVisibles.find(
-        (alimentoVisible) => alimentoVisible.id.toString() === id
-      );
-      if (!alimento) return;
-      if (target.classList.contains("macros")) {
-        alternarMostrarMacros(id);
-      } else if (target.classList.contains("anadir")) {
-          manejarAgregarAlimento(alimento, listaEnEdicion);
-      } else if (target.classList.contains("modificar")) {
-        if (admin) {
-          iniciarEdicion(alimento);
-        }
-      } else if (target.classList.contains("eliminar")) {
-        if (admin) {
-          const confirmar = window.confirm(
-            `¿Estás seguro de que deseas eliminar ${alimento.nombre}?`
-          );
-          if (confirmar) {
-            deleteAlimento(alimento.id);
-          }
-        }
+  const guardarAlimentosEnDietaPersonalizada = useCallback(async (id) => {
+    if (isSaving) return;
+    try {
+      setIsSaving(true);
+      const payload = {
+        id_dieta: id,
+        alimentos: alimentosSeleccionados.map(({ id_alimento, cantidad }) => ({ id_alimento, cantidad })),
+      };
+      const response = await fetch(`${API_URL}/alimento-dieta/multiples`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error al guardar cambios.");
       }
+      await response.json();
+      Swal.fire({
+        title: "¡Cambios guardados correctamente!",
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false
+      });
+      navegar(`/rutina/dietas/${id}/detalles`);
+    } catch (error) {
+      setErrorAlimento("Error al guardar los alimentos en la dieta: " + error.message);
+    } finally {
+      setIsSaving(falso);
     }
-  };
+  }, [alimentosSeleccionados, isSaving, navegar]);
 
-  // Definición del objeto que se proveerá en el contexto
+  const obtenerAlimentosDieta = useCallback(async (idDieta) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_URL}/alimento-dieta/${idDieta}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+      });
+
+
+      if (response.status === 404) {
+        setAlimentosSeleccionados(listaInicial);
+        return;
+      }
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      const data = await response.json();
+      setAlimentosSeleccionados(data);
+    } catch (error) {
+      setErrorAlimento(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const seleccionarAlimento = useCallback((alimento, idDiet) => {
+    setAlimentosSeleccionados(prev => {
+      const existe = prev.find(item => item.id_alimento === alimento.id_alimento);
+      if (existe) {
+        // Incrementamos cantidad existente
+        const nuevos = prev.map(item =>
+          item.id_alimento === alimento.id_alimento
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        );
+        // Toast de confirmación
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          icon: 'success',
+          title: `Cantidad de "${alimento.nombre}" incrementada`,
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+        });
+        return nuevos;
+      }
+      const añadidos = [...prev, { ...alimento, cantidad: 1, id_dieta: idDiet }];
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: 'success',
+        title: `"${alimento.nombre}" añadido`,
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+      });
+      return añadidos;
+    });
+  }, [setAlimentosSeleccionados]);
+
+
+  const aumentarCantidad = useCallback((idAlimento) => {
+    setAlimentosSeleccionados(prev =>
+      prev.map(item =>
+        item.id_alimento === idAlimento
+          ? { ...item, cantidad: item.cantidad + 1 }
+          : item
+      )
+    );
+  }, []);
+
+  const disminuirCantidad = useCallback((idAlimento) => {
+    setAlimentosSeleccionados(prev =>
+      prev
+        .map(item => {
+          if (item.id_alimento === idAlimento) {
+            if (item.cantidad === 1) return null;
+            return { ...item, cantidad: item.cantidad - 1 };
+          }
+          return item;
+        })
+        .filter(item => item !== null)
+    );
+  }, []);
+
+  const actualizarFiltro = useCallback((campo, valor) => {
+    setFiltros(prev => ({ ...prev, [campo]: valor }));
+  }, []);
+
+  const eliminarAlimento = useCallback((idAlimento) => {
+    setAlimentosSeleccionados(prev => prev.filter(item => item.id_alimento !== idAlimento));
+  }, []);
+
+  /*** MEMO: lista filtrada ***/
+  const alimentosFiltrados = useMemo(() => {
+    return listadoAlimentos.filter(alimento =>
+      alimento.nombre.toLowerCase().includes(busqueda.toLowerCase()) &&
+      (filtros.categoria ? alimento.categoria === filtros.categoria : true) &&
+      alimento.carbohidratos >= filtros.minCarbohidratos &&
+      alimento.carbohidratos <= filtros.maxCarbohidratos &&
+      alimento.proteinas >= filtros.minProteinas &&
+      alimento.proteinas <= filtros.maxProteinas &&
+      alimento.calorias >= filtros.minCalorias &&
+      alimento.calorias <= filtros.maxCalorias &&
+      alimento.grasas >= filtros.minGrasas &&
+      alimento.grasas <= filtros.maxGrasas
+    );
+  }, [listadoAlimentos, busqueda, filtros]);
+
+  /*** EFECTSS ***/
+  useEffect(() => {
+    if (sesionIniciada) getAlimentos();
+  }, [sesionIniciada]);
+
+  useEffect(() => {
+    if (errorAlimento.length) setErrorAlimento(cadenaVacia);
+  }, [cambioDeRuta.pathname]);
+
+  /*** CONTEXTO ***/
   const datosContexto = {
-    // CRUD
-    createAlimento,
-    readAlimentos,
-    updateAlimento,
-    deleteAlimento,
-
-    // Estados principales
-    alimento,
+    getAlimentos,
     listadoAlimentos,
+    guardarAlimentosEnDietaPersonalizada,
+    filtros,
+    busqueda,
+    buscarAlimento,
+    alimentosFiltrados,
+    actualizarFiltro,
+    seleccionarAlimento,
+    alimentosSeleccionados,
+    aumentarCantidad,
+    disminuirCantidad,
+    eliminarAlimento,
+    listaAlimentosDieta,
+    obtenerAlimentosDieta,
+    loading,
     errorAlimento,
-
-    // Filtro y orden
-    filtrarAlimentos,
-    ordenarAlimentos,
-
-    // Buscador
-    buscadorDatos,
-
-    // Edición
-    alimentoEditado,
-    alimentoEditando,
-    iniciarEdicion,
-    cancelarEdicion,
-    guardarEdicion,
-
-    // Creación
-    nuevoAlimento,
-    guardarCreacion,
-
-    // Formulario
-    actualizarAlimentoEditado,
-    actualizarNuevoAlimento,
-
-    // Vista final (filtrada y ordenada)
-    alimentosVisibles,
-
-    // Modo admin
-    admin,
-    alternarAdmin,
-
-    // Macros y manejo de clic
-    mostrarMacrosMap,
-    alternarMostrarMacros,
-    manejarClicAlimentos, // Ahora la función se llama manejarClicAlimentos
   };
 
   return (

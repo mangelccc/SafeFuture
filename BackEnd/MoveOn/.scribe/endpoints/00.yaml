@@ -1,0 +1,5034 @@
+name: Endpoints
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/usuarios
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"usuarios":[{"id_usuario":"0deda01b-ba22-3840-9971-ee6c17e6f442","nombre":"Orlando Feest","correo":"randall.keebler@example.org","contrasena":"$2y$12$BZquTyCG7nubQozWAMzDdemZLRiLYJ420AxLxTGxRGb7XwyxzB4Li","edad":39,"sexo":"hombre","rol":"Usuario"},{"id_usuario":"199438f7-69cc-3f17-bcb2-71f6e3e20b7e","nombre":"Ashton Hagenes Jr.","correo":"qshields@example.net","contrasena":"$2y$12$RgKKr0wzTSQOFFpzjFe.qetvZkIjZ.5sK.jMMXKJ7YV6Zr9.bd8tC","edad":27,"sexo":"hombre","rol":"Usuario"},{"id_usuario":"2f5e5159-948a-3d50-a7f0-1030715b0f98","nombre":"Rosalee Connelly","correo":"devyn18@example.net","contrasena":"$2y$12$.Sc8Mowzfu7HFHzmPfs6TOfCW\/lrBxkA2fjPu5JLoq6ceIbGNA3mK","edad":26,"sexo":"hombre","rol":"Administrador"},{"id_usuario":"3a10a348-cbe0-4adc-be92-6785a8978431","nombre":"Meaaa","correo":"hachexd123@gmail.com","contrasena":"$2y$12$UfPvm0pNMFSd2KvdAMbGYu0gsbsa9laXkIETIjHIw1kWvyjVWCld.","edad":22,"sexo":"hombre","rol":"Usuario"},{"id_usuario":"4a9e906f-bba1-462b-9353-87f35d13722e","nombre":"Dieta1sdf","correo":"hachexd@gmail.com","contrasena":"$2y$12$NRC81cT0vYn1DHyXzFWr9.k0o1wU4vh5tFkW.UW3e.vSW9FUNnLfu","edad":21,"sexo":"hombre","rol":"Usuario"},{"id_usuario":"4c3833ba-4291-3f61-8de3-8846cc8476f9","nombre":"Dr. Carmel Nader DDS","correo":"christina43@example.org","contrasena":"$2y$12$SK\/ZStSSNOcq3k9FDtrTfOT42p.bvfcVPFF3FfGppVimv\/xvycLX.","edad":43,"sexo":"mujer","rol":"Administrador"},{"id_usuario":"4e9d9a4d-7d10-3101-926d-4004a828126c","nombre":"Dr. Benedict Greenfelder DDS","correo":"frida.rippin@example.com","contrasena":"$2y$12$AZV1fenFyAcODEU0FPd2l.M6Zjc9CY52la3EYDInA\/pC7GzZzqdya","edad":40,"sexo":"hombre","rol":"Moderador"},{"id_usuario":"57196e0f-1fff-360a-8f31-4711638c59a0","nombre":"Alta Shanahan PhD","correo":"sonya90@example.net","contrasena":"$2y$12$4CGyl8nvccVztVVsF.CZ\/u..Zq1VSRDbAq0ywVvNw7v2nazj3UyXK","edad":60,"sexo":"hombre","rol":"Administrador"},{"id_usuario":"7cb76f51-f1ad-3cea-9239-9373642effb6","nombre":"Lila Terry","correo":"hoyt.wuckert@example.net","contrasena":"$2y$12$MS\/f8HwfHa9MHX20VIB5je59nKRFIbaHsCcDExpbN2oneAwY4VXCS","edad":21,"sexo":"mujer","rol":"Moderador"},{"id_usuario":"9068fb9c-0f5d-346d-8c5f-617782f3e7cc","nombre":"Robin Yost","correo":"demarcus95@example.org","contrasena":"$2y$12$j5IO7Y0Eipyt4pXSYOIYGufxrQh2BtB4yq0pyjiyYc3bkezULdgAe","edad":79,"sexo":"mujer","rol":"Administrador"},{"id_usuario":"99b6bbe3-b369-3a66-a889-d6e009d29826","nombre":"Mateo Dickinson","correo":"wintheiser.weldon@example.com","contrasena":"$2y$12$YxGvJNByRulLqB8UABhMsufWNpAKUeIAiAcXGuK07AD1CPxSIuvCO","edad":54,"sexo":"mujer","rol":"Usuario"},{"id_usuario":"a901bf13-ec76-3cfd-9b73-1b84216d46d3","nombre":"Nathaniel Dickinson DVM","correo":"troy88@example.net","contrasena":"$2y$12$8fwlObZKzkeqF6rOTzTXPuSbLi1iSQVWhdEEZDSMAxt8gW.SheOu2","edad":71,"sexo":"hombre","rol":"Usuario"},{"id_usuario":"bc1458f7-faf0-3f33-b0dc-f2e5f2bba623","nombre":"Mallory Kassulke DVM","correo":"nrolfson@example.org","contrasena":"$2y$12$cZNtlMqfms.BFpEKfJM\/KOj3tU.fLsG3L43hwthb1IS2ZT5LP8Tsy","edad":18,"sexo":"hombre","rol":"Administrador"},{"id_usuario":"c3232655-1c9e-390f-96b4-973cc341dd61","nombre":"Mr. Dan Ratke Sr.","correo":"mlowe@example.org","contrasena":"$2y$12$pvXcacV5Od2\/If\/PQKUQdu3klds7Y9xlveFMQqH78kre2mt5n5Q7W","edad":24,"sexo":"hombre","rol":"Administrador"},{"id_usuario":"c84a209e-8973-324b-ae91-fb48263ccab0","nombre":"Earl Mraz","correo":"mosciski.russell@example.net","contrasena":"$2y$12$cddRE9k45hmMfOTjq9ADa.O4aQ8MQ1OlYMZHAaZan4eZW35bnDkR2","edad":54,"sexo":"hombre","rol":"Administrador"},{"id_usuario":"d628af92-b2cc-3784-842c-5bcc967c67dd","nombre":"Freddie Rempel","correo":"gabriella.friesen@example.net","contrasena":"$2y$12$BwoQPn9k0gFg9URn5qNQVOva883fjYM\/3MhX54SZX14FrK8JzZnIS","edad":40,"sexo":"hombre","rol":"Moderador"},{"id_usuario":"d9d7abac-6cfc-31eb-a2ed-7937dd1d1fa5","nombre":"Sarina Sporer","correo":"alessia63@example.org","contrasena":"$2y$12$xCGMblhr8qfLxlP547NplOFn2MRFZfOCj6C07Rhapkxf16GlIsrMS","edad":21,"sexo":"hombre","rol":"Moderador"},{"id_usuario":"dae98fcf-5fcd-427c-8f9b-50da70fa9b90","nombre":"Dieta1sdf","correo":"hachexd12@gmail.com","contrasena":"$2y$12$HEtnjUZA5F2PqkAFx8zw9.CO\/3VaRZ9DzTh6.SnrRXg2XpshmrHZC","edad":18,"sexo":"hombre","rol":"Usuario"},{"id_usuario":"e62e921d-ede6-3bdf-b471-dc876d695600","nombre":"Parker Grimes","correo":"wyman.enid@example.org","contrasena":"$2y$12$OmLYOpXPx8Jp.V9gHEkG9.W5UqVSiIZ8QvDxrxj7HJ785c5KOIEvK","edad":40,"sexo":"mujer","rol":"Administrador"},{"id_usuario":"e7b57067-9933-35ae-830e-cf67b1984ddc","nombre":"Marion Homenick","correo":"mathilde.franecki@example.org","contrasena":"$2y$12$6CvDzGknns32Nmp0B3NUF.fKVsYiS2Itjv8ZMomm6nPKpnVZsyKnK","edad":29,"sexo":"mujer","rol":"Moderador"},{"id_usuario":"f57bcb5d-1cf7-3bbf-a130-fcc07ec44808","nombre":"Clement Roob","correo":"arno.grimes@example.org","contrasena":"$2y$12$oJHHC722rwmtNGrD.NyuC.2MdNOvZdxlMp2\/KRNjeMF2iXPnYD0Dy","edad":45,"sexo":"hombre","rol":"Administrador"},{"id_usuario":"fa78716c-42d6-30f1-8894-6871f8481cbc","nombre":"Jeremie Champlin","correo":"jaskolski.darlene@example.org","contrasena":"$2y$12$ghCCtR1l33cyuk0byT3zJ.hbADcvAhGSzxQCDXn.EVGyKVs5nSnuG","edad":41,"sexo":"hombre","rol":"Moderador"},{"id_usuario":"fbd4d90a-fe42-3ff9-8a2f-8c0da69db00f","nombre":"Reymundo Sawayn PhD","correo":"catherine.waelchi@example.net","contrasena":"$2y$12$RzU4lre.70XbPernZABWBuqZkbo11DClycfNTQo1BaAHk.bSGHNju","edad":62,"sexo":"hombre","rol":"Administrador"}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/usuarios/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario.'
+        required: true
+        example: 0deda01b-ba22-3840-9971-ee6c17e6f442
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 0deda01b-ba22-3840-9971-ee6c17e6f442
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"usuario":{"id_usuario":"0deda01b-ba22-3840-9971-ee6c17e6f442","nombre":"Orlando Feest","correo":"randall.keebler@example.org","contrasena":"$2y$12$BZquTyCG7nubQozWAMzDdemZLRiLYJ420AxLxTGxRGb7XwyxzB4Li","edad":39,"sexo":"hombre","rol":"Usuario"},"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/usuarios
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      correo:
+        name: correo
+        description: 'Must be a valid email address. Must not be greater than 100 characters.'
+        required: true
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      contrasena:
+        name: contrasena
+        description: 'Must be at least 8 characters. Must not be greater than 100 characters.'
+        required: true
+        example: z
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      edad:
+        name: edad
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sexo:
+        name: sexo
+        description: ''
+        required: true
+        example: hombre
+        type: string
+        enumValues:
+          - hombre
+          - mujer
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      rol:
+        name: rol
+        description: ''
+        required: true
+        example: Moderador
+        type: string
+        enumValues:
+          - Usuario
+          - Moderador
+          - Administrador
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_usuario: architecto
+      nombre: 'n'
+      correo: g
+      contrasena: z
+      edad: 16
+      sexo: hombre
+      rol: Moderador
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/usuarios/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario.'
+        required: true
+        example: 0deda01b-ba22-3840-9971-ee6c17e6f442
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 0deda01b-ba22-3840-9971-ee6c17e6f442
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      correo:
+        name: correo
+        description: 'Must be a valid email address. Must not be greater than 100 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      contrasena:
+        name: contrasena
+        description: 'Must be at least 8 characters. Must not be greater than 100 characters.'
+        required: true
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      edad:
+        name: edad
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sexo:
+        name: sexo
+        description: ''
+        required: true
+        example: mujer
+        type: string
+        enumValues:
+          - hombre
+          - mujer
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      rol:
+        name: rol
+        description: ''
+        required: true
+        example: Moderador
+        type: string
+        enumValues:
+          - Usuario
+          - Moderador
+          - Administrador
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      correo: 'n'
+      contrasena: g
+      edad: 16
+      sexo: mujer
+      rol: Moderador
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/usuarios/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario.'
+        required: true
+        example: 0deda01b-ba22-3840-9971-ee6c17e6f442
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 0deda01b-ba22-3840-9971-ee6c17e6f442
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      correo:
+        name: correo
+        description: ''
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      contrasena:
+        name: contrasena
+        description: 'Must be at least 8 characters. Must not be greater than 100 characters.'
+        required: false
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      edad:
+        name: edad
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      sexo:
+        name: sexo
+        description: ''
+        required: false
+        example: mujer
+        type: string
+        enumValues:
+          - hombre
+          - mujer
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      rol:
+        name: rol
+        description: ''
+        required: false
+        example: Usuario
+        type: string
+        enumValues:
+          - Usuario
+          - Moderador
+          - Administrador
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      contrasena: 'n'
+      edad: 16
+      sexo: mujer
+      rol: Usuario
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/usuarios/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario.'
+        required: true
+        example: 0deda01b-ba22-3840-9971-ee6c17e6f442
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 0deda01b-ba22-3840-9971-ee6c17e6f442
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      correo:
+        name: correo
+        description: 'Must be a valid email address.'
+        required: true
+        example: gbailey@example.net
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      contrasena:
+        name: contrasena
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      correo: gbailey@example.net
+      contrasena: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/alimentos
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"alimentos":[{"id_alimento":21,"nombre":"Pechuga de pollo","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/pechuga-pollo_fthcra.webp","descripcion":"Fuente de prote\u00edna magra","peso_kg":"0.20","precio_euros":"1.50","codigo_barras":"0001","calorias":"110.00","proteinas":"23.00","grasas":"1.00","carbohidratos":"0.00"},{"id_alimento":22,"nombre":"Huevo","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/huevos_nbh8yb.webp","descripcion":"Alimento completo en prote\u00ednas","peso_kg":"0.05","precio_euros":"0.25","codigo_barras":"0002","calorias":"75.00","proteinas":"6.00","grasas":"5.00","carbohidratos":"0.50"},{"id_alimento":23,"nombre":"Tofu","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189562\/tofu_s12zy6.webp","descripcion":"Prote\u00edna vegetal","peso_kg":"0.15","precio_euros":"1.20","codigo_barras":"0003","calorias":"130.00","proteinas":"12.00","grasas":"7.00","carbohidratos":"2.00"},{"id_alimento":24,"nombre":"Lentejas cocidas","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/lentejas_k7n7ho.webp","descripcion":"Legumbre rica en prote\u00edna","peso_kg":"0.20","precio_euros":"0.50","codigo_barras":"0004","calorias":"116.00","proteinas":"9.00","grasas":"0.40","carbohidratos":"20.00"},{"id_alimento":25,"nombre":"Salm\u00f3n","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/salmon_zsym1n.webp","descripcion":"Pescado graso rico en omega-3","peso_kg":"0.15","precio_euros":"2.00","codigo_barras":"0005","calorias":"280.00","proteinas":"22.00","grasas":"18.00","carbohidratos":"0.00"},{"id_alimento":26,"nombre":"Merluza","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/merluza_ygixpc.webp","descripcion":"Pescado blanco bajo en grasa","peso_kg":"0.20","precio_euros":"1.80","codigo_barras":"0006","calorias":"82.00","proteinas":"18.00","grasas":"1.00","carbohidratos":"0.00"},{"id_alimento":27,"nombre":"Bacalao","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/bacalao_fpz0qj.webp","descripcion":"Pescado magro con alto aporte proteico","peso_kg":"0.15","precio_euros":"2.20","codigo_barras":"0007","calorias":"105.00","proteinas":"23.00","grasas":"1.00","carbohidratos":"0.00"},{"id_alimento":28,"nombre":"Pavo","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/pavo_gsmyqj.webp","descripcion":"Carne magra de ave","peso_kg":"0.20","precio_euros":"1.60","codigo_barras":"0008","calorias":"200.00","proteinas":"30.00","grasas":"5.00","carbohidratos":"0.00"},{"id_alimento":29,"nombre":"Ternera magra","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/ternera-magra_akyumv.webp","descripcion":"Carne roja magra","peso_kg":"0.20","precio_euros":"3.00","codigo_barras":"0009","calorias":"250.00","proteinas":"27.00","grasas":"15.00","carbohidratos":"0.00"},{"id_alimento":30,"nombre":"At\u00fan en conserva","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/atun_unfqkt.webp","descripcion":"Fuente r\u00e1pida de prote\u00edna","peso_kg":"0.10","precio_euros":"1.20","codigo_barras":"0010","calorias":"116.00","proteinas":"26.00","grasas":"1.00","carbohidratos":"0.00"},{"id_alimento":31,"nombre":"Garbanzos cocidos","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189546\/garbanzos_39_11zon_pf2uys.webp","descripcion":"Legumbre rica en prote\u00edna y fibra","peso_kg":"0.20","precio_euros":"0.60","codigo_barras":"0011","calorias":"164.00","proteinas":"9.00","grasas":"3.00","carbohidratos":"27.00"},{"id_alimento":32,"nombre":"Frijoles negros cocidos","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189546\/frijoles-negros_h8gfgd.webp","descripcion":"Legumbre con buen perfil proteico","peso_kg":"0.20","precio_euros":"0.40","codigo_barras":"0012","calorias":"132.00","proteinas":"9.00","grasas":"0.50","carbohidratos":"24.00"},{"id_alimento":33,"nombre":"Edamame","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/edamame_38_11zon_tljzzp.webp","descripcion":"Soja verde rica en prote\u00edna","peso_kg":"0.15","precio_euros":"1.50","codigo_barras":"0013","calorias":"120.00","proteinas":"12.00","grasas":"5.00","carbohidratos":"9.00"},{"id_alimento":34,"nombre":"Tempeh","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/tempeh_37_11zon_oswcvn.webp","descripcion":"Prote\u00edna fermentada de soja","peso_kg":"0.10","precio_euros":"1.70","codigo_barras":"0014","calorias":"192.00","proteinas":"19.00","grasas":"11.00","carbohidratos":"9.00"},{"id_alimento":35,"nombre":"Seit\u00e1n","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189546\/seitan_ayhqwk.webp","descripcion":"Prote\u00edna vegetal del gluten","peso_kg":"0.10","precio_euros":"1.40","codigo_barras":"0015","calorias":"150.00","proteinas":"25.00","grasas":"2.00","carbohidratos":"3.00"},{"id_alimento":36,"nombre":"Yogur griego natural","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189554\/yogur-griego_36_11zon_jbgc1a.webp","descripcion":"L\u00e1cteo alto en prote\u00ednas","peso_kg":"0.15","precio_euros":"0.80","codigo_barras":"0016","calorias":"130.00","proteinas":"10.00","grasas":"8.00","carbohidratos":"4.00"},{"id_alimento":37,"nombre":"Queso fresco","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/queso-fresco_35_11zon_m71wpy.webp","descripcion":"L\u00e1cteo bajo en grasa","peso_kg":"0.10","precio_euros":"1.00","codigo_barras":"0017","calorias":"98.00","proteinas":"9.00","grasas":"6.00","carbohidratos":"2.00"},{"id_alimento":38,"nombre":"Reques\u00f3n","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/rqueson_34_11zon_gl6g0b.webp","descripcion":"L\u00e1cteo suave con buena prote\u00edna","peso_kg":"0.10","precio_euros":"0.90","codigo_barras":"0018","calorias":"106.00","proteinas":"11.00","grasas":"5.00","carbohidratos":"3.00"},{"id_alimento":39,"nombre":"Huevos de codorniz (x5)","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/huevos-cordorniz_wuharh.webp","descripcion":"Peque\u00f1os, ricos en nutrientes","peso_kg":"0.05","precio_euros":"0.50","codigo_barras":"0019","calorias":"72.00","proteinas":"7.00","grasas":"5.00","carbohidratos":"1.00"},{"id_alimento":40,"nombre":"Cottage cheese","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/cottage-cheese_h6xd7v.webp","descripcion":"Ricotta baja en grasa","peso_kg":"0.10","precio_euros":"0.90","codigo_barras":"0020","calorias":"103.00","proteinas":"12.00","grasas":"5.00","carbohidratos":"3.00"},{"id_alimento":41,"nombre":"Arroz integral","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/arroz-integral_33_11zon_bomoif.webp","descripcion":"Fuente compleja de carbohidratos","peso_kg":"0.20","precio_euros":"0.40","codigo_barras":"0101","calorias":"130.00","proteinas":"2.50","grasas":"1.00","carbohidratos":"28.00"},{"id_alimento":42,"nombre":"Pasta integral","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189562\/pasta-integral_tkuifl.webp","descripcion":"Carbohidratos lentos","peso_kg":"0.15","precio_euros":"0.60","codigo_barras":"0102","calorias":"140.00","proteinas":"5.00","grasas":"1.00","carbohidratos":"30.00"},{"id_alimento":43,"nombre":"Patata cocida","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/patata-cocida_v3xffr.webp","descripcion":"Fuente de absorci\u00f3n media","peso_kg":"0.20","precio_euros":"0.30","codigo_barras":"0103","calorias":"154.00","proteinas":"4.00","grasas":"0.20","carbohidratos":"35.00"},{"id_alimento":44,"nombre":"Boniato cocido","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/boniato-cocido_32_11zon_hbvtxn.webp","descripcion":"Fuente rica en betacaroteno","peso_kg":"0.20","precio_euros":"0.40","codigo_barras":"0104","calorias":"180.00","proteinas":"1.60","grasas":"0.20","carbohidratos":"41.00"},{"id_alimento":45,"nombre":"Pan integral (2 rebanadas)","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189550\/pan-integral_31_11zon_o4oczt.webp","descripcion":"Fibra y carbohidratos","peso_kg":"0.06","precio_euros":"0.20","codigo_barras":"0105","calorias":"166.00","proteinas":"6.00","grasas":"2.00","carbohidratos":"30.00"},{"id_alimento":46,"nombre":"Avena (copos)","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/avena_30_11zon_c7ub71.webp","descripcion":"Fuente de beta\u2011glucanos","peso_kg":"0.05","precio_euros":"0.10","codigo_barras":"0106","calorias":"195.00","proteinas":"6.50","grasas":"3.30","carbohidratos":"33.50"},{"id_alimento":47,"nombre":"Mijo cocido","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189550\/mijo_29_11zon_x0iexc.webp","descripcion":"Cereal sin gluten","peso_kg":"0.20","precio_euros":"0.50","codigo_barras":"0107","calorias":"119.00","proteinas":"3.50","grasas":"1.00","carbohidratos":"23.00"},{"id_alimento":48,"nombre":"Cebada perlada cocida","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/cebada-perlada_28_11zon_gcu1ua.webp","descripcion":"Fibra soluble y almid\u00f3n resistente","peso_kg":"0.20","precio_euros":"0.50","codigo_barras":"0108","calorias":"112.00","proteinas":"2.30","grasas":"0.40","carbohidratos":"28.00"},{"id_alimento":49,"nombre":"Bulgur cocido","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/bulgur-cocido_cvdfob.webp","descripcion":"Trigo partido precocido","peso_kg":"0.20","precio_euros":"0.45","codigo_barras":"0109","calorias":"83.00","proteinas":"3.10","grasas":"0.20","carbohidratos":"17.50"},{"id_alimento":50,"nombre":"Trigo sarraceno cocido","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/trigo-sarraceno_27_11zon_bjcl5f.webp","descripcion":"Pseudocereal rico en fibra","peso_kg":"0.20","precio_euros":"0.60","codigo_barras":"0110","calorias":"92.00","proteinas":"3.40","grasas":"1.00","carbohidratos":"19.00"},{"id_alimento":51,"nombre":"Amaranto cocido","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/amaranto_snfont.webp","descripcion":"Pseudocereal nutritivo","peso_kg":"0.20","precio_euros":"0.60","codigo_barras":"0111","calorias":"102.00","proteinas":"3.80","grasas":"1.60","carbohidratos":"19.00"},{"id_alimento":52,"nombre":"Tortilla de trigo integral","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/tortilla-trigo_26_11zon_ogbsaa.webp","descripcion":"Wrap con fibra","peso_kg":"0.06","precio_euros":"0.30","codigo_barras":"0112","calorias":"120.00","proteinas":"4.00","grasas":"3.00","carbohidratos":"18.00"},{"id_alimento":53,"nombre":"Pan de centeno","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189550\/pan-centeno_25_11zon_aucpx3.webp","descripcion":"Cereal integral con sabor intenso","peso_kg":"0.06","precio_euros":"0.25","codigo_barras":"0113","calorias":"148.00","proteinas":"5.00","grasas":"1.40","carbohidratos":"28.00"},{"id_alimento":54,"nombre":"Pasta blanca","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189551\/pasta-blanca_24_11zon_z6qcvg.webp","descripcion":"Almid\u00f3n de r\u00e1pida absorci\u00f3n","peso_kg":"0.15","precio_euros":"0.60","codigo_barras":"0114","calorias":"210.00","proteinas":"7.00","grasas":"1.20","carbohidratos":"42.00"},{"id_alimento":55,"nombre":"Arroz blanco","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/arroz-blanco_23_11zon_hfmrjt.webp","descripcion":"Carbohidrato f\u00e1cil de digerir","peso_kg":"0.20","precio_euros":"0.40","codigo_barras":"0115","calorias":"205.00","proteinas":"4.30","grasas":"0.40","carbohidratos":"45.00"},{"id_alimento":56,"nombre":"Galletas integrales (3 uds.)","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189548\/galletas-integrales_22_11zon_wq95ja.webp","descripcion":"Snack con fibra","peso_kg":"0.03","precio_euros":"0.20","codigo_barras":"0116","calorias":"120.00","proteinas":"2.00","grasas":"4.00","carbohidratos":"20.00"},{"id_alimento":57,"nombre":"Pl\u00e1tano","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/platano_21_11zon_f1bcil.webp","descripcion":"Fruta rica en potasio","peso_kg":"0.12","precio_euros":"0.25","codigo_barras":"0117","calorias":"105.00","proteinas":"1.30","grasas":"0.40","carbohidratos":"27.00"},{"id_alimento":58,"nombre":"Manzana","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1744491053\/apple_yp9s5w.webp","descripcion":"Fruta con fibra soluble","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0118","calorias":"95.00","proteinas":"0.50","grasas":"0.30","carbohidratos":"25.00"},{"id_alimento":59,"nombre":"Pera","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189550\/pera_20_11zon_li5jih.webp","descripcion":"Fruta jugosa y dulce","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0119","calorias":"101.00","proteinas":"0.40","grasas":"0.20","carbohidratos":"27.00"},{"id_alimento":60,"nombre":"Naranja","categoria":"Carbohidratos","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189550\/naranja_19_11zon_rxt8cq.webp","descripcion":"Fruta c\u00edtrica rica en vitamina C","peso_kg":"0.20","precio_euros":"0.30","codigo_barras":"0120","calorias":"86.00","proteinas":"1.70","grasas":"0.20","carbohidratos":"22.00"},{"id_alimento":61,"nombre":"Aguacate","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/aguacate_18_11zon_dkxa48.webp","descripcion":"Grasa saludable vegetal","peso_kg":"0.20","precio_euros":"1.00","codigo_barras":"0201","calorias":"160.00","proteinas":"2.00","grasas":"15.00","carbohidratos":"9.00"},{"id_alimento":62,"nombre":"Aceite de oliva","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/aceite-oliva_17_11zon_a5avms.webp","descripcion":"Grasa monoinsaturada","peso_kg":"0.01","precio_euros":"0.12","codigo_barras":"0202","calorias":"119.00","proteinas":"0.00","grasas":"13.50","carbohidratos":"0.00"},{"id_alimento":63,"nombre":"Almendras","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/almendras_16_11zon_pu2fxs.webp","descripcion":"Fruta seca rica en vitamina E","peso_kg":"0.05","precio_euros":"0.80","codigo_barras":"0203","calorias":"289.00","proteinas":"10.60","grasas":"25.60","carbohidratos":"10.40"},{"id_alimento":64,"nombre":"Nueces","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/nueces_es2y2l.webp","descripcion":"Ricas en omega\u20113 vegetales","peso_kg":"0.05","precio_euros":"0.70","codigo_barras":"0204","calorias":"327.00","proteinas":"15.00","grasas":"32.00","carbohidratos":"4.00"},{"id_alimento":65,"nombre":"Avellanas","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/avellanas_u6uoqn.webp","descripcion":"Fuente de grasas monoinsaturadas","peso_kg":"0.05","precio_euros":"0.60","codigo_barras":"0205","calorias":"314.00","proteinas":"7.00","grasas":"30.00","carbohidratos":"7.00"},{"id_alimento":66,"nombre":"Pistachos","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/pistachos_iyau6r.webp","descripcion":"Snacks ricos en prote\u00ednas y grasas","peso_kg":"0.05","precio_euros":"0.70","codigo_barras":"0206","calorias":"289.00","proteinas":"10.00","grasas":"24.00","carbohidratos":"28.00"},{"id_alimento":67,"nombre":"Semillas de girasol","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/semillas-girasol_m6xmii.webp","descripcion":"Ricas en vitamina E","peso_kg":"0.05","precio_euros":"0.50","codigo_barras":"0207","calorias":"290.00","proteinas":"10.00","grasas":"25.00","carbohidratos":"20.00"},{"id_alimento":68,"nombre":"Semillas de calabaza","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/semillas-calabaza_rqi8sc.webp","descripcion":"Fuente de magnesio y zinc","peso_kg":"0.05","precio_euros":"0.50","codigo_barras":"0208","calorias":"271.00","proteinas":"13.00","grasas":"23.00","carbohidratos":"9.00"},{"id_alimento":69,"nombre":"Semillas de lino","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/semillas-lino_c25hrl.webp","descripcion":"Ricas en omega\u20113 y fibra","peso_kg":"0.05","precio_euros":"0.50","codigo_barras":"0209","calorias":"265.00","proteinas":"18.30","grasas":"13.80","carbohidratos":"28.90"},{"id_alimento":70,"nombre":"Semillas de ch\u00eda","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189562\/semillas-chia_lcnvml.webp","descripcion":"Alta densidad nutricional","peso_kg":"0.05","precio_euros":"0.60","codigo_barras":"0210","calorias":"243.00","proteinas":"8.00","grasas":"15.00","carbohidratos":"21.00"},{"id_alimento":71,"nombre":"Mantequilla de cacahuete","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/mantequilla-cacahuete_qhcye5.webp","descripcion":"Fuente de grasas y prote\u00ednas","peso_kg":"0.02","precio_euros":"0.15","codigo_barras":"0211","calorias":"94.00","proteinas":"4.20","grasas":"8.00","carbohidratos":"3.40"},{"id_alimento":72,"nombre":"Mantequilla de almendra","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/mantequilla-almendra_vyvkc2.webp","descripcion":"Grasas monoinsaturadas","peso_kg":"0.02","precio_euros":"0.18","codigo_barras":"0212","calorias":"98.00","proteinas":"3.20","grasas":"8.50","carbohidratos":"3.40"},{"id_alimento":73,"nombre":"Aceite de coco","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/aceite-coco_mmzszb.webp","descripcion":"Grasa saturada de coco","peso_kg":"0.01","precio_euros":"0.12","codigo_barras":"0213","calorias":"117.00","proteinas":"0.00","grasas":"13.00","carbohidratos":"0.00"},{"id_alimento":74,"nombre":"Chocolate negro 85%","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189557\/chocolate-negro_ee3aju.webp","descripcion":"Fuente de antioxidantes y grasas saludables","peso_kg":"0.03","precio_euros":"0.70","codigo_barras":"0214","calorias":"180.00","proteinas":"2.00","grasas":"15.00","carbohidratos":"14.00"},{"id_alimento":75,"nombre":"Tahini","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/tahini_15_11zon_fqdmmc.webp","descripcion":"Pasta de s\u00e9samo rica en calcio","peso_kg":"0.05","precio_euros":"0.50","codigo_barras":"0215","calorias":"312.00","proteinas":"8.00","grasas":"24.00","carbohidratos":"16.00"},{"id_alimento":76,"nombre":"Aceitunas verdes","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/aceitunas-verdes_14_11zon_githlr.webp","descripcion":"Snack bajo en calor\u00edas","peso_kg":"0.05","precio_euros":"0.40","codigo_barras":"0216","calorias":"145.00","proteinas":"1.00","grasas":"15.00","carbohidratos":"3.80"},{"id_alimento":77,"nombre":"Aceitunas negras","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/aceitunas-negras_13_11zon_wpguyc.webp","descripcion":"Fuente de \u00e1cido oleico","peso_kg":"0.05","precio_euros":"0.40","codigo_barras":"0217","calorias":"155.00","proteinas":"1.50","grasas":"16.00","carbohidratos":"4.00"},{"id_alimento":78,"nombre":"Yogur natural entero","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189556\/yogur-natural-entero_12_11zon_pekzmk.webp","descripcion":"L\u00e1cteo con grasas beneficiosas","peso_kg":"0.15","precio_euros":"0.70","codigo_barras":"0218","calorias":"95.00","proteinas":"4.00","grasas":"5.00","carbohidratos":"4.00"},{"id_alimento":79,"nombre":"Queso manchego","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/queso-manchego_11_11zon_fojsph.webp","descripcion":"Queso curado graso","peso_kg":"0.05","precio_euros":"1.00","codigo_barras":"0219","calorias":"166.00","proteinas":"10.00","grasas":"14.00","carbohidratos":"0.10"},{"id_alimento":80,"nombre":"Queso de cabra","categoria":"Grasas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/queso-cabra_10_11zon_swenod.webp","descripcion":"L\u00e1cteo de cabra suave","peso_kg":"0.05","precio_euros":"1.00","codigo_barras":"0220","calorias":"103.00","proteinas":"6.00","grasas":"9.00","carbohidratos":"0.10"},{"id_alimento":81,"nombre":"Zanahoria","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189556\/zanahoria_9_11zon_xrdlgz.webp","descripcion":"Rica en betacarotenos","peso_kg":"0.15","precio_euros":"0.20","codigo_barras":"0301","calorias":"40.00","proteinas":"1.00","grasas":"0.20","carbohidratos":"9.00"},{"id_alimento":82,"nombre":"Br\u00f3coli","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/brocoli_8_11zon_gg5eu2.webp","descripcion":"Verdura cruc\u00edfera rica en C y K","peso_kg":"0.20","precio_euros":"0.40","codigo_barras":"0302","calorias":"55.00","proteinas":"4.00","grasas":"0.50","carbohidratos":"10.00"},{"id_alimento":83,"nombre":"Tomate","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189553\/tomate_7_11zon_sm8ln9.webp","descripcion":"Fuente de licopeno y vitamina C","peso_kg":"0.15","precio_euros":"0.20","codigo_barras":"0303","calorias":"18.00","proteinas":"0.90","grasas":"0.20","carbohidratos":"3.90"},{"id_alimento":84,"nombre":"Espinacas","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189548\/espinacas_6_11zon_czmg5j.webp","descripcion":"Ricas en hierro y vitamina K","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0304","calorias":"23.00","proteinas":"2.90","grasas":"0.40","carbohidratos":"3.60"},{"id_alimento":85,"nombre":"Pimiento rojo","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189551\/pimiento-rojo_5_11zon_jhf3ui.webp","descripcion":"Alto en vitamina C","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0305","calorias":"31.00","proteinas":"1.00","grasas":"0.30","carbohidratos":"6.00"},{"id_alimento":86,"nombre":"Kale","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189549\/kale_4_11zon_rvxzpn.webp","descripcion":"Hoja verde cargada de nutrientes","peso_kg":"0.15","precio_euros":"0.40","codigo_barras":"0306","calorias":"49.00","proteinas":"4.30","grasas":"0.90","carbohidratos":"8.80"},{"id_alimento":87,"nombre":"Kiwi","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/kiwi_catxzz.webp","descripcion":"Fruta rica en vitamina C","peso_kg":"0.10","precio_euros":"0.40","codigo_barras":"0307","calorias":"61.00","proteinas":"1.10","grasas":"0.50","carbohidratos":"14.70"},{"id_alimento":88,"nombre":"Fresas","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189562\/fresas_rkihhc.webp","descripcion":"Antioxidantes y fibra","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0308","calorias":"49.00","proteinas":"1.00","grasas":"0.50","carbohidratos":"11.70"},{"id_alimento":89,"nombre":"Ar\u00e1ndanos","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/arandanos_3_11zon_guzjo9.webp","descripcion":"Ricos en antocianinas","peso_kg":"0.10","precio_euros":"0.40","codigo_barras":"0309","calorias":"57.00","proteinas":"0.70","grasas":"0.30","carbohidratos":"14.50"},{"id_alimento":90,"nombre":"Mango","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189550\/mango_2_11zon_odqll8.webp","descripcion":"Fuente de vitamina A y C","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0310","calorias":"60.00","proteinas":"0.80","grasas":"0.40","carbohidratos":"15.00"},{"id_alimento":91,"nombre":"Papaya","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189562\/papaya_wukb3c.webp","descripcion":"Enzima papaina y vitamina C","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0311","calorias":"59.00","proteinas":"0.60","grasas":"0.10","carbohidratos":"15.40"},{"id_alimento":92,"nombre":"Mel\u00f3n","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189550\/melon_1_11zon_jkylms.webp","descripcion":"Hidratante y rico en vitamina A","peso_kg":"0.20","precio_euros":"0.30","codigo_barras":"0312","calorias":"34.00","proteinas":"0.80","grasas":"0.20","carbohidratos":"8.20"},{"id_alimento":93,"nombre":"Sand\u00eda","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189546\/sandia_43_11zon_irlvuy.webp","descripcion":"Alto contenido de agua y licopeno","peso_kg":"0.20","precio_euros":"0.30","codigo_barras":"0313","calorias":"30.00","proteinas":"0.60","grasas":"0.20","carbohidratos":"7.60"},{"id_alimento":94,"nombre":"Coliflor","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189546\/coliflor_42_11zon_tmv5yo.webp","descripcion":"Rica en vitamina C y fibra","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0314","calorias":"25.00","proteinas":"2.00","grasas":"0.10","carbohidratos":"5.00"},{"id_alimento":95,"nombre":"Esp\u00e1rragos","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189566\/esparragos_swodpe.webp","descripcion":"Fuente de vitamina K y folato","peso_kg":"0.15","precio_euros":"0.40","codigo_barras":"0315","calorias":"20.00","proteinas":"2.20","grasas":"0.20","carbohidratos":"3.70"},{"id_alimento":96,"nombre":"Alcachofa","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189546\/alcachofa_41_11zon_eb5noo.webp","descripcion":"Fibra y antioxidantes","peso_kg":"0.20","precio_euros":"0.50","codigo_barras":"0316","calorias":"47.00","proteinas":"3.30","grasas":"0.20","carbohidratos":"11.50"},{"id_alimento":97,"nombre":"Coles de Bruselas","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189547\/coles-bruselas_40_11zon_rdxnpa.webp","descripcion":"Ricas en C y K","peso_kg":"0.15","precio_euros":"0.30","codigo_barras":"0317","calorias":"43.00","proteinas":"3.40","grasas":"0.30","carbohidratos":"8.95"},{"id_alimento":98,"nombre":"Pepino","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745339491\/pepino_fm5fxo.webp","descripcion":"Muy hidratante y bajo en calor\u00edas","peso_kg":"0.15","precio_euros":"0.20","codigo_barras":"0318","calorias":"16.00","proteinas":"0.70","grasas":"0.10","carbohidratos":"3.60"},{"id_alimento":99,"nombre":"Calabac\u00edn","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745339489\/calabacin_mclpgk.webp","descripcion":"Bajo en calor\u00edas y vers\u00e1til","peso_kg":"0.15","precio_euros":"0.20","codigo_barras":"0319","calorias":"17.00","proteinas":"1.20","grasas":"0.30","carbohidratos":"3.10"},{"id_alimento":100,"nombre":"Lechuga romana","categoria":"Vitaminas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189562\/lechuga-romana_voqvd1.webp","descripcion":"Rica en folato y fibra","peso_kg":"0.15","precio_euros":"0.20","codigo_barras":"0320","calorias":"17.00","proteinas":"1.20","grasas":"0.30","carbohidratos":"3.30"}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/alimentos/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the alimento.'
+        required: true
+        example: 21
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 21
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"alimento":{"id_alimento":21,"nombre":"Pechuga de pollo","categoria":"Prote\u00ednas","imagen_url":"https:\/\/res.cloudinary.com\/dvvoccp9x\/image\/upload\/v1745189561\/pechuga-pollo_fthcra.webp","descripcion":"Fuente de prote\u00edna magra","peso_kg":"0.20","precio_euros":"1.50","codigo_barras":"0001","calorias":"110.00","proteinas":"23.00","grasas":"1.00","carbohidratos":"0.00"},"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/alimentos
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      categoria:
+        name: categoria
+        description: ''
+        required: true
+        example: Proteínas
+        type: string
+        enumValues:
+          - Proteínas
+          - Carbohidratos
+          - Grasas
+          - Vitaminas
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      imagen_url:
+        name: imagen_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://bailey.com/'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      peso_kg:
+        name: peso_kg
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      precio_euros:
+        name: precio_euros
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      codigo_barras:
+        name: codigo_barras
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: m
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      calorias:
+        name: calorias
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      proteinas:
+        name: proteinas
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      grasas:
+        name: grasas
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      carbohidratos:
+        name: carbohidratos
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      categoria: Proteínas
+      imagen_url: 'http://bailey.com/'
+      descripcion: architecto
+      peso_kg: 4326.41688
+      precio_euros: 4326.41688
+      codigo_barras: m
+      calorias: 4326.41688
+      proteinas: 4326.41688
+      grasas: 4326.41688
+      carbohidratos: 4326.41688
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/alimentos/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the alimento.'
+        required: true
+        example: 21
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 21
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      categoria:
+        name: categoria
+        description: ''
+        required: true
+        example: Proteínas
+        type: string
+        enumValues:
+          - Proteínas
+          - Carbohidratos
+          - Grasas
+          - Vitaminas
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      imagen_url:
+        name: imagen_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://bailey.com/'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      peso_kg:
+        name: peso_kg
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      precio_euros:
+        name: precio_euros
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      codigo_barras:
+        name: codigo_barras
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: m
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      calorias:
+        name: calorias
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      proteinas:
+        name: proteinas
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      grasas:
+        name: grasas
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      carbohidratos:
+        name: carbohidratos
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      categoria: Proteínas
+      imagen_url: 'http://bailey.com/'
+      descripcion: architecto
+      peso_kg: 4326.41688
+      precio_euros: 4326.41688
+      codigo_barras: m
+      calorias: 4326.41688
+      proteinas: 4326.41688
+      grasas: 4326.41688
+      carbohidratos: 4326.41688
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/alimentos/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the alimento.'
+        required: true
+        example: 21
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 21
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      categoria:
+        name: categoria
+        description: ''
+        required: false
+        example: Proteínas
+        type: string
+        enumValues:
+          - Proteínas
+          - Carbohidratos
+          - Grasas
+          - Vitaminas
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      imagen_url:
+        name: imagen_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://bailey.com/'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      peso_kg:
+        name: peso_kg
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      precio_euros:
+        name: precio_euros
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      codigo_barras:
+        name: codigo_barras
+        description: 'Must not be greater than 50 characters.'
+        required: false
+        example: m
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      calorias:
+        name: calorias
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      proteinas:
+        name: proteinas
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      grasas:
+        name: grasas
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      carbohidratos:
+        name: carbohidratos
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      categoria: Proteínas
+      imagen_url: 'http://bailey.com/'
+      descripcion: architecto
+      peso_kg: 4326.41688
+      precio_euros: 4326.41688
+      codigo_barras: m
+      calorias: 4326.41688
+      proteinas: 4326.41688
+      grasas: 4326.41688
+      carbohidratos: 4326.41688
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/alimentos/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the alimento.'
+        required: true
+        example: 21
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 21
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/paises
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"paises":[{"cod_pais":1,"nombre":"Gambia"},{"cod_pais":2,"nombre":"Greenland"},{"cod_pais":3,"nombre":"Angola"},{"cod_pais":4,"nombre":"Canada"},{"cod_pais":5,"nombre":"San Marino"},{"cod_pais":6,"nombre":"Mayotte"},{"cod_pais":7,"nombre":"Belize"},{"cod_pais":8,"nombre":"Israel"},{"cod_pais":9,"nombre":"Guam"},{"cod_pais":10,"nombre":"Timor-Leste"}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/paises/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the paise.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"Pa\u00eds no encontrado","status":404}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/paises
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/paises/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the paise.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/paises/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the paise.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/paises/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the paise.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/ciudades
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"ciudades":[{"cod_ciudad":1,"nombre":"Gwenton","cod_pais":7},{"cod_ciudad":2,"nombre":"South Monserratmouth","cod_pais":8},{"cod_ciudad":3,"nombre":"East Magdalenport","cod_pais":7},{"cod_ciudad":4,"nombre":"Kendrashire","cod_pais":3},{"cod_ciudad":5,"nombre":"Hammesside","cod_pais":2},{"cod_ciudad":6,"nombre":"New Betsytown","cod_pais":5},{"cod_ciudad":7,"nombre":"Wilhelmineburgh","cod_pais":7},{"cod_ciudad":8,"nombre":"Benniemouth","cod_pais":1},{"cod_ciudad":9,"nombre":"Homenickport","cod_pais":9},{"cod_ciudad":10,"nombre":"Port Jaidenville","cod_pais":6}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/ciudades/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ciudade.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"Ciudad no encontrada","status":404}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/ciudades
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_pais:
+        name: cod_pais
+        description: 'The <code>cod_pais</code> of an existing record in the pais table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      cod_pais: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/ciudades/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ciudade.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_pais:
+        name: cod_pais
+        description: 'The <code>cod_pais</code> of an existing record in the pais table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      cod_pais: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/ciudades/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ciudade.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_pais:
+        name: cod_pais
+        description: 'The <code>cod_pais</code> of an existing record in the pais table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/ciudades/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ciudade.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/rutinas
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"rutinas":[{"id_rutina":1,"nombre":"eos","descripcion":"Tempore tempora mollitia sed aut molestias quas."},{"id_rutina":2,"nombre":"aut","descripcion":"Qui vel totam quis sed voluptatibus id eos."},{"id_rutina":3,"nombre":"aut","descripcion":"Saepe expedita laudantium occaecati ut."},{"id_rutina":4,"nombre":"soluta","descripcion":"Ut eaque dicta architecto eligendi a ut possimus est."},{"id_rutina":5,"nombre":"amet","descripcion":"Sit totam et eum vel in quia hic."},{"id_rutina":6,"nombre":"occaecati","descripcion":"Aut dolor ipsam neque labore et."},{"id_rutina":7,"nombre":"officia","descripcion":"Veritatis doloremque voluptatum reprehenderit."},{"id_rutina":8,"nombre":"et","descripcion":"Provident quae repudiandae cupiditate recusandae quasi molestiae deserunt adipisci."},{"id_rutina":9,"nombre":"voluptate","descripcion":"Possimus sed qui odit totam."},{"id_rutina":10,"nombre":"qui","descripcion":"Quidem hic dolore cumque quam."},{"id_rutina":11,"nombre":"officia","descripcion":"Ut ex magnam voluptate placeat vel voluptates dolore."},{"id_rutina":12,"nombre":"quos","descripcion":"Non minima et eos sit."},{"id_rutina":13,"nombre":"cum","descripcion":"Omnis qui eaque incidunt tenetur provident."},{"id_rutina":14,"nombre":"eum","descripcion":"Iure error blanditiis dolores."},{"id_rutina":15,"nombre":"aut","descripcion":"Facere aspernatur ab facere."},{"id_rutina":16,"nombre":"delectus","descripcion":"Voluptas voluptatum laudantium sint minus ab."},{"id_rutina":17,"nombre":"ipsam","descripcion":"Praesentium accusamus quia temporibus quasi et aspernatur quos laboriosam."},{"id_rutina":18,"nombre":"repellendus","descripcion":"Aut illo nisi provident harum perspiciatis."},{"id_rutina":19,"nombre":"nostrum","descripcion":"Officiis exercitationem nulla atque inventore accusantium molestias."},{"id_rutina":20,"nombre":"quod","descripcion":"Esse aut inventore saepe velit repellat."},{"id_rutina":21,"nombre":"ducimus","descripcion":"Deserunt neque pariatur soluta quo."},{"id_rutina":22,"nombre":"perferendis","descripcion":"Nostrum sint et consectetur dolores aut."},{"id_rutina":23,"nombre":"vitae","descripcion":"Doloribus numquam facere veritatis."},{"id_rutina":24,"nombre":"repellendus","descripcion":"Architecto repellat quia labore sint."},{"id_rutina":25,"nombre":"enim","descripcion":"Atque ex eos ipsa explicabo laudantium facere voluptas."},{"id_rutina":26,"nombre":"optio","descripcion":"Sunt qui occaecati commodi maiores sed enim doloribus quia."},{"id_rutina":27,"nombre":"id","descripcion":"Ipsum quasi animi aspernatur ipsa ut tenetur."},{"id_rutina":28,"nombre":"nisi","descripcion":"Eum ea harum corporis sint alias a ullam."},{"id_rutina":29,"nombre":"voluptate","descripcion":"Quia delectus molestias consequatur ut est et delectus."},{"id_rutina":30,"nombre":"culpa","descripcion":"Enim sed veritatis facilis nam et harum aperiam porro."}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/rutinas/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rutina.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"rutina":{"id_rutina":1,"nombre":"eos","descripcion":"Tempore tempora mollitia sed aut molestias quas."},"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/rutinas
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/rutinas/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rutina.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/rutinas/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rutina.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/rutinas/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rutina.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/dietas
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"dietas":[{"id_dieta":20799,"nombre":"sadfrsadfgsad","descripcion":"Prueba Prueba"},{"id_dieta":4,"nombre":"vitae","descripcion":"Modi beatae praesentium numquam eum voluptates in quo."},{"id_dieta":66,"nombre":"ullam","descripcion":"Dolore corrupti omnis eius."},{"id_dieta":9223372036854775807,"nombre":"alias","descripcion":"In nemo porro dolores nostrum aspernatur."},{"id_dieta":86,"nombre":"error","descripcion":"Voluptatem nihil voluptatibus consequatur aut et fuga amet."},{"id_dieta":99,"nombre":"ipsum","descripcion":"Et odit alias ut sapiente repellendus."},{"id_dieta":0,"nombre":"molestias","descripcion":"Velit ut nihil molestias qui ut."},{"id_dieta":0,"nombre":"non","descripcion":"Voluptatem non quisquam laudantium soluta et pariatur rem est."},{"id_dieta":0,"nombre":"dolorem","descripcion":"In perspiciatis enim id quisquam beatae."},{"id_dieta":0,"nombre":"incidunt","descripcion":"Et pariatur animi impedit velit."},{"id_dieta":0,"nombre":"Gloria Pepe","descripcion":"Grasas saturadas"},{"id_dieta":0,"nombre":"harum","descripcion":"Aliquid optio maiores est quo velit."}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/dietas/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the dieta.'
+        required: true
+        example: 20799
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 20799
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"Dieta no encontrada","status":404}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/dietas/{id_dieta}/alimentos'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id_dieta:
+        name: id_dieta
+        description: ''
+        required: true
+        example: 20799
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id_dieta: 20799
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"No se encontraron registros para esta dieta","status":404}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/dietas
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_dieta:
+        name: id_dieta
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      id_dieta: architecto
+      nombre: 'n'
+      descripcion: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/dietas/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the dieta.'
+        required: true
+        example: 20799
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 20799
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/dietas/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the dieta.'
+        required: true
+        example: 20799
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 20799
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/dietas/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the dieta.'
+        required: true
+        example: 20799
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 20799
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/ejercicios
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"ejercicios":[{"id_ejercicio":1,"nombre":"consequatur","descripcion":"Sit adipisci molestiae vero explicabo natus.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/00bb88?text=exercise+aut","video_url":"https:\/\/lang.com\/natus-quia-eum-est-exercitationem-perspiciatis-fuga-deleniti-non.html","grupo_muscular":"Piernas"},{"id_ejercicio":2,"nombre":"quia","descripcion":"Asperiores est repellendus aspernatur rem blanditiis.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/004444?text=exercise+dolores","video_url":"http:\/\/www.hansen.net\/","grupo_muscular":"Espalda"},{"id_ejercicio":3,"nombre":"nobis","descripcion":"Repellat blanditiis illum ad consequatur harum qui.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/0077cc?text=exercise+quia","video_url":"http:\/\/jerde.info\/magnam-nihil-eum-assumenda-non-mollitia-fuga-quia-molestiae.html","grupo_muscular":"Espalda"},{"id_ejercicio":4,"nombre":"quam","descripcion":"Minima quibusdam mollitia et ullam.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/003399?text=exercise+amet","video_url":"http:\/\/collins.biz\/autem-sed-et-eos-repellat-unde","grupo_muscular":"Piernas"},{"id_ejercicio":5,"nombre":"libero","descripcion":"Quo dolorem possimus atque consequatur ut sequi voluptatem.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/009955?text=exercise+eos","video_url":"http:\/\/kerluke.org\/","grupo_muscular":"Piernas"},{"id_ejercicio":6,"nombre":"quam","descripcion":"Dolor et unde dolorem ea ut.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/0077ee?text=exercise+nam","video_url":"http:\/\/greenholt.com\/iusto-ex-ab-maxime-sit-qui","grupo_muscular":"Hombros"},{"id_ejercicio":7,"nombre":"autem","descripcion":"Et quis voluptatibus molestias.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/009933?text=exercise+unde","video_url":"http:\/\/www.feest.com\/","grupo_muscular":"Hombros"},{"id_ejercicio":8,"nombre":"ut","descripcion":"Et nihil facilis asperiores nesciunt est voluptate minima dolorem.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/0099cc?text=exercise+enim","video_url":"http:\/\/www.okeefe.com\/","grupo_muscular":"Espalda"},{"id_ejercicio":9,"nombre":"consectetur","descripcion":"Sapiente quidem recusandae vel consequatur debitis qui dolorum mollitia.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/00ff77?text=exercise+voluptate","video_url":"https:\/\/www.fadel.info\/non-rerum-voluptatem-earum-est","grupo_muscular":"Hombros"},{"id_ejercicio":10,"nombre":"aut","descripcion":"Fugit autem est ex rem.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/007722?text=exercise+aut","video_url":"http:\/\/cormier.com\/laboriosam-veniam-aut-aut-minima-saepe-nihil.html","grupo_muscular":"Espalda"},{"id_ejercicio":11,"nombre":"corporis","descripcion":"Optio ut modi odit.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/0066dd?text=exercise+eum","video_url":"http:\/\/www.harvey.com\/","grupo_muscular":"Pecho"},{"id_ejercicio":12,"nombre":"ut","descripcion":"Omnis veniam quia magni porro a sed.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/00aa55?text=exercise+maiores","video_url":"https:\/\/beahan.com\/quasi-iusto-itaque-similique-voluptate-id-quasi.html","grupo_muscular":"Brazos"},{"id_ejercicio":13,"nombre":"aut","descripcion":"Cumque optio quos voluptatum quo earum.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/0099ee?text=exercise+deserunt","video_url":"http:\/\/www.koepp.biz\/labore-aut-hic-eligendi-ullam-occaecati-at-non.html","grupo_muscular":"Hombros"},{"id_ejercicio":14,"nombre":"nostrum","descripcion":"Vel quam maiores similique placeat nobis.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/00ff99?text=exercise+iure","video_url":"http:\/\/klein.com\/ut-illum-est-est-non-unde-consequatur","grupo_muscular":"Hombros"},{"id_ejercicio":15,"nombre":"ea","descripcion":"Repellendus expedita incidunt molestiae a.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/00bb00?text=exercise+non","video_url":"https:\/\/dickinson.biz\/occaecati-nisi-dolore-quam-quis-id.html","grupo_muscular":"Pecho"},{"id_ejercicio":16,"nombre":"enim","descripcion":"Vel minima non quis quisquam dicta reiciendis placeat et.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/0000ee?text=exercise+sapiente","video_url":"http:\/\/greenfelder.biz\/enim-eveniet-consequatur-ab-error-ut-tempora","grupo_muscular":"Hombros"},{"id_ejercicio":17,"nombre":"est","descripcion":"Autem tenetur temporibus et ipsam.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/008844?text=exercise+et","video_url":"http:\/\/www.huels.net\/distinctio-fugit-et-animi-error-quod-nesciunt-sunt.html","grupo_muscular":"Brazos"},{"id_ejercicio":18,"nombre":"quia","descripcion":"Voluptatem non voluptas quod in repudiandae expedita sint odit.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/00ddcc?text=exercise+sint","video_url":"http:\/\/graham.com\/","grupo_muscular":"Pecho"},{"id_ejercicio":19,"nombre":"voluptatem","descripcion":"Qui soluta delectus facilis ea aut reiciendis aut.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/0000cc?text=exercise+id","video_url":"https:\/\/www.dietrich.com\/et-sed-dolores-expedita-aut-iste-atque-omnis","grupo_muscular":"Espalda"},{"id_ejercicio":20,"nombre":"cum","descripcion":"Et consequatur tenetur provident non quibusdam libero totam.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/00cc33?text=exercise+ut","video_url":"http:\/\/www.watsica.biz\/nam-blanditiis-velit-eligendi-sint.html","grupo_muscular":"Pecho"}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/ejercicios/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ejercicio.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"ejercicio":{"id_ejercicio":1,"nombre":"consequatur","descripcion":"Sit adipisci molestiae vero explicabo natus.","imagen_url":"https:\/\/via.placeholder.com\/640x480.png\/00bb88?text=exercise+aut","video_url":"https:\/\/lang.com\/natus-quia-eum-est-exercitationem-perspiciatis-fuga-deleniti-non.html","grupo_muscular":"Piernas"},"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/ejercicios
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      imagen_url:
+        name: imagen_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://bailey.com/'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      video_url:
+        name: video_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://rempel.com/sunt-nihil-accusantium-harum-mollitia'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      grupo_muscular:
+        name: grupo_muscular
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: k
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+      imagen_url: 'http://bailey.com/'
+      video_url: 'http://rempel.com/sunt-nihil-accusantium-harum-mollitia'
+      grupo_muscular: k
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/ejercicios/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ejercicio.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      imagen_url:
+        name: imagen_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://bailey.com/'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      video_url:
+        name: video_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://rempel.com/sunt-nihil-accusantium-harum-mollitia'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      grupo_muscular:
+        name: grupo_muscular
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: k
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+      imagen_url: 'http://bailey.com/'
+      video_url: 'http://rempel.com/sunt-nihil-accusantium-harum-mollitia'
+      grupo_muscular: k
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/ejercicios/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ejercicio.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      imagen_url:
+        name: imagen_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://bailey.com/'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      video_url:
+        name: video_url
+        description: 'Must be a valid URL.'
+        required: false
+        example: 'http://rempel.com/sunt-nihil-accusantium-harum-mollitia'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      grupo_muscular:
+        name: grupo_muscular
+        description: 'Must not be greater than 100 characters.'
+        required: false
+        example: k
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+      imagen_url: 'http://bailey.com/'
+      video_url: 'http://rempel.com/sunt-nihil-accusantium-harum-mollitia'
+      grupo_muscular: k
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/ejercicios/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ejercicio.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/traslados
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"traslados":[{"id_traslado":1,"id_usuario":"e7b57067-9933-35ae-830e-cf67b1984ddc","cod_ciudad_origen":7,"cod_ciudad_destino":8,"fecha_solicitud":"2020-07-24"},{"id_traslado":2,"id_usuario":"fbd4d90a-fe42-3ff9-8a2f-8c0da69db00f","cod_ciudad_origen":10,"cod_ciudad_destino":5,"fecha_solicitud":"1999-07-04"},{"id_traslado":3,"id_usuario":"d628af92-b2cc-3784-842c-5bcc967c67dd","cod_ciudad_origen":10,"cod_ciudad_destino":8,"fecha_solicitud":"1984-03-05"},{"id_traslado":4,"id_usuario":"d9d7abac-6cfc-31eb-a2ed-7937dd1d1fa5","cod_ciudad_origen":8,"cod_ciudad_destino":1,"fecha_solicitud":"2005-07-03"},{"id_traslado":5,"id_usuario":"7cb76f51-f1ad-3cea-9239-9373642effb6","cod_ciudad_origen":8,"cod_ciudad_destino":9,"fecha_solicitud":"1986-10-28"},{"id_traslado":6,"id_usuario":"d9d7abac-6cfc-31eb-a2ed-7937dd1d1fa5","cod_ciudad_origen":8,"cod_ciudad_destino":2,"fecha_solicitud":"1990-08-20"},{"id_traslado":7,"id_usuario":"bc1458f7-faf0-3f33-b0dc-f2e5f2bba623","cod_ciudad_origen":1,"cod_ciudad_destino":3,"fecha_solicitud":"2003-01-20"},{"id_traslado":8,"id_usuario":"d9d7abac-6cfc-31eb-a2ed-7937dd1d1fa5","cod_ciudad_origen":4,"cod_ciudad_destino":6,"fecha_solicitud":"2007-09-06"},{"id_traslado":9,"id_usuario":"e62e921d-ede6-3bdf-b471-dc876d695600","cod_ciudad_origen":3,"cod_ciudad_destino":5,"fecha_solicitud":"1995-07-21"},{"id_traslado":10,"id_usuario":"e62e921d-ede6-3bdf-b471-dc876d695600","cod_ciudad_origen":8,"cod_ciudad_destino":2,"fecha_solicitud":"2003-11-26"}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/traslados/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the traslado.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"traslado":{"id_traslado":1,"id_usuario":"e7b57067-9933-35ae-830e-cf67b1984ddc","cod_ciudad_origen":7,"cod_ciudad_destino":8,"fecha_solicitud":"2020-07-24"},"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/traslados
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_ciudad_origen:
+        name: cod_ciudad_origen
+        description: 'The <code>cod_ciudad</code> of an existing record in the ciudad table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_ciudad_destino:
+        name: cod_ciudad_destino
+        description: 'The <code>cod_ciudad</code> of an existing record in the ciudad table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_solicitud:
+        name: fecha_solicitud
+        description: 'Must be a valid date.'
+        required: true
+        example: '2025-04-29T16:21:50'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_usuario: architecto
+      cod_ciudad_origen: architecto
+      cod_ciudad_destino: architecto
+      fecha_solicitud: '2025-04-29T16:21:50'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/traslados/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the traslado.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_ciudad_origen:
+        name: cod_ciudad_origen
+        description: 'The <code>cod_ciudad</code> of an existing record in the ciudad table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_ciudad_destino:
+        name: cod_ciudad_destino
+        description: 'The <code>cod_ciudad</code> of an existing record in the ciudad table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_solicitud:
+        name: fecha_solicitud
+        description: 'Must be a valid date.'
+        required: true
+        example: '2025-04-29T16:21:50'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_usuario: architecto
+      cod_ciudad_origen: architecto
+      cod_ciudad_destino: architecto
+      fecha_solicitud: '2025-04-29T16:21:50'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/traslados/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the traslado.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_ciudad_origen:
+        name: cod_ciudad_origen
+        description: 'The <code>cod_ciudad</code> of an existing record in the ciudad table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cod_ciudad_destino:
+        name: cod_ciudad_destino
+        description: 'The <code>cod_ciudad</code> of an existing record in the ciudad table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_solicitud:
+        name: fecha_solicitud
+        description: 'Must be a valid date.'
+        required: false
+        example: '2025-04-29T16:21:50'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      fecha_solicitud: '2025-04-29T16:21:50'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/traslados/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the traslado.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/usuario-dieta
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"usuario_dietas":[{"id_usuario_dieta":3,"id_usuario":"4a9e906f-bba1-462b-9353-87f35d13722e","id_dieta":"e42231ae-e7d5-4a13-bf81-f4e92899f8a7","peso_usuario":"75.00","altura_usuario":"1.70","actividad_fisica":"Ligero","objetivo":"Perder","estado":"Activa"},{"id_usuario_dieta":5,"id_usuario":"3a10a348-cbe0-4adc-be92-6785a8978431","id_dieta":"20799f13-1c1c-47ba-9158-301fe0d20775","peso_usuario":"75.00","altura_usuario":"1.70","actividad_fisica":"Sedentario","objetivo":"Perder","estado":"Activa"}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/usuario-dieta/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario dietum.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"Registro de usuario_dieta no encontrado","status":404}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/usuario-dieta
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_dieta:
+        name: id_dieta
+        description: 'The <code>id_dieta</code> of an existing record in the dieta table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      peso_usuario:
+        name: peso_usuario
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      altura_usuario:
+        name: altura_usuario
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      actividad_fisica:
+        name: actividad_fisica
+        description: ''
+        required: true
+        example: Activo
+        type: string
+        enumValues:
+          - Sedentario
+          - Ligero
+          - Moderado
+          - Activo
+          - Muy-activo
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      objetivo:
+        name: objetivo
+        description: ''
+        required: true
+        example: Mantener
+        type: string
+        enumValues:
+          - Perder
+          - Mantener
+          - Ganar
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      estado:
+        name: estado
+        description: ''
+        required: true
+        example: Activa
+        type: string
+        enumValues:
+          - Activa
+          - Finalizada
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_usuario: architecto
+      id_dieta: architecto
+      peso_usuario: 4326.41688
+      altura_usuario: 4326.41688
+      actividad_fisica: Activo
+      objetivo: Mantener
+      estado: Activa
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/usuario-dieta/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario dietum.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_dieta:
+        name: id_dieta
+        description: 'The <code>id_dieta</code> of an existing record in the dieta table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      peso_usuario:
+        name: peso_usuario
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      altura_usuario:
+        name: altura_usuario
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      actividad_fisica:
+        name: actividad_fisica
+        description: ''
+        required: true
+        example: Muy-activo
+        type: string
+        enumValues:
+          - Sedentario
+          - Ligero
+          - Moderado
+          - Activo
+          - Muy-activo
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      objetivo:
+        name: objetivo
+        description: ''
+        required: true
+        example: Perder
+        type: string
+        enumValues:
+          - Perder
+          - Mantener
+          - Ganar
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      estado:
+        name: estado
+        description: ''
+        required: true
+        example: Finalizada
+        type: string
+        enumValues:
+          - Activa
+          - Finalizada
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_usuario: architecto
+      id_dieta: architecto
+      peso_usuario: 4326.41688
+      altura_usuario: 4326.41688
+      actividad_fisica: Muy-activo
+      objetivo: Perder
+      estado: Finalizada
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/usuario-dieta/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario dietum.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_dieta:
+        name: id_dieta
+        description: 'The <code>id_dieta</code> of an existing record in the dieta table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      peso_usuario:
+        name: peso_usuario
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      altura_usuario:
+        name: altura_usuario
+        description: ''
+        required: false
+        example: 4326.41688
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      actividad_fisica:
+        name: actividad_fisica
+        description: ''
+        required: false
+        example: Ligero
+        type: string
+        enumValues:
+          - Sedentario
+          - Ligero
+          - Moderado
+          - Activo
+          - Muy-activo
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      objetivo:
+        name: objetivo
+        description: ''
+        required: false
+        example: Ganar
+        type: string
+        enumValues:
+          - Perder
+          - Mantener
+          - Ganar
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      estado:
+        name: estado
+        description: ''
+        required: false
+        example: Activa
+        type: string
+        enumValues:
+          - Activa
+          - Finalizada
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      peso_usuario: 4326.41688
+      altura_usuario: 4326.41688
+      actividad_fisica: Ligero
+      objetivo: Ganar
+      estado: Activa
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/usuario-dieta/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario dietum.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/rutina-ejercicio
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"rutina_ejercicios":[{"id_rutina_ejercicio":1,"id_rutina":11,"id_ejercicio":11,"num_series":4,"num_repeticiones":17},{"id_rutina_ejercicio":2,"id_rutina":12,"id_ejercicio":12,"num_series":1,"num_repeticiones":8},{"id_rutina_ejercicio":3,"id_rutina":13,"id_ejercicio":13,"num_series":3,"num_repeticiones":18},{"id_rutina_ejercicio":4,"id_rutina":14,"id_ejercicio":14,"num_series":1,"num_repeticiones":12},{"id_rutina_ejercicio":5,"id_rutina":15,"id_ejercicio":15,"num_series":3,"num_repeticiones":9},{"id_rutina_ejercicio":6,"id_rutina":16,"id_ejercicio":16,"num_series":3,"num_repeticiones":7},{"id_rutina_ejercicio":7,"id_rutina":17,"id_ejercicio":17,"num_series":1,"num_repeticiones":6},{"id_rutina_ejercicio":8,"id_rutina":18,"id_ejercicio":18,"num_series":3,"num_repeticiones":12},{"id_rutina_ejercicio":9,"id_rutina":19,"id_ejercicio":19,"num_series":2,"num_repeticiones":9},{"id_rutina_ejercicio":10,"id_rutina":20,"id_ejercicio":20,"num_series":2,"num_repeticiones":18}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/rutina-ejercicio/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rutina ejercicio.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"rutina_ejercicio":{"id_rutina_ejercicio":1,"id_rutina":11,"id_ejercicio":11,"num_series":4,"num_repeticiones":17},"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/rutina-ejercicio
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_rutina:
+        name: id_rutina
+        description: 'The <code>id_rutina</code> of an existing record in the rutina table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_ejercicio:
+        name: id_ejercicio
+        description: 'The <code>id_ejercicio</code> of an existing record in the ejercicio table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      num_series:
+        name: num_series
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      num_repeticiones:
+        name: num_repeticiones
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_rutina: architecto
+      id_ejercicio: architecto
+      num_series: 16
+      num_repeticiones: 16
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/rutina-ejercicio/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rutina ejercicio.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_rutina:
+        name: id_rutina
+        description: 'The <code>id_rutina</code> of an existing record in the rutina table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_ejercicio:
+        name: id_ejercicio
+        description: 'The <code>id_ejercicio</code> of an existing record in the ejercicio table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      num_series:
+        name: num_series
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      num_repeticiones:
+        name: num_repeticiones
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_rutina: architecto
+      id_ejercicio: architecto
+      num_series: 16
+      num_repeticiones: 16
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/rutina-ejercicio/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rutina ejercicio.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_rutina:
+        name: id_rutina
+        description: 'The <code>id_rutina</code> of an existing record in the rutina table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_ejercicio:
+        name: id_ejercicio
+        description: 'The <code>id_ejercicio</code> of an existing record in the ejercicio table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      num_series:
+        name: num_series
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      num_repeticiones:
+        name: num_repeticiones
+        description: ''
+        required: false
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      num_series: 16
+      num_repeticiones: 16
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/rutina-ejercicio/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the rutina ejercicio.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/usuario-rutina
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"usuario_rutinas":[{"id_usuario_rutina":1,"id_usuario":"0deda01b-ba22-3840-9971-ee6c17e6f442","id_rutina":21,"fecha_inicio":"2018-02-15","fecha_fin":"2014-03-28"},{"id_usuario_rutina":2,"id_usuario":"199438f7-69cc-3f17-bcb2-71f6e3e20b7e","id_rutina":22,"fecha_inicio":"1991-12-04","fecha_fin":"1981-11-28"},{"id_usuario_rutina":3,"id_usuario":"4e9d9a4d-7d10-3101-926d-4004a828126c","id_rutina":23,"fecha_inicio":"2010-02-22","fecha_fin":"2022-06-24"},{"id_usuario_rutina":4,"id_usuario":"c84a209e-8973-324b-ae91-fb48263ccab0","id_rutina":24,"fecha_inicio":"1999-10-30","fecha_fin":"2004-03-21"},{"id_usuario_rutina":5,"id_usuario":"2f5e5159-948a-3d50-a7f0-1030715b0f98","id_rutina":25,"fecha_inicio":"2012-01-23","fecha_fin":null},{"id_usuario_rutina":6,"id_usuario":"fa78716c-42d6-30f1-8894-6871f8481cbc","id_rutina":26,"fecha_inicio":"2009-04-10","fecha_fin":"1974-09-24"},{"id_usuario_rutina":7,"id_usuario":"57196e0f-1fff-360a-8f31-4711638c59a0","id_rutina":27,"fecha_inicio":"2014-04-04","fecha_fin":null},{"id_usuario_rutina":8,"id_usuario":"4c3833ba-4291-3f61-8de3-8846cc8476f9","id_rutina":28,"fecha_inicio":"2011-12-09","fecha_fin":null},{"id_usuario_rutina":9,"id_usuario":"c3232655-1c9e-390f-96b4-973cc341dd61","id_rutina":29,"fecha_inicio":"2007-12-18","fecha_fin":"2005-06-09"},{"id_usuario_rutina":10,"id_usuario":"f57bcb5d-1cf7-3bbf-a130-fcc07ec44808","id_rutina":30,"fecha_inicio":"1971-05-08","fecha_fin":null}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/usuario-rutina/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario rutina.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"usuario_rutina":{"id_usuario_rutina":1,"id_usuario":"0deda01b-ba22-3840-9971-ee6c17e6f442","id_rutina":21,"fecha_inicio":"2018-02-15","fecha_fin":"2014-03-28"},"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/usuario-rutina
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_rutina:
+        name: id_rutina
+        description: 'The <code>id_rutina</code> of an existing record in the rutina table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_inicio:
+        name: fecha_inicio
+        description: 'Must be a valid date.'
+        required: true
+        example: '2025-04-29T16:21:51'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_fin:
+        name: fecha_fin
+        description: 'Must be a valid date.'
+        required: false
+        example: '2025-04-29T16:21:51'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      id_usuario: architecto
+      id_rutina: architecto
+      fecha_inicio: '2025-04-29T16:21:51'
+      fecha_fin: '2025-04-29T16:21:51'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/usuario-rutina/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario rutina.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_rutina:
+        name: id_rutina
+        description: 'The <code>id_rutina</code> of an existing record in the rutina table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_inicio:
+        name: fecha_inicio
+        description: 'Must be a valid date.'
+        required: true
+        example: '2025-04-29T16:21:51'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_fin:
+        name: fecha_fin
+        description: 'Must be a valid date.'
+        required: false
+        example: '2025-04-29T16:21:51'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      id_usuario: architecto
+      id_rutina: architecto
+      fecha_inicio: '2025-04-29T16:21:51'
+      fecha_fin: '2025-04-29T16:21:51'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/usuario-rutina/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario rutina.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_usuario:
+        name: id_usuario
+        description: 'The <code>id_usuario</code> of an existing record in the usuario table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_rutina:
+        name: id_rutina
+        description: 'The <code>id_rutina</code> of an existing record in the rutina table.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_inicio:
+        name: fecha_inicio
+        description: 'Must be a valid date.'
+        required: false
+        example: '2025-04-29T16:21:51'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      fecha_fin:
+        name: fecha_fin
+        description: 'Must be a valid date.'
+        required: false
+        example: '2025-04-29T16:21:51'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      fecha_inicio: '2025-04-29T16:21:51'
+      fecha_fin: '2025-04-29T16:21:51'
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/usuario-rutina/{id}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the usuario rutina.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/alimento-dieta
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"alimento_dietas":[{"id_alimento":29,"id_dieta":"e42231ae-e7d5-4a13-bf81-f4e92899f8a7","cantidad":2,"created_at":"2025-04-22T16:42:43.000000Z","updated_at":"2025-04-22T16:42:43.000000Z"}],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/alimento-dieta
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_alimento:
+        name: id_alimento
+        description: 'The <code>id_alimento</code> of an existing record in the alimento table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_dieta:
+        name: id_dieta
+        description: 'The <code>id_dieta</code> of an existing record in the dieta table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cantidad:
+        name: cantidad
+        description: 'Must be at least 0.'
+        required: true
+        example: 39
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_alimento: architecto
+      id_dieta: architecto
+      cantidad: 39
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/alimento-dieta/{id_dieta}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id_dieta:
+        name: id_dieta
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id_dieta: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"No se encontraron registros para esta dieta","status":404}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: api/alimento-dieta/multiples
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id_dieta:
+        name: id_dieta
+        description: 'The <code>id_dieta</code> of an existing record in the dieta table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      alimentos:
+        name: alimentos
+        description: ''
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'alimentos[].id_alimento':
+        name: 'alimentos[].id_alimento'
+        description: 'The <code>id_alimento</code> of an existing record in the alimento table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'alimentos[].cantidad':
+        name: 'alimentos[].cantidad'
+        description: 'Must be at least 1.'
+        required: true
+        example: 22
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      id_dieta: architecto
+      alimentos:
+        -
+          id_alimento: architecto
+          cantidad: 22
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/alimento-dieta/{id_alimento}/{id_dieta}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id_alimento:
+        name: id_alimento
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_dieta:
+        name: id_dieta
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id_alimento: architecto
+      id_dieta: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"Registro no encontrado","status":404}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/alimento-dieta/{id_alimento}/{id_dieta}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id_alimento:
+        name: id_alimento
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_dieta:
+        name: id_dieta
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id_alimento: architecto
+      id_dieta: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      cantidad:
+        name: cantidad
+        description: 'Must be at least 0.'
+        required: true
+        example: 27
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      cantidad: 27
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PATCH
+    uri: 'api/alimento-dieta/{id_alimento}/{id_dieta}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id_alimento:
+        name: id_alimento
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_dieta:
+        name: id_dieta
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id_alimento: architecto
+      id_dieta: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      cantidad:
+        name: cantidad
+        description: 'Must be at least 0.'
+        required: false
+        example: 27
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      cantidad: 27
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/alimento-dieta/{id_alimento}/{id_dieta}'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id_alimento:
+        name: id_alimento
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id_dieta:
+        name: id_dieta
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id_alimento: architecto
+      id_dieta: architecto
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/usuario/{id_usuario}/dieta'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id_usuario:
+        name: id_usuario
+        description: ''
+        required: true
+        example: 0deda01b-ba22-3840-9971-ee6c17e6f442
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id_usuario: 0deda01b-ba22-3840-9971-ee6c17e6f442
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      nombre:
+        name: nombre
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      descripcion:
+        name: descripcion
+        description: ''
+        required: false
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      alimentos:
+        name: alimentos
+        description: ''
+        required: true
+        example:
+          - []
+        type: 'object[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'alimentos[].id_alimento':
+        name: 'alimentos[].id_alimento'
+        description: 'The <code>id_alimento</code> of an existing record in the alimento table.'
+        required: true
+        example: architecto
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'alimentos[].cantidad':
+        name: 'alimentos[].cantidad'
+        description: 'Must be at least 0.01.'
+        required: true
+        example: 39
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      nombre: b
+      descripcion: architecto
+      alimentos:
+        -
+          id_alimento: architecto
+          cantidad: 39
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/usuario/{id_usuario}/dietas'
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id_usuario:
+        name: id_usuario
+        description: ''
+        required: true
+        example: 0deda01b-ba22-3840-9971-ee6c17e6f442
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id_usuario: 0deda01b-ba22-3840-9971-ee6c17e6f442
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"dietas":[],"status":200}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

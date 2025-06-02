@@ -14,6 +14,7 @@ class Dieta extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = [
+        'id_dieta',
         'nombre',
         'descripcion'
     ];
@@ -23,6 +24,13 @@ class Dieta extends Model
     {
         return $this->belongsToMany(Usuario::class, 'usuario_dieta', 'id_dieta', 'id_usuario')
             ->withPivot('peso_usuario', 'altura_usuario', 'actividad_fisica', 'objetivo', 'estado')
+            ->withTimestamps();
+    }
+
+    public function alimentos()
+    {
+        return $this->belongsToMany(Alimento::class, 'alimento_dieta', 'id_dieta', 'id_alimento')
+            ->withPivot('cantidad')
             ->withTimestamps();
     }
 }

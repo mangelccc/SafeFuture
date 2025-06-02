@@ -1,3 +1,15 @@
-#contenido-pagina {
-    margin: 3rem 2rem;
+@media (max-width: 640px){
+    #contenido-pagina {
+        margin: 0rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (min-width: 641px){
+
+    #contenido-pagina {
+        margin: 2rem;
+    }
+
 }

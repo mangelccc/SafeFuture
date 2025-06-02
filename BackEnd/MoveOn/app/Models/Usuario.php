@@ -4,16 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
 
     protected $table = 'usuario';
     protected $primaryKey = 'id_usuario';
-    protected $hidden = ['created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at', 'contrasena'];
+    public $incrementing = false;  // Indica que la clave no es autoincremental
+    protected $keyType = 'string'; // Indica que la clave es de tipo string
 
     protected $fillable = [
+        'id_usuario',
         'nombre',
         'correo',
         'contrasena',
@@ -40,5 +45,10 @@ class Usuario extends Model
         return $this->belongsToMany(Rutina::class, 'usuario_rutina', 'id_usuario', 'id_rutina')
             ->withPivot('fecha_inicio', 'fecha_fin')
             ->withTimestamps();
+    }
+
+    public function noFumars()
+    {
+        return $this->hasMany(NoFumar::class, 'id_usuario', 'id_usuario');
     }
 }

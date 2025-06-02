@@ -14,7 +14,10 @@ class UpdatePaisRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|max:100',
+            'latitud'      => 'sometimes|numeric|between:-90,90',
+            'longitud'     => 'sometimes|numeric|between:-180,180',
+            'nombre'       => 'sometimes|string|max:100',
+            'descripcion'  => 'sometimes|string',
         ];
     }
 }

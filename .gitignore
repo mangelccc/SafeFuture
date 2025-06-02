@@ -22,3 +22,6 @@ yarn-error.log
 /.vscode
 /.zed
 .idea
+**/composer.lock
+**/output.css
+../../BackEnd/MoveOn/composer.lock

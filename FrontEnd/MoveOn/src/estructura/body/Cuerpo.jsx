@@ -4,7 +4,9 @@ import "./Cuerpo.css";
 const Cuerpo = ({ children }) => {
   return (
     <>
-      <main id='contenido-pagina'>{children}</main>
+      <main id="contenido-pagina" className="flex-1 flex flex-col">
+        {children}
+      </main>
     </>
   );
 };

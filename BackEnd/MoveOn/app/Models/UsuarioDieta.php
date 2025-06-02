@@ -12,6 +12,7 @@ class UsuarioDieta extends Model
     protected $table = 'usuario_dieta';
     protected $primaryKey = 'id_usuario_dieta';
     protected $hidden = ['created_at', 'updated_at'];
+
     protected $fillable = [
         'id_usuario',
         'id_dieta',
@@ -21,4 +22,10 @@ class UsuarioDieta extends Model
         'objetivo',
         'estado',
     ];
+
+    public function dieta()
+    {
+        return $this->belongsTo(Dieta::class, 'id_dieta', 'id_dieta');
+    }
+
 }
