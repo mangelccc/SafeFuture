@@ -1,107 +1,115 @@
-# SafeFuture
+# MoveOn 🌍💪
 
-Este proyecto está organizado en diferentes ramas para mantener un flujo de trabajo eficiente y ordenado:
+## Sobre Nosotros
 
-- **Rama master**: Aquí subiremos los cambios más importantes cuando completemos fases clave del proyecto. Esta rama contiene la versión estable del proyecto.
-- **Rama develop**: En esta rama integramos los cambios que van surgiendo desde otras ramas, permitiendo consolidar avances en el desarrollo.
-- **Ramas FrontEnd y Backend**: Mi compañero y yo trabajamos en estas ramas específicas, donde desarrollamos y refinamos las funcionalidades del front-end y back-end respectivamente.
+MoveOn es una plataforma creada por **Miguel Ángel Grima López** y **Miguel Hernández Monllor** como proyecto final del ciclo DAW en el **Instituto Paco Molla**. Nace con la ilusión de ayudar a personas que desean mejorar su vida, ya sea cambiando de entorno, adoptando hábitos saludables o dejando atrás costumbres perjudiciales. 
 
-## Enlaces
+Este proyecto representa el trabajo, esfuerzo y dedicación con tal de desarrollarnos mejor personalmente y profesionalmente, aplicando todo lo aprendido durante el curso.
 
-- **Google Drive**: https://bit.ly/42dvDNs
-- **Entidad Relación**: https://drive.google.com/file/d/1eROIDxRMSHq7qBE7C3h-8iS6AOMxR2Mu/view?usp=sharing
+## ¿Qué es MoveOn?
 
-## Ejemplo de Ejecución para Subir Cambios a Develop
+MoveOn es una aplicación web que ofrece un ecosistema de apoyo integral para quienes desean dar un giro a su vida. Entre sus funcionalidades principales se encuentran:
 
-**Por si falla el pull**:
-   ```bash
-   git restore .
-   ```
+- 🏋️ **Rutinas de Ejercicio**: Diseñadas por expertos y adaptadas a todos los niveles, con vídeos demostrativos.
+- 🥗 **Dietas Personalizadas**: Calculadora de macronutrientes, recetas saludables y planes según tus objetivos.
+- 🚭 **Dejar de Fumar**: Contador de días sin tabaco, consejos motivacionales y seguimiento de ahorro económico.
+- 🌍 **Ubicaciones Recomendadas**: Mapa interactivo con reseñas de usuarios sobre lugares propicios para comenzar de nuevo.
+- 🗓️ **Calendario Integral**: Agenda para registrar comidas, ejercicios, metas y notas motivacionales.
+- 🤖 **Ayudante de IA**: Asistentes virtuales para resolver dudas y ayudarte con entrenamientos o el uso de la plataforma.
+- ✈️ **Vuelos del Día**: Consulta vuelos hacia países recomendados por la plataforma.
 
-A continuación, se detalla el proceso para subir los cambios a Develop:
+## Tecnologías Utilizadas 🛠️
 
-1. **Agrega los archivos que has modificado o creado**:
-   ```bash
-   git add [carpeta_de_tu_trabajo]
-   ```
-   Asegúrate de especificar la carpeta o los archivos que deseas incluir en el commit.
+El desarrollo del proyecto se ha realizado con una arquitectura moderna **frontend-backend**, empleando las siguientes tecnologías:
 
-2. **Realiza un commit describiendo los cambios realizados**:
-   ```bash
-   git commit -m "Descripción clara de lo que has hecho"
-   ```
+- **Frontend**: React JS con Tailwind CSS
+- **Backend**: PHP con Laravel
+- **Base de datos**: MySQL (gestionada con Docker)
+- **Contenedores**: Docker & Docker Compose
+- **Gestión de dependencias Frontend**: npm
+- **IDE recomendados**: 
+  - Visual Studio Code (Frontend)
+  - PhpStorm (Backend)
 
-3. **Cámbiate a la rama `develop`**:
-   Antes de continuar, verifica que estás en la rama correcta:
-   ```bash
-   git checkout develop
-   ```
+## Instalación 🔧
 
-4. **Actualiza la rama `develop` con los últimos cambios del repositorio remoto**:
-   Es importante traer los cambios recientes antes de hacer un merge:
-   ```bash
-   git pull origin develop
-   ```
+Para poner en marcha el proyecto localmente, sigue estos pasos:
 
-5. **Realiza el merge de tu rama a `develop`**:
-   Si los cambios están en una rama diferente, realiza el merge desde esa rama a `develop`:
-   ```bash
-   git merge [nombre_de_tu_rama]
-   ```
+### Requisitos Previos
 
-6. **Sube los cambios al repositorio remoto**:
-   Una vez completado el merge, envía los cambios al repositorio:
-   ```bash
-   git push origin develop
-   ```
+- Tener instalado [Node.js](https://nodejs.org/) (para el frontend)
+- Tener instalado [Docker y Docker Compose](https://www.docker.com/)
+- Editor de código recomendado: **VS Code** para frontend y **PHPStorm** para backend
 
-## Instalación del Frontend
-
-Este documento describe los pasos necesarios para instalar y configurar el frontend del proyecto.
-
-**Requisitos previos**
-Asegúrate de tener instalados los siguientes programas en tu sistema:
-
-- [Node.js](https://nodejs.org/) (versión 14 o superior)
-- [npm](https://www.npmjs.com/) (incluido con Node.js)
-
-**Paso 1: Instalar las dependencias del proyecto**
-<div style="page-break-before: always;"></div>
-Ejecuta el siguiente comando en la terminal para instalar todas las dependencias del proyecto especificadas en el archivo `package.json`:
+### 1. Clonar el repositorio
 
 ```bash
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
+```
+
+### 2. Frontend
+
+```bash
+cd frontend
 npm install
 ```
 
-**Paso 2: Instalar Font Awesome para React**
-<div style="page-break-before: always;"></div>
-Para agregar soporte de iconos con Font Awesome en el proyecto, ejecuta el siguiente comando:
+Asegúrate de tener un archivo `.env` correctamente configurado apuntando a tu servidor local, por ejemplo:
 
-```bash
-npm install --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+```
+VITE_API_URL=http://localhost:8089/api
 ```
 
-**Descripción de los paquetes instalados:**
-- SweetAlert2: Biblioteca para mostrar alertas personalizadas y modernas con diseños atractivos y opciones avanzadas.
-- Font Awesome: Biblioteca de iconos escalables basada en CSS y SVG que proporciona una amplia colección de iconos personalizables.
-- Tailwind CSS: Framework de CSS utilitario que permite diseñar interfaces de manera rápida usando clases predefinidas.
-- Cookie Consent: Biblioteca para mostrar avisos de consentimiento de cookies de forma personalizable y cumplir con normativas como GDPR.
-
-
-**Ejecución**
-<div style="page-break-before: always;"></div>
-Una vez instaladas las dependencias, puedes iniciar el servidor de desarrollo con el siguiente comando:
+Después, puedes arrancar el frontend con:
 
 ```bash
 npm run dev
 ```
 
-Esto abrirá la aplicación en tu navegador en la dirección [http://localhost:5173](http://localhost:5173) (por defecto).
+Esto levantará la aplicación en:  
+📍 `http://localhost:5173`
 
-¡Listo! El frontend está configurado y listo para usarse.
+### 3. Backend
+
+```bash
+cd backend
+cp .env.example .env
+```
+
+Edita el archivo `.env` para asegurarte de que la configuración de la base de datos es correcta.
+
+Luego, levanta los contenedores con Docker:
+
+```bash
+docker-compose up -d
+```
+
+Después, instala las dependencias de Laravel:
+
+```bash
+composer install
+composer update
+```
+
+Finalmente, ejecuta las migraciones para crear las tablas necesarias:
+
+```bash
+php artisan migrate
+```
+
+El backend se ejecutará en:  
+📍 `http://localhost:8089`
+
+## Diagrama Entidad-Relación 🗃️
+
+A continuación se muestra el diagrama entidad-relación de la base de datos del proyecto:  
+![Diagrama ER](./docs/DiagramaER.png)
 
 
-## Autores
+## Agradecimientos 🙌
 
-- Miguel Ángel Grimal Lopez
-- Miguel Hernández Monllor
+Gracias a nuestros profesores del **Instituto Paco Molla** por el apoyo durante todo el curso. Este proyecto es el reflejo del conocimiento adquirido y las ganas de crear algo útil para los demás.
+
+
+
