@@ -20,11 +20,15 @@ export default function Traslados() {
   const [filtro, setFiltro] = useState('');
 
   useEffect(() => {
-    fetch('https://sfmoveon.es/api/traslados')
-      .then(res => res.json())
-      .then(json => setTraslados(json.traslados))
-      .catch(console.error);
-  }, []);
+  fetch('https://sfmoveon.es/api/traslados')
+    .then(res => res.json())
+    .then(json => setTraslados(Array.isArray(json.traslados) ? json.traslados : []))
+    .catch(error => {
+      console.error(error);
+      setTraslados([]);
+    });
+}, []);
+
 
   const mostrados = filtro
     ? traslados.filter(t => PAIS_MAP[t.aeropuerto_llegada] === filtro)

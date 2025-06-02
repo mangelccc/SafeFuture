@@ -32,7 +32,6 @@ export default function useHistorialNoFumar(userId, token) {
       const data = await res.json();
       setRecords(data.no_fumar || []);
     } catch (err) {
-      console.error("Error al obtener intentos:", err);
       setError(err);
     } finally {
       setLoading(false);

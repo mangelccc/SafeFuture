@@ -43,7 +43,6 @@ const EjerciciosContexto = ({ children }) => {
         setEjerciciosFiltrados(data.ejercicios? data.ejercicios : [])
       })
       .catch(error => {
-        console.error(`Se ha producido un error: ${error.message}`);
         setErrorEjercicio(`Se ha producido un error: ${error.message}`);
       })
   }
@@ -146,13 +145,12 @@ const EjerciciosContexto = ({ children }) => {
   const validarFormularioEjercicio = (evento) => {
     const formulario = evento.target.form;
     const erroresPorCampo = {};
-    console.log("Elementos del formulario:", formulario.elements); // Log para ver todos los elementos
 
     for (let i = 0; i < formulario.elements.length; i++) {
       const elemento = formulario.elements[i];
       if (elemento.name) {
         // Log para ver qué elemento se está intentando validar
-        console.log(`Intentando validar elemento con name: ${elemento.name}`);
+
         let erroresElemento = validarDatoEjercicio(elemento);
         if (erroresElemento.length !== 0) {
           elemento.classList.add("error");
@@ -162,7 +160,7 @@ const EjerciciosContexto = ({ children }) => {
         }
       }
     }
-    console.log("Errores encontrados:", erroresPorCampo); // Log para ver el resultado final
+
     setErrorEjercicio(erroresPorCampo);
     return Object.keys(erroresPorCampo).length === 0;
   };

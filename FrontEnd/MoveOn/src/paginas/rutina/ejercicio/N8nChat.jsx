@@ -55,7 +55,6 @@ export default function N8NChat() {
       const replyText = data.output || '<sin output>';
       setMessages(msgs => [...msgs, { from: 'bot', text: replyText }]);
     } catch (err) {
-      console.error('Error al conectar con el agente:', err);
       setMessages(msgs => [...msgs, { from: 'bot', text: 'Error al conectar con el agente.' }]);
     } finally {
       setSending(false);

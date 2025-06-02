@@ -98,7 +98,6 @@ const NoFumarContexto = ({ children }) => {
             });
 
         } catch (err) {
-            console.error("Error al iniciar intento:", err);
             Swal.fire("Error", err.message, "error");
         }
     };

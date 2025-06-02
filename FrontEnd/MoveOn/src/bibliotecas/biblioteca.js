@@ -335,7 +335,6 @@ const validarDatoEjercicio = (elemento) => {
       ];
     }
   }
-  console.log(erroresElemento);
 
   return erroresElemento;
 };

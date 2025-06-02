@@ -30,7 +30,6 @@ const obtenerEventosDesdeLocal = () => {
       end: new Date(ev.end),
     }));
   } catch (error) {
-    console.error("Error leyendo eventos:", error);
     return [];
   }
 };

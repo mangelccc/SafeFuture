@@ -65,7 +65,6 @@ const AlimentosDieta = () => {
   // Cargamos alimentos de la dieta al montar/comparir id
   useEffect(() => {
     if (id && !loading) {
-      console.log("Cargando alimentos de la dieta...");
       obtenerAlimentosDieta(id);
     }
   }, [id]);

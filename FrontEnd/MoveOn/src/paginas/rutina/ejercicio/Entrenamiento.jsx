@@ -86,7 +86,6 @@ const Entrenamiento = ({ entrenamiento, deleteEntrenamiento, esPlantilla = false
 
       readEntrenamientos();
     } catch (error) {
-      console.error(error);
       Swal.fire('Error', 'No se pudo copiar la rutina', 'error');
     }
   };

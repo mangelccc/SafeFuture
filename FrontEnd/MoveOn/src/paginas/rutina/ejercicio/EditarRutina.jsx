@@ -53,7 +53,6 @@ const EditarRutina = () => {
         });
         setSeleccionados(detalles);
       } catch (err) {
-        console.error(err);
         Swal.fire('Error', 'No se pudo cargar la rutina', 'error');
       }
     };
@@ -111,7 +110,6 @@ const EditarRutina = () => {
       Swal.fire({ icon: 'success', title: 'Guardado', timer: 1500, showConfirmButton: false });
       navigate(-1);
     } catch (err) {
-      console.error(err);
       Swal.fire('Error', 'No se pudo guardar los cambios', 'error');
     } finally {
       setGuardando(false);

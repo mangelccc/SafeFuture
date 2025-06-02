@@ -158,12 +158,12 @@ const AuthContexto = ({ children }) => {
             showConfirmButton: falseBool,
             timer: 1500
           })
-          console.log("usuario inicia sesion", data);
+
           // Guardar el token en localStorage
           setUsuario(data.usuario);
           setSesionIniciada(true);
           localStorage.setItem("token", data.token);
-          console.log("token guardado", data.token);
+
           localStorage.setItem("usuario", JSON.stringify(data.usuario));
           localStorage.setItem("sesionIniciada", "true");
           setDatosSesion(datosSesionInicial);
@@ -421,16 +421,14 @@ const AuthContexto = ({ children }) => {
     }
 
     try {
-
-      const response = await fetch(`${API_URL}/reset-password/${idUsuarioTemp}`, {
-        method: "PATCH",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${tokenTemp}`
-        },
-        body: JSON.stringify({ contrasena: formResetPasswd.newPwd })
-      });
+      const response = await fetch(
+        `${API_URL}/usuarios/${idUsuarioTemp}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ contrasena: formResetPasswd.newPwd })
+        }
+      );
 
       if (response.ok) {
         Swal.fire("Contraseña cambiada con éxito", "Ya puedes iniciar sesión con tu nueva contraseña", "success");

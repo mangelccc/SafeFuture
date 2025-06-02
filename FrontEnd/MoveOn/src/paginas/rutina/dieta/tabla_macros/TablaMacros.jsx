@@ -16,12 +16,12 @@ const TablaMacros = ({ objetivos, macrosAcumulados, estados }) => {
           <tr className='bg-white2 border-b-2 border-white3'>
             <td className='ps-2 px-4 py-2'>Proteínas</td>
             <td className='text-center'>{objetivos.proteinas} g</td>
-            <td className='text-center'>{macrosAcumulados.proteinas} g <span style={{ color: estados.proteinas }}>●</span></td>
+            <td className='text-center'>{macrosAcumulados.proteinas.toFixed(2)} g <span style={{ color: estados.proteinas }}>●</span></td>
           </tr>
           <tr className='bg-white2 border-b-2 border-white3'>
             <td className='ps-2 px-4 py-2'>Carbohidratos</td>
             <td className='text-center'>{objetivos.carbohidratos} g</td>
-            <td className='text-center'>{macrosAcumulados.carbohidratos} g <span style={{ color: estados.carbohidratos }}>●</span></td>
+            <td className='text-center'>{macrosAcumulados.carbohidratos.toFixed(2)} g <span style={{ color: estados.carbohidratos }}>●</span></td>
           </tr>
           <tr className='bg-white2 border-b-2 border-white3'>
             <td className='ps-2 px-4 py-2'>Grasas</td>
@@ -31,7 +31,7 @@ const TablaMacros = ({ objetivos, macrosAcumulados, estados }) => {
           <tr className='bg-white2'>
             <td className='ps-2 px-4 py-2'>Calorías</td>
             <td className='text-center'>{objetivos.caloriasObjetivo} kcal</td>
-            <td className='text-center'>{macrosAcumulados.calorias} kcal <span style={{ color: estados.calorias }}>●</span></td>
+            <td className='text-center'>{macrosAcumulados.calorias.toFixed(2)} kcal <span style={{ color: estados.calorias }}>●</span></td>
             
           </tr>
         </tbody>

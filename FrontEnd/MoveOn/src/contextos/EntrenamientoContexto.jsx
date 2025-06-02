@@ -68,7 +68,6 @@ const EntrenamientoContexto = ({ children }) => {
       setMisEntrenamientos(soloUsuario);
       setEntrenamientosFiltrados(soloUsuario);
     } catch (err) {
-      console.error(err);
       setErrorEntrenamiento(`Error al cargar rutinas: ${err.message}`);
     }
   };
@@ -155,7 +154,6 @@ useEffect(() => {
   // Crear rutina y ligar ejercicios
   const createEntrentamientoConEjercicios = async () => {
     if (!nombre.trim()) {
-      console.warn('Debes indicar un nombre para la rutina')
       return
     }
     if (guardando) {
@@ -350,7 +348,6 @@ const seleccionEjercicios = (ejercicio) => {
 
       setEjerciciosVista(detalles);
     } catch (err) {
-      console.error('Error cargando datos de la rutina:', err);
       setErrorVistaEntrenamiento('No se pudieron cargar los datos de esta rutina.');
     } finally {
       setCargando(false);
@@ -360,13 +357,12 @@ const seleccionEjercicios = (ejercicio) => {
   const validarFormularioEntrenamiento = (evento) => {
     const formulario = evento.target.form;
     const erroresPorCampo = {};
-    console.log("Elementos del formulario:", formulario.elements); // Log para ver todos los elementos
+
   
     for (let i = 0; i < formulario.elements.length; i++) {
       const elemento = formulario.elements[i];
       if (elemento.name) {
-        // Log para ver qué elemento se está intentando validar
-        console.log(`Intentando validar elemento con name: ${elemento.name}`);
+
         let erroresElemento = validarDatoRutina(elemento);
         if (erroresElemento.length !== 0) {
           elemento.classList.add("error");
@@ -376,7 +372,7 @@ const seleccionEjercicios = (ejercicio) => {
         }
       }
     }
-    console.log("Errores encontrados:", erroresPorCampo); // Log para ver el resultado final
+
     setErrorEntrenamiento(erroresPorCampo);
     return Object.keys(erroresPorCampo).length === 0;
   };
@@ -387,8 +383,8 @@ const seleccionEjercicios = (ejercicio) => {
     str
       .normalize("NFD")                // descompone acentos
       .replace(/[\u0300-\u036f]/g, "") // elimina marcas diacríticas
-      .toLowerCase()                   // todo en minúscula
-      .replace(/[^a-z0-9 ]/g, "");     // opcional: quita símbolos
+      .toLowerCase()                   
+      .replace(/[^a-z0-9 ]/g, "");     // quita símbolos
 
   const texto = normalizar(filtro.trim());
 
@@ -416,13 +412,13 @@ const filtrarEntrenamientosGlobal = (filtro) => {
     str
       .normalize("NFD")                // descompone acentos
       .replace(/[\u0300-\u036f]/g, "") // elimina marcas diacríticas
-      .toLowerCase()                   // todo en minúscula
+      .toLowerCase()                  
       .replace(/[^a-z0-9 ]/g, "");     // quita símbolos
 
   const texto = normalizar(filtro.trim());
 
-  // 1) Si el campo está vacío, uso todas las constantes sin startsWith
-  // 2) Si hay texto, filtro por startsWith sobre el array dinámico
+  // Si el campo está vacío, uso todas las constantes sin startsWith
+  // Si hay texto, filtro por startsWith sobre el array dinámico
   const base = texto === ""
     ? entrenamientosConstantes
     : entrenamientos.filter(e =>
