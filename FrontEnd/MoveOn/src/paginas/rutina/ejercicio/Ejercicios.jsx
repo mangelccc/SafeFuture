@@ -28,7 +28,7 @@ const Ejercicios = () => {
   return (
     <div className="flex flex-col gap-4">
       {/* Contenedor de ejercicios */}
-      <div className="flex flex-wrap justify-center items-center gap-4 h-[600px] overflow-y-scroll border-2 border-black dark:border-white rounded">
+      <div className="flex flex-wrap justify-center items-center gap-4 h-[600px] overflow-y-auto border-2 border-black dark:border-white rounded">
         {ejerciciosPaginados.length > 0 ? (
           ejerciciosPaginados.map((ejercicio) => (
             <Ejercicio

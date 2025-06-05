@@ -81,7 +81,7 @@ async function agregarUbicacion(userId, lat, lng, valores, alAgregar) {
 
     const nuevoId = datos.id ?? datos.id_pais ?? datos._id;
 
-    Swal.fire('Éxito', 'Ubicación guardada correctamente', 'success');
+    Swal.fire('Éxito', 'Ubicación guardada correctamente, mapa actualizado.', 'success');
 
     alAgregar && alAgregar({
       id: nuevoId,
@@ -172,6 +172,9 @@ async function eliminarUbicacion(id, setLocations) {
   }
 }
 
+
+
+
 export default function MapaMundi({ userId }) {
   const [ubicaciones, setUbicaciones] = useState([]);
   const [cargando, setCargando] = useState(true);
@@ -187,6 +190,11 @@ export default function MapaMundi({ userId }) {
 
   }, []);
 
+  const recargarUbicaciones = () => {
+  obtenerUbicaciones(setUbicaciones, setCargando);
+};
+
+
   return (
     <>
       <h2 className="text-center font-bold dark:text-white mb-4">Mapa Ubicaciones Secretas</h2>
@@ -198,7 +206,7 @@ export default function MapaMundi({ userId }) {
         ) : (
           <MapContainer center={[20, 0]} zoom={2} className="hsm:w-[95%] hsm:h-full sm:h-4/5 sm:w-4/5 sm:rounded-2xl sm:shadow-lg">
             <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <ManejadorClickMapa userId={usuario.id_usuario} alAgregar={nueva => setUbicaciones(prev => [...prev, nueva])} />
+            <ManejadorClickMapa userId={usuario.id_usuario} alAgregar={recargarUbicaciones} />
             {ubicaciones.map((loc, index) => (
               <Marker key={loc.id ?? `${loc.latitude}-${loc.longitude}-${index}`} position={[loc.latitude, loc.longitude]}>
                 <Popup className="bg-black1 rounded-2xl p-4">

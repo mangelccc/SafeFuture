@@ -51,7 +51,7 @@ const Ejercicio = ({
   return (
     <div
       onClick={handleClick}
-      className={`ejercicio border-2 rounded-lg m-5 border-black dark:border-gold w-[300px] p-3 flex flex-col bg-white dark:bg-purple dark:text-gold transition-all duration-300 transform hover:scale-105 ${
+      className={`ejercicio border-2 rounded-lg m-5 border-black dark:border-gold w-[300px] p-3 flex flex-col bg-white dark:bg-purple dark:text-gold transition-all duration-300 transform hover:scale-102 ${
         showSeriesEdit ? "h-[360px]" : showSeries ? "h-[360px]" : "h-[300px]"
       }`}
     >
