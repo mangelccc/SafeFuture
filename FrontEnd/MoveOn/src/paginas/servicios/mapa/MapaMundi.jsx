@@ -16,16 +16,16 @@ L.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
 const URL_API = `${API_URL}/paises`;
 const token = localStorage.getItem("token") || "";
 
-const ManejadorClickMapa = ({ userId, alAgregar }) => {
+const ManejadorClickMapa = ({ userId, onAgregar }) => {
   useMapEvents({
     click: async (e) => {
       const { lat, lng } = e.latlng;
       const valores = await pedirDatosUbicacion(lat, lng);
-      if (valores) agregarUbicacion(userId, lat, lng, valores, alAgregar);
+      if (valores) agregarUbicacion(userId, lat, lng, valores, onAgregar);
     }
   });
   return null;
-}
+};
 
 async function pedirDatosUbicacion(lat, lng) {
   const { value: valores } = await Swal.fire({
@@ -58,7 +58,7 @@ async function pedirDatosUbicacion(lat, lng) {
   return valores;
 }
 
-async function agregarUbicacion(userId, lat, lng, valores, alAgregar) {
+async function agregarUbicacion(userId, lat, lng, valores, agregarALocal) {
   try {
     const respuesta = await fetch(URL_API, {
       method: 'POST',
@@ -78,23 +78,27 @@ async function agregarUbicacion(userId, lat, lng, valores, alAgregar) {
 
     const datos = await respuesta.json();
     if (!respuesta.ok) throw new Error(datos.message || 'Error al crear país');
+    console.log('Respuesta del servidor al crear ubicación:', datos);
+    const nuevoId = datos.pais.id_pais;
 
-    const nuevoId = datos.id ?? datos.id_pais ?? datos._id;
+    Swal.fire('Éxito', 'Ubicación guardada correctamente', 'success');
 
-    Swal.fire('Éxito', 'Ubicación guardada correctamente, mapa actualizado.', 'success');
-
-    alAgregar && alAgregar({
-      id: nuevoId,
-      name: valores.nombre,
-      description: valores.descripcion,
-      latitude: lat,
-      longitude: lng,
-      userId
-    });
+    agregarALocal(prev => [
+      ...prev,
+      {
+        id: nuevoId,
+        name: valores.nombre,
+        description: valores.descripcion,
+        latitude: lat,
+        longitude: lng,
+        userId
+      }
+    ]);
   } catch (error) {
     Swal.fire('Error', error.message, 'error');
   }
 }
+
 
 async function obtenerUbicaciones(setLocations, setCargando) {
   setCargando(true);
@@ -206,7 +210,7 @@ export default function MapaMundi({ userId }) {
         ) : (
           <MapContainer center={[20, 0]} zoom={2} className="hsm:w-[95%] hsm:h-full sm:h-4/5 sm:w-4/5 sm:rounded-2xl sm:shadow-lg">
             <TileLayer attribution='&copy; OpenStreetMap contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <ManejadorClickMapa userId={usuario.id_usuario} alAgregar={recargarUbicaciones} />
+            <ManejadorClickMapa userId={usuario.id_usuario} onAgregar={setUbicaciones} />
             {ubicaciones.map((loc, index) => (
               <Marker key={loc.id ?? `${loc.latitude}-${loc.longitude}-${index}`} position={[loc.latitude, loc.longitude]}>
                 <Popup className="bg-black1 rounded-2xl p-4">
