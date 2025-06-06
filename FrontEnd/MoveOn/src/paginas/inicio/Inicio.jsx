@@ -54,7 +54,7 @@ const Inicio = () => {
   };
 
   return (
-    <div className="bg-purple dark:bg-purpleOp sm:rounded-2xl">
+    <div className="bg-black3 dark:bg-purpleOp sm:rounded-2xl border-2 border-purple dark:border-0">
       <div className="p-12 hsm:mt-[-1.5rem] hsm:mb-[-0.5rem] grid sm:grid-cols-2 hsm:grid-cols-1 sm:gap-20 hsm:gap-6">
         <article className="hsm:order-last">
           <h1 className="m-0 text-gold">Cambio de Vida</h1>
