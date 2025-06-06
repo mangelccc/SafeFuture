@@ -8,7 +8,7 @@ const Ejercicio = ({
   nombre,
   descripcion,
   grupo_muscular,
-  imagen_url: imagen,
+  imagen_url,
   video_url: video,
   series: initialSeries,
   repeticiones: initialRepeticiones,
@@ -51,7 +51,7 @@ const Ejercicio = ({
   return (
     <div
       onClick={handleClick}
-      className={`ejercicio border-2 rounded-lg m-5 border-black dark:border-gold w-[300px] p-3 flex flex-col bg-white dark:bg-purple dark:text-gold transition-all duration-300 transform hover:scale-102 ${
+      className={`ejercicio border-2 rounded-lg m-5 border-black dark:border-turq w-[300px] p-3 flex flex-col bg-white2 dark:bg-black dark:text-white transition-all duration-300 transform hover:scale-102 ${
         showSeriesEdit ? "h-[360px]" : showSeries ? "h-[360px]" : "h-[300px]"
       }`}
     >
@@ -60,9 +60,9 @@ const Ejercicio = ({
 
       <div className="flex justify-center mt-2">
         <video
-          poster={imagen}
+          poster={imagen_url}
           src={video}
-          className="w-[200px] h-[200px] object-cover rounded-lg border-2 dark:border-gold"
+          className="w-[200px] h-[200px] object-cover rounded-lg border-2 border-black dark:border-turq"
         />
       </div>
 

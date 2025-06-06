@@ -292,11 +292,13 @@ const seleccionEjercicios = (ejercicio) => {
 
   const [ejerciciosVista, setEjerciciosVista] = useState([]);
   const [rutinaNombre, setRutinaNombre] = useState('');
+  const [rutinaDescripcion, setRutinaDescripcion] = useState('');
   const [cargando, setCargando] = useState(true);
   const [errorVistaEntrenamiento, setErrorVistaEntrenamiento] = useState(null);
 
   const fetchData = async (id, ejercicios) => {
     setRutinaNombre('');
+    setRutinaDescripcion('');
     setEjerciciosVista([]);
     setCargando(true);
     try {
@@ -313,6 +315,7 @@ const seleccionEjercicios = (ejercicio) => {
       const rawRut = await resRut.json();
       const rut = rawRut.rutina || rawRut;
       setRutinaNombre(rut.nombre || `Rutina ${id}`);
+      setRutinaDescripcion(rut.descripcion || `Rutina ${id}`);
 
       // 2) Obtener pivots de rutina-ejercicio
       const res = await fetch(`${API_URL}/rutina-ejercicio`, {
@@ -463,6 +466,7 @@ const filtrarEntrenamientosGlobal = (filtro) => {
     errorVistaEntrenamiento,
     cargando,
     rutinaNombre,
+    rutinaDescripcion,
     ejerciciosVista,
     validarFormularioEntrenamiento,
     filtrarEntrenamientos,

@@ -9,7 +9,7 @@ const VistaRutina = () => {
   const { id } = useParams();
   const { ejerciciosContex,entrenamientoContexto } = useAppContext();
   const { ejercicios } = ejerciciosContex;
-  const { fetchData,cargando,errorVistaEntrenamiento,rutinaNombre,ejerciciosVista } = entrenamientoContexto;
+  const { fetchData,cargando,errorVistaEntrenamiento,rutinaNombre,rutinaDescripcion,ejerciciosVista } = entrenamientoContexto;
 
   useEffect(() => {
     fetchData(id,ejercicios);
@@ -37,10 +37,14 @@ const VistaRutina = () => {
     }
   }, [cargando]);
   if (errorVistaEntrenamiento) return <p className="text-red-500">{errorVistaEntrenamiento}</p>;
+  console.log(ejerciciosVista);
 
   return (
     <div className="p-6">
       <h2 className="text-4xl font-bold mb-6 dark:text-white">{rutinaNombre}</h2>
+      <p className="mb-4 text-gray-700 dark:text-gray-300">
+        <strong>Descripción:</strong> {rutinaDescripcion}
+      </p>
       
       {ejerciciosVista.length === 0 ? (
         <p>No hay ejercicios ligados a esta rutina.</p>
@@ -52,8 +56,8 @@ const VistaRutina = () => {
               id_ejercicio={ejercicioVista.id_ejercicio}
               nombre={ejercicioVista.nombre}
               descripcion={ejercicioVista.descripcion}
-              grupoMuscular={ejercicioVista.grupo_muscular}
-              imagen={ejercicioVista.imagen_url}
+              grupo_muscular={ejercicioVista.grupo_muscular}
+              imagen_url={ejercicioVista.imagen_url}
               video={ejercicioVista.video_url}
               series={ejercicioVista.num_series}
               repeticiones={ejercicioVista.num_repeticiones}

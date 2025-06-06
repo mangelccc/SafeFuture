@@ -36,7 +36,7 @@ const Ejercicios = () => {
               id_ejercicio={ejercicio.id_ejercicio}
               nombre={ejercicio.nombre}
               descripcion={ejercicio.descripcion}
-              imagen={ejercicio.imagen_url}
+              imagen_url={ejercicio.imagen_url}
               video={ejercicio.video_url}
               grupo_muscular={ejercicio.grupo_muscular}
             />

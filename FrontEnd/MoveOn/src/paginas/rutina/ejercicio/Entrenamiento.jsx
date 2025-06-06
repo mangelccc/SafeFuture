@@ -98,7 +98,7 @@ const Entrenamiento = ({ entrenamiento, deleteEntrenamiento, esPlantilla = false
     >
       <div className="flex-1">
         <p><strong>Nombre:</strong> {entrenamiento.nombre}</p>
-        <p><strong>Descripción:</strong> {entrenamiento.descripcion}</p>
+        <p className='hsm:hidden'><strong>Descripción:</strong> {entrenamiento.descripcion}</p>
       </div>
 
       <div className="flex items-center gap-4">

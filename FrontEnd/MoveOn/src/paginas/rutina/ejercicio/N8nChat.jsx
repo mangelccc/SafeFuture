@@ -39,6 +39,7 @@ export default function N8NChat() {
       .map(m => m.text);
 
     const payload = {
+      uuid: usuario.id_usuario,
       sessionId,
       action: 'sendMessage',
       chatInput,

@@ -150,22 +150,38 @@ const FormularioEntrenamiento = () => {
         <div className="flex sm:flex-row hsm:flex-col gap-4">
           <div className="w-full">
             <SearchBar setResults={setResultados} />
-            <SearchResultsList results={resultados} onSelect={seleccionEjercicios} />
+
+            {isDesktop ? (
+              // En desktop siempre mostramos la lista
+              <SearchResultsList
+                results={resultados}
+                onSelect={seleccionEjercicios}
+              />
+            ) : (
+              // En móvil solo si resultados.length > 0
+              resultados.length > 0 && (
+                <SearchResultsList
+                  results={resultados}
+                  onSelect={seleccionEjercicios}
+                />
+              )
+            )}
           </div>
+
 
           {/* Selección actual */}
           <div className="flex flex-wrap w-full border border-gray-300 rounded-lg p-4 h-[500px] overflow-auto">
             {ejerciciosSeleccionados.length > 0
               ? ejerciciosSeleccionados.map(ej => (
-                  <Ejercicio
-                    key={ej.id_ejercicio}
-                    {...ej}
-                    showSeriesEdit={true}
-                    onChangeSeries={val => actualizarSeriesRepeticionesEstado(ej.id_ejercicio, 'num_series', val)}
-                    onChangeRepeticiones={val => actualizarSeriesRepeticionesEstado(ej.id_ejercicio, 'num_repeticiones', val)}
-                    onClick={() => eliminarEjercicioSeleccionado(ej.id_ejercicio)}
-                  />
-                ))
+                <Ejercicio
+                  key={ej.id_ejercicio}
+                  {...ej}
+                  showSeriesEdit={true}
+                  onChangeSeries={val => actualizarSeriesRepeticionesEstado(ej.id_ejercicio, 'num_series', val)}
+                  onChangeRepeticiones={val => actualizarSeriesRepeticionesEstado(ej.id_ejercicio, 'num_repeticiones', val)}
+                  onClick={() => eliminarEjercicioSeleccionado(ej.id_ejercicio)}
+                />
+              ))
               : (
                 <p className="w-full text-center text-gray-500 dark:text-gray-400">
                   No hay ejercicios seleccionados
@@ -180,11 +196,15 @@ const FormularioEntrenamiento = () => {
           type="button"
           onClick={handleCreate}
           disabled={guardando}
-          className={`w-full p-3 font-bold rounded transition-transform duration-300
-            ${guardando
+          className={`
+              sm:w-1/4 hsm:w-full p-3 font-bold rounded 
+              transition-colors duration-300 ease-in-out 
+              
+              ${guardando
               ? 'bg-gray-400 text-gray-700 cursor-not-allowed'
-              : 'bg-purple text-white hover:scale-105 dark:bg-gold dark:text-black'
-            }`}
+              : 'bg-purple text-white hover:bg-turq dark:bg-gold dark:hover:bg-turq dark:text-black'
+            }
+            `}
         >
           {guardando ? 'Guardando...' : 'Crear Rutina Ejercicios'}
         </button>
