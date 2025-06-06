@@ -8,7 +8,7 @@ const Entrenamientos = () => {
 
   return (
     <div>
-      <div className='gap-4 h-[600px] overflow-y-auto border-2 border-black dark:border-white rounded'>
+      <div className='gap-4 h-[600px] overflow-y-auto sm:border-2 border-black dark:border-white rounded'>
       {misEntrenamientos.length > 0 ? (
         misEntrenamientos.map(ent => (
           <Entrenamiento

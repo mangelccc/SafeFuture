@@ -93,7 +93,7 @@ const Entrenamiento = ({ entrenamiento, deleteEntrenamiento, esPlantilla = false
   return (
     <div
       key={entrenamiento.id_rutina}
-      className="entrenamiento border-2 rounded-lg m-5 dark:text-white border-black dark:border-white p-2 flex justify-between items-center hover:bg-purple hover:text-gold transition-all duration-300"
+      className="entrenamiento border-2 rounded-lg sm:m-5 hsm:my-5 hsm:mx-0 dark:text-white border-black dark:border-white p-2 flex justify-between items-center hover:bg-purple hover:text-gold transition-all duration-300"
 
     >
       <div className="flex-1">

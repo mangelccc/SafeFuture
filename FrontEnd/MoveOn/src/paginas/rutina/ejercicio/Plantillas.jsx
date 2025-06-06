@@ -19,7 +19,7 @@ const Plantillas = () => {
                     onChange={(e) => filtrarEntrenamientosGlobal(e.target.value)}
                 />
             </div>
-      <div className='w-full gap-4 h-[600px] overflow-y-scroll border-2 border-black dark:border-white rounded'>
+      <div className='w-full gap-4 h-[600px] overflow-y-scroll sm:border-2 border-black dark:border-white rounded'>
       {entrenamientos.length > 0 ? (
         entrenamientos.map(ent => (
           <Entrenamiento
