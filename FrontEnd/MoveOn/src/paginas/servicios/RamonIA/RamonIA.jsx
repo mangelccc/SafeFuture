@@ -32,7 +32,7 @@ export default function RamonIA() {
       action: 'sendMessage',
       chatInput
     };
-    
+
     try {
       const res = await fetch(WEBHOOK_URL, {
         method: 'POST',
@@ -61,15 +61,18 @@ export default function RamonIA() {
           {messages.map((m, i) => (
             <div
               key={i}
-              className={
-                `max-w-5/5 p-2 rounded-xl animate-fadeInUp whitespace-pre-wrap ` +
-                (m.from === 'user'
-                  ? 'self-end bg-purple text-white'
-                  : 'self-start text-black dark:text-white bg-gray-100 dark:bg-black1')
-              }
+              className={`
+              max-w-5/5 p-4 rounded-xl animate-fadeInUp 
+              whitespace-pre-wrap break-words
+                ${m.from === 'user'
+                  ? 'self-end dark:bg-black3 bg-white3 dark:text-white text-black max-w-[60%]'
+                  : 'self-start text-black dark:text-white'
+                }
+            `}
             >
-              <span className='text-[24px]'>{m.text}</span>
+              <span className="text-[24px]">{m.text}</span>
             </div>
+
           ))}
           {/* Elemento ficticio al final para scroll */}
           <div ref={scrollRef} />
@@ -97,7 +100,7 @@ export default function RamonIA() {
 
         {/* Botón de retroceso */}
         <div className="flex justify-center mt-8 text-[24px]">
-          <BotonDeRetroceso textoBoton="Volver a los servicios"/>
+          <BotonDeRetroceso textoBoton="Volver a los servicios" />
         </div>
       </div>
     </div>
