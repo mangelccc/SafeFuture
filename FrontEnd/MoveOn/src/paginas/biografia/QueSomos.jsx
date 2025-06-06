@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SobreNosotros = () => {
   return (
-    <div className="w-full bg-purple dark:bg-purpleOp p-8 sm:p-12 mb-4 rounded-2xl space-y-16 opacity-0 translate-y-6 animate-fadeInUp text-left">
+    <div className="w-full bg-black3 dark:bg-purpleOp p-8 sm:p-12 mb-4 sm:rounded-2xl space-y-16 opacity-0 translate-y-6 animate-fadeInUp text-left border-2 border-purple dark:border-0">
 
       <header className="space-y-4">
         <h1 className="text-gold text-4xl font-bold w-full">Sobre Nosotros</h1>

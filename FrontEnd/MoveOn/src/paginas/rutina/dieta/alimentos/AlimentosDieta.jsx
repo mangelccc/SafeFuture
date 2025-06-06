@@ -77,7 +77,7 @@ const AlimentosDieta = () => {
         Filtros para encontrar tus alimentos
       </h2>
 
-      <div className="bg-purple p-5 mt-2 sm:rounded-lg">
+      <div className="bg-black3 dark:bg-purpleOp border-2 border-purple dark:border-0 p-5 mt-2 sm:rounded-lg">
         <BuscadorAlimentos
           busqueda={busqueda}
           buscarAlimento={buscarAlimento}
